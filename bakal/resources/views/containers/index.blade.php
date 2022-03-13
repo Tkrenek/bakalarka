@@ -13,9 +13,17 @@
         <th scope="col">Objem(v litrech)</th>
         <th scope="col">Na skladě</th>
         <th scope="col">Cena</th>
-        <th scope="col">Upravit</th>
-        <th scope="col">Naskladnit</th>
-        <th scope="col">Odstranit</th>
+        @auth
+          <th scope="col">Upravit</th>
+          <th scope="col">Naskladnit</th>
+          <th scope="col">Odstranit</th>
+        @endauth
+        @auth('employee')
+          <th scope="col">Upravit</th>
+          <th scope="col">Naskladnit</th>
+          <th scope="col">Odstranit</th>
+        @endauth
+        
       </tr>
     </thead>
     <tbody>
@@ -29,14 +37,40 @@
         <td>{{ $container->on_store }}</td>
         <td>{{ $container->prize }}</td>
  
-        
+        @auth('employee')
         <td><a href="{{ route('containers.edit', $container->id) }}">Upravit</a></td>
-      
+        
+          <td>
+            <form action="{{ route('containers.addStore', $container->id) }}" method="post">
+              @csrf
+              @method('PUT')
+              <div class="form-group row">
+                @error('ammount')
+
+                    {{  $message }}
+        
+                @enderror
+                <label for="ammount" class="sr-only">Množství</label>
+                <input type="text"  id="ammount" name="ammount" >
+                </div>
+              <button type="submit">Naskladnit</button>
+          </form>
+          </td>
+          <td>
+            <form action="{{ route('containers.destroy', $container->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Smazat</button>
+          </form>
+          </td>
+        @endauth
+        @auth
         <td>
+          <td><a href="{{ route('containers.edit', $container->id) }}">Upravit</a></td>
           <form action="{{ route('containers.addStore', $container->id) }}" method="post">
-             @csrf
-             @method('PUT')
-             <div class="form-group row">
+            @csrf
+            @method('PUT')
+            <div class="form-group row">
               @error('ammount')
 
                   {{  $message }}
@@ -45,16 +79,18 @@
               <label for="ammount" class="sr-only">Množství</label>
               <input type="text"  id="ammount" name="ammount" >
               </div>
-             <button type="submit">Naskladnit</button>
-         </form>
+            <button type="submit">Naskladnit</button>
+        </form>
         </td>
         <td>
           <form action="{{ route('containers.destroy', $container->id) }}" method="post">
-             @csrf
-             @method('DELETE')
-             <button type="submit">Smazat</button>
-         </form>
+            @csrf
+            @method('DELETE')
+            <button type="submit">Smazat</button>
+        </form>
         </td>
+        @endauth
+        
     </tr>
       @endforeach
       
