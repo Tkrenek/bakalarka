@@ -2,21 +2,21 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container">
+    <div class="row justify-content-center" >
+        <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Přidat nádobu</div>
+            <div class="card-header">Přidat oddělení</div>
 
             <div class="card-body">
         
-            <form action="{{ route('departments.store') }}" method="POST" style="width: 450px; margin: auto;">
+            <form action="{{ route('departments.store') }}" method="POST" >
                 @csrf
                
                 
                 <div class="form-group row">
                     
-                    <label for="name" class="col-md-4 col-form-label">Název oddělení</label>
+                    <label for="name">Název oddělení</label>
                     
                     <input type="text" value="{{ old('name') }}" id="name" name="name" class="form-control custom-select @error('name') is-invalid @enderror">
                     <div class="invalid-feedback">
@@ -32,6 +32,10 @@
                 </div>
             </form>
        
-            </div></div></div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 @endsection

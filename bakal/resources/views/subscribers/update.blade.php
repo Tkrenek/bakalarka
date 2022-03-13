@@ -2,15 +2,15 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container">
+    <div class="row justify-content-center" >
+        <div class="col-md-6">
             <div class="card">
             <div class="card-header">Upravit zákazníka</div>
 
             <div class="card-body">
         
-            <form action="{{ route('subscribers.update', $customer->id) }}" method="POST" style="width: 450px; margin: auto;">
+            <form action="{{ route('subscribers.update', $customer->id) }}" method="POST" >
                @csrf
                @method('PUT')
                 

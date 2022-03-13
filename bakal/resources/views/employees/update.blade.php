@@ -2,11 +2,11 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container">
+    <div class="row justify-content-center" >
+        <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Přidat nádobu</div>
+            <div class="card-header">Upravoit zaměstnance</div>
 
             <div class="card-body">
         
