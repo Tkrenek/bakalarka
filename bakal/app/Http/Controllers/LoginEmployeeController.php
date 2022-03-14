@@ -27,6 +27,8 @@ class LoginEmployeeController extends Controller
             return view('employees/welcome');
         }
 
+        return back()->with('error', 'Zadáno chybné heslo nebo email.');
+
         
     }
 

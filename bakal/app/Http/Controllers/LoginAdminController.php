@@ -18,12 +18,16 @@ class LoginAdminController extends Controller
 
     public function login(Request $request)
     {
+
+        
         $credentials = $request->only('email', 'password');
  
         if (Auth::attempt($credentials)) {
             
             return redirect('admins/success');
         }
+        
+        return back()->with('error', 'Zadáno chybné heslo nebo email.');
     }
 
     public function success()

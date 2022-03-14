@@ -15,9 +15,15 @@
                 <div class="row">
                     <div class="col">
                         
-
-                <div class="form-group">
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <strong>{{ $message }}  </strong>   
+                    </div>    
                     
+                    
+                @endif
+                <div class="form-group">
+           
                     <label for="email">Email</label>
                     <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email">
                     <div class="invalid-feedback">

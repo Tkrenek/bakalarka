@@ -15,7 +15,13 @@
                 <div class="row">
                     <div class="col">
                         
-
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <strong>{{ $message }}  </strong>   
+                        </div>    
+                        
+                        
+                    @endif
                 <div class="form-group">
                     
                     <label for="login">Login</label>

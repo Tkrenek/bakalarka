@@ -27,7 +27,7 @@ class LoginCustomerController extends Controller
             
             return view('subscribers/welcome');
         } else {
-            return back();
+            return back()->with('error', 'Zadán chybný login nebo email.');
         }
 
         

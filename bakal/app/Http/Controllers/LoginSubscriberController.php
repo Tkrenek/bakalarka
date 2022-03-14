@@ -28,7 +28,7 @@ class LoginOdberatelController extends Controller
         ]);
 
         if (!auth()->attempt($request->only('login', 'password'), $request->remember)) {
-            return back()->with('status', 'invalid login');
+            return back()->with('error', 'Zadáno chybné heslo nebo email.');
         }
 
         return redirect()->route('/');
