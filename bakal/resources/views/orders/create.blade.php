@@ -2,9 +2,9 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="d-flex justify-content-center">
             <div class="card">
             <div class="card-header">Přidat nádobu</div>
 
@@ -14,7 +14,7 @@
         @csrf
 
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="name" class="col-md-4 col-form-label">Name</label>
                     @error('name')
@@ -25,7 +25,7 @@
                     <input type="text" value="{{ old('name') }}" id="name" name="name">
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="branch" class="col-md-4 col-form-label">Branch</label>
                     @error('branch')
@@ -36,7 +36,7 @@
                     <input type="text" value="{{ old('branch') }}" id="branch" name="branch">
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="prize" class="col-md-4 col-form-label">Prize</label>
                     @error('prize')

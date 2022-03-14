@@ -3,9 +3,9 @@
 @section('content')
 
 
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
             <div class="card-header">Upravit originální produkt</div>
 
@@ -15,7 +15,7 @@
         @method('PUT')
         @csrf
         
-        <div class="form-group row">
+        <div class="form-group">
                             
             <label for="code">Kód produktu</label>
             
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group ">
             
             <label for="name">Název produktu</label>
             
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group ">
             
             <label for="branch">Odvětví produktu</label>
             
@@ -63,7 +63,7 @@
             </div> 
         </div>
 
-        <div class="form-group row">
+        <div class="form-group ">
             
             <label for="prize">Cena produktu(Kč/l)</label>
             
@@ -77,7 +77,7 @@
             </div> 
         </div>
 
-        <div class="form-group row">
+        <div class="form-group ">
             
             <label for="on_store">Na skladě(l)</label>
             
@@ -91,7 +91,7 @@
             </div> 
         </div>
 
-        <div class="form-group row">
+        <div class="form-group ">
             
             <label for="producer" class="sr-only">Dodavatel</label>
             <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">

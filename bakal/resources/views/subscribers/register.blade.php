@@ -3,18 +3,18 @@
 @section('content')
   
 
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat zákazníka</div>
+                <div class="card-header">Registrace zákazníka</div>
 
-            <div class="card-body">
-            <form action="{{ route('subscribers.store') }}" method="POST" style="width: 450px; margin: auto;">
+                <div class="card-body ">
+            <form action="{{ route('subscribers.store') }}" method="POST">
                 @csrf
                
                 
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="name" class="form-label">Název společnosti</label>
                     
@@ -28,10 +28,12 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="town" class="form-label">Město</label>
+                  
                     <input type="text" value="{{ old('town') }}" id="town" name="town" class="form-control @error('town') is-invalid @enderror">
+              
                     <div class="invalid-feedback">
                         @error('town')
 
@@ -40,7 +42,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                    
                     <label for="address" class="form-label">Adresa</label>
                     <input type="text" id="address" value="{{ old('address') }}" name="address" class="form-control @error('address') is-invalid @enderror">
@@ -52,7 +54,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="login" class="form-label">Login</label>
                     <input type="text" id="login" value="{{ old('login') }}" name="login" class="form-control @error('login') is-invalid @enderror">
@@ -64,7 +66,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="password" class="form-label">Heslo</label>
                     <input type="password" id="password"  name="password" class="form-control @error('password') is-invalid @enderror">
@@ -80,7 +82,7 @@
                     </div>
                 </div>
                 
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="password_confirmation" class="form-label">Ověření hesla</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror">
@@ -95,7 +97,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="url" class="form-label">URL</label>
                     <input type="text" value="{{ old('url') }}" id="url" name="url" class="form-control @error('url') is-invalid @enderror">

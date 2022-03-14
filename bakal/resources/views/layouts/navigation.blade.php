@@ -8,8 +8,8 @@
     <link rel="stylesheet" href=" {{ asset('css/app.css') }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a href="/" class="navbar-brand">Colorex</a>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <a href="/" class="navbar-brand ">Colorex</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,14 +31,18 @@
                 </form>
                 @endauth
                 @auth
-                {{ auth()->user()->name }} {{ auth()->user()->surname }}
+                <div class="primary">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
+               
                 <form action="{{ route('admins.logout') }}" method="POST">
                     @csrf
                     <button>Odhlásit se</button>
                 </form>
                     
                 @endauth
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home')}}" class="p-3">Doma</a>
+    
+                </li>
                 @auth('employee')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>

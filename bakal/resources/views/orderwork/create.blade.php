@@ -2,9 +2,9 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
             <div class="card-header">Oznčit práci na objedávce</div>
 
@@ -13,7 +13,7 @@
         @csrf
 
 
-                <div class="form-group row">
+                <div class="form-group ">
                                     
                 <label for="order">Objednávka</label>
                    
@@ -24,7 +24,7 @@
                 </select>    
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="type">Typ práce na objednávce</label>
                     

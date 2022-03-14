@@ -2,9 +2,9 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
             <div class="card-header">Přidat položku</div>
 
@@ -14,7 +14,7 @@
                 @csrf
                
                
-                <div class="form-group row">
+                <div class="form-group">
                     
                     <label for="amount">Množství(v litrech)</label>
                    
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 
-                <div class="form-group row">
+                <div class="form-group">
                    
                     <label for="product" class="sr-only">Kód produktu</label>
                     <select name="product" id="product" class="form-control custom-select @error('product') is-invalid @enderror">

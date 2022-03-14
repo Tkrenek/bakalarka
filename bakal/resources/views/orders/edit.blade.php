@@ -7,9 +7,9 @@
 @endphp
 
         
-<div class="container" style="width: 1000px;">
+<div class="container" >
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="d-flex justify-content-center">
             <div class="card">
             <div class="card-header">Upravit objednávku</div>
 
@@ -19,7 +19,7 @@
         @method('PUT')
 
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="state">Stav objednávky</label>
                    
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group ">
                     <label for="term">Datum narození</label>
                     <input type="date" id="term" value="{{ carbon::parse($order->term)->format('d.m. Y')  }}" name="term" class="form-control @error('term') is-invalid @enderror">
                     <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                 </div>
               
 
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="invoice">Faktura objednávky</label>
                        
@@ -62,7 +62,10 @@
 
                 
            
-                <button type="submit" class="btn btn-primary">Upravit objednávku</button>
+                <div class="d-flex justify-content-center p-3">
+                    <button type="submit" class="btn btn-primary">Upravit objednávku</button>
+
+                </div>
         </form>
        
             </div></div></div></div></div>
