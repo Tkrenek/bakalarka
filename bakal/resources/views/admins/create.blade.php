@@ -2,8 +2,9 @@
 
 @section('content')
   
-
-
+<div class="justify-content-center d-flex p-5"><h1>Informační systém Colorex</h1></div>
+<div class="justify-content-center d-flex p-1">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
+<div class="justify-content-center d-flex p-1">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -136,7 +137,7 @@
 
                 </div>
             </form>
-       
+            <span>Pokud již máte účet přihlaste se: <a href="{{ route('admins.login') }}">tady</a></span>
 
             </div>
 

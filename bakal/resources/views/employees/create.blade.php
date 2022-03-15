@@ -2,11 +2,14 @@
 
 @section('content')
   
+<div class="justify-content-center d-flex p-5"><h1>Informační systém Colorex</h1></div>
+<div class="justify-content-center d-flex p-1">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat zákazníka</div>
+            <div class="card-header">Registrace zaměstnance</div>
 
             <div class="card-body">
         
@@ -49,7 +52,7 @@
                 </div>
                 
                 
-                <div class="form-group ">
+                <div class="form-group">
                    
                     <label for="password">Heslo</label>
                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
@@ -67,7 +70,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group ">
+                <div class="form-group">
 
                     <label for="password_confirmation">Ověření hesla</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror">
@@ -236,8 +239,11 @@
                 </div>
                 
             </form>
+            <span>Pokud již účet máte, přihlaste se: <a href="{{ route('employees.login') }}">tady</a></span>
        
     </div>
 
-            </div></div></div></div>
+    
+            </div></div> Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</div></div>
+       
 @endsection

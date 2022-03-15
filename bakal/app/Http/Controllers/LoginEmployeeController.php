@@ -40,6 +40,6 @@ class LoginEmployeeController extends Controller
     public function logout()
     {
         Auth::guard('employee')->logout();
-        return redirect('employees/login');
+        return redirect('/');
     }
 }

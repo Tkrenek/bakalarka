@@ -43,7 +43,7 @@ use App\Http\Controllers\LoginCustomerController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('subscribers.login');
 });
 
 

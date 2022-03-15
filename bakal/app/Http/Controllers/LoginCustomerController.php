@@ -41,6 +41,6 @@ class LoginCustomerController extends Controller
     public function logout()
     {
         Auth::guard('subscriber')->logout();
-        return redirect('subscribers/login');
+        return redirect('/');
     }
 }
