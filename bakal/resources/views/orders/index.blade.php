@@ -5,7 +5,10 @@
 @php
   use Carbon\Carbon as carbon;
 @endphp
-
+<form action="{{ route('orders.store') }}" method="post">
+  @csrf
+  <button type="submit" class="btn btn-outline-secondary">Vytvořit novou objednávku</button>
+</form> 
    <table class="table">
       <thead>
         <tr>
@@ -53,16 +56,20 @@
             {{ $sum + $sumPckg}} Kč
            </td>
           <td>{{ $order->invoice }}</td>
-          <td>
-            <form action="{{ route('orders.destroy', $order->id) }}" method="post">
-               @csrf
-               @method('DELETE')
-               <button type="submit">Odstranit objednávku</button>
-           </form>
-          </td>
+          @auth()
+            <td>
+              <form action="{{ route('orders.destroy', $order->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Odstranit objednávku</button>
+            </form>
+            </td>
+          @endauth
+          
 
-          <td>
-            @auth('subscriber')
+          
+            @auth('employee')
+            <td>
             <form action="{{ route('orders.changeState', $order->id) }}" method="post">
               @csrf
               @method('PUT')
@@ -77,7 +84,7 @@
                </div>
               <button type="submit">Změnit stav objednávky</button>
           </form>
-      
+            </td>
           @endauth
           @auth
           <form action="{{ route('orders.changeState', $order->id) }}" method="post">

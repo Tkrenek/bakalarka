@@ -13,10 +13,10 @@ class OrderController extends Controller
    
     public function store()
     {
-
+      
         Order::create([
             'state' => 'created',
-            'term' => '2000-01-01',
+            'term' => date("Y-m-d"),
             'subscriber_id' => auth('subscriber')->user()->id,
             'invoice' => 'wait'
 

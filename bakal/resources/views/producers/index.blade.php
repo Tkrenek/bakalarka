@@ -2,18 +2,18 @@
 
 @section('content')
   
-<div class="container" style="width: 1000px;">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <div class="card">
             <div class="card-header">Přidat dodavatele</div>
 
-            <div class="card-body">
+            <div class="card-body"> 
         
-            <form action="{{ route('producers.store') }}" method="POST" style="width: 450px; margin: auto;">
+            <form action="{{ route('producers.store') }}" method="POST">
                 @csrf
 
-                <div class="form-group row">
+                <div class="form-group ">
                    
                     <label for="name">Název</label>
                     <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
@@ -28,8 +28,8 @@
 
                 
 
-                <div class="form-group row">
-                    
+                <div class="form-group ">
+
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email" class="form-control @error('email') is-invalid @enderror">
                     <div class="invalid-feedback">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group ">
                    
                     <label for="phone">Telefon</label>
                     <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror">
@@ -55,7 +55,7 @@
                 </div>
 
              
-                <div class="form-group row">
+                <div class="form-group ">
                     
                     <label for="address" class="sr-only">Adresa</label>
                     <input type="text" id="address" name="address" class="form-control @error('phone') is-invalid @enderror">

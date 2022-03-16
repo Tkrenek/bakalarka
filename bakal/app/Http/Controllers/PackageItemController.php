@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Container;
 
 use App\Models\Package_item;
+use App\Models\Item;
 
 class PackageItemController extends Controller
 {
@@ -56,7 +57,11 @@ class PackageItemController extends Controller
 
         $container->save();
 
+        $item = Item::find($itemid);
+  
 
-        return back();
+        
+        return \Redirect::route('orders.show', $item->order->id);
+        
     }
 }

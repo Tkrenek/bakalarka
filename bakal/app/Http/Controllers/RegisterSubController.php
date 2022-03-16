@@ -28,12 +28,12 @@ class RegisterSubController extends Controller
     {
 
     $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:subscribers',
             'town' =>'required',
-            'address' => 'required',
-            'login' => 'required',
+            'address' => 'required|unique:subscribers',
+            'login' => 'required|unique:subscribers',
             'password' => 'required|confirmed',
-            'url' =>'required',
+            'url' =>'required|unique:subscribers',
 
         ]);
 

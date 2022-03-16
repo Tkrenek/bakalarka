@@ -31,7 +31,7 @@
                 </form>
                 @endauth
                 @auth
-                <div class="primary">{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
+              
                
                 <form action="{{ route('admins.logout') }}" method="POST">
                     @csrf
@@ -81,25 +81,7 @@
                     <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
     
                 </li>
-                <li class="nav-item">
-                    <a  class="nav-link" href="{{ route('employees.login') }}" class="p-3">Přihlášení zaměstnance</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a  class="nav-link" href="{{ route('admins.login') }}" class="p-3">Přihlášení admina</a>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link" href="{{ route('subscribers.login') }}" class="p-3">Přihlášení zákazníka</a>
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('subscribers.create')}}" class="p-3">Registrace zákazníka</a>
-    
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('employees.create') }}" class="p-3">Registrace Zaměstnance</a>
-                </li>
+               
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Upravit Zaměstnance</a>
                 </li>
@@ -108,13 +90,7 @@
                     <a class="nav-link" href="{{ route('departments.index') }}" class="p-3">Přidat oddělení</a>
                 </li>
     
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admins.index') }}" class="p-3">Registrace Admina</a>
-                </li>
-    
-    
-    
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('subscribers.index')}}" class="p-3">Zobrazit Zákazníky</a>
     
@@ -341,18 +317,12 @@
 
     @auth
     <div>{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
-        <form action="{{ route('orders.store') }}" method="post">
-            @csrf
-            <button type="submit" class="btn-primary">Vytvořit novou objednávku</button>
-        </form>  
+         
     @endauth
 
     @auth('subscriber')
     <div><a href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}">{{ auth('subscriber')->user()->name }}</a></div>
-    <form action="{{ route('orders.store') }}" method="post">
-        @csrf
-        <button type="submit" class="btn-primary">Vytvořit novou objednávku</button>
-    </form>  
+    
     @endauth
     
 

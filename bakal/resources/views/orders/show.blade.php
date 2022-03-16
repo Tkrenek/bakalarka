@@ -9,18 +9,18 @@
    <h1>ID objednávky: {{ $order->id }}</h1>
    
   
-   <table>
-      <th>Kód produktu</th>
-      <th>Název produktu</th>
-      <th>Množství(v litrech)</th>
+   <table class="table">
+      <th scope="col">Kód produktu</th>
+      <th scope="col">Název produktu</th>
+      <th scope="col">Množství(v litrech)</th>
     
-      <th>Stav</th>
-      <th>Temín</th>
-      <th>Cena</th>
-      <th>Cena za balení</th>
 
-      <th>Vybrat balení</th>
-      <th>Balení</th>
+      <th scope="col">Cena</th>
+      <th scope="col">Cena za balení</th>
+
+      <th scope="col">Vybrat balení</th>
+      <th scope="col">Balení</th>
+
       @foreach ($items as $item)
       <tr>
          @if ($item->is_mixed == "ano")
@@ -33,17 +33,6 @@
          
          
          <td>{{ $item->amount }}</td>
- 
-         <td>{{ $order->state }} 
-            
-         </td> 
-
-         <td> {{ $order->term }}</td> 
-         <td><a href="{{ route('packageItem.create', $item->id) }}">Vybrat balení</a></td>
-         <td>@foreach ($item->packageItem as $cont)
-            {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }})
-         @endforeach
-         </td>
          <td>
             
             @if ($item->is_mixed == "ano")
@@ -60,15 +49,20 @@
             @endforeach
 
          </td>
+         <td><a href="{{ route('packageItem.create', $item->id) }}">Vybrat balení</a></td>
+         <td>@foreach ($item->packageItem as $cont)
+            {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }})
+         @endforeach
+         </td>
+         
+         
       </tr>
       
       @endforeach
 
       
    </table>
-
-   <a href="{{ route('items.create', $order->id) }}">Přidat položku</a>
-  
+   <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přdat položku</a>
   
 
 
