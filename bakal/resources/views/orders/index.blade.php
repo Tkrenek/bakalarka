@@ -29,7 +29,7 @@
            
           <td><a href="{{  route('orders.show', $order->id) }}">{{ $order->id }}</a></td> 
           <td>{{ $order->state }}</td>
-          <td>{{ carbon::parse($order->term)->format('d.m. Y')}} </td>
+          <td>{{ Carbon::parse($order->term)->format('d.m. Y')}} </td>
           <td>
             @php
               $sum = 0;
@@ -83,10 +83,11 @@
                <input type="text"  id="state" name="state" >
                </div>
               <button type="submit">Změnit stav objednávky</button>
-          </form>
+              </form>
             </td>
           @endauth
           @auth
+          <td>
           <form action="{{ route('orders.changeState', $order->id) }}" method="post">
             @csrf
             @method('PUT')
@@ -101,40 +102,72 @@
              </div>
             <button type="submit">Změnit stav objednávky</button>
         </form>
+      </td>
           @endauth
             
           
-      </td>
-        <td>
-            <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
-        </td>
       
-
+      @auth
       <td>
-
-        
-
-
-        <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">
-          @csrf
-          @method('PUT')
-          <div class="form-group">
-            <label for="term">Změnit termín</label>
-            <input type="date" id="term" name="term" class="form-control @error('term') is-invalid @enderror" >
-            <div class="invalid-feedback">
-                @error('term')
-  
-                    {{  $message }}
-    
-                @enderror
-            </div>  
-        </div>
-          <button type="submit">Změnit termín objednávky</button>
-      </form>
-      <td>
-          <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
+        <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
       </td>
-    </td>
+      @endauth
+      
+      @auth('employee')
+      <td>
+        <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
+      </td>
+      @endauth
+      
+@auth
+<td>
+
+  <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">
+    @csrf
+    @method('PUT')
+    <div class="form-group">
+      <label for="term">Změnit termín</label>
+      <input type="date" id="term" name="term" class="form-control @error('term') is-invalid @enderror" >
+      <div class="invalid-feedback">
+          @error('term')
+
+              {{  $message }}
+
+          @enderror
+      </div>  
+  </div>
+    <button type="submit">Změnit termín objednávky</button>
+</form>
+<td>
+    <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
+</td>
+</td>
+@endauth
+
+@auth('employee')
+<td>
+
+  <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">
+    @csrf
+    @method('PUT')
+    <div class="form-group">
+      <label for="term">Změnit termín</label>
+      <input type="date" id="term" name="term" class="form-control @error('term') is-invalid @enderror" >
+      <div class="invalid-feedback">
+          @error('term')
+
+              {{  $message }}
+
+          @enderror
+      </div>  
+  </div>
+    <button type="submit">Změnit termín objednávky</button>
+</form>
+<td>
+    <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
+</td>
+</td>
+@endauth
            
       </tr>
         @endforeach

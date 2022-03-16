@@ -20,9 +20,9 @@
 
           @endauth
           @auth('employee')
-          <th scope="col">Upravit</th>
-          <th scope="col">Naskladnit</th>
-          <th scope="col">Odstranit</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
           @endauth          
         </tr>
       </thead>
@@ -108,10 +108,21 @@
           <th scope="col">Na skladě</th>
           <th scope="col">Odvětví</th>
           <th scope="col">Cena(Kč)</th>
-          <th scope="col">Dodavatel</th>
-          <th scope="col">Upravit</th>
-          <th scope="col">Naskladnit</th>
-          <th scope="col">Odstranit</th>
+          
+          @auth
+            <th scope="col">Dodavatel</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+          @endauth
+
+          @auth('employee')
+            <th scope="col">Dodavatel</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+          @endauth
+          
         </tr>
       </thead>
       <tbody>
@@ -121,9 +132,11 @@
         <tr>
           <td>{{ $product->code }}</td>
           <td>{{ $product->name }}</td>
-          <td>{{ $product->branch }}</td>
-          <td>{{ $product->prize }}</td>
           <td>{{ $product->on_store }}</td>
+          <td>{{ $product->branch }}</td>
+          
+          <td>{{ $product->prize }}</td>
+          
           @auth
             <td><a href="{{ route('productMixed.edit', $product->id) }}">Upravit produkt</a></td>
             <td>

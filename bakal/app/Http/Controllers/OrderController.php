@@ -22,11 +22,21 @@ class OrderController extends Controller
 
         ]);
 
-        $orders = Order::get();
+        
+
+        if(auth('subscriber')->user()) {
+            $subscriber = Subscriber::find(auth('subscriber')->user()->id);
+            
+            return view('orders.index', [
+                'orders' => $subscriber->order
+            ]);
+        } else {
+            $orders = Order::get();
 
         return view('orders.index', [
             'orders' => $orders,
         ]);
+        }
     }
 
     public function myindex($id)
