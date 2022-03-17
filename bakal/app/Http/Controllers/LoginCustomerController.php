@@ -24,7 +24,6 @@ class LoginCustomerController extends Controller
         $credentials = $request->only('login', 'password');
  
         if (Auth::guard('subscriber')->attempt($credentials)) {
-            
             return view('subscribers/welcome');
         } else {
             return back()->with('error', 'Zadán chybný login nebo heslo.');

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel</title>
     <link rel="stylesheet" href=" {{ asset('css/app.css') }}">
+    <link rel="stylesheet" href=" {{ asset('css/style.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
@@ -194,6 +195,7 @@
         </div>
 
     </nav>
+    
     <!--
     <nav class="navbar navbar-expand navbar-light bg-light">
         <a href="/" class="navbar-brand">Domů</a>

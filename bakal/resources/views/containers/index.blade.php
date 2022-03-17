@@ -3,8 +3,6 @@
 @section('content')
   
 
-        
-
   <table class="table">
     <thead>
       <tr>
@@ -38,7 +36,7 @@
         <td>{{ $container->prize }}</td>
  
         @auth('employee')
-        <td><a href="{{ route('containers.edit', $container->id) }}">Upravit</a></td>
+        <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
         
           <td>
             <form action="{{ route('containers.addStore', $container->id) }}" method="post">
@@ -53,7 +51,7 @@
                 <label for="ammount" class="sr-only">Množství</label>
                 <input type="text"  id="ammount" name="ammount" >
                 </div>
-              <button type="submit">Naskladnit</button>
+              <button type="submit" class="btn btn-secondary">Naskladnit</button>
           </form>
           </td>
           <td>
@@ -65,28 +63,28 @@
           </td>
         @endauth
         @auth
-        <td>
-          <td><a href="{{ route('containers.edit', $container->id) }}">Upravit</a></td>
-          <form action="{{ route('containers.addStore', $container->id) }}" method="post">
+        
+          <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+          <td><form action="{{ route('containers.addStore', $container->id) }}" method="post">
             @csrf
             @method('PUT')
-            <div class="form-group row">
+            <div class="form-group">
               @error('ammount')
 
                   {{  $message }}
       
               @enderror
               <label for="ammount" class="sr-only">Množství</label>
-              <input type="text"  id="ammount" name="ammount" >
+              <input type="number"  id="ammount" name="ammount" class="form-control">
               </div>
-            <button type="submit">Naskladnit</button>
+            <button type="submit" class="btn btn-secondary">Naskladnit</button>
         </form>
-        </td>
+          </td>
         <td>
           <form action="{{ route('containers.destroy', $container->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <button type="submit">Smazat</button>
+            <button type="submit" class="btn btn-secondary">Smazat</button>
         </form>
         </td>
         @endauth

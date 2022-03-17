@@ -39,55 +39,55 @@
           <td>{{ $product->producer->name }}</td>
           
           @auth
-            <td><a href="{{ route('productOriginal.edit', $product->id) }}">Upravit</a></td>
+            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
             <td>
               <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
                 @csrf
                 @method('PUT')
-                <div class="form-group row">
+                <div class="form-group ">
                   @error('ammount')
 
                       {{  $message }}
           
                   @enderror
                   <label for="ammount" class="sr-only">Množsví</label>
-                  <input type="text"  id="ammount" name="ammount" >
+                  <input type="text"  id="ammount" name="ammount" class="form-control">
                   </div>
-                <button type="submit">Naskladnit</button>
+                <button type="submit" class="btn btn-secondary">Naskladnit</button>
               </form>
             </td>
             <td>
               <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Odstranit</button>
+                <button type="submit" class="btn btn-secondary">Odstranit</button>
             </form>
             </td>
           @endauth
 
           @auth('employee')
-          <td><a href="{{ route('productOriginal.edit', $product->id) }}">Upravit</a></td>
+          <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
           <td>
             <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
               @csrf
               @method('PUT')
-              <div class="form-group row">
+              <div class="form-group">
                 @error('ammount')
 
                     {{  $message }}
         
                 @enderror
                 <label for="ammount" class="sr-only">Množsví</label>
-                <input type="text"  id="ammount" name="ammount" >
+                <input type="number"  id="ammount" name="ammount" class="form-control">
                 </div>
-              <button type="submit">Naskladnit</button>
+              <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
           </td>
           <td>
             <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
               @csrf
               @method('DELETE')
-              <button type="submit">Odstranit</button>
+              <button type="submit" class="btn btn-secondary">Odstranit</button>
           </form>
           </td>
           @endauth
@@ -101,7 +101,7 @@
     <h1>Mixed Products</h1> 
   
     <table class="table">
-      <thead>
+      <thead >
         <tr>
           <th scope="col">Kód</th>
           <th scope="col">Název</th>
@@ -110,14 +110,14 @@
           <th scope="col">Cena(Kč)</th>
           
           @auth
-            <th scope="col">Dodavatel</th>
+            
             <th scope="col">Upravit</th>
             <th scope="col">Naskladnit</th>
             <th scope="col">Odstranit</th>
           @endauth
 
           @auth('employee')
-            <th scope="col">Dodavatel</th>
+            
             <th scope="col">Upravit</th>
             <th scope="col">Naskladnit</th>
             <th scope="col">Odstranit</th>
@@ -138,21 +138,21 @@
           <td>{{ $product->prize }}</td>
           
           @auth
-            <td><a href="{{ route('productMixed.edit', $product->id) }}">Upravit produkt</a></td>
+            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
             <td>
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                 @csrf
                 @method('PUT')
-                <div class="form-group row">
+                <div class="form-group">
                   @error('ammount')
 
                       {{  $message }}
           
                   @enderror
                   <label for="ammount" class="sr-only">Množství</label>
-                  <input type="text"  id="ammount" name="ammount" >
+                  <input type="number"  id="ammount" name="ammount" class="form-control" >
                   </div>
-                <button type="submit">Naskladnit</button>
+                <button type="submit " class="btn btn-secondary">Naskladnit</button>
               </form>
             </td>
             
@@ -160,27 +160,27 @@
               <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Odstranit</button>
+                <button type="submit" class="btn btn-secondary">Odstranit</button>
             </form>
           </td>
           @endauth
 
           @auth('employee')
-          <td><a href="{{ route('productMixed.edit', $product->id) }}">Upravit produkt</a></td>
+          <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit </a></td>
           <td>
             <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                @csrf
                @method('PUT')
-               <div class="form-group row">
+               <div class="form-group">
                 @error('ammount')
 
                     {{  $message }}
         
                 @enderror
                 <label for="ammount" class="sr-only">Množství</label>
-                <input type="text"  id="ammount" name="ammount" >
+                <input type="number"  id="ammount" name="ammount" class="form-control">
                 </div>
-               <button type="submit">Naskladnit</button>
+               <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
           </td>
           
@@ -188,7 +188,7 @@
             <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
                @csrf
                @method('DELETE')
-               <button type="submit">Odstranit</button>
+               <button type="submit" class="btn btn-secondary">Odstranit</button>
            </form>
           </td>
           @endauth

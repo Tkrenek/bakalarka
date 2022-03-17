@@ -24,12 +24,12 @@
           <td>{{ $employee->name }}</td>
           <td>{{ $employee->surname }}</td>
           <td>{{ $employee->department->name }}</td>
-          <td><a href="{{ route('employees.edit', $employee->id) }}">Upravit profil</a></td>
+          <td><a href="{{ route('employees.edit', $employee->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a></td>
           <td>
              <form action="{{ route('employees.destroy', $employee->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Smazat</button>
+                <button type="submit" class="btn btn-secondary">Smazat</button>
             </form>
       </tr>
         @endforeach

@@ -7,12 +7,6 @@
 @endphp
 
 
-yeeees
-
-@auth('employee')
-    {{ auth('employee')->user()->name }}
-@endauth
-
 @auth
     {{ auth()->user('employee')->name }}
 

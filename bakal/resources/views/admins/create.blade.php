@@ -133,7 +133,7 @@
                 </div>
                 
                 <div class="d-flex justify-content-center p-3">
-                    <button type="submit" class="btn btn-primary">Registrovat admina</button>
+                    <button type="submit" class="btn btn-primary ">Registrovat admina</button>
 
                 </div>
             </form>

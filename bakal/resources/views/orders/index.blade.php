@@ -106,19 +106,6 @@
           @endauth
             
           
-      
-      @auth
-      <td>
-        <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
-      </td>
-      @endauth
-      
-      @auth('employee')
-      <td>
-        <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
-      </td>
-      @endauth
-      
 @auth
 <td>
 
