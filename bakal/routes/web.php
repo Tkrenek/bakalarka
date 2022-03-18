@@ -79,6 +79,8 @@ Route::post('/departments/store', [DepartmentController::class, 'store'])->name(
 
 Route::get('/admins/index', [RegisterAdminController::class, 'index'])->name('admins.index');
 Route::post('/admins/store', [RegisterAdminController::class, 'store'])->name('admins.store');
+Route::get('/admins/{id}/edit', [RegisterAdminController::class, 'edit'])->name('admins.edit');
+Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->name('admins.update');
 
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');

@@ -10,7 +10,7 @@
             <div class="card-header">Přidat originální produkt</div>
 
             <div class="card-body">
-    <form action="{{ route('productOriginal.store') }}" method="POST" style="width: 400px; margin: auto;">
+    <form action="{{ route('productOriginal.store') }}" method="POST">
         @csrf
 
                 <div class="form-group ">
@@ -75,7 +75,7 @@
                     </div> 
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group">
                     
                     <label for="on_store">Na skladě(l)</label>
                     
@@ -89,9 +89,9 @@
                     </div> 
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group">
+                    <label for="producer">Dodavatel</label>
                     
-                    <label for="producer" class="sr-only">Dodavatel</label>
                     <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
                         @foreach ($producers as  $producer)
                             <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>

@@ -26,12 +26,12 @@
           <td>{{ $customer->town }}</td>
           <td>{{ $customer->address }}</td>
           <td>{{ $customer->url }}</td>
-          <td><a href="{{ route('subscribers.edit', $customer->id) }}">Upravit účet</a></td>
+          <td><a href="{{ route('subscribers.edit', $customer->id) }}" type="submit" class="btn btn-secondary">Upravit účet</a></td>
           <td>
              <form action="{{ route('subscribers.destroy', $customer->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Odstranit</button>
+                <button type="submit" class="btn btn-secondary">Odstranit</button>
             </form>
           
          

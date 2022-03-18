@@ -7,8 +7,18 @@
     <title>Laravel</title>
     <link rel="stylesheet" href=" {{ asset('css/app.css') }}">
     <link rel="stylesheet" href=" {{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
+
+
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <a href="/" class="navbar-brand ">Colorex</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
@@ -31,15 +41,7 @@
                     <button>Odhlásit se</button>
                 </form>
                 @endauth
-                @auth
               
-               
-                <form action="{{ route('admins.logout') }}" method="POST">
-                    @csrf
-                    <button>Odhlásit se</button>
-                </form>
-                    
-                @endauth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home')}}" class="p-3">Doma</a>
     
@@ -311,24 +313,74 @@
     -->
         
     
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-    @auth
-    <div>{{ auth()->user()->name }} {{ auth()->user()->surname }}</div>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+  
+    @auth('employee')
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}">Upravit profil</a></li>
+          <li>
+            <form  action="{{ route('employees.logout') }}" method="POST">
+            @csrf
+        <button>Odhlásit se</button>
+            </form>  
+           </li>
          
+        </ul>
+      </div>
+    
     @endauth
 
     @auth('subscriber')
-    <div><a href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}">{{ auth('subscriber')->user()->name }}</a></div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ auth('subscriber')->user()->name }} 
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}">Upravit profil</a></li>
+          <li>
+            <form  action="{{ route('subscribers.logout') }}" method="POST">
+            @csrf
+        <button>Odhlásit se</button>
+            </form>  
+           </li>
+         
+        </ul>
+      </div>
     
     @endauth
     
-
-
+    @auth
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ Auth::user()->name }} {{ Auth::user()->surname }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{{ route('admins.edit', Auth::user()->id) }}">Upravit profil</a></li>
+          <li>
+            <form  action="{{ route('logout') }}" method="POST">
+            @csrf
+        <button>Odhlásit se</button>
+            </form>  
+           </li>
+         
+        </ul>
+      </div>
+    @endauth
+    
+      
     @yield('content')
    
+    
 </body>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Subscriber;
 
 use App\Models\ContactPerson;
-
+use Illuminate\Support\Facades\Auth;
 
 class ContactPersonController extends Controller
 {
@@ -33,18 +33,38 @@ class ContactPersonController extends Controller
         ]);
         $subscriber = Subscriber::where('name', $request->subscriber)->first();
 
+        
 
+        if(Auth::user()) {
+            ContactPerson::create([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'phone' => $request->phone,
+                'email' => $request->email,
+    
+                'birth_date' => $request->birth_date,
+                
+                
+                'subscriber_id' => $subscriber->id,
+    
+            ]);
+        } else {
 
-        ContactPerson::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'phone' => $request->phone,
-            'email' => $request->email,
-
-            'birth_date' => $request->birth_date,
-            'subscriber_id' => $subscriber->id,
-
-        ]);
+          
+            ContactPerson::create([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'phone' => $request->phone,
+                'email' => $request->email,
+    
+                'birth_date' => $request->birth_date,
+                
+                
+                'subscriber_id' => auth('subscriber')->user()->id,
+    
+            ]);
+        }
+        
 
         
 

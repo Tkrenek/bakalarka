@@ -57,7 +57,7 @@
              
                 <div class="form-group ">
                     
-                    <label for="address" class="sr-only">Adresa</label>
+                    <label for="address">Adresa</label>
                     <input type="text" id="address" name="address" class="form-control @error('phone') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('address')

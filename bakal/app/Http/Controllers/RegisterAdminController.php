@@ -50,4 +50,37 @@ class RegisterAdminController extends Controller
 */
         return back();
     }
+
+    public function edit($id)
+    {
+
+        $admin = Admin::Find($id);
+
+        return view('admins.edit', [
+            'admin' => $admin
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $admin = Admin::Find($id);
+
+
+        $this->validate($request, [
+            
+        ]);
+
+
+        $admin->name = $request->name;
+        $admin->surname = $request->surname;
+        $admin->birth_date = $request->birth_date;
+        $admin->email = $request->email;
+        $admin->login = $request->login;
+        $admin->phone = $request->phone;
+
+        $admin->save();
+
+        return view('admins.success');
+        
+    }
 }

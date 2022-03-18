@@ -18,6 +18,12 @@
           <th scope="col">Termín objednávky</th>
           <th scope="col">Celková cena</th>
           <th scope="col">Faktura</th>
+          @auth
+          <th scope="col">Odstranit objednávku</th>
+          <th scope="col">Změnit stav objednávky</th>
+          <th scope="col">Změnit termín objednávky</th>
+          <th scope="col">Upravit objednávku</th>
+          @endauth
    
         </tr>
       </thead>
@@ -61,7 +67,7 @@
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Odstranit objednávku</button>
+                <button type="submit" class="btn btn-secondary">Odstranit objednávku</button>
             </form>
             </td>
           @endauth
@@ -73,7 +79,7 @@
             <form action="{{ route('orders.changeState', $order->id) }}" method="post">
               @csrf
               @method('PUT')
-              <div class="form-group ">
+              <div class="form-group">
                @error('state')
   
                    {{  $message }}
@@ -82,7 +88,7 @@
                <label for="state" class="sr-only">Stav</label>
                <input type="text"  id="state" name="state" >
                </div>
-              <button type="submit">Změnit stav objednávky</button>
+              <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
               </form>
             </td>
           @endauth
@@ -99,8 +105,8 @@
              @enderror
              <label for="state" class="sr-only">Stav</label>
              <input type="text"  id="state" name="state" >
-             </div>
-            <button type="submit">Změnit stav objednávky</button>
+             </div> 
+            <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
         </form>
       </td>
           @endauth
@@ -114,7 +120,7 @@
     @method('PUT')
     <div class="form-group">
       <label for="term">Změnit termín</label>
-      <input type="date" id="term" name="term" class="form-control @error('term') is-invalid @enderror" >
+      <input type="date" id="term" name="term" class="@error('term') is-invalid @enderror form-control" >
       <div class="invalid-feedback">
           @error('term')
 
@@ -123,7 +129,7 @@
           @enderror
       </div>  
   </div>
-    <button type="submit">Změnit termín objednávky</button>
+    <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
 </form>
 <td>
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
@@ -148,7 +154,7 @@
           @enderror
       </div>  
   </div>
-    <button type="submit">Změnit termín objednávky</button>
+    <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
 </form>
 <td>
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>

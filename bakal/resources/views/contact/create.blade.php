@@ -89,7 +89,7 @@
                 </div>
 
               
-
+                @auth
                 <div class="form-group ">
                     
                     <label for="subscriber"  >Společnost</label>
@@ -110,6 +110,8 @@
                         
                     
                 </div>
+                @endauth
+                
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Přidat kontaktní osobu</button>
 
