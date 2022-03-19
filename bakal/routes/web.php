@@ -59,7 +59,7 @@ Route::delete('/subscribers/{id}', [RegisterSubController::class, 'destroy'])->n
 
 Route::get('/subscribers/login', [LoginCustomerController::class, 'index'])->name('subscribers.login');
 Route::post('/subscribers/login', [LoginCustomerController::class, 'login'])->name('subscribers.login.post');
-Route::post('/subscribers/logout', [LoginCustomerController::class, 'logout'])->name('subscribers.logout');
+Route::get('/subscribers/logout', [LoginCustomerController::class, 'logout'])->name('subscribers.logout');
 Route::get('/subscribers/welcome', [LoginCustomerController::class, 'welcome'])->name('subscribers.welcome');
 
 Route::get('/employees/create', [RegisterEmployeeController::class, 'index'])->name('employees.create');
@@ -71,7 +71,7 @@ Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('
 
 Route::get('/employees/login', [LoginEmployeeController::class, 'index'])->name('employees.login');
 Route::post('/employees/login', [LoginEmployeeController::class, 'login'])->name('employees.login.post');
-Route::post('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
+Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
 Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
 
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
@@ -84,7 +84,7 @@ Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->
 
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');
-Route::post('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
+Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
 
 Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('admins.success');
 

@@ -31,7 +31,7 @@
                 
                 <div class="form-group">
                    
-                    <label for="product" class="sr-only">Kód produktu</label>
+                    <label for="product" >Kód produktu</label>
                     <select name="product" id="product" class="form-control custom-select @error('product') is-invalid @enderror">
                         @foreach ($products as  $product)
                             <option id="{{ $product->code }}" name="{{ $product->code }}">{{ $product->code }}</option>
@@ -43,14 +43,11 @@
 
                         
                     </select>
-                        <div class="invalid-feedback">
-                        @error('product')
-
-                            Musíte zadat kód produktu.
-            
-                        @enderror
-
-                        </div>  
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <strong>{{ $message }}  </strong>   
+                    </div>  
+                    @endif   
                         
                     
                 </div>

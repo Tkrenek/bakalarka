@@ -98,7 +98,7 @@
       </tbody>
     </table>
 
-    <h1>Mixed Products</h1> 
+    <h1>Míchané produkty</h1> 
   
     <table class="table">
       <thead >

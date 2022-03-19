@@ -38,6 +38,12 @@ class ItemController extends Controller
 
         if($request->product[0] == "O") {
             $product = Product_original::where('code', $request->product)->first();
+            
+            if($request->amount > $product->on_store) {
+                return back()->with('error', 'Na skladě není dost zásob.');
+
+            }
+
             Item::create([
                 'amount' => $request->amount,
                 'is_mixed' => "ne",
@@ -52,7 +58,10 @@ class ItemController extends Controller
         } else {
             
             $product = Product_mixed::where('code', $request->product)->first();
-   
+            if($request->amount > $product->on_store) {
+                return back()->with('error', 'Na skladě není dost zásob.');
+
+            }
             Item::create([
                 'amount' => $request->amount,
                 'is_mixed' => "ano",

@@ -26,21 +26,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav">
-                @auth('subscriber')
-                {{ auth('subscriber')->user()->name }} {{ auth('subscriber')->user()->surname }}
-                <form action="{{ route('subscribers.logout') }}" method="POST">
-                    @csrf
-                    <button>Odhlásit se</button>
-                </form>
-                @endauth
-                @auth('employee')
-                <div class="primary">{{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }}</div>
                 
-                <form action="{{ route('employees.logout') }}" method="POST">
-                    @csrf
-                    <button>Odhlásit se</button>
-                </form>
-                @endauth
+                
               
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home')}}" class="p-3">Doma</a>
@@ -331,10 +318,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}">Upravit profil</a></li>
           <li>
-            <form  action="{{ route('employees.logout') }}" method="POST">
-            @csrf
-        <button>Odhlásit se</button>
-            </form>  
+            <li><a class="dropdown-item" href="{{ route('employees.logout')}}">Odhlásit se</a>
            </li>
          
         </ul>
@@ -349,11 +333,8 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}">Upravit profil</a></li>
-          <li>
-            <form  action="{{ route('subscribers.logout') }}" method="POST">
-            @csrf
-        <button>Odhlásit se</button>
-            </form>  
+          <li><a class="dropdown-item" href="{{ route('subscribers.logout')}}">Odhlásit se</a>
+            
            </li>
          
         </ul>
@@ -363,17 +344,14 @@
     
     @auth
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle btn-account" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{ Auth::user()->name }} {{ Auth::user()->surname }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{{ route('admins.edit', Auth::user()->id) }}">Upravit profil</a></li>
-          <li>
-            <form  action="{{ route('logout') }}" method="POST">
-            @csrf
-        <button>Odhlásit se</button>
-            </form>  
-           </li>
+          
+            <li><a class="dropdown-item" href="{{ route('admins.logout')}}">Odhlásit se</a>
+          
          
         </ul>
       </div>

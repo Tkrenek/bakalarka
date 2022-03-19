@@ -7,15 +7,9 @@
 @endphp
 
 
-Jste přihlášen jako zaměstnanec.
+<h1>Úspěšně přihlášen do systému jako zaměstnanec</h1>
 
-@auth('employee')
-    {{ auth('employee')->user()->name }}
-@endauth
 
-@auth
-    sfasf
-@endauth
 
 
 
