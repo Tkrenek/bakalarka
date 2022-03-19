@@ -43,6 +43,10 @@ class PackageItemController extends Controller
 
             $pckgItem->save();
         } else {
+            if($request->count > $container->on_store) {
+                return back()->with('error', 'Na skladě není dost zásob.');
+
+            }
             Package_item::create([
                 'item_id' => $itemid,
                 'container_id' => $container->id,

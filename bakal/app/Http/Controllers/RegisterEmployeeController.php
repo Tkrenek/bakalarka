@@ -58,12 +58,12 @@ class RegisterEmployeeController extends Controller
 
         ]);
 
-        /*$data = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
  
-        if (Auth::guard('employee')::attempt($data)) {
-            // Authentication passed...
-            return redirect()->intended('containers.index');
-        }*/
+        if (Auth::guard('employee')->attempt($credentials)) {
+            
+            return view('employees/welcome');
+        }
 
 
 

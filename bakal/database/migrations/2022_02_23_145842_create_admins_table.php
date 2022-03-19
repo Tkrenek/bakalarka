@@ -23,6 +23,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->unique();
             $table->string('login')->unique();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

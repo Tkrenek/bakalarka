@@ -40,14 +40,18 @@ class RegisterAdminController extends Controller
             'login' => $request->login,
             'birth_date' => $request->birth_date,
         ]);
-/*
+
+
         $credentials = $request->only('email', 'password');
  
+
+        
+
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('containers.index');
+            
+            return redirect('admins/success');
         }
-*/
+
         return back();
     }
 

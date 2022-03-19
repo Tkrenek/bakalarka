@@ -23,6 +23,7 @@ class CreateSubscribersTable extends Migration
             $table->string('password');
             $table->string('url')->unique();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

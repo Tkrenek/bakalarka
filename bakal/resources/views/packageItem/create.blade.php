@@ -39,7 +39,13 @@
                             Musíte zadat počet.
             
                         @enderror
+                         
                     </div>
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <strong>{{ $message }}  </strong>   
+                        </div>  
+                        @endif
                 </div>
            
                 <div class="d-flex justify-content-center p-3">

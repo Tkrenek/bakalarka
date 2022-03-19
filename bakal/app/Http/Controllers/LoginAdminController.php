@@ -22,12 +22,19 @@ class LoginAdminController extends Controller
         
         $credentials = $request->only('email', 'password');
  
-        if (Auth::attempt($credentials)) {
-            
-            return redirect('admins/success');
-        }
+        if(!Auth::validate($credentials)):
+            return back()->with('error', 'Zadáno chybné heslo nebo email.');
+         endif;
+
+
+         $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user, $request->get('remember'));
+
+        return redirect('admins/success');
         
-        return back()->with('error', 'Zadáno chybné heslo nebo email.');
+        
+        
     }
 
     public function success()

@@ -7,15 +7,7 @@
 @endphp
 
 
-@auth
-    {{ auth()->user('employee')->name }}
-
-    
-@endauth
-
-@guest
-    Odhlášeno
-@endguest
+<h1>Jste přihlášen jako správce</h1>
 
 
 

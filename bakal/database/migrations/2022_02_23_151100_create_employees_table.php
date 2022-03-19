@@ -25,6 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('function');
             $table->string('login')->unique();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

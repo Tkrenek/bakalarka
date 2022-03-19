@@ -54,8 +54,13 @@
             
                         @enderror
                 </div>
+                <div class="form-group">
+                    
+                    
+                    <input type="checkbox" name="remember" id="remember" value="1">
+                    <label for="remember">Zapamatovat si mě</label>
                
-                
+                </div>
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Přihlásit admina</button>
 

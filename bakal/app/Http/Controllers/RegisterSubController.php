@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\Hash;
 
@@ -47,7 +47,17 @@ class RegisterSubController extends Controller
 
         ]);
 
-        return back();
+        $credentials = $request->only('login', 'password');
+ 
+        if (Auth::guard('subscriber')->attempt($credentials)) {
+            return view('subscribers/welcome');
+        } else {
+            return back()->with('error', 'Zadán chybný login nebo heslo.');
+        }
+
+        
+
+        
     }
 
     public function edit($id)
