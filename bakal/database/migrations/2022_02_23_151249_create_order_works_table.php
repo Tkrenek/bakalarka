@@ -18,6 +18,8 @@ class CreateOrderWorksTable extends Migration
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->string('work_type');
+            $table->timestamp('date');
+            $table->string('time');
             
             $table->timestamps();
         });

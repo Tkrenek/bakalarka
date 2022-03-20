@@ -35,15 +35,13 @@ class RegisterEmployeeController extends Controller
             'password' => 'required|confirmed',
             'function' =>'required',
             'login' =>'required',
-            'day' => 'required',
-            'month' => 'required',
-            'year' => 'required',
+            'birth_date' => 'required'
             
             
         ]);
         $department = Department::where('name', $request->department)->first();
 
-        $dt = Carbon::create($request->year, $request->month, $request->day);
+        //$dt = Carbon::create($request->year, $request->month, $request->day);
   
         Employee::create([
             'name' => $request->name,
@@ -53,7 +51,7 @@ class RegisterEmployeeController extends Controller
             'password' => Hash::make($request->password),
             'function' => $request->function,
             'login' => $request->login,
-            'birth_date' => $dt->toDateString(),
+            'birth_date' => $request->birth_date,
             'department_id' => $department->id,
 
         ]);

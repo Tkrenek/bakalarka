@@ -42,14 +42,15 @@
             <form action="{{ route('containers.addStore', $container->id) }}" method="post">
               @csrf
               @method('PUT')
-              <div class="form-group row">
+              <div class="form-group">
+               
+                <label for="ammount" class="sr-only">Množství</label>
+                <input type="number"  id="ammount" name="ammount" class="form-control">
                 @error('ammount')
 
-                    {{  $message }}
-        
-                @enderror
-                <label for="ammount" class="sr-only">Množství</label>
-                <input type="text"  id="ammount" name="ammount" >
+                  Musíte zadat množství.
+    
+            @enderror
                 </div>
               <button type="submit" class="btn btn-secondary">Naskladnit</button>
           </form>
@@ -58,7 +59,7 @@
             <form action="{{ route('containers.destroy', $container->id) }}" method="post">
               @csrf
               @method('DELETE')
-              <button type="submit">Smazat</button>
+              <button type="submit" class="btn btn-secondary">Smazat</button>
           </form>
           </td>
         @endauth

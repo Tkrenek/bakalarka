@@ -2,7 +2,9 @@
 
 @section('content')
   
-
+@php
+  use Carbon\Carbon;
+@endphp
         
     <h1>Práce na zakázce</h1>
 
@@ -13,6 +15,8 @@
           <th scope="col">ID objednávky</th>
           <th scope="col">Zaměstnanec</th>
           <th scope="col">Typ práce</th>
+          <th scope="col">Datum</th>
+          <th scope="col">Doba práce</th>
 
         </tr>
       </thead>
@@ -27,14 +31,27 @@
                   
 
                     </td>      
-                    
                     <td>
                       {{ $orderwork->employee->name }} {{ $orderwork->employee->surname }}
                     </td>
-
                     <td>
                       {{ $orderwork->work_type }} </td>
-                </tr>    
+                  
+                    <td>    
+
+                      {{ \Carbon\Carbon::parse($orderwork->date)->format('d.m.Y') }}
+                    
+  
+                      </td>     
+                      <td>    
+
+                        {{ $orderwork->time }}
+                      
+    
+                        </td>     
+                      </tr> 
+
+                     
                 @endforeach
             
 

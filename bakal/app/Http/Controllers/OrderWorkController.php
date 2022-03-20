@@ -23,7 +23,8 @@ class OrderWorkController extends Controller
         $this->validate($request, [
             'type' => 'required',
             'order' => 'required',
-
+            'time' => 'required',
+            'date' => 'required',
             
         ]);
         
@@ -32,7 +33,8 @@ class OrderWorkController extends Controller
             'order_id' => $request->order,
             'employee_id' => auth('employee')->user()->id,
             'work_type' => $request->type,
-
+            'time' => $request->time,
+            'date' => $request->date,
 
         ]);
 

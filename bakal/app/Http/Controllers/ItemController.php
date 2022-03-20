@@ -48,7 +48,7 @@ class ItemController extends Controller
                 'amount' => $request->amount,
                 'is_mixed' => "ne",
                 'product_original_id' => $product->id,
-                'product_mixed_id' => 2,
+                'product_mixed_id' => 1,
                 'order_id' => $orderid
 
             ]);
@@ -65,7 +65,7 @@ class ItemController extends Controller
             Item::create([
                 'amount' => $request->amount,
                 'is_mixed' => "ano",
-                'product_original_id' => 2,
+                'product_original_id' => 1,
                 'product_mixed_id' => $product->id,
                 'order_id' => $orderid
 

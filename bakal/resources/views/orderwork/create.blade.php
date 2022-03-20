@@ -9,7 +9,7 @@
             <div class="card-header">Oznčit práci na objedávce</div>
 
             <div class="card-body"> 
-    <form action="{{ route('orderWork.store') }}" method="POST" style="width: 450px; margin: auto;">
+    <form action="{{ route('orderWork.store') }}" method="POST">
         @csrf
 
 
@@ -35,6 +35,31 @@
                         <option id="expedice" name="expedice">Expedice</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="date">Datum vykonání činnosti</label>
+                    <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}">
+                    <div class="invalid-feedback">
+                        @error('date')
+
+                            Musíte zadat datum. 
+            
+                        @enderror
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Zadejte počet hodin</label>
+                    <input type="number" id="time" name="time" class="form-control @error('time') is-invalid @enderror" value="{{ old('time') }}">
+                    <div class="invalid-feedback">
+                        @error('time')
+
+                            Musíte zadat čas. 
+            
+                        @enderror
+                    </div>  
+                </div>
+
 
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Označit práci</button>

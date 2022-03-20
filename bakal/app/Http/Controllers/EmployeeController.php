@@ -43,14 +43,14 @@ class EmployeeController extends Controller
             'password' => 'confirmed',
             'function' =>'required',
             'login' =>'required',
-            //'birth_date' =>'required|date',
+            'birth_date' =>'required|date',
             'day' =>'required',
             'month' =>'required',
             'year' =>'required',
             
         ]);
  
-        $dt = Carbon::create($request->year, $request->month, $request->day);
+        //$dt = Carbon::create($request->year, $request->month, $request->day);
 
     
 
@@ -63,7 +63,7 @@ class EmployeeController extends Controller
         $empl->email = $request->email;
         $empl->function = $request->function;        
         $empl->login = $request->login;
-        $empl->birth_date = $dt->toDateString();
+        $empl->birth_date = $request->birth_date;
 
     
 

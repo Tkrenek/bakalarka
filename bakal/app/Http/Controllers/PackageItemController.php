@@ -38,15 +38,17 @@ class PackageItemController extends Controller
         $container = Container::where('type', '=', $type)->where('bulk', '=', $bulk)->first();
        
         if(Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $container->id)->first()) {
+            
+            if($request->count > $container->on_store) {
+                return back()->with('error', 'Na skladě není dost zásob.');
+
+            }
             $pckgItem = Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $container->id)->first();
             $pckgItem->count += $request->count;
 
             $pckgItem->save();
         } else {
-            if($request->count > $container->on_store) {
-                return back()->with('error', 'Na skladě není dost zásob.');
-
-            }
+            
             Package_item::create([
                 'item_id' => $itemid,
                 'container_id' => $container->id,

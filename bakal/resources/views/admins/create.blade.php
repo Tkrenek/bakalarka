@@ -94,7 +94,7 @@
                     <div class="invalid-feedback">
                         @error('birth_date')
 
-                            {{  $message }}
+                            Musíte zadat datum narození. 
             
                         @enderror
                     </div>  

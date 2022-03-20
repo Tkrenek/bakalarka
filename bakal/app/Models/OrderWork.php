@@ -15,7 +15,9 @@ class OrderWork extends Model
     protected $fillable = [
         'order_id',
         'employee_id',
-        'work_type'
+        'work_type',
+        'date',
+        'time'
     ];
 
 

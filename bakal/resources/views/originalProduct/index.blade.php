@@ -172,13 +172,14 @@
                @csrf
                @method('PUT')
                <div class="form-group">
-                @error('ammount')
-
-                    {{  $message }}
-        
-                @enderror
+               
                 <label for="ammount" class="sr-only">Množství</label>
                 <input type="number"  id="ammount" name="ammount" class="form-control">
+                @error('ammount')
+
+                 Musíte zadat množství.
+    
+            @enderror
                 </div>
                <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
