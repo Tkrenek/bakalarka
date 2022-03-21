@@ -20,6 +20,7 @@
 
       <th scope="col">Vybrat balení</th>
       <th scope="col">Balení</th>
+      <th scope="col">Odstranit</th>
 
       @foreach ($items as $item)
       <tr>
@@ -49,14 +50,23 @@
             @endforeach
 
          </td>
-         <td><a href="{{ route('packageItem.create', $item->id) }}">Vybrat balení</a></td>
-         <td>@foreach ($item->packageItem as $cont)
-            {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }})
+         <td><a href="{{ route('packageItem.create', $item->id) }}">Vybrat balení</a>
+            <a href="{{ route('packageItem.show', $item->id) }}">Změnit balení</a></td>
+
+         <td>
+         @foreach ($item->packageItem as $cont)
+            {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }}ks)
          @endforeach
          </td>
          
-         
-      </tr>
+         <td>
+            <form action="{{ route('items.destroy', $item->id) }}" method="post">
+               @csrf
+               @method('DELETE')
+               <button type="submit" class="btn btn-danger">Smazat</button>
+           </form>
+         </td>
+         </tr>
       
       @endforeach
 

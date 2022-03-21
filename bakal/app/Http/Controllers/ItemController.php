@@ -77,6 +77,14 @@ class ItemController extends Controller
 
             return \Redirect::route('orders.show', $orderid);
     }
+
+    public function destroy($id)
+    {
+        $item = Item::find($id);
+        $item->delete();
+
+        return back();
+    }
     
 
     

@@ -124,6 +124,7 @@ Route::put('/containers/{id}/addStore', [ContainerController::class, 'addOnStore
 
 Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items/store/{orderid}', [ItemController::class, 'store'])->name('items.store');
+Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 Route::get('/productMixed/create', [ProductMixedController::class, 'create'])->name('productMixed.create');
 Route::post('/productMixed/store', [ProductMixedController::class, 'store'])->name('productMixed.store');
@@ -144,8 +145,10 @@ Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'
 
 
 Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
-Route::post('/packageItem/store{itemid}', [PackageItemController::class, 'store'])->name('packageItem.store');
-
+Route::post('/packageItem/store/{itemid}', [PackageItemController::class, 'store'])->name('packageItem.store');
+Route::get('/packageItem/show/{itemid}', [PackageItemController::class, 'show'])->name('packageItem.show');
+Route::delete('/packageItem/{id}', [PackageItemController::class, 'destroy'])->name('packageItem.destroy');
+Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'changeCount'])->name('packageItem.changeCount');
 
 Route::get('/mixingProduct/create', [MixingProductController::class, 'create'])->name('mixingProduct.create');
 Route::post('/mixingProduct/store', [MixingProductController::class, 'store'])->name('mixingProduct.store');

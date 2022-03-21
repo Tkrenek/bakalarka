@@ -31,7 +31,7 @@
           @endauth
           @auth('subscriber')
             <th scope="col">Změnit termín</th>
-            <th scope="col">Upravit objednávku</th>
+           <!-- <th scope="col">Upravit objednávku</th> -->
           @endauth
           
         </tr>
@@ -177,11 +177,11 @@
     
 </form>
 </td>
-
+<!--
   <td>
     <a href="{{ route('orders.edit', $order->id) }}" type="submit" class="btn btn-secondary">Změnit objednávku</a>
 </td>
-
+-->
 @endauth
 
 

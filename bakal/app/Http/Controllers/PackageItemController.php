@@ -70,4 +70,41 @@ class PackageItemController extends Controller
         return \Redirect::route('orders.show', $item->order->id);
         
     }
+
+    public function show($itemid)
+    {
+        $item = Item::find($itemid);
+
+        return view('packageItem.show', [
+            'item' => $item
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $packageItem = Package_item::find($id);
+        
+       
+        $packageItem->container->on_store += $packageItem->count;
+
+        $packageItem->container->save();
+        $packageItem->delete();
+
+        return back();
+    }
+
+    public function changeCount($id, Request $request)
+    {
+        $this->validate($request, [
+            'count' => 'required|numeric',
+            
+        ]);
+        $pckgItem = package_Item::find($id);
+
+        $pckgItem->count = $request->count;
+        $pckgItem->save();
+
+        return back();
+    }
+    
 }
