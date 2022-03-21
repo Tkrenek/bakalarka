@@ -329,7 +329,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
-              <a class="dropdown-item" href="" x-ref="changePasswordLink">Změnit heslo</a>
+              <a class="dropdown-item" href="{{ route('employees.change_password') }}" x-ref="changePasswordLink">Změnit heslo</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('employees.logout') }}">Odhlásit se</a>
           </div>
@@ -337,20 +337,7 @@
   </ul>
 
   </nav>
-  <!--
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}">Upravit profil</a></li>
-          <li>
-            <li><a class="dropdown-item" href="{{ route('employees.logout')}}">Odhlásit se</a>
-           </li>
-         
-        </ul>
-      </div>
-    -->
+  
     @endauth
 
     @auth('subscriber')
@@ -364,7 +351,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
-              <a class="dropdown-item" href="" x-ref="changePasswordLink">Změnit heslo</a>
+              <a class="dropdown-item" href="{{ route('subscribers.change_password') }}" x-ref="changePasswordLink">Změnit heslo</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('subscribers.logout')}}">Odhlásit se</a>
           </div>
@@ -372,37 +359,12 @@
   </ul>
 
   </nav>
-<!--
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ auth('subscriber')->user()->name }} 
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}">Upravit profil</a></li>
-          <li><a class="dropdown-item" href="{{ route('subscribers.logout')}}">Odhlásit se</a>
-            
-           </li>
-         
-        </ul>
-      </div>
-    -->
+
     
     @endauth
     
     @auth
-    <!--
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle btn-account" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ Auth::user()->name }} {{ Auth::user()->surname }}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="{{ route('admins.edit', Auth::user()->id) }}">Upravit profil</a></li>
-          
-            <li><a class="dropdown-item" href="{{ route('admins.logout')}}">Odhlásit se</a>
-          
-         
-        </ul>
-      </div>-->
+    
       <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
         <!--<ul class="navbar-nav ml-auto">-->
         <ul class="navbar-nav ">

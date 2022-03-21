@@ -50,40 +50,7 @@
                 </div>
                 
                 
-                <div class="form-group ">
-                   
-                    <label for="password">Heslo</label>
-                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('password')
-                            @if ($message == "The password confirmation does not match.")
-                                
-                                Hesla se musí shodovat.
-                            @else
-                            Musíte zadat heslo.
-                            @endif
-
-                            
-            
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group ">
-
-                    <label for="password_confirmation">Ověření hesla</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('password')
-                            @if ($message == "The password confirmation does not match.")
-                                    
-                                Hesla se musí shodovat.
-                            @else
-                                Musíte zadat heslo.
-                            @endif
-                        @enderror
-                        
-                    </div>
-                </div>
+                
                 <div class="form-group ">
                     
                     <label for="email">E-mail</label>
@@ -169,6 +136,10 @@
             </form>
        
 
-            </div></div></div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 @endsection

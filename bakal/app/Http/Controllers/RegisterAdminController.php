@@ -101,13 +101,13 @@ class RegisterAdminController extends Controller
         
         $this->validate($request, [
             'password_old' => 'required',
-            'password_new' => 'required',
-            'password_confirmation' => 'required|same:password_new'
+            'password' => 'required|confirmed',
+            
         ]);
 
         //dd($admin->password);
         if(Hash::check($request->password_old, $admin->password)) {
-            $admin->password = Hash::make($request->password_new);
+            $admin->password = Hash::make($request->password);
             $admin->save();
             return back();
         } else {

@@ -9,8 +9,9 @@
             <div class="card-header">Změna hesla</div>
 
             <div class="card-body"> 
-            <form  action="{{ route('admins.update_password', auth()->user()->id) }}" method="POST">
+            <form  action="{{ route('employees.update_password', auth('employee')->user()->id) }}" method="POST">
                 @csrf
+               
                 @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-block">
                             <strong>{{ $message }}  </strong>   
@@ -18,7 +19,6 @@
                         
                         
                     @endif
-               
                 <div class="form-group">
                     
                     <label for="password_old" class=>Staré heslo</label>

@@ -112,4 +112,32 @@ class RegisterSubController extends Controller
 
         return back();
     }
+
+    public function change_password()
+    {
+        return view('subscribers.change_password');
+    }
+
+    public function update_password(Request $request, $id)
+    {
+        $subscriber = Subscriber::find($id);
+        
+
+        
+        $this->validate($request, [
+            'password_old' => 'required',
+            'password' => 'required|confirmed',
+            
+        ]);
+
+        //dd($admin->password);
+        if(Hash::check($request->password_old, $subscriber->password)) {
+            $subscriber->password = Hash::make($request->password);
+            $subscriber->save();
+            return back();
+        } else {
+            return back()->with('error', 'Zadáno chybné staré heslo');
+        }
+
+    }
 }

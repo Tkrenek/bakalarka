@@ -56,6 +56,8 @@ Route::get('/subscribers/{id}/edit', [RegisterSubController::class, 'edit'])->na
 Route::put('/subscribers/{id}/update', [RegisterSubController::class, 'update'])->name('subscribers.update');
 Route::delete('/subscribers/{id}', [RegisterSubController::class, 'destroy'])->name('subscribers.destroy');
 
+Route::get('/subscribers/change_password', [RegisterSubController::class, 'change_password'])->name('subscribers.change_password');
+Route::post('/subscribers/{id}/update_password', [RegisterSubController::class, 'update_password'])->name('subscribers.update_password');
 
 Route::get('/subscribers/login', [LoginCustomerController::class, 'index'])->name('subscribers.login');
 Route::post('/subscribers/login', [LoginCustomerController::class, 'login'])->name('subscribers.login.post');
@@ -73,6 +75,8 @@ Route::get('/employees/login', [LoginEmployeeController::class, 'index'])->name(
 Route::post('/employees/login', [LoginEmployeeController::class, 'login'])->name('employees.login.post');
 Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
 Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
+Route::get('/employees/change_password', [RegisterEmployeeController::class, 'change_password'])->name('employees.change_password');
+Route::post('/employees/{id}/update_password', [RegisterEmployeeController::class, 'update_password'])->name('employees.update_password');
 
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
@@ -84,6 +88,8 @@ Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->
 
 Route::get('/admins/change_password', [RegisterAdminController::class, 'change_password'])->name('admins.change_password');
 Route::post('/admins/{id}/update_password', [RegisterAdminController::class, 'update_password'])->name('admins.update_password');
+
+
 
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');

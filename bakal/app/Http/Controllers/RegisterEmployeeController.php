@@ -68,16 +68,34 @@ class RegisterEmployeeController extends Controller
     }
 
   
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function change_password()
     {
-        //
+        return view('employees.change_password');
     }
+
+    public function update_password(Request $request, $id)
+    {
+        $employee = Employee::find($id);
+        
+
+        
+        $this->validate($request, [
+            'password_old' => 'required',
+            'password' => 'required|confirmed',
+         
+        ]);
+
+        
+        if(Hash::check($request->password_old, $employee->password)) {
+            $employee->password = Hash::make($request->password);
+            $employee->save();
+            return back();
+        } else {
+            return back()->with('error', 'Zadáno chybné staré heslo');
+        }
+
+    }
+
+
+
 }
