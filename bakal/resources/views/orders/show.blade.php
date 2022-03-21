@@ -62,7 +62,7 @@
 
       
    </table>
-   <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přdat položku</a>
+   <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
   
 
 

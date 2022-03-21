@@ -24,7 +24,16 @@
           <th scope="col">Změnit termín objednávky</th>
           <th scope="col">Upravit objednávku</th>
           @endauth
-   
+          @auth('employee')
+          
+          <th scope="col">Změnit stav objednávky</th>
+            
+          @endauth
+          @auth('subscriber')
+            <th scope="col">Změnit termín</th>
+            <th scope="col">Upravit objednávku</th>
+          @endauth
+          
         </tr>
       </thead>
       <tbody>
@@ -80,13 +89,21 @@
               @csrf
               @method('PUT')
               <div class="form-group">
-               @error('state')
-  
-                   {{  $message }}
+               <label for="state" >Stav</label>
+               <select name="state" id="state" class="form-control custom-select">
+                 <option id="založeno" name="založeno">založeno</option class="form-control @error('state') is-invalid @enderror">
+                 <option id="namícháno" name="namícháno">namícháno</option class="form-control @error('state') is-invalid @enderror">
+                 <option id="zabaleno" name="zabaleno">zabaleno</option class="form-control @error('state') is-invalid @enderror">
+                
+            </select> 
+       
+               <div class="invalid-feedback">
+                @error('state')
       
-               @enderror
-               <label for="state" class="sr-only">Stav</label>
-               <input type="text"  id="state" name="state" >
+                Je nutné vybrat stav.
+      
+                @enderror
+            </div>  
                </div>
               <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
               </form>
@@ -98,13 +115,14 @@
             @csrf
             @method('PUT')
             <div class="form-group ">
-             @error('state')
-
-                 {{  $message }}
-    
-             @enderror
+             
              <label for="state" class="sr-only">Stav</label>
-             <input type="text"  id="state" name="state" >
+             <div class="invalid-feedback">
+              @error('state')
+    
+              Je nutné vybrat stav.
+    
+              @enderror
              </div> 
             <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
         </form>
@@ -124,20 +142,21 @@
       <div class="invalid-feedback">
           @error('term')
 
-              {{  $message }}
+          Je nutné zadat datum.
 
           @enderror
       </div>  
   </div>
     <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
 </form>
+</td>
 <td>
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
 </td>
 </td>
 @endauth
 
-@auth('employee')
+@auth('subscriber')
 <td>
 
   <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">
@@ -145,22 +164,27 @@
     @method('PUT')
     <div class="form-group">
       <label for="term">Změnit termín</label>
-      <input type="date" id="term" name="term" class="form-control @error('term') is-invalid @enderror" >
+      <input type="date" id="term" name="term" class="@error('term') is-invalid @enderror form-control" >
       <div class="invalid-feedback">
           @error('term')
 
-              {{  $message }}
+              Je nutné zadat datum.
 
           @enderror
       </div>  
   </div>
     <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
+    
 </form>
-<td>
-    <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
 </td>
+
+  <td>
+    <a href="{{ route('orders.edit', $order->id) }}" type="submit" class="btn btn-secondary">Změnit objednávku</a>
 </td>
+
 @endauth
+
+
            
       </tr>
         @endforeach
