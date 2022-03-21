@@ -64,9 +64,6 @@ class RegisterEmployeeController extends Controller
         }
 
 
-
-        
-
         return back();
     }
 

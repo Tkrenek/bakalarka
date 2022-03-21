@@ -87,4 +87,32 @@ class RegisterAdminController extends Controller
         return view('admins.success');
         
     }
+
+    public function change_password()
+    {
+        return view('admins.change_password');
+    }
+
+    public function update_password(Request $request, $id)
+    {
+        $admin = Admin::find($id);
+        
+
+        
+        $this->validate($request, [
+            'password_old' => 'required',
+            'password_new' => 'required',
+            'password_confirmation' => 'required|same:password_new'
+        ]);
+
+        //dd($admin->password);
+        if(Hash::check($request->password_old, $admin->password)) {
+            $admin->password = Hash::make($request->password_new);
+            $admin->save();
+            return back();
+        } else {
+            return back()->with('error', 'Zadáno chybné staré heslo');
+        }
+
+    }
 }

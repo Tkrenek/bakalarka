@@ -137,66 +137,14 @@
             -->
             <div class="form-group">
                 <label for="birth_date">Datum narození</label>
-                <div class="row">
-                    <div class="col">
-                        <select id="day" name="day" class="form-select @error('day') is-invalid @enderror" aria-label="Default select example">
-                            <option selected>Den</option>
-                            @for ( $i = 1; $i < 32; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                            
-                           
-                          </select>
-                          <div class="invalid-feedback">
-                            @error('day')
-    
-                                {{  $message }}
-                
-                            @enderror
-                        </div>  
-                    </div>
+                <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
+                <div class="invalid-feedback">
+                    @error('birth_date')
 
-                    <div class="col">
-                        <select id="month" name="month" class="form-select @error('month') is-invalid @enderror" aria-label="Default select example">
-                            <option selected>Měsíc</option>
-                            <option value="1">Leden</option>
-                            <option value="2">Únor</option>
-                            <option value="3">Březen</option>
-                            <option value="4">Duben</option>
-                            <option value="5">Květen</option>
-                            <option value="6">Červen</option>
-                            <option value="7">Červenec</option>
-                            <option value="8">Srpen</option>
-                            <option value="9">Září</option>
-                            <option value="10">Říjen</option>
-                            <option value="11">Listopad</option>
-                            <option value="12">Prosinec</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            @error('month')
-    
-                                {{  $message }}
-                
-                            @enderror
-                        </div>  
-                    </div>
-                    <div class="col">
-                        <select id="year" name="year" class="form-select @error('year') is-invalid @enderror" aria-label="Default select example">
-                            <option selected>Rok</option>
-                                @for ( $i = 1955; $i < 2005; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                          </select>
-                          <div class="invalid-feedback">
-                            @error('year')
-    
-                                {{  $message }}
-                
-                            @enderror
-                        </div>  
-                    </div>
-
-                </div>
+                        Musíte zadat datum narození. 
+        
+                    @enderror
+                </div>  
             </div>
                 
 

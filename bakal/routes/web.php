@@ -82,6 +82,9 @@ Route::post('/admins/store', [RegisterAdminController::class, 'store'])->name('a
 Route::get('/admins/{id}/edit', [RegisterAdminController::class, 'edit'])->name('admins.edit');
 Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->name('admins.update');
 
+Route::get('/admins/change_password', [RegisterAdminController::class, 'change_password'])->name('admins.change_password');
+Route::post('/admins/{id}/update_password', [RegisterAdminController::class, 'update_password'])->name('admins.update_password');
+
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');
 Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');

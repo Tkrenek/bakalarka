@@ -4,7 +4,7 @@
   
 
   <h1>Originální produkty</h1>    
-   <table class="table">
+   <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Kód</th>

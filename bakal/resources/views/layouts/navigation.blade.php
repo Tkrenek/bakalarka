@@ -34,6 +34,11 @@
     
                 </li>
                 @auth('employee')
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('orders.index')}}" class="p-3">Všechny objednávky</a>
+    
+                </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
         
@@ -184,6 +189,8 @@
         </div>
 
     </nav>
+
+   
     
     <!--
     <nav class="navbar navbar-expand navbar-light bg-light">
@@ -311,6 +318,26 @@
     <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
   
     @auth('employee')
+
+    <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
+        <!--<ul class="navbar-nav ml-auto">-->
+        <ul class="navbar-nav ">
+      <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+              <span class="ml-1" >{{ auth('employee')->user()->name }} {{ auth('employee')->user()->name }}</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
+              <a class="dropdown-item" href="" x-ref="changePasswordLink">Změnit heslo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('employees.logout') }}">Odhlásit se</a>
+          </div>
+      </li>
+  </ul>
+
+  </nav>
+  <!--
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }}
@@ -323,10 +350,29 @@
          
         </ul>
       </div>
-    
+    -->
     @endauth
 
     @auth('subscriber')
+    <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
+        <!--<ul class="navbar-nav ml-auto">-->
+        <ul class="navbar-nav ">
+      <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+              <span class="ml-1" >{{ auth('subscriber')->user()->name }} </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
+              <a class="dropdown-item" href="" x-ref="changePasswordLink">Změnit heslo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('subscribers.logout')}}">Odhlásit se</a>
+          </div>
+      </li>
+  </ul>
+
+  </nav>
+<!--
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{ auth('subscriber')->user()->name }} 
@@ -339,10 +385,12 @@
          
         </ul>
       </div>
+    -->
     
     @endauth
     
     @auth
+    <!--
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle btn-account" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{ Auth::user()->name }} {{ Auth::user()->surname }}
@@ -354,7 +402,25 @@
           
          
         </ul>
-      </div>
+      </div>-->
+      <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
+        <!--<ul class="navbar-nav ml-auto">-->
+        <ul class="navbar-nav ">
+      <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+              <span class="ml-1" >{{ auth()->user()->name }} {{ auth()->user()->surname }}</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('admins.edit', Auth::user()->id) }}" x-ref="profileLink">Upravit profil</a>
+              <a class="dropdown-item" href="{{ route('admins.change_password') }}" x-ref="changePasswordLink">Změnit heslo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('admins.logout')}}">Odhlásit se</a>
+          </div>
+      </li>
+  </ul>
+
+  </nav>
     @endauth
     
       
