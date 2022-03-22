@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactPersonController extends Controller
 {
-    public function index()
+    public function create()
     {
         $subscribers = Subscriber::get();
         return view('contact.create', [
@@ -67,6 +67,70 @@ class ContactPersonController extends Controller
         
 
         
+
+        return back();
+    }
+
+    public function index()
+    {
+        $contacts = ContactPerson::get();
+
+        return view('contact.index', [
+            'contacts' => $contacts
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $contact = ContactPerson::where('id', $id)->first();
+        return view('contact.update', [
+            'contact' => $contact
+        ]);
+
+
+    }
+
+
+    public function update(Request $request, $id)
+    {
+    
+   
+    $this->validate($request, [
+            'name' => 'required',
+            'surname' =>'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+            
+            'birth_date' =>'required|date',
+        ]);
+
+    
+
+        $contact = ContactPerson::find($id);
+
+        $contact->name = $request->name;
+        $contact->surname = $request->surname;
+        $contact->phone = $request->phone;
+   
+        $contact->email = $request->email;
+      
+        $contact->birth_date = $request->birth_date;
+
+    
+
+        $contact->save();
+
+        $contacts = ContactPerson::get();
+        return view('contact.index', [
+            'contacts' => $contacts
+        ]);
+      
+    }
+
+    public function destroy($id)
+    {
+        $contact = ContactPerson::find($id);
+        $contact->delete();
 
         return back();
     }

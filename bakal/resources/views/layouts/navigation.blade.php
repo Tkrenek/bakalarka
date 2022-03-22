@@ -29,10 +29,6 @@
                 
                 
               
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home')}}" class="p-3">Doma</a>
-    
-                </li>
                 @auth('employee')
                 
                 <li class="nav-item">
@@ -73,6 +69,10 @@
 
                 @auth
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('employees.create')}}" class="p-3">Registrovat zaměstnance</a>
+    
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
     
                 </li>
@@ -94,7 +94,11 @@
               
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Přidat kontaktní osobu</a>
+                    <a class="nav-link" href="{{ route('contact.create')}}" class="p-3">Přidat kontaktní osobu</a>
+    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Zobrazit kontaktní osoby</a>
     
                 </li>
     

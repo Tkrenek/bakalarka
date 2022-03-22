@@ -20,7 +20,6 @@
           <th scope="col">Faktura</th>
           @auth
           <th scope="col">Odstranit objednávku</th>
-          <th scope="col">Změnit stav objednávky</th>
           <th scope="col">Změnit termín objednávky</th>
           <th scope="col">Upravit objednávku</th>
           @endauth
@@ -71,7 +70,7 @@
             {{ $sum + $sumPckg}} Kč
            </td>
           <td>{{ $order->invoice }}</td>
-          @auth()
+          @auth
             <td>
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                 @csrf
@@ -109,25 +108,7 @@
               </form>
             </td>
           @endauth
-          @auth
-          <td>
-          <form action="{{ route('orders.changeState', $order->id) }}" method="post">
-            @csrf
-            @method('PUT')
-            <div class="form-group ">
-             
-             <label for="state" class="sr-only">Stav</label>
-             <div class="invalid-feedback">
-              @error('state')
-    
-              Je nutné vybrat stav.
-    
-              @enderror
-             </div> 
-            <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
-        </form>
-      </td>
-          @endauth
+        
             
           
 @auth

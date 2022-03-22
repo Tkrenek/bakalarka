@@ -58,7 +58,7 @@
 
                 </div>
             </form>
-            <span>Pokud nemáte účet zaregistrujte se <a href="{{ route('employees.create') }}">tady</a></span>
+    
        
 
             </div>

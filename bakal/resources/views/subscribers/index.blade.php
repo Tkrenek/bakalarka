@@ -31,7 +31,7 @@
              <form action="{{ route('subscribers.destroy', $customer->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Odstranit</button>
+                <button type="submit" class="btn btn-danger">Odstranit</button>
             </form>
           
          

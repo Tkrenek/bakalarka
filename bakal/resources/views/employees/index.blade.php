@@ -37,7 +37,7 @@
              <form action="{{ route('employees.destroy', $employee->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Smazat</button>
+                <button type="submit" class="btn btn-danger">Smazat</button>
             </form>
       </tr>
         @endforeach

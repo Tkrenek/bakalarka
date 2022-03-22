@@ -6,15 +6,14 @@
   use Carbon\Carbon as carbon;
 @endphp
 
-        
 <div class="container" >
     <div class="row justify-content-center">
-        <div class="d-flex justify-content-center">
+        <div class="col-lg-6">
             <div class="card">
             <div class="card-header">Upravit objednávku</div>
 
-            <div class="card-body">
-    <form action="{{ route('orders.update', $order->id) }}" method="POST" style="width: 450px; margin: auto;">
+            <div class="card-body"> 
+    <form action="{{ route('orders.update', $order->id) }}" method="POST" >
         @csrf
         @method('PUT')
 
@@ -23,7 +22,7 @@
                     
                     <label for="state">Stav objednávky</label>
                    
-                    <input type="text" value="{{ $order->state }}" id="state" name="state" class="form-control @error('code') is-invalid @enderror">
+                    <input type="text" value="{{ $order->state }}" id="state" name="state" class="form-control @error('code') is-invalid @enderror" value="{{ $order->term }}">
                     <div class="invalid-feedback">
                         @error('state')
 
@@ -34,7 +33,7 @@
                 </div>
 
                 <div class="form-group ">
-                    <label for="term">Datum narození</label>
+                    <label for="term">Termín objednávky</label>
                     <input type="date" id="term" value="{{ carbon::parse($order->term)->format('d.m. Y')  }}" name="term" class="form-control @error('term') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('term')

@@ -98,8 +98,12 @@ Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('adm
 Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('admins.success');
 
 
-Route::get('/contact/index', [ContactPersonController::class, 'index'])->name('contact.index');
+Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
 Route::post('/contact/store', [ContactPersonController::class, 'store'])->name('contact.store');
+Route::get('/contact/index', [ContactPersonController::class, 'index'])->name('contact.index');
+Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
+Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
+Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
 
 Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
 Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
