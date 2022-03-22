@@ -2,58 +2,131 @@
 
 @section('content')
   
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header">Výběr balení</div>
 
-            <div class="card-body">
+  <table class="table">
+    <thead>
+      <tr>
+     
+        <th scope="col">Typ nádoby</th>
+        <th scope="col">Objem(v litrech)</th>
+        <th scope="col">Na skladě</th>
+        <th scope="col">Cena</th>
+
+        @auth
+          <th scope="col">Upravit</th>
+          <th scope="col">Naskladnit</th>
+          <th scope="col">Odstranit</th>
+        @endauth
+        @auth('employee')
+          <th scope="col">Upravit</th>
+          <th scope="col">Naskladnit</th>
+          <th scope="col">Odstranit</th>
+        @endauth
+        @auth('subscriber')
+            <th scope="col">Vybrat</th>
+        @endauth
         
-    <form action="{{ route('packageItem.store', $itemid) }}" method="POST" style="width: 450px; margin: auto;">
-        @csrf
-
-                <div class="form-group ">
-                    @error('container')
-
-                        {{  $message }}
+      </tr>
+    </thead>
+    <tbody>
+       @foreach ($containers as $container)
+        
+     
+      <tr>
+        
+        <td>{{ $container->type }}</td>
+        <td>{{ $container->bulk }}</td>
+        <td>{{ $container->on_store }}</td>
+        <td>{{ $container->prize }}</td>
+        <td>
             
-                    @enderror
-                    <label for="container">Nádoba</label>
-                    <select name="container" id="container" class="form-control custom-select">
-                        @foreach ($containers as  $container)
-                        <option id="{{ $container->id }}" name="{{ $container->id }}">{{ $container->type }} - {{ $container->bulk }}</option>
-                        @endforeach
-                    </select>
-                        
+            <form action="{{ route('packageItem.store', ['itemid' => $itemid, 'containerid' => $container->id]) }}" method="post">
+              @csrf
+              <div class="form-group ">
+  
+                  <label for="count" >Množsví</label>
+                  <div class="row">
+                      <div class="col">   
+                          <input type="text"  id="count" name="count" class="form-control">
+                      </div>
+                      <div class="col">
+                          <button type="submit" class="btn btn-secondary">Přidat balení</button>
+                      </div>
+                  </div>
+                @error('count')
+  
+                Musíte vybrat množství.
+        
+                @enderror
                 </div>
+              
+            </form>
+            </td>
+        
+        @auth('employee')
+        <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+        
+          <td>
+            <form action="{{ route('containers.addStore', $container->id) }}" method="post">
+              @csrf
+              @method('PUT')
+              <div class="form-group">
+               
+                <label for="ammount" class="sr-only">Množství</label>
+                <input type="number"  id="ammount" name="ammount" class="form-control">
+                @error('ammount')
 
-                <div class="form-group ">
-                    
-                    <label for="count">Počet(ks)</label>
-                    
-                    <input type="number" value="{{ old('count') }}" id="count" name="count" class="form-control @error('code') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('count')
-
-                            Musíte zadat počet.
-            
-                        @enderror
-                         
-                    </div>
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
-                            <strong>{{ $message }}  </strong>   
-                        </div>  
-                        @endif
+                  Musíte zadat množství.
+    
+            @enderror
                 </div>
-           
-                <div class="d-flex justify-content-center p-3">
-                    <button type="submit" class="btn btn-primary">Přidat balení</button>
+              <button type="submit" class="btn btn-secondary">Naskladnit</button>
+          </form>
+          </td>
+          <td>
+            <form action="{{ route('containers.destroy', $container->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-secondary">Smazat</button>
+          </form>
+          </td>
+        @endauth
+        @auth
+        
+          <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+          <td><form action="{{ route('containers.addStore', $container->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+              @error('ammount')
 
-                </div>
+                  {{  $message }}
+      
+              @enderror
+              <label for="ammount" class="sr-only">Množství</label>
+              <input type="number"  id="ammount" name="ammount" class="form-control">
+              </div>
+            <button type="submit" class="btn btn-secondary">Naskladnit</button>
         </form>
-       
-            </div></div></div></div></div>
+          </td>
+        <td>
+          <form action="{{ route('containers.destroy', $container->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-secondary">Smazat</button>
+        </form>
+        </td>
+        @endauth
+        
+    </tr>
+      @endforeach
+      
+    </tbody>
+  </table>
+
+
+   
+  
+
 
 @endsection

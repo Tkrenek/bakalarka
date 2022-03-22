@@ -8,6 +8,7 @@
    
    <h1>ID objednávky: {{ $order->id }}</h1>
    
+   <a href="{{ route('orders.myindex', 1 )}}">Zpět na moje objednávky</a>
   
    <table class="table">
       <th scope="col">Kód produktu</th>
@@ -50,8 +51,8 @@
             @endforeach
 
          </td>
-         <td><a href="{{ route('packageItem.create', $item->id) }}">Vybrat balení</a>
-            <a href="{{ route('packageItem.show', $item->id) }}">Změnit balení</a></td>
+         <td><a href="{{ route('packageItem.show', $item->id) }}">Upravit balení</a>
+            
 
          <td>
          @foreach ($item->packageItem as $cont)

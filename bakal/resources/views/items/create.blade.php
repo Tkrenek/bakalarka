@@ -2,62 +2,252 @@
 
 @section('content')
   
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header">Přidat položku</div>
 
-            <div class="card-body">
-        
-            <form  action="{{ route('items.store', $order->id) }}" method="POST">
+  <h1>Originální produkty</h1>    
+   <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Kód</th>
+          <th scope="col">Název</th>
+          <th scope="col">Na skladě</th>
+          <th scope="col">Odvětví</th>
+          <th scope="col">Cena(Kč)</th>
+          <th scope="col">Dodavatel</th>
+          @auth
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+
+          @endauth
+          @auth('employee')
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+          @endauth          
+          @auth('subscriber')
+            <th scope="col">Vybrat</th>
+          @endauth
+        </tr>
+      </thead>
+      <tbody>
+         @foreach ($products as $product)
+          
+       
+        <tr>
+          <td>{{ $product->code }}</td>
+          <td>{{ $product->name }}</td>
+          <td>{{ $product->on_store }}</td>
+          <td>{{ $product->branch }}</td>
+          <td>{{ $product->prize }}</td>
+          <td>{{ $product->producer->name }}</td>
+          <td>
+             
+            <form action="{{ route('items.store', ['orderid'=>$order->id,'productcode'=>$product->code]) }}" method="post">
                 @csrf
-               
-               
                 <div class="form-group">
-                    
-                    <label for="amount">Množství(v litrech)</label>
-                   
-                    <input type="text" value="{{ old('amount') }}" id="amount" name="amount" class="form-control @error('amount') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('amount')
+                    <label for="ammount" >Množsví</label>
+                    <div class="row">
+                        <div class="col">   
+                            <input type="text"  id="ammount" name="ammount" class="form-control">
+                            @error('ammount')
+                                Musíte vybrat množství.
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
+                        </div>
+                    </div>
+              </form>
 
-                        Musíte zadat množství.
+          </td>
+          
+          @auth
+            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+            <td>
+              <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="form-group ">
+                  @error('ammount')
+
+                  Musíte vybrat množství.
+          
+                  @enderror
+                  <label for="ammount" class="sr-only">Množsví</label>
+                  <input type="text"  id="ammount" name="ammount" class="form-control">
+                  </div>
+                <button type="submit" class="btn btn-secondary">Naskladnit</button>
+              </form>
+            </td>
+            <td>
+              <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-secondary">Odstranit</button>
+            </form>
+            </td>
+          @endauth
+
+          @auth('employee')
+          <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+          <td>
+            <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
+              @csrf
+              @method('PUT')
+              <div class="form-group">
+                @error('ammount')
+
+                    Musíte vybrat množství.
+        
+                @enderror
+                <label for="ammount" class="sr-only">Množsví</label>
+                <input type="number"  id="ammount" name="ammount" class="form-control">
+                </div>
+              <button type="submit" class="btn btn-secondary">Naskladnit</button>
+            </form>
+          </td>
+          <td>
+            <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-secondary">Odstranit</button>
+          </form>
+          </td>
+          @endauth
+          
+      </tr>
+        @endforeach
+        
+      </tbody>
+    </table>
+
+    <h1>Míchané produkty</h1> 
+  
+    <table class="table">
+      <thead >
+        <tr>
+          <th scope="col">Kód</th>
+          <th scope="col">Název</th>
+          <th scope="col">Na skladě</th>
+          <th scope="col">Odvětví</th>
+          <th scope="col">Cena(Kč)</th>
+          
+          @auth
             
-                    @enderror
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+          @endauth
 
+          @auth('employee')
+            
+            <th scope="col">Upravit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Odstranit</th>
+          @endauth
+          @auth('subscriber')
+            <th scope="col">Vybrat</th>
+          @endauth
+          
+        </tr>
+      </thead>
+      <tbody>
+         @foreach ($productsMixed as $product)
+          
+       
+        <tr>
+          <td>{{ $product->code }}</td>
+          <td>{{ $product->name }}</td>
+          <td>{{ $product->on_store }}</td>
+          <td>{{ $product->branch }}</td>
+          
+          <td>{{ $product->prize }}</td>
+          <td>
+          <form action="{{ route('items.store', ['orderid'=>$order->id,'productcode'=>$product->code]) }}" method="post">
+            @csrf
+            <div class="form-group ">
+
+                <label for="ammount" >Množsví</label>
+                <div class="row">
+                    <div class="col">   
+                        <input type="text"  id="ammount" name="ammount" class="form-control">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
                     </div>
                 </div>
-                
+              @error('ammount')
+
+              Musíte vybrat množství.
+      
+              @enderror
+              </div>
+            
+          </form>
+          </td>
+          
+          @auth
+            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+            <td>
+              <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
+                @csrf
+                @method('PUT')
                 <div class="form-group">
-                   
-                    <label for="product" >Kód produktu</label>
-                    <select name="product" id="product" class="form-control custom-select @error('product') is-invalid @enderror">
-                        @foreach ($products as  $product)
-                            <option id="{{ $product->code }}" name="{{ $product->code }}">{{ $product->code }}</option>
-                        @endforeach
-                        @foreach ($productsMixed as  $product)
-                            <option id="{{ $product->code }}" name="{{ $product->code }}">{{ $product->code }}</option>
-                        @endforeach
+                  @error('ammount')
 
-
-                        
-                    </select>
-                    @if ($message = Session::get('error'))
-                    <div class="alert alert-danger alert-block">
-                        <strong>{{ $message }}  </strong>   
-                    </div>  
-                    @endif   
-                        
-                    
-                </div>
-
-                <div class="d-flex justify-content-center p-3">
-                    <button type="submit" class="btn btn-primary">Přidat položku</button>
-
-                </div>
+                  Musíte vybrat množství.
+          
+                  @enderror
+                  <label for="ammount" class="sr-only">Množství</label>
+                  <input type="number"  id="ammount" name="ammount" class="form-control" >
+                  </div>
+                <button type="submit " class="btn btn-secondary">Naskladnit</button>
+              </form>
+            </td>
+            
+            <td>
+              <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-secondary">Odstranit</button>
             </form>
-       
-            </div></div></div></div></div>
+          </td>
+          @endauth
+
+          @auth('employee')
+          <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit </a></td>
+          <td>
+            <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
+               @csrf
+               @method('PUT')
+               <div class="form-group">
+               
+                <label for="ammount" class="sr-only">Množství</label>
+                <input type="number"  id="ammount" name="ammount" class="form-control">
+                @error('ammount')
+
+                 Musíte zadat množství.
+    
+            @enderror
+                </div>
+               <button type="submit" class="btn btn-secondary">Naskladnit</button>
+            </form>
+          </td>
+          
+          <td>
+            <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
+               @csrf
+               @method('DELETE')
+               <button type="submit" class="btn btn-secondary">Odstranit</button>
+           </form>
+          </td>
+          @endauth
+          
+      </tr>
+        @endforeach
+        
+      </tbody>
+    </table>
+
 
 @endsection

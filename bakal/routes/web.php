@@ -123,7 +123,7 @@ Route::delete('/containers/{id}', [ContainerController::class, 'destroy'])->name
 Route::put('/containers/{id}/addStore', [ContainerController::class, 'addOnStore'])->name('containers.addStore');
 
 Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
-Route::post('/items/store/{orderid}', [ItemController::class, 'store'])->name('items.store');
+Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
 Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 Route::get('/productMixed/create', [ProductMixedController::class, 'create'])->name('productMixed.create');
@@ -145,7 +145,7 @@ Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'
 
 
 Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
-Route::post('/packageItem/store/{itemid}', [PackageItemController::class, 'store'])->name('packageItem.store');
+Route::post('/packageItem/store/{itemid}/{containerid}', [PackageItemController::class, 'store'])->name('packageItem.store');
 Route::get('/packageItem/show/{itemid}', [PackageItemController::class, 'show'])->name('packageItem.show');
 Route::delete('/packageItem/{id}', [PackageItemController::class, 'destroy'])->name('packageItem.destroy');
 Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'changeCount'])->name('packageItem.changeCount');

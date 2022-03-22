@@ -27,43 +27,51 @@ class ItemController extends Controller
         ]);
     }
 
-    public function store(Request $request, $orderid)
+    public function store(Request $request, $orderid, $productcode)
     {
         $this->validate($request, [
-            'amount' => 'required',
-            'product' => 'required',
+            'ammount' => 'required',
         ]);
 
 
-
-        if($request->product[0] == "O") {
-            $product = Product_original::where('code', $request->product)->first();
-            
-            if($request->amount > $product->on_store) {
+        
+        if($productcode[0] == "O") {
+            $product = Product_original::where('code', $productcode)->first();
+            if($request->ammount > $product->on_store) {
                 return back()->with('error', 'Na skladě není dost zásob.');
 
             }
+           
+            if($item = Item::where('is_mixed', 'ne')->where('product_original_id', $product->id)->where('order_id', "=", $orderid)->first()) {
+                $item->amount += $request->ammount;
+                $item->save();
+            }
+             else{
+                Item::create([
+                    'amount' => $request->ammount,
+                    'is_mixed' => "ne",
+                    'product_original_id' => $product->id,
+                    'product_mixed_id' => 1,
+                    'order_id' => $orderid
+    
+                ]);
+             }
 
-            Item::create([
-                'amount' => $request->amount,
-                'is_mixed' => "ne",
-                'product_original_id' => $product->id,
-                'product_mixed_id' => 1,
-                'order_id' => $orderid
+            
 
-            ]);
+            
 
-            $product->on_store -= $request->amount;
+            $product->on_store -= $request->ammount;
             $product->save();
         } else {
             
-            $product = Product_mixed::where('code', $request->product)->first();
-            if($request->amount > $product->on_store) {
+            $product = Product_mixed::where('code', $productcode)->first();
+            if($request->ammount > $product->on_store) {
                 return back()->with('error', 'Na skladě není dost zásob.');
 
             }
             Item::create([
-                'amount' => $request->amount,
+                'amount' => $request->ammount,
                 'is_mixed' => "ano",
                 'product_original_id' => 1,
                 'product_mixed_id' => $product->id,
@@ -81,6 +89,14 @@ class ItemController extends Controller
     public function destroy($id)
     {
         $item = Item::find($id);
+
+        if($item->is_mixed == "ano") {
+            $item->productMixed->on_store += $item->amount;
+            $item->productMixed->save();
+        } else {
+            $item->productOriginal->on_store += $item->amount;
+            $item->productOriginal->save();
+        }
         $item->delete();
 
         return back();

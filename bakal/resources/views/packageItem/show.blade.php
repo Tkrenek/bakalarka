@@ -8,6 +8,8 @@
    
    <h1>ID položky: {{ $item->id }}</h1>
    
+ 
+   <a href="{{ route('orders.show', $item->order->id) }}">Zpět na objednávku</a>
   
    <table class="table">
       <th scope="col">Kód nádoby</th>

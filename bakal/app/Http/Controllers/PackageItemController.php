@@ -24,26 +24,31 @@ class PackageItemController extends Controller
         ]);
     }
 
-    public function store($itemid, Request $request)
+    public function store($itemid, Request $request, $containerid)
     {
         $this->validate($request, [
             'count' => 'required',
 
         ]);
-        
-        $parts = explode(" - ", $request->container);
-        $type = $parts[0];
-        $bulk = $parts[1];
 
+        $cont = Container::find($containerid);
+        
+    
+        $parts = explode("-", $cont->code);
+        
+        $type = $parts[0];
+        
+        $bulk = $parts[1];
+   
         $container = Container::where('type', '=', $type)->where('bulk', '=', $bulk)->first();
        
-        if(Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $container->id)->first()) {
+        if(Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $cont->id)->first()) {
             
-            if($request->count > $container->on_store) {
+            if($request->count > $cont->on_store) {
                 return back()->with('error', 'Na skladě není dost zásob.');
 
             }
-            $pckgItem = Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $container->id)->first();
+            $pckgItem = Package_item::where('item_id', '=', $itemid)->where('container_id', '=', $cont->id)->first();
             $pckgItem->count += $request->count;
 
             $pckgItem->save();
@@ -51,7 +56,7 @@ class PackageItemController extends Controller
             
             Package_item::create([
                 'item_id' => $itemid,
-                'container_id' => $container->id,
+                'container_id' => $cont->id,
                 'count' => $request->count,
     
             ]);
@@ -59,9 +64,9 @@ class PackageItemController extends Controller
 
         
 
-        $container->on_store -= $request->count;
+        $cont->on_store -= $request->count;
 
-        $container->save();
+        $cont->save();
 
         $item = Item::find($itemid);
   
