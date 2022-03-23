@@ -9,20 +9,10 @@
             <div class="card-header">Oznčit práci na objedávce</div>
 
             <div class="card-body"> 
-    <form action="{{ route('orderWork.store') }}" method="POST">
+    <form action="{{ route('orderWork.store', $order->id) }}" method="POST">
         @csrf
 
 
-                <div class="form-group ">
-                                    
-                <label for="order">Objednávka</label>
-                   
-                <select name="order" id="order" class="form-control custom-select">
-                    @foreach ($orders as  $order)
-                        <option id="{{ $order->id }}" name="{{ $order->id }}">{{ $order->id }}</option>
-                    @endforeach
-                </select>    
-                </div>
 
                 <div class="form-group ">
                     

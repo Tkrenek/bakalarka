@@ -35,10 +35,7 @@
                     <a class="nav-link" href="{{ route('orders.index')}}" class="p-3">Všechny objednávky</a>
     
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
-        
-                    </li>
+               
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('productOriginal.index')}}" class="p-3">Seznam produktů</a>
@@ -49,10 +46,7 @@
         
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('mixingProduct.create')}}" class="p-3">Přidat recept</a>
-        
-                    </li>
+                 
         
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('mixingProduct.index')}}" class="p-3">Recepty</a>
@@ -72,10 +66,7 @@
                     <a class="nav-link" href="{{ route('employees.create')}}" class="p-3">Registrovat zaměstnance</a>
     
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
-    
-                </li>
+             
                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Upravit Zaměstnance</a>
@@ -297,10 +288,7 @@
     
                 </li>
     
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('orderWork.create')}}" class="p-3">Označit práci na objednávce</a>
-    
-                </li>
+             
     
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('orderWork.index')}}" class="p-3">Práce na objednávce</a>

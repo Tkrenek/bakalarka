@@ -9,20 +9,19 @@ use App\Models\OrderWork;
 
 class OrderWorkController extends Controller
 {
-    public function create()
+    public function create($orderId)
     {
-        $orders = Order::get();
+        $order = Order::find($orderId);
 
         return view('orderwork.create', [
-            'orders' => $orders
+            'order' => $order
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $orderId)
     {
         $this->validate($request, [
             'type' => 'required',
-            'order' => 'required',
             'time' => 'required',
             'date' => 'required',
             
@@ -30,7 +29,7 @@ class OrderWorkController extends Controller
         
 
         OrderWork::create([
-            'order_id' => $request->order,
+            'order_id' => $orderId,
             'employee_id' => auth('employee')->user()->id,
             'work_type' => $request->type,
             'time' => $request->time,
@@ -51,5 +50,15 @@ class OrderWorkController extends Controller
         return view('orderwork.index', [
             'orderworks' => $orderworks
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $orderWokrk = OrderWork::find($id);
+        $orderWokrk->delete();
+
+
+
+        return back();
     }
 }

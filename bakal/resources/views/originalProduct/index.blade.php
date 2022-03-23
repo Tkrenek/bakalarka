@@ -114,7 +114,7 @@
           
           @auth
             <th scope="col">Recept</th>
-            <th scope="col">Přidat přísadu</th>
+            <th scope="col">Upravit recept</th>
             <th scope="col">Naskladnit</th>
             <th scope="col">Upravit</th>
             
@@ -148,25 +148,9 @@
                 {{ $originals->productOriginal->code}}
             @endforeach  
           </td>
-          <td>
-            
-              <form action="{{ route('mixingProduct.store', $product->id) }}" method="post">
-                 @csrf
-                 
-                 <div class="form-group">
-                 
-                  <label for="code" class="sr-only">Kód produktu</label>
-                  <input type="text"  id="code" name="code" class="form-control">
-                  @error('code')
-  
-                   Musíte zadat kód originálního produktu.
-      
-              @enderror
-                  </div>
-                 <button type="submit" class="btn btn-secondary">Naskladnit</button>
-              </form>
-            
-          </td>
+          
+            <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
+
           @auth
            
             <td>

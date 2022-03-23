@@ -7,9 +7,14 @@
    
    
    <h1>ID objednávky: {{ $order->id }}</h1>
+   @auth('subscriber')
+      <a href="{{ route('orders.myindex', auth('subscriber')->user()->id )}}">Zpět na moje objednávky</a>
+   @endauth
+   @auth
+      <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
+   @endauth
    
-   <a href="{{ route('orders.myindex', 1 )}}">Zpět na moje objednávky</a>
-  
+
    <table class="table">
       <th scope="col">Kód produktu</th>
       <th scope="col">Název produktu</th>

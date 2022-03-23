@@ -17,6 +17,10 @@
           <th scope="col">Typ práce</th>
           <th scope="col">Datum</th>
           <th scope="col">Doba práce</th>
+          @auth
+            <th scope="col">Smazat</th>
+          @endauth
+          
 
         </tr>
       </thead>
@@ -48,7 +52,14 @@
                         {{ $orderwork->time }}
                       
     
-                        </td>     
+                        </td>    
+                        <td>
+                          <form action="{{ route('orderWork.destroy', $orderwork->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Odstranit</button>
+                        </form>
+                        </td>
                       </tr> 
 
                      

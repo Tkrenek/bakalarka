@@ -25,11 +25,10 @@ class MixingProductController extends Controller
     {
         $this->validate($request, [
             'code' => 'required',
-            //exists:students,id
-            
+                        
         ]);
 
-        $original = Product_original::where('code', $request->original)->first();
+        $original = Product_original::where('code', $request->code)->first();
        // $mixed = Product_mixed::where('code', $request->mixed)->first();
 
 
@@ -48,5 +47,26 @@ class MixingProductController extends Controller
         return view('mixingProduct.index', [
             'mixeds' => $mixeds
         ]);
+    }
+
+    public function show($mixedId)
+    {
+
+        $mixedProduct = Product_mixed::find($mixedId);
+        $originals = Product_original::get();
+
+        return view('mixingProduct.show', [
+            'mixedProduct' => $mixedProduct,
+            'originals' => $originals
+        ]);
+    }
+
+    public function destroy($mixingId)
+    {
+        $receipt = Mixing_Product::find($mixingId);
+       
+        $receipt->delete();
+
+        return back();
     }
 }

@@ -160,10 +160,13 @@ Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'chan
 Route::get('/mixingProduct/create', [MixingProductController::class, 'create'])->name('mixingProduct.create');
 Route::post('/mixingProduct/store/{mixedId}', [MixingProductController::class, 'store'])->name('mixingProduct.store');
 Route::get('/mixingProduct/index', [MixingProductController::class, 'index'])->name('mixingProduct.index');
+Route::get('/mixingProduct/show/{mixedId}', [MixingProductController::class, 'show'])->name('mixingProduct.show');
+Route::delete('/mixingProduct/{mixingId}', [MixingProductController::class, 'destroy'])->name('mixingProduct.destroy');
 
-Route::get('/orderWork/create', [OrderWorkController::class, 'create'])->name('orderWork.create');
-Route::post('/orderWork/store', [OrderWorkController::class, 'store'])->name('orderWork.store');
+Route::get('/orderWork/create/{orderId}', [OrderWorkController::class, 'create'])->name('orderWork.create');
+Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
 Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
+Route::delete('/orderWork/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

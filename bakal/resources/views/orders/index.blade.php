@@ -23,13 +23,15 @@
           <th scope="col">Celková cena</th>
           <th scope="col">Faktura</th>
           @auth
+          
           <th scope="col">Odstranit objednávku</th>
        
           <th scope="col">Upravit objednávku</th>
           @endauth
           @auth('employee')
           
-          <th scope="col">Změnit stav objednávky</th>
+            <th scope="col">Označit práci</th>
+            <th scope="col">Změnit stav objednávky</th>
             
           @endauth
           @auth('subscriber')
@@ -88,6 +90,10 @@
 
           
             @auth('employee')
+            <td>
+
+              <a href="{{ route('orderWork.create', $order->id) }}" type="btn" class="btn btn-secondary">Označit</a>
+            </td>
             <td>
             <form action="{{ route('orders.changeState', $order->id) }}" method="post">
               @csrf
