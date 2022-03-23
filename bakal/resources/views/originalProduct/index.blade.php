@@ -14,14 +14,16 @@
           <th scope="col">Cena(Kč)</th>
           <th scope="col">Dodavatel</th>
           @auth
-            <th scope="col">Upravit</th>
+            
             <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
             <th scope="col">Odstranit</th>
 
           @endauth
           @auth('employee')
-            <th scope="col">Upravit</th>
+            
             <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
             <th scope="col">Odstranit</th>
           @endauth          
         </tr>
@@ -39,28 +41,29 @@
           <td>{{ $product->producer->name }}</td>
           
           @auth
-            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
-            <td>
-              <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
-                @csrf
-                @method('PUT')
-                <div class="form-group ">
-                  @error('ammount')
+          <td>
+            <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
+              @csrf
+              @method('PUT')
+              <div class="form-group ">
+                @error('ammount')
 
-                      {{  $message }}
-          
-                  @enderror
-                  <label for="ammount" class="sr-only">Množsví</label>
-                  <input type="text"  id="ammount" name="ammount" class="form-control">
-                  </div>
-                <button type="submit" class="btn btn-secondary">Naskladnit</button>
-              </form>
-            </td>
+                    {{  $message }}
+        
+                @enderror
+                <label for="ammount" class="sr-only">Množsví</label>
+                <input type="text"  id="ammount" name="ammount" class="form-control">
+                </div>
+              <button type="submit" class="btn btn-secondary">Naskladnit</button>
+            </form>
+          </td>
+            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+           
             <td>
               <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Odstranit</button>
+                <button type="submit" class="btn btn-danger">Odstranit</button>
             </form>
             </td>
           @endauth
@@ -87,7 +90,7 @@
             <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-secondary">Odstranit</button>
+              <button type="submit" class="btn btn-danger">Odstranit</button>
           </form>
           </td>
           @endauth
@@ -110,16 +113,19 @@
           <th scope="col">Cena(Kč)</th>
           
           @auth
-            
-            <th scope="col">Upravit</th>
+            <th scope="col">Recept</th>
+            <th scope="col">Přidat přísadu</th>
             <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
+            
             <th scope="col">Odstranit</th>
           @endauth
 
           @auth('employee')
-            
-            <th scope="col">Upravit</th>
+            <th scope="col">Recept</th>
             <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
+            
             <th scope="col">Odstranit</th>
           @endauth
           
@@ -136,9 +142,33 @@
           <td>{{ $product->branch }}</td>
           
           <td>{{ $product->prize }}</td>
-          
+         
+          <td>
+            @foreach ($product->mixingProduct as $originals)
+                {{ $originals->productOriginal->code}}
+            @endforeach  
+          </td>
+          <td>
+            
+              <form action="{{ route('mixingProduct.store', $product->id) }}" method="post">
+                 @csrf
+                 
+                 <div class="form-group">
+                 
+                  <label for="code" class="sr-only">Kód produktu</label>
+                  <input type="text"  id="code" name="code" class="form-control">
+                  @error('code')
+  
+                   Musíte zadat kód originálního produktu.
+      
+              @enderror
+                  </div>
+                 <button type="submit" class="btn btn-secondary">Naskladnit</button>
+              </form>
+            
+          </td>
           @auth
-            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+           
             <td>
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                 @csrf
@@ -155,12 +185,13 @@
                 <button type="submit " class="btn btn-secondary">Naskladnit</button>
               </form>
             </td>
+            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
             
             <td>
               <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Odstranit</button>
+                <button type="submit" class="btn btn-danger">Odstranit</button>
             </form>
           </td>
           @endauth
@@ -189,7 +220,7 @@
             <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
                @csrf
                @method('DELETE')
-               <button type="submit" class="btn btn-secondary">Odstranit</button>
+               <button type="submit" class="btn btn-danger">Odstranit</button>
            </form>
           </td>
           @endauth

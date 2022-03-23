@@ -21,20 +21,21 @@ class MixingProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $mixedId)
     {
         $this->validate($request, [
-            'original' => 'required',
-            'mixed' =>'required',
+            'code' => 'required',
+            //exists:students,id
+            
         ]);
 
         $original = Product_original::where('code', $request->original)->first();
-        $mixed = Product_mixed::where('code', $request->mixed)->first();
+       // $mixed = Product_mixed::where('code', $request->mixed)->first();
 
 
         Mixing_product::create([
             'product_original_id' => $original->id,
-            'product_mixed_id' => $mixed->id,
+            'product_mixed_id' => $mixedId,
             
         ]);
 

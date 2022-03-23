@@ -70,14 +70,20 @@ class ItemController extends Controller
                 return back()->with('error', 'Na skladě není dost zásob.');
 
             }
-            Item::create([
-                'amount' => $request->ammount,
-                'is_mixed' => "ano",
-                'product_original_id' => 1,
-                'product_mixed_id' => $product->id,
-                'order_id' => $orderid
-
-            ]);
+            if($item = Item::where('is_mixed', 'ano')->where('product_original_id', $product->id)->where('order_id', "=", $orderid)->first()) {
+                $item->amount += $request->ammount;
+                $item->save();
+            } else {
+                Item::create([
+                    'amount' => $request->ammount,
+                    'is_mixed' => "ano",
+                    'product_original_id' => 1,
+                    'product_mixed_id' => $product->id,
+                    'order_id' => $orderid
+    
+                ]);
+            }
+            
 
             $product->on_store -= $request->amount;
             $product->save();

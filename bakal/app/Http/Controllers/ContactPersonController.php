@@ -134,4 +134,17 @@ class ContactPersonController extends Controller
 
         return back();
     }
+
+    public function indexSub($subId)
+    {
+        
+        $subscriber = Subscriber::find($subId);
+        $contacts = $subscriber->contact;
+
+        return view('contact.subindex', [
+            'contacts' => $contacts
+        ]);
+    }
+    
 }
+

@@ -7,20 +7,24 @@
 @endphp
 <form action="{{ route('orders.store') }}" method="post">
   @csrf
-  <button type="submit" class="btn btn-outline-secondary">Vytvořit novou objednávku</button>
+  @auth('subscriber')
+    <button type="submit" class="btn btn-outline-secondary">Vytvořit novou objednávku</button>
+  @endauth
+  
 </form> 
    <table class="table">
       <thead>
         <tr>
        
           <th scope="col">ID objednávky</th>
+          <th scope="col">Zákazník</th>
           <th scope="col">Stav objednávky</th>
           <th scope="col">Termín objednávky</th>
           <th scope="col">Celková cena</th>
           <th scope="col">Faktura</th>
           @auth
           <th scope="col">Odstranit objednávku</th>
-          <th scope="col">Změnit termín objednávky</th>
+       
           <th scope="col">Upravit objednávku</th>
           @endauth
           @auth('employee')
@@ -42,6 +46,7 @@
         <tr>
            
           <td><a href="{{  route('orders.show', $order->id) }}">{{ $order->id }}</a></td> 
+          <td>{{ $order->subscriber->name }}</td> 
           <td>{{ $order->state }}</td>
           <td>{{ Carbon::parse($order->term)->format('d.m. Y')}} </td>
           <td>
@@ -75,7 +80,7 @@
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-secondary">Odstranit objednávku</button>
+                <button type="submit" class="btn btn-danger">Odstranit objednávku</button>
             </form>
             </td>
           @endauth
@@ -112,25 +117,7 @@
             
           
 @auth
-<td>
 
-  <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">
-    @csrf
-    @method('PUT')
-    <div class="form-group">
-      <label for="term">Změnit termín</label>
-      <input type="date" id="term" name="term" class="@error('term') is-invalid @enderror form-control" >
-      <div class="invalid-feedback">
-          @error('term')
-
-          Je nutné zadat datum.
-
-          @enderror
-      </div>  
-  </div>
-    <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
-</form>
-</td>
 <td>
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
 </td>

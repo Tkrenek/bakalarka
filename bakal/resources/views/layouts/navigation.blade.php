@@ -183,7 +183,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Přidat kontaktní osobu</a>
+                        <a class="nav-link" href="{{ route('contact.create')}}" class="p-3">Přidat kontaktní osobu</a>
+        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact.index.sub', auth('subscriber')->user()->id)}}" class="p-3">Zobrazit moje kontaktní osoby</a>
         
                     </li>
                 @endauth

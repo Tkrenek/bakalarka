@@ -152,5 +152,27 @@ class OrderController extends Controller
         return back();
     }
 
+    public function storeAdmin($subId)
+    {
+        Order::create([
+        'state' => 'založeno',
+        'term' => date("Y-m-d"),
+        'subscriber_id' => $subId,
+        'invoice' => 'bude doplněno'
+
+    ]);
+
+    
+
+    
+    $orders = Order::get();
+
+    return view('orders.index', [
+        'orders' => $orders,
+    ]);
+    
+        
+    }
+
     
 }

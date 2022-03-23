@@ -6,7 +6,7 @@
     <div class="row justify-content-center" >
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Upravit zaměstnance</div>
+            <div class="card-header">Upravit kontaktní osobu</div>
 
             <div class="card-body">
         

@@ -101,6 +101,7 @@ Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('a
 Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
 Route::post('/contact/store', [ContactPersonController::class, 'store'])->name('contact.store');
 Route::get('/contact/index', [ContactPersonController::class, 'index'])->name('contact.index');
+Route::get('/contact/{subId}/index', [ContactPersonController::class, 'indexSub'])->name('contact.index.sub');
 Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
 Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
 Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
@@ -138,6 +139,8 @@ Route::put('/productMixed/{id}/addStore', [ProductMixedController::class, 'addOn
 Route::delete('/productMixed/{id}', [ProductMixedController::class, 'destroy'])->name('productMixed.destroy');
 
 Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
+Route::post('/orders/{subid}/store', [OrderController::class, 'storeAdmin'])->name('orders.admin.store');
+
 Route::get('/orders/index', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{id}/index', [OrderController::class, 'myindex'])->name('orders.myindex');
 Route::get('/orders/{id}/show', [OrderController::class, 'show'])->name('orders.show');
@@ -155,7 +158,7 @@ Route::delete('/packageItem/{id}', [PackageItemController::class, 'destroy'])->n
 Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'changeCount'])->name('packageItem.changeCount');
 
 Route::get('/mixingProduct/create', [MixingProductController::class, 'create'])->name('mixingProduct.create');
-Route::post('/mixingProduct/store', [MixingProductController::class, 'store'])->name('mixingProduct.store');
+Route::post('/mixingProduct/store/{mixedId}', [MixingProductController::class, 'store'])->name('mixingProduct.store');
 Route::get('/mixingProduct/index', [MixingProductController::class, 'index'])->name('mixingProduct.index');
 
 Route::get('/orderWork/create', [OrderWorkController::class, 'create'])->name('orderWork.create');
