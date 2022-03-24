@@ -37,10 +37,7 @@
             </form> 
          </td>
          <td>
-          <form action="{{ route('orders.admin.store', $customer->id) }}" method="post">
-            @csrf
-            <button type="submit" class="btn btn-secondary">Přidat osobu</button>
-          </form> 
+          <a href="{{ route('contact.admin.create', $customer->id) }}" type="btn" class="btn btn-secondary">Přidat osobu</a> 
        </td>
          
           <td>

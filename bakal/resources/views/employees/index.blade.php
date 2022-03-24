@@ -16,8 +16,10 @@
           <th scope="col">Telefon</th>
           <th scope="col">Datum narození</th>
           <th scope="col">Oddělení</th>
+          <th scope="col">Označit práci</th>
           <th scope="col">Upravit</th>
           <th scope="col">Smazat</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -32,6 +34,7 @@
           <td>{{ $employee->phone }}</td>
           <td>{{ \Carbon\Carbon::parse($employee->birth_date)->format('d.m.Y') }}</td>
           <td>{{ $employee->department->name }}</td>
+          <td><a href="{{ route('orderWork.admin.create', $employee->id) }}" type="submit" class="btn btn-secondary">Označit práci</a></td>
           <td><a href="{{ route('employees.edit', $employee->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a></td>
           <td>
              <form action="{{ route('employees.destroy', $employee->id) }}" method="post">

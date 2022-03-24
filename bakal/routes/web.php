@@ -105,8 +105,12 @@ Route::get('/contact/{subId}/index', [ContactPersonController::class, 'indexSub'
 Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
 Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
 Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
+Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAsAdmin'])->name('contact.admin.create');
+Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
+
 
 Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
+
 Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
 
 Route::get('/productOriginal/create', [ProductOriginalController::class, 'create'])->name('productOriginal.create');
@@ -167,6 +171,8 @@ Route::get('/orderWork/create/{orderId}', [OrderWorkController::class, 'create']
 Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
 Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
 Route::delete('/orderWork/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
+Route::get('/orderWork/create/{orderId}/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

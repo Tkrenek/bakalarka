@@ -111,9 +111,9 @@
           <th scope="col">Na skladě</th>
           <th scope="col">Odvětví</th>
           <th scope="col">Cena(Kč)</th>
-          
+          <th scope="col">Recept</th>
           @auth
-            <th scope="col">Recept</th>
+            
             <th scope="col">Upravit recept</th>
             <th scope="col">Naskladnit</th>
             <th scope="col">Upravit</th>
@@ -148,11 +148,11 @@
                 {{ $originals->productOriginal->code}}
             @endforeach  
           </td>
-          
-            <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
+         
+            
 
           @auth
-           
+          <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
             <td>
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                 @csrf

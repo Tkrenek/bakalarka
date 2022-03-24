@@ -20,6 +20,15 @@ class ContactPersonController extends Controller
         
     }
 
+    public function createAsAdmin($subId)
+    {
+        $subscriber = Subscriber::find($subId);
+        return view('contact.create', [
+            'subscriber' => $subscriber
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
     
@@ -31,24 +40,7 @@ class ContactPersonController extends Controller
             'birth_date' =>'required|date',
             
         ]);
-        $subscriber = Subscriber::where('name', $request->subscriber)->first();
-
         
-
-        if(Auth::user()) {
-            ContactPerson::create([
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'phone' => $request->phone,
-                'email' => $request->email,
-    
-                'birth_date' => $request->birth_date,
-                
-                
-                'subscriber_id' => $subscriber->id,
-    
-            ]);
-        } else {
 
           
             ContactPerson::create([
@@ -63,13 +55,51 @@ class ContactPersonController extends Controller
                 'subscriber_id' => auth('subscriber')->user()->id,
     
             ]);
-        }
+        
         
 
         
 
         return back();
     }
+
+    public function storeAsAdmin(Request $request, $subId)
+    {
+    
+    $this->validate($request, [
+            'name' => 'required',
+            'surname' =>'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email|unique:employees',
+            'birth_date' =>'required|date',
+            
+        ]);
+
+        
+
+     
+
+          
+            ContactPerson::create([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'phone' => $request->phone,
+                'email' => $request->email,
+    
+                'birth_date' => $request->birth_date,
+                
+                
+                'subscriber_id' => $subId,
+    
+            ]);
+        
+        
+
+        
+
+        return back();
+    }
+
 
     public function index()
     {
@@ -145,6 +175,8 @@ class ContactPersonController extends Controller
             'contacts' => $contacts
         ]);
     }
+
+    
     
 }
 

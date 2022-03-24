@@ -138,10 +138,7 @@
                     
                
                
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('mixingProduct.create')}}" class="p-3">Přidat recept</a>
-    
-                </li>
+                
     
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('mixingProduct.index')}}" class="p-3">Recepty</a>

@@ -9,8 +9,13 @@
             <div class="card-header">Přidat kontaktní osobu</div>
 
             <div class="card-body">
-        
+        @auth
+            <form  action="{{ route('contact.admin.store', $subscriber->id) }}" method="POST">
+        @endauth
+        @auth('subscriber')
             <form  action="{{ route('contact.store') }}" method="POST">
+        @endauth
+            
                 @csrf
 
                 <div class="row">
@@ -89,28 +94,7 @@
                 </div>
 
               
-                @auth
-                <div class="form-group ">
-                    
-                    <label for="subscriber"  >Společnost</label>
-                    <select name="subscriber" id="subscriber" value="{{ old('subscriber') }}" class="form-control custom-select @error('subscriber') is-invalid @enderror" class="form-control">
-                        @foreach ($subscribers as  $subscriber)
-                            <option id="{{ $subscriber->name }}" name="{{ $subscriber->name }}">{{ $subscriber->name }}</option>
-                        @endforeach
-                        
-                        
-                    </select> 
-                    <div class="invalid-feedback">
-                        @error('subscriber')
-
-                            Musíte vybrat zákazníka.
-            
-                        @enderror
-                    </div>
-                        
-                    
-                </div>
-                @endauth
+               
                 
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Přidat kontaktní osobu</button>
