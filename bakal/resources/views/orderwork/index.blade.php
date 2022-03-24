@@ -20,6 +20,10 @@
           @auth
             <th scope="col">Smazat</th>
           @endauth
+          @auth('employee')
+            <th scope="col">Smazat</th>
+          @endauth
+
           
 
         </tr>

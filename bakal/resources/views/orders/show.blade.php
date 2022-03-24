@@ -13,7 +13,16 @@
    @auth
       <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
    @endauth
-   
+   @auth('employee')
+      <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
+   @endauth
+
+   @auth('subscriber')
+      <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+   @endauth
+   @auth()
+      <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+   @endauth
 
    <table class="table">
       <th scope="col">Kód produktu</th>
@@ -23,10 +32,19 @@
 
       <th scope="col">Cena</th>
       <th scope="col">Cena za balení</th>
-
-      <th scope="col">Vybrat balení</th>
       <th scope="col">Balení</th>
-      <th scope="col">Odstranit</th>
+
+      @auth
+         <th scope="col">Vybrat balení</th>
+         
+         <th scope="col">Odstranit</th>
+      @endauth
+      @auth('subscriber')
+         <th scope="col">Vybrat balení</th>
+         
+         <th scope="col">Odstranit</th>
+      @endauth
+     
 
       @foreach ($items as $item)
       <tr>
@@ -56,29 +74,42 @@
             @endforeach
 
          </td>
-         <td><a href="{{ route('packageItem.show', $item->id) }}">Upravit balení</a>
-            
 
          <td>
-         @foreach ($item->packageItem as $cont)
-            {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }}ks)
-         @endforeach
-         </td>
+            @foreach ($item->packageItem as $cont)
+               {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }}ks)
+            @endforeach
+            </td>
+            @auth
+               <td><a href="{{ route('packageItem.show', $item->id) }}">Upravit balení</a>
+            
+                  <td>
+                     <form action="{{ route('items.destroy', $item->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Smazat</button>
+                  </form>
+                  </td>
+            @endauth
+            @auth('subscriber')
+               <td><a href="{{ route('packageItem.show', $item->id) }}">Upravit balení</a>
+               
+                  <td>
+                     <form action="{{ route('items.destroy', $item->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Smazat</button>
+                  </form>
+                  </td>
+            @endauth
          
-         <td>
-            <form action="{{ route('items.destroy', $item->id) }}" method="post">
-               @csrf
-               @method('DELETE')
-               <button type="submit" class="btn btn-danger">Smazat</button>
-           </form>
-         </td>
          </tr>
       
       @endforeach
 
       
    </table>
-   <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+   
   
 
 

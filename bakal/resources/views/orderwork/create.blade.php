@@ -6,14 +6,34 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Oznčit práci na objedávce</div>
+            <div class="card-header">Označit práci na objedávce</div>
 
             <div class="card-body"> 
-    <form action="{{ route('orderWork.store', $order->id) }}" method="POST">
+                @auth
+                    <form action="{{ route('orderWork.admin.store', $employee->id) }}" method="POST">
+                @endauth
+                @auth('employee')
+                <form action="{{ route('orderWork.store', $order->id) }}" method="POST">
+                @endauth
+    
         @csrf
 
+        @auth
+        <div class="form-group ">
+                            
+            <label for="order">ID objednávky</label>
+            <input type="text" id="order" name="order" class="form-control @error('order') is-invalid @enderror" value="{{ old('order') }}">
+            <div class="invalid-feedback">
+                @error('order')
 
+                    Musíte zadat ID objednávky. 
+    
+                @enderror
+            </div>  
+        </div>
+        @endauth
 
+                
                 <div class="form-group ">
                     
                     <label for="type">Typ práce na objednávce</label>

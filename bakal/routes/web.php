@@ -171,7 +171,8 @@ Route::get('/orderWork/create/{orderId}', [OrderWorkController::class, 'create']
 Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
 Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
 Route::delete('/orderWork/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
-Route::get('/orderWork/create/{orderId}/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
+Route::get('/orderWork/create/admin/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
+Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'storeAsAdmin'])->name('orderWork.admin.store');
 
 Auth::routes();
 

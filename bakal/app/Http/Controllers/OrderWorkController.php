@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Order;
 use App\Models\OrderWork;
+use App\Models\Employee;
 
 class OrderWorkController extends Controller
 {
@@ -18,6 +19,15 @@ class OrderWorkController extends Controller
         ]);
     }
 
+    public function  createAsAdmin($emplId)
+    {
+        $employee = Employee::find($emplId);
+
+        return view('orderwork.create', [
+            'employee' => $employee
+        ]);
+    }
+   
     public function store(Request $request, $orderId)
     {
         $this->validate($request, [
@@ -42,11 +52,44 @@ class OrderWorkController extends Controller
         return back();
     }
 
+    public function storeAsAdmin(Request $request, $emplId)
+    {
+        $this->validate($request, [
+            'order' => 'required|numeric',
+            'type' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            
+        ]);
+        
+        $employee = Employee::find($emplId);
+
+        OrderWork::create([
+            'order_id' => $request->order,
+            'employee_id' => $employee->id,
+            'work_type' => $request->type,
+            'time' => $request->time,
+            'date' => $request->date,
+
+        ]);
+
+        
+
+        return back();
+    }
+
     public function index()
     {
         
-        $orderworks = OrderWork::get();
+        
 
+        if(auth('employee')->user()){
+            
+            return view('orderwork.index', [
+                'orderworks' => auth('employee')->user()->orderWork
+            ]);
+        }
+        $orderworks = OrderWork::get();
         return view('orderwork.index', [
             'orderworks' => $orderworks
         ]);

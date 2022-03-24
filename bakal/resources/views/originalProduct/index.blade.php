@@ -23,8 +23,7 @@
           @auth('employee')
             
             <th scope="col">Naskladnit</th>
-            <th scope="col">Upravit</th>
-            <th scope="col">Odstranit</th>
+
           @endauth          
         </tr>
       </thead>
@@ -69,7 +68,7 @@
           @endauth
 
           @auth('employee')
-          <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+
           <td>
             <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
               @csrf
@@ -86,13 +85,7 @@
               <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
           </td>
-          <td>
-            <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger">Odstranit</button>
-          </form>
-          </td>
+         
           @endauth
           
       </tr>
@@ -122,11 +115,9 @@
           @endauth
 
           @auth('employee')
-            <th scope="col">Recept</th>
+           
             <th scope="col">Naskladnit</th>
-            <th scope="col">Upravit</th>
             
-            <th scope="col">Odstranit</th>
           @endauth
           
         </tr>
@@ -181,7 +172,7 @@
           @endauth
 
           @auth('employee')
-          <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit </a></td>
+          
           <td>
             <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                @csrf
@@ -194,19 +185,13 @@
 
                  Musíte zadat množství.
     
-            @enderror
+              @enderror
                 </div>
                <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
           </td>
           
-          <td>
-            <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
-               @csrf
-               @method('DELETE')
-               <button type="submit" class="btn btn-danger">Odstranit</button>
-           </form>
-          </td>
+          
           @endauth
           
       </tr>
