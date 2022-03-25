@@ -18,6 +18,7 @@
           <th scope="col">Oddělení</th>
           <th scope="col">Označit práci</th>
           <th scope="col">Upravit</th>
+          <th scope="col">Změnit heslo</th>
           <th scope="col">Smazat</th>
           
         </tr>
@@ -35,7 +36,9 @@
           <td>{{ \Carbon\Carbon::parse($employee->birth_date)->format('d.m.Y') }}</td>
           <td>{{ $employee->department->name }}</td>
           <td><a href="{{ route('orderWork.admin.create', $employee->id) }}" type="submit" class="btn btn-secondary">Označit práci</a></td>
-          <td><a href="{{ route('employees.edit', $employee->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a></td>
+          <td><a href="{{ route('employees.edit', $employee->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a>
+            <td> <a href="{{ route('employees.change_password.admin', $employee->id) }}" type="submit" class="btn btn-secondary">Změnit heslo</a></td>
+       
           <td>
              <form action="{{ route('employees.destroy', $employee->id) }}" method="post">
                 @csrf

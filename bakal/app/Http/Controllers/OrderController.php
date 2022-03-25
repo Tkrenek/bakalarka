@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Order;
+use App\Models\File;
 use App\Models\Item;
 use App\Models\Subscriber;
 
@@ -120,12 +121,11 @@ class OrderController extends Controller
         $this->validate($request, [
             'state' => 'required',
             'term' =>'required|date',
-            'invoice' => 'required', 
         ]);
 
         $order->term = $request->term;
         $order->state = $request->state;
-        $order->invoice = $request->invoice;
+        $order->invoice = 'bude doplněno';
 
         $order->save();
 
@@ -172,6 +172,19 @@ class OrderController extends Controller
     ]);
     
         
+    }
+
+    public function uploadFile(Request $request)
+    {
+        $size = $request->file('invoice')->getSize();
+        $name = $request->file('invoice')->getClientOriginalName();
+
+        $request->file('invoice')->store('public/images/');
+        $file = new App\Models\File();
+        $file->name = $name;
+        $file->size = $size;
+        $file->save();
+        return back();
     }
 
     

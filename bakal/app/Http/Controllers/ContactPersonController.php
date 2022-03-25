@@ -55,12 +55,9 @@ class ContactPersonController extends Controller
                 'subscriber_id' => auth('subscriber')->user()->id,
     
             ]);
-        
-        
-
-        
-
-        return back();
+      
+            return redirect()->route('contact.index.sub', ['subId' => auth('subscriber')->user()->id]);
+            
     }
 
     public function storeAsAdmin(Request $request, $subId)
@@ -75,11 +72,7 @@ class ContactPersonController extends Controller
             
         ]);
 
-        
 
-     
-
-          
             ContactPerson::create([
                 'name' => $request->name,
                 'surname' => $request->surname,
@@ -96,8 +89,8 @@ class ContactPersonController extends Controller
         
 
         
-
-        return back();
+            
+            return redirect()->route('contact.index');
     }
 
 

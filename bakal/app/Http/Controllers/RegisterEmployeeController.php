@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -34,23 +35,24 @@ class RegisterEmployeeController extends Controller
             'email' => 'required|email|unique:employees',
             'password' => 'required|confirmed',
             'function' =>'required',
-            'login' =>'required',
             'birth_date' => 'required'
             
             
         ]);
         $department = Department::where('name', $request->department)->first();
 
+
+        
         //$dt = Carbon::create($request->year, $request->month, $request->day);
   
         Employee::create([
+          
             'name' => $request->name,
             'surname' => $request->surname,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'function' => $request->function,
-            'login' => $request->login,
             'birth_date' => $request->birth_date,
             'department_id' => $department->id,
 
@@ -59,7 +61,7 @@ class RegisterEmployeeController extends Controller
         
 
 
-        return back();
+        return redirect('employees/index');
     }
 
   
@@ -89,6 +91,31 @@ class RegisterEmployeeController extends Controller
             return back()->with('error', 'Zadáno chybné staré heslo');
         }
 
+    }
+
+    public function change_passwordAdmin($emplId)
+    {
+        $employee = Employee::find($emplId);
+
+        return view('employees.change_passwordAdmin', [
+            'employee' => $employee
+        ]);
+    }
+    
+    public function update_passwordAdmin(Request $request, $id)
+    {
+        
+        $this->validate($request, [
+            'password' => 'required|confirmed',
+         
+        ]);
+        $employee = Employee::find($id);
+        $employee->password = Hash::make($request->password);
+        $employee->save();
+           
+       
+            return back();
+        
     }
 
 

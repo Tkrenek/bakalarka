@@ -23,7 +23,6 @@ class CreateEmployeesTable extends Migration
             $table->timestamp('birth_date');
             $table->foreignId('department_id');
             $table->string('function');
-            $table->string('login')->unique();
             $table->timestamps();
             $table->rememberToken();
         });

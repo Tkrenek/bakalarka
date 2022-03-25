@@ -66,7 +66,7 @@
 
                 </div>
             </form>
-            <span>Pokud nemáte účet zaregistrujte se <a href="{{ route('admins.index') }}">tady</a></span>
+
        
 
             </div>

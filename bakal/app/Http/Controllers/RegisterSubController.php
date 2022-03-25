@@ -140,4 +140,29 @@ class RegisterSubController extends Controller
         }
 
     }
+
+    public function change_passwordAdmin($id)
+    {
+        $customer = Subscriber::find($id);
+
+        return view('subscribers.change_passwordAdmin', [
+            'customer' => $customer
+        ]);
+    }
+
+    public function update_passwordAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+            'password' => 'required|confirmed', 
+        ]);
+
+
+        $subscriber = Subscriber::find($id);
+   
+            $subscriber->password = Hash::make($request->password);
+            $subscriber->save();
+            return back();
+
+    }
+    
 }

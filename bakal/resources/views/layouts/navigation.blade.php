@@ -19,6 +19,7 @@
 <body>
 
 
+
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <a href="/" class="navbar-brand ">Colorex</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
@@ -63,13 +64,17 @@
 
                 @auth
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admins.index')}}" class="p-3">Registrovat Admina</a>
+    
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('employees.create')}}" class="p-3">Registrovat zaměstnance</a>
     
                 </li>
              
                
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Upravit Zaměstnance</a>
+                    <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Zobrazit Zaměstnance</a>
                 </li>
     
                 <li class="nav-item">
@@ -79,15 +84,9 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('subscribers.index')}}" class="p-3">Zobrazit Zákazníky</a>
-    
                 </li>
     
-              
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.create')}}" class="p-3">Přidat kontaktní osobu</a>
-    
-                </li>
+            
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Zobrazit kontaktní osoby</a>
     

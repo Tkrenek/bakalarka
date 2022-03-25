@@ -59,6 +59,9 @@ Route::delete('/subscribers/{id}', [RegisterSubController::class, 'destroy'])->n
 Route::get('/subscribers/change_password', [RegisterSubController::class, 'change_password'])->name('subscribers.change_password');
 Route::post('/subscribers/{id}/update_password', [RegisterSubController::class, 'update_password'])->name('subscribers.update_password');
 
+Route::get('/subscribers/{id}/change_passwordAdmin', [RegisterSubController::class, 'change_passwordAdmin'])->name('subscribers.change_passwordAdmin');
+Route::post('/subscribers/{id}/update_passwordAdmin', [RegisterSubController::class, 'update_passwordAdmin'])->name('subscribers.update_passwordAdmin');
+
 Route::get('/subscribers/login', [LoginCustomerController::class, 'index'])->name('subscribers.login');
 Route::post('/subscribers/login', [LoginCustomerController::class, 'login'])->name('subscribers.login.post');
 Route::get('/subscribers/logout', [LoginCustomerController::class, 'logout'])->name('subscribers.logout');
@@ -77,6 +80,9 @@ Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->nam
 Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
 Route::get('/employees/change_password', [RegisterEmployeeController::class, 'change_password'])->name('employees.change_password');
 Route::post('/employees/{id}/update_password', [RegisterEmployeeController::class, 'update_password'])->name('employees.update_password');
+
+Route::get('/employees/change_password/{emplId}', [RegisterEmployeeController::class, 'change_passwordAdmin'])->name('employees.change_password.admin');
+Route::post('/employees/{id}/update_passwordAdmin', [RegisterEmployeeController::class, 'update_passwordAdmin'])->name('employees.update_passwordAdmin');
 
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
@@ -153,7 +159,7 @@ Route::put('/orders/changeState/{idOrder}', [OrderController::class, 'changeStat
 Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
 Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
 Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
-
+Route::post('/orders/uploadFile', [OrderController::class, 'uploadFile'])->name('invoice.upload');
 
 Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
 Route::post('/packageItem/store/{itemid}/{containerid}', [PackageItemController::class, 'store'])->name('packageItem.store');

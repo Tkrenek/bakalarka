@@ -89,19 +89,7 @@
                     </div>
                 </div>
                 
-                <!--
-                <div class="form-group">
-                    <label for="birth_date">Datum narození</label>
-                    <input type="text" value="{{ $employee->birth_date }}" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('birth_date')
-
-                            Musíte zadat datum narození.
-            
-                        @enderror
-                    </div>
-                </div>
-            -->
+           
             <div class="form-group">
                 <label for="birth_date">Datum narození</label>
                 <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
@@ -114,21 +102,6 @@
                 </div>  
             </div>
                 
-
-                <div class="form-group">
-                    
-                    <label for="login">Login</label>
-                    <input type="text" value="{{ $employee->login }}" id="login" name="login" class="form-control @error('login') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('login')
-
-                            Musíte zadat login.
-            
-                        @enderror
-                  
-                    
-                </div>
-
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Upravit zaměstnance</button>
 

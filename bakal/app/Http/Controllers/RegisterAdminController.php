@@ -24,7 +24,6 @@ class RegisterAdminController extends Controller
             'birth_date' => 'required|date',
             'email' => 'required|email|unique:admins',
             'password' => 'required|confirmed',
-            'login' => 'required|unique:admins',
             'phone' => 'required|numeric|unique:admins',
             
             
@@ -37,7 +36,7 @@ class RegisterAdminController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'login' => $request->login,
+
             'birth_date' => $request->birth_date,
         ]);
 
@@ -70,16 +69,11 @@ class RegisterAdminController extends Controller
         $admin = Admin::Find($id);
 
 
-        $this->validate($request, [
-            
-        ]);
-
 
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->birth_date = $request->birth_date;
         $admin->email = $request->email;
-        $admin->login = $request->login;
         $admin->phone = $request->phone;
 
         $admin->save();

@@ -45,11 +45,7 @@ class EmployeeController extends Controller
             'email' => 'required|email',
             'password' => 'confirmed',
             'function' =>'required',
-            'login' =>'required',
             'birth_date' =>'required|date',
-            'day' =>'required',
-            'month' =>'required',
-            'year' =>'required',
             
         ]);
  
@@ -65,7 +61,7 @@ class EmployeeController extends Controller
         $empl->password = Hash::make($request->password);
         $empl->email = $request->email;
         $empl->function = $request->function;        
-        $empl->login = $request->login;
+      
         $empl->birth_date = $request->birth_date;
 
     
@@ -85,6 +81,20 @@ class EmployeeController extends Controller
         $empl->delete();
 
         return back();
+    }
+
+    public function change_passwordAdmin($emplId)
+    {
+        $employee = Employee::find($emplId);
+
+        return view('employees.change_passwordAdmin', [
+            'employee' => $employee
+        ]);
+    }
+    
+    public function update_passwordAdmin(Request $request, $id)
+    {
+        # code...
     }
 }
 

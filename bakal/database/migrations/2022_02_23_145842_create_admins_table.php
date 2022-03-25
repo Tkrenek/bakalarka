@@ -21,7 +21,6 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('login')->unique();
             $table->timestamps();
             $table->rememberToken();
         });

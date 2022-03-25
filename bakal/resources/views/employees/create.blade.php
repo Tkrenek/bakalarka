@@ -165,20 +165,7 @@
   
                 </div>
 
-                <div class="form-group">
-                    
-                    <label for="login">Login</label>
-                    <input type="text" value="{{ old('login') }}" id="login" name="login" class="form-control @error('login') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('login')
-
-                            Musíte zadat login.
-            
-                        @enderror
-                  
-                    
-                </div>
-
+          
                 <div class="d-flex justify-content-center p-3">
                     <button type="submit" class="btn btn-primary">Registrovat zaměstnance</button>
 

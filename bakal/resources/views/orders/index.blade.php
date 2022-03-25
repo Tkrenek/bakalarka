@@ -76,7 +76,14 @@
             @endforeach
             {{ $sum + $sumPckg}} Kč
            </td>
-          <td>{{ $order->invoice }}</td>
+          <td>{{ $order->invoice }}
+            <form method="POST" action="{{ route('invoice.upload') }}" enctype="multipart/form-data">
+            @csrf
+
+            <input type="file" name="invoice">
+            <input type="submit" name="upload">
+            </form>
+          </td>
           @auth
             <td>
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">

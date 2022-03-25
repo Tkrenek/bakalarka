@@ -13,6 +13,7 @@
           <th scope="col">Adresa</th>
           <th scope="col">URL</th>
           <th scope="col">Upravit</th>
+          <th scope="col">Změnit heslo</th>
           <th scope="col">Nová objednávka</th>
           <th scope="col">Nová kontaktní osoba</th>
           <th scope="col">Odstranit</th>
@@ -29,7 +30,7 @@
           <td>{{ $customer->address }}</td>
           <td>{{ $customer->url }}</td>
           <td><a href="{{ route('subscribers.edit', $customer->id) }}" type="submit" class="btn btn-secondary">Upravit účet</a></td>
-          
+          <td><a href="{{ route('subscribers.change_passwordAdmin', $customer->id) }}" type="submit" class="btn btn-secondary">Změnit heslo</a></td>
           <td>
             <form action="{{ route('orders.admin.store', $customer->id) }}" method="post">
               @csrf
