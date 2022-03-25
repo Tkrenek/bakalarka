@@ -31,6 +31,8 @@ use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\LoginEmployeeController;
 use App\Http\Controllers\LoginCustomerController;
 
+use Spatie\GoogleCalendar\Event;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +46,20 @@ use App\Http\Controllers\LoginCustomerController;
 
 Route::get('/', function () {
     return view('subscribers.login');
+});
+
+Route::get('/calendar', function() {
+    $event = new Event;
+
+    $event->name = 'sss';
+    $event->startDateTime = Carbon\Carbon::now();
+    $event->endDateTime = Carbon\Carbon::now()->addHour();
+
+    $event->save();
+
+    $e = Event::get();
+
+    dd($e);
 });
 
 
