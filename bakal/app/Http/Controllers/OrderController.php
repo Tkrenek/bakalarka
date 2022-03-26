@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\File;
 use App\Models\Item;
 use App\Models\Subscriber;
+use Spatie\GoogleCalendar\Event;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -27,16 +29,14 @@ class OrderController extends Controller
 
         if(auth('subscriber')->user()) {
             $subscriber = Subscriber::find(auth('subscriber')->user()->id);
-            
-            return view('orders.index', [
-                'orders' => $subscriber->order
-            ]);
+       
+            return back();
         } else {
             $orders = Order::get();
 
-        return view('orders.index', [
-            'orders' => $orders,
-        ]);
+            return view('orders.index', [
+                'orders' => $orders,
+            ]);
         }
     }
 
@@ -142,12 +142,45 @@ class OrderController extends Controller
     {
         $order = Order::find($orderId);
 
+        
 
         $this->validate($request, [
             'term' => 'required', 
         ]);
+
+
         $order->term = $request->term;
         $order->save();
+
+        try {
+            $event = Event::find('eventid'.$orderId);
+          } catch (\Google_Service_Exception $e) {
+            Event::create([
+                'id' => 'eventid'.$orderId,
+                'name' => 'Číslo objednávky: '.$orderId,
+                'startDate' => Carbon::createFromDate($request->term),
+                'endDate' => Carbon::createFromDate($request->term),
+             ]);
+             return back();
+          }
+        
+          $event->startDate = Carbon::createFromDate($request->term);
+          $event->endDate = Carbon::createFromDate($request->term);
+          $event->save();
+          /*
+        Event::create([
+            'id' => 'eventid'.$orderId,
+            'name' => 'Číslo objednávky: '.$orderId,
+            'startDate' => Carbon::createFromDate($request->term),
+            'endDate' => Carbon::createFromDate($request->term),
+         ]);
+  
+*/
+      //  $event->save();
+/*
+        $e = Event::get();
+
+        dd($e);*/
 
         return back();
     }
