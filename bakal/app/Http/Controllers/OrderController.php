@@ -81,8 +81,13 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->delete();
 
+
+        $event = Event::find('eventid'.$order->id);
+        $event->delete();
+
         $orders = Order::get();
 
+        
         return view('orders.index', [
             'orders' => $orders,
             
@@ -130,6 +135,26 @@ class OrderController extends Controller
         $order->save();
 
         $orders = Order::get();
+
+        try {
+            $event = Event::find('eventid'.$orderId);
+          } catch (\Google_Service_Exception $e) {
+            Event::create([
+                'id' => 'eventid'.$orderId,
+                'name' => 'Číslo objednávky: '.$orderId,
+                'startDate' => Carbon::createFromDate($request->term),
+                'endDate' => Carbon::createFromDate($request->term),
+             ]);
+             return view('orders.index', [
+                'orders' => $orders,
+                
+            ]);
+          }
+        
+          $event->startDate = Carbon::createFromDate($request->term);
+          $event->endDate = Carbon::createFromDate($request->term);
+          $event->save();
+
 
         return view('orders.index', [
             'orders' => $orders,
