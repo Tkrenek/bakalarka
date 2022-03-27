@@ -32,6 +32,7 @@ use App\Http\Controllers\LoginEmployeeController;
 use App\Http\Controllers\LoginCustomerController;
 
 use Spatie\GoogleCalendar\Event;
+use Phpml\Association\Apriori;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,19 +49,9 @@ Route::get('/', function () {
     return view('subscribers.login');
 });
 
-Route::get('/calendar', function() {
-    $event = new Event;
-
-    $event->name = 'sss';
-    $event->startDateTime = Carbon\Carbon::now();
-    $event->endDateTime = Carbon\Carbon::now()->addHour();
-
-    $event->save();
-
-    $e = Event::get();
-
-    dd($e);
-});
+Route::get('/apriori', function() {
+    $associator = new Apriori($support = 0.5, $confidence = 0.5);
+}); 
 
 
 

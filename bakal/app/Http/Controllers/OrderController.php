@@ -16,22 +16,39 @@ class OrderController extends Controller
    
     public function store()
     {
-      
+       
         Order::create([
             'state' => 'created',
-            'term' => date("Y-m-d"),
+            'term' => Carbon::now()->add(1, 'week'),
             'subscriber_id' => auth('subscriber')->user()->id,
-            'invoice' => 'wait'
+            'invoice' => 'bude doplněno'
 
         ]);
 
-        
+        $orders = Order::get();
+        $lastId = Order::get()->last()->id;
+   
+            
+        Event::create([
+            'id' => 'eventid'.$lastId,
+            'name' => 'Číslo objednávky: '.$lastId,
+            'startDate' => Carbon::now()->add(1, 'week'),
+            'endDate' => Carbon::now()->add(1, 'week'),
+            ]);
+            return redirect()->route('orders.index');
+/*
+            return view('orders.index', [
+            'orders' => $orders,
+                    
+            ]);
+  */      
 
         if(auth('subscriber')->user()) {
             $subscriber = Subscriber::find(auth('subscriber')->user()->id);
        
             return back();
         } else {
+            
             $orders = Order::get();
 
             return view('orders.index', [
@@ -54,7 +71,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::get();
+        $orders = Order::orderBy('term', 'ASC')->get();
         
         return view('orders.index', [
             'orders' => $orders,
@@ -214,21 +231,32 @@ class OrderController extends Controller
     {
         Order::create([
         'state' => 'založeno',
-        'term' => date("Y-m-d"),
+        'term' => Carbon::now()->add(1, 'week'),
         'subscriber_id' => $subId,
         'invoice' => 'bude doplněno'
-
     ]);
 
-    
 
-    
     $orders = Order::get();
+    $lastId = Order::get()->last()->id;
 
-    return view('orders.index', [
-        'orders' => $orders,
-    ]);
-    
+        
+            Event::create([
+                'id' => 'eventid'.$lastId,
+                'name' => 'Číslo objednávky: '.$lastId,
+                'startDate' => Carbon::now()->add(1, 'week'),
+                'endDate' => Carbon::now()->add(1, 'week'),
+             ]);
+             return view('orders.index', [
+                'orders' => $orders,
+                
+            ]);
+        
+        
+
+    return redirect()->route('orders.index');
+
+
         
     }
 

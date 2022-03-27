@@ -33,8 +33,9 @@
                 </div>
 
                 <div class="form-group ">
+            
                     <label for="term">Termín objednávky</label>
-                    <input type="date" id="term" value="{{ carbon::parse($order->term)->format('d.m. Y')  }}" name="term" class="form-control @error('term') is-invalid @enderror">
+                    <input type="date" id="term" value="{{ carbon::parse($order->term)->format('d.m.Y') }}" name="term" class="form-control @error('term') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('term')
 
