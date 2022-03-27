@@ -57,9 +57,6 @@ class ItemController extends Controller
                 ]);
              }
 
-            
-
-            
 
             $product->on_store -= $request->ammount;
             $product->save();
@@ -94,6 +91,25 @@ class ItemController extends Controller
 
     public function destroy($id)
     {
+        $item = Item::find($id);
+
+        if($item->is_mixed == "ano") {
+            $item->productMixed->on_store += $item->amount;
+            $item->productMixed->save();
+        } else {
+            $item->productOriginal->on_store += $item->amount;
+            $item->productOriginal->save();
+        }
+        $item->delete();
+
+        return back();
+    }
+
+    public function frequeny()
+    {
+
+        $transactions = [];
+        
         $item = Item::find($id);
 
         if($item->is_mixed == "ano") {

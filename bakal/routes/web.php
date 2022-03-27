@@ -34,6 +34,7 @@ use App\Http\Controllers\LoginCustomerController;
 use Spatie\GoogleCalendar\Event;
 use Phpml\Association\Apriori;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,16 @@ Route::get('/', function () {
 });
 
 Route::get('/apriori', function() {
+    
+
+
     $associator = new Apriori($support = 0.5, $confidence = 0.5);
+    $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta']];
+    $labels  = [];
+
+    $associator->train($samples, $labels);
+
+    dd($associator->predict([['alpha','epsilon'],['beta','theta']]));
 }); 
 
 
