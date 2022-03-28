@@ -83,7 +83,7 @@
     
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('subscribers.index')}}" class="p-3">Zobrazit Zákazníky</a>
+                    <a class="nav-link" href="{{ route('customers.index')}}" class="p-3">Zobrazit Zákazníky</a>
                 </li>
     
             
@@ -152,7 +152,7 @@
                 </li>
                 @endauth
 
-                @auth('subscriber')
+                @auth('customer')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('containers.index')}}" class="p-3">Seznam nádob</a>
     
@@ -160,7 +160,7 @@
                 
 
                 
-                    <a class="nav-link" href="{{ route('orders.myindex',  auth('subscriber')->user()->id )}}" class="p-3">Moje objednávky</a>
+                    <a class="nav-link" href="{{ route('orders.myindex',  auth('customer')->user()->id )}}" class="p-3">Moje objednávky</a>
                
 
                
@@ -174,7 +174,7 @@
         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact.index.sub', auth('subscriber')->user()->id)}}" class="p-3">Zobrazit moje kontaktní osoby</a>
+                        <a class="nav-link" href="{{ route('contact.index.sub', auth('customer')->user()->id)}}" class="p-3">Zobrazit moje kontaktní osoby</a>
         
                     </li>
                 @endauth
@@ -191,20 +191,20 @@
     <nav class="navbar navbar-expand navbar-light bg-light">
         <a href="/" class="navbar-brand">Domů</a>
         <ul class="navbar-nav mr-auto">    
-            <li class="nav-item"><a class="nav-link" href="{{ route('subscribers.login') }}"></a> Přihlašení zakazníka</li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('customers.login') }}"></a> Přihlašení zakazníka</li>
 
-            <li class="nav-item"><a class="nav-link" href="{{ route('subscribers.create')}}"></a> Registrace zakazníka</li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('customers.create')}}"></a> Registrace zakazníka</li>
         </ul>
     </nav>    
         <ul>
                 
                 
                 <li class="nav-item">
-                    <a  class="nav-link" href="{{ route('subscribers.login') }}" class="p-3">Přihlášení zákazníka</a>
+                    <a  class="nav-link" href="{{ route('customers.login') }}" class="p-3">Přihlášení zákazníka</a>
                 </li>
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('subscribers.create')}}" class="p-3">Registrace zákazníka</a>
+                    <a class="nav-link" href="{{ route('customers.create')}}" class="p-3">Registrace zákazníka</a>
     
                 </li>
     
@@ -227,7 +227,7 @@
     
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('subscribers.index')}}" class="p-3">Zobrazit Zákazníky</a>
+                    <a class="nav-link" href="{{ route('customers.index')}}" class="p-3">Zobrazit Zákazníky</a>
     
                 </li>
     
@@ -332,20 +332,20 @@
   
     @endauth
 
-    @auth('subscriber')
+    @auth('customer')
     <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
         <!--<ul class="navbar-nav ml-auto">-->
         <ul class="navbar-nav ">
       <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              
-              <span class="ml-1" >{{ auth('subscriber')->user()->name }} </span>
+              <span class="ml-1" >{{ auth('customer')->user()->name }} </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('subscribers.edit', auth('subscriber')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
-              <a class="dropdown-item" href="{{ route('subscribers.change_password') }}" x-ref="changePasswordLink">Změnit heslo</a>
+              <a class="dropdown-item" href="{{ route('customers.edit', auth('customer')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
+              <a class="dropdown-item" href="{{ route('customers.change_password') }}" x-ref="changePasswordLink">Změnit heslo</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('subscribers.logout')}}">Odhlásit se</a>
+              <a class="dropdown-item" href="{{ route('customers.logout')}}">Odhlásit se</a>
           </div>
       </li>
   </ul>

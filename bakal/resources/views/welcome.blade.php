@@ -12,7 +12,7 @@
             <div class="card-header">Přihlášení zákazníka</div>
 
             <div class="card-body">
-            <form  action="{{ route('subscribers.login.post') }}" method="POST">
+            <form  action="{{ route('customers.login.post') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col">
@@ -60,7 +60,7 @@
 
                 </div>
             </form>
-            <span>Pokud nemáte účet zaregistrujte se <a href="{{ route('subscribers.create') }}">tady</a></span>
+            <span>Pokud nemáte účet zaregistrujte se <a href="{{ route('customers.create') }}">tady</a></span>
        
 
             </div>

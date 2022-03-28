@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('state');
             $table->timestamp('term');
-            $table->foreignId('subscriber_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->string('invoice');
             $table->timestamps();
         });

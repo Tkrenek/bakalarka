@@ -11,7 +11,7 @@
                 <div class="card-header">Registrace zákazníka</div>
 
                 <div class="card-body ">
-            <form action="{{ route('subscribers.store') }}" method="POST">
+            <form action="{{ route('customers.store') }}" method="POST">
                 @csrf
                
                 
@@ -115,7 +115,7 @@
 
                 </div>
             </form>
-            <span>Pokud již účet máte, přihlaste se: <a href="{{ route('subscribers.login') }}">zde</a></span>
+            <span>Pokud již účet máte, přihlaste se: <a href="{{ route('customers.login') }}">zde</a></span>
             </div>
         </div> 
         Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.

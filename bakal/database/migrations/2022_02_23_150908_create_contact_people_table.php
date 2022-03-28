@@ -20,7 +20,7 @@ class CreateContactPeopleTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->date('birth_date');
-            $table->foreignId('subscriber_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

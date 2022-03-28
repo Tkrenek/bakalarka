@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\File;
 use App\Models\Item;
-use App\Models\Subscriber;
+use App\Models\Customer;
 use Spatie\GoogleCalendar\Event;
 use Carbon\Carbon;
 
@@ -20,7 +20,7 @@ class OrderController extends Controller
         Order::create([
             'state' => 'created',
             'term' => Carbon::now()->add(1, 'week'),
-            'subscriber_id' => auth('subscriber')->user()->id,
+            'customer_id' => auth('customer')->user()->id,
             'invoice' => 'bude doplněno'
 
         ]);
@@ -43,8 +43,8 @@ class OrderController extends Controller
             ]);
   */      
 
-        if(auth('subscriber')->user()) {
-            $subscriber = Subscriber::find(auth('subscriber')->user()->id);
+        if(auth('customer')->user()) {
+            $customer = Customer::find(auth('customer')->user()->id);
        
             return back();
         } else {
@@ -60,11 +60,11 @@ class OrderController extends Controller
     public function myindex($id)
     {
 
-        $subscriber = Subscriber::find($id);
+        $customer = Customer::find($id);
       
         
         return view('orders.index', [
-            'orders' => $subscriber->order,
+            'orders' => $customer->order,
             
         ]);
     }
@@ -232,7 +232,7 @@ class OrderController extends Controller
         Order::create([
         'state' => 'založeno',
         'term' => Carbon::now()->add(1, 'week'),
-        'subscriber_id' => $subId,
+        'customer_id' => $subId,
         'invoice' => 'bude doplněno'
     ]);
 

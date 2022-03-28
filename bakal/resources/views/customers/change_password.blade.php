@@ -9,7 +9,7 @@
             <div class="card-header">Změna hesla</div>
 
             <div class="card-body"> 
-            <form  action="{{ route('subscribers.update_password', auth('subscriber')->user()->id) }}" method="POST">
+            <form  action="{{ route('customers.update_password', auth('customer')->user()->id) }}" method="POST">
                 @csrf
                
                 @if ($message = Session::get('error'))

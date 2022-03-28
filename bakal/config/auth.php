@@ -44,9 +44,9 @@ return [
             'driver' => 'session',
             'provider' => 'employees',
         ],
-        'subscriber' => [
+        'customer' => [
             'driver' => 'session',
-            'provider' => 'subscribers',
+            'provider' => 'customers',
         ],
     ],
 /*
@@ -86,9 +86,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Employee::class,
         ],
-        'subscribers' => [
+        'customers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Subscriber::class,
+            'model' => App\Models\Customer::class,
         ],
     ],
 
@@ -138,8 +138,8 @@ return [
             'throttle' => 60,
         ],
 
-        'subscribers' => [
-            'provider' => 'subscribers',
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

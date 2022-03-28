@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Subscriber;
+use App\Models\Customer;
 
 
 class ContactPerson extends Model
@@ -17,13 +17,13 @@ class ContactPerson extends Model
         'phone',
         'email',
         'birth_date',
-        'subscriber_id'
+        'customer_id'
     ];
 
 
 
-    public function subscriber()
+    public function customer()
     {
-        return $this->belongsTo(Subscriber::class);
+        return $this->belongsTo(Customer::class);
     }
 }

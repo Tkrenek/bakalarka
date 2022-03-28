@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Subscriber;
+use App\Models\Customer;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +14,7 @@ class LoginCustomerController extends Controller
 {
     public function index()
     {
-        return view('subscribers.login');
+        return view('customers.login');
     }
 
     public function login(Request $request)
@@ -23,8 +23,8 @@ class LoginCustomerController extends Controller
  
         $credentials = $request->only('login', 'password');
  
-        if (Auth::guard('subscriber')->attempt($credentials)) {
-            return view('subscribers/welcome');
+        if (Auth::guard('customer')->attempt($credentials)) {
+            return view('customers/welcome');
         } else {
             return back()->with('error', 'Zadán chybný login nebo heslo.');
         }
@@ -34,12 +34,12 @@ class LoginCustomerController extends Controller
 
     public function welcome()
     {
-        return view('subscribers.welcome');
+        return view('customers.welcome');
     }
 
     public function logout()
     {
-        Auth::guard('subscriber')->logout();
+        Auth::guard('customer')->logout();
         return redirect('/');
     }
 }

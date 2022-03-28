@@ -7,8 +7,8 @@
    
    
    <h1>ID objednávky: {{ $order->id }}</h1>
-   @auth('subscriber')
-      <a href="{{ route('orders.myindex', auth('subscriber')->user()->id )}}">Zpět na moje objednávky</a>
+   @auth('customer')
+      <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}">Zpět na moje objednávky</a>
    @endauth
    @auth
       <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
@@ -17,7 +17,7 @@
       <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
    @endauth
 
-   @auth('subscriber')
+   @auth('customer')
       <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
    @auth()
@@ -39,7 +39,7 @@
          
          <th scope="col">Odstranit</th>
       @endauth
-      @auth('subscriber')
+      @auth('customer')
          <th scope="col">Vybrat balení</th>
          
          <th scope="col">Odstranit</th>
@@ -91,7 +91,7 @@
                   </form>
                   </td>
             @endauth
-            @auth('subscriber')
+            @auth('customer')
                <td><a href="{{ route('packageItem.show', $item->id) }}">Upravit balení</a>
                
                   <td>

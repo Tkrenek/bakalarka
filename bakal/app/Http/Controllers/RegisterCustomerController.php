@@ -4,40 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Subscriber;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 
 
-class RegisterSubController extends Controller
+class RegisterCustomerController extends Controller
 {
     public function index()
     {
-        $customers = Subscriber::get();
+        $customers = Customer::get();
 
-        return view('subscribers.index',[
+        return view('customers.index',[
             'customers' => $customers
         ]);
     }
 
     public function create(Request $request)
     {
-        return view('subscribers.register');
+        return view('customers.register');
     }
 
     public function store(Request $request)
     {
 
     $this->validate($request, [
-            'name' => 'required|unique:subscribers',
+            'name' => 'required|unique:customers',
             'town' =>'required',
-            'address' => 'required|unique:subscribers',
-            'login' => 'required|unique:subscribers',
+            'address' => 'required|unique:customers',
+            'login' => 'required|unique:customers',
             'password' => 'required|confirmed',
-            'url' =>'required|unique:subscribers',
+            'url' =>'required|unique:customers',
 
         ]);
 
-        Subscriber::create([
+        Customer::create([
             'name' => $request->name,
             'town' => $request->town,
             'address' => $request->address,
@@ -49,8 +49,8 @@ class RegisterSubController extends Controller
 
         $credentials = $request->only('login', 'password');
  
-        if (Auth::guard('subscriber')->attempt($credentials)) {
-            return view('subscribers/welcome');
+        if (Auth::guard('customer')->attempt($credentials)) {
+            return view('customers/welcome');
         } else {
             return back()->with('error', 'Zadán chybný login nebo heslo.');
         }
@@ -62,8 +62,8 @@ class RegisterSubController extends Controller
 
     public function edit($id)
     {
-        $customer = Subscriber::where('id', $id)->first();
-        return view('subscribers.update', [
+        $customer = Customer::where('id', $id)->first();
+        return view('customers.update', [
             'customer' => $customer
         ]);
     }
@@ -81,20 +81,20 @@ class RegisterSubController extends Controller
             
         ]);
  
-        $subscriber = Subscriber::find($id);
+        $customer = Customer::find($id);
 
-        $subscriber->name = $request->name;
-        $subscriber->address = $request->address;
-        $subscriber->town = $request->town;
-        $subscriber->password = Hash::make($request->password);
-        $subscriber->login = $request->login;
-        $subscriber->url = $request->url;        
+        $customer->name = $request->name;
+        $customer->address = $request->address;
+        $customer->town = $request->town;
+        $customer->password = Hash::make($request->password);
+        $customer->login = $request->login;
+        $customer->url = $request->url;        
  
 
-        $subscriber->save();
+        $customer->save();
 
-        $customers = Subscriber::get();
-        return view('subscribers.index', [
+        $customers = Customer::get();
+        return view('customers.index', [
             'customers' => $customers
         ]);
     }
@@ -107,20 +107,20 @@ class RegisterSubController extends Controller
      */
     public function destroy($id)
     {
-        $subscriber = Subscriber::find($id);
-        $subscriber->delete();
+        $customer = Customer::find($id);
+        $customer->delete();
 
         return back();
     }
 
     public function change_password()
     {
-        return view('subscribers.change_password');
+        return view('customers.change_password');
     }
 
     public function update_password(Request $request, $id)
     {
-        $subscriber = Subscriber::find($id);
+        $customer = Customer::find($id);
         
 
         
@@ -131,9 +131,9 @@ class RegisterSubController extends Controller
         ]);
 
         //dd($admin->password);
-        if(Hash::check($request->password_old, $subscriber->password)) {
-            $subscriber->password = Hash::make($request->password);
-            $subscriber->save();
+        if(Hash::check($request->password_old, $customer->password)) {
+            $customer->password = Hash::make($request->password);
+            $customer->save();
             return back();
         } else {
             return back()->with('error', 'Zadáno chybné staré heslo');
@@ -143,9 +143,9 @@ class RegisterSubController extends Controller
 
     public function change_passwordAdmin($id)
     {
-        $customer = Subscriber::find($id);
+        $customer = Customer::find($id);
 
-        return view('subscribers.change_passwordAdmin', [
+        return view('customers.change_passwordAdmin', [
             'customer' => $customer
         ]);
     }
@@ -157,10 +157,10 @@ class RegisterSubController extends Controller
         ]);
 
 
-        $subscriber = Subscriber::find($id);
+        $customer = Customer::find($id);
    
-            $subscriber->password = Hash::make($request->password);
-            $subscriber->save();
+            $customer->password = Hash::make($request->password);
+            $customer->save();
             return back();
 
     }

@@ -10,7 +10,7 @@
 
             <div class="card-body">
         
-            <form action="{{ route('subscribers.update', $customer->id) }}" method="POST" >
+            <form action="{{ route('customers.update', $customer->id) }}" method="POST" >
                @csrf
                @method('PUT')
                 

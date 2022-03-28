@@ -29,8 +29,8 @@
           <td>{{ $customer->town }}</td>
           <td>{{ $customer->address }}</td>
           <td>{{ $customer->url }}</td>
-          <td><a href="{{ route('subscribers.edit', $customer->id) }}" type="submit" class="btn btn-secondary">Upravit účet</a></td>
-          <td><a href="{{ route('subscribers.change_passwordAdmin', $customer->id) }}" type="submit" class="btn btn-secondary">Změnit heslo</a></td>
+          <td><a href="{{ route('customers.edit', $customer->id) }}" type="submit" class="btn btn-secondary">Upravit účet</a></td>
+          <td><a href="{{ route('customers.change_passwordAdmin', $customer->id) }}" type="submit" class="btn btn-secondary">Změnit heslo</a></td>
           <td>
             <form action="{{ route('orders.admin.store', $customer->id) }}" method="post">
               @csrf
@@ -42,7 +42,7 @@
        </td>
          
           <td>
-             <form action="{{ route('subscribers.destroy', $customer->id) }}" method="post">
+             <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Odstranit</button>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Subscriber;
+use App\Models\Customer;
 
 use App\Models\ContactPerson;
 use Illuminate\Support\Facades\Auth;
@@ -13,18 +13,18 @@ class ContactPersonController extends Controller
 {
     public function create()
     {
-        $subscribers = Subscriber::get();
+        $customers = Customer::get();
         return view('contact.create', [
-            'subscribers' => $subscribers
+            'customers' => $customers
         ]);
         
     }
 
     public function createAsAdmin($subId)
     {
-        $subscriber = Subscriber::find($subId);
+        $customer = Customer::find($subId);
         return view('contact.create', [
-            'subscriber' => $subscriber
+            'customer' => $customer
         ]);
         
     }
@@ -52,11 +52,11 @@ class ContactPersonController extends Controller
                 'birth_date' => $request->birth_date,
                 
                 
-                'subscriber_id' => auth('subscriber')->user()->id,
+                'customer_id' => auth('customer')->user()->id,
     
             ]);
       
-            return redirect()->route('contact.index.sub', ['subId' => auth('subscriber')->user()->id]);
+            return redirect()->route('contact.index.sub', ['subId' => auth('customer')->user()->id]);
             
     }
 
@@ -82,7 +82,7 @@ class ContactPersonController extends Controller
                 'birth_date' => $request->birth_date,
                 
                 
-                'subscriber_id' => $subId,
+                'customer_id' => $subId,
     
             ]);
         
@@ -161,8 +161,8 @@ class ContactPersonController extends Controller
     public function indexSub($subId)
     {
         
-        $subscriber = Subscriber::find($subId);
-        $contacts = $subscriber->contact;
+        $customer = Customer::find($subId);
+        $contacts = $customer->contact;
 
         return view('contact.subindex', [
             'contacts' => $contacts

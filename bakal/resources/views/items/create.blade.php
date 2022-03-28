@@ -16,7 +16,7 @@
           @auth
           <th scope="col">Vybrat</th>
         @endauth
-          @auth('subscriber')
+          @auth('customer')
             <th scope="col">Vybrat</th>
           @endauth
         </tr>
@@ -75,7 +75,7 @@
           @auth
           <th scope="col">Vybrat</th>
         @endauth
-          @auth('subscriber')
+          @auth('customer')
             <th scope="col">Vybrat</th>
           @endauth
           

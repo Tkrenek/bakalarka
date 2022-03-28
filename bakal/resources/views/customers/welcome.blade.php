@@ -9,8 +9,8 @@
 
 Jste přihlášen jako zákazník.
 
-@auth('subscriber')
-    {{ auth('subscriber')->user()->login }}
+@auth('customer')
+    {{ auth('customer')->user()->login }}
 @endauth
 
 @auth

@@ -9,7 +9,7 @@
             <div class="card-header">Změna hesla</div>
 
             <div class="card-body"> 
-            <form  action="{{ route('subscribers.update_passwordAdmin', $customer->id) }}" method="POST">
+            <form  action="{{ route('customers.update_passwordAdmin', $customer->id) }}" method="POST">
                 @csrf
                
              

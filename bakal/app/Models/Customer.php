@@ -10,12 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\ContactPerson;
 use App\Models\Order;
 
-class Subscriber extends Authenticatable
+class Customer extends Authenticatable
 {
     use Notifiable;
     use HasFactory;
 
-    protected $guard = 'subscriber';
+    protected $guard = 'customer';
 
     protected $fillable = [
         'name',

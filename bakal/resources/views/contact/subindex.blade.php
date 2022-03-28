@@ -30,7 +30,7 @@
           <td>{{ $contact->email }}</td>
           <td>{{ $contact->phone }}</td>
           <td>{{ \Carbon\Carbon::parse($contact->birth_date)->format('d.m.Y') }}</td>
-          <td>{{ $contact->subscriber->name }}</td>
+          <td>{{ $contact->customer->name }}</td>
           <td><a href="{{ route('contact.edit', $contact->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a></td>
           <td>
              <form action="{{ route('contact.destroy', $contact->id) }}" method="post">

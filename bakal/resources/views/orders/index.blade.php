@@ -7,7 +7,7 @@
 @endphp
 <form action="{{ route('orders.store') }}" method="post">
   @csrf
-  @auth('subscriber')
+  @auth('customer')
     <button type="submit" class="btn btn-outline-secondary">Vytvořit novou objednávku</button>
   @endauth
   
@@ -34,7 +34,7 @@
             <th scope="col">Změnit stav objednávky</th>
             
           @endauth
-          @auth('subscriber')
+          @auth('customer')
             <th scope="col">Změnit termín</th>
            <!-- <th scope="col">Upravit objednávku</th> -->
           @endauth
@@ -48,7 +48,7 @@
         <tr>
            
           <td><a href="{{  route('orders.show', $order->id) }}">{{ $order->id }}</a></td> 
-          <td>{{ $order->subscriber->name }}</td> 
+          <td>{{ $order->customer->name }}</td> 
           <td>{{ $order->state }}</td>
           <td>{{ Carbon::parse($order->term)->format('d.m. Y')}} </td>
           <td>
@@ -137,7 +137,7 @@
 </td>
 @endauth
 
-@auth('subscriber')
+@auth('customer')
 <td>
 
   <form action="{{ route('orders.changeTerm', $order->id) }}" method="post">

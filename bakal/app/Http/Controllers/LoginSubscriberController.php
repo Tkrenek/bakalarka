@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Subscriber;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class LoginOdberatelController extends Controller

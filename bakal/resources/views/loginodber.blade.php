@@ -1,7 +1,7 @@
 @extends('layouts.navigation')
 
 @section('content')
-    <form action="{{ route('subscribers.login') }}" method="POST">
+    <form action="{{ route('customers.login') }}" method="POST">
         @csrf
 
         <label for="login">Login</label>

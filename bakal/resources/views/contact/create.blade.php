@@ -10,9 +10,9 @@
 
             <div class="card-body">
         @auth
-            <form  action="{{ route('contact.admin.store', $subscriber->id) }}" method="POST">
+            <form  action="{{ route('contact.admin.store', $customer->id) }}" method="POST">
         @endauth
-        @auth('subscriber')
+        @auth('customer')
             <form  action="{{ route('contact.store') }}" method="POST">
         @endauth
             

@@ -3,12 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\RegisterSubscriberController;
-
-use App\Http\Controllers\LoginSubscriberController;
-
-use App\Http\Controllers\RegisterSubController;
-use App\Http\Controllers\LoginSubController;
+use App\Http\Controllers\RegisterCustomerController;
 use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
@@ -47,7 +42,7 @@ use Phpml\Association\Apriori;
 */
 
 Route::get('/', function () {
-    return view('subscribers.login');
+    return view('customers.login');
 });
 
 Route::get('/apriori', function() {
@@ -66,23 +61,23 @@ Route::get('/apriori', function() {
 
 
 
-Route::get('/subsribers/create', [RegisterSubController::class, 'create'])->name('subscribers.create');
-Route::get('/subsribers/index', [RegisterSubController::class, 'index'])->name('subscribers.index');
-Route::post('/subscribers/store', [RegisterSubController::class, 'store'])->name('subscribers.store');
-Route::get('/subscribers/{id}/edit', [RegisterSubController::class, 'edit'])->name('subscribers.edit');
-Route::put('/subscribers/{id}/update', [RegisterSubController::class, 'update'])->name('subscribers.update');
-Route::delete('/subscribers/{id}', [RegisterSubController::class, 'destroy'])->name('subscribers.destroy');
+Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
+Route::get('/customers/index', [RegisterCustomerController::class, 'index'])->name('customers.index');
+Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
+Route::get('/customers/{id}/edit', [RegisterCustomerController::class, 'edit'])->name('customers.edit');
+Route::put('/customers/{id}/update', [RegisterCustomerController::class, 'update'])->name('customers.update');
+Route::delete('/customers/{id}', [RegisterCustomerController::class, 'destroy'])->name('customers.destroy');
 
-Route::get('/subscribers/change_password', [RegisterSubController::class, 'change_password'])->name('subscribers.change_password');
-Route::post('/subscribers/{id}/update_password', [RegisterSubController::class, 'update_password'])->name('subscribers.update_password');
+Route::get('/customers/change_password', [RegisterCustomerController::class, 'change_password'])->name('customers.change_password');
+Route::post('/customers/{id}/update_password', [RegisterCustomerController::class, 'update_password'])->name('customers.update_password');
 
-Route::get('/subscribers/{id}/change_passwordAdmin', [RegisterSubController::class, 'change_passwordAdmin'])->name('subscribers.change_passwordAdmin');
-Route::post('/subscribers/{id}/update_passwordAdmin', [RegisterSubController::class, 'update_passwordAdmin'])->name('subscribers.update_passwordAdmin');
+Route::get('/customers/{id}/change_passwordAdmin', [RegisterCustomerController::class, 'change_passwordAdmin'])->name('customers.change_passwordAdmin');
+Route::post('/customers/{id}/update_passwordAdmin', [RegisterCustomerController::class, 'update_passwordAdmin'])->name('customers.update_passwordAdmin');
 
-Route::get('/subscribers/login', [LoginCustomerController::class, 'index'])->name('subscribers.login');
-Route::post('/subscribers/login', [LoginCustomerController::class, 'login'])->name('subscribers.login.post');
-Route::get('/subscribers/logout', [LoginCustomerController::class, 'logout'])->name('subscribers.logout');
-Route::get('/subscribers/welcome', [LoginCustomerController::class, 'welcome'])->name('subscribers.welcome');
+Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
+Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
+Route::get('/customers/logout', [LoginCustomerController::class, 'logout'])->name('customers.logout');
+Route::get('/customers/welcome', [LoginCustomerController::class, 'welcome'])->name('customers.welcome');
 
 Route::get('/employees/create', [RegisterEmployeeController::class, 'index'])->name('employees.create');
 Route::post('/employees/store', [RegisterEmployeeController::class, 'store'])->name('employees.store');
