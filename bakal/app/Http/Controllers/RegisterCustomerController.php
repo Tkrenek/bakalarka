@@ -33,7 +33,7 @@ class RegisterCustomerController extends Controller
             'address' => 'required|unique:customers',
             'login' => 'required|unique:customers',
             'password' => 'required|confirmed',
-            'url' =>'required|unique:customers',
+            'url' =>'unique:customers',
 
         ]);
 

@@ -10,6 +10,9 @@ use App\Models\Item;
 use App\Models\Customer;
 use Spatie\GoogleCalendar\Event;
 use Carbon\Carbon;
+use Phpml\Association\Apriori;
+
+
 
 class OrderController extends Controller
 {
@@ -17,6 +20,7 @@ class OrderController extends Controller
     public function store()
     {
        
+        
         Order::create([
             'state' => 'created',
             'term' => Carbon::now()->add(1, 'week'),
@@ -42,6 +46,7 @@ class OrderController extends Controller
                     
             ]);
   */      
+
 
         if(auth('customer')->user()) {
             $customer = Customer::find(auth('customer')->user()->id);
@@ -85,10 +90,69 @@ class OrderController extends Controller
 
         $items = $order->item;
 
+        $allItems = Item::get();
      
+
+        $pole = array();
+
+        $polesmall = array();
+
+/*
+        array_push($polesmall, 1);
+        array_push($polesmall, 23);
+
+        array_push($pole, $polesmall);
+
+        $polesmall = array();
+
+        array_push($polesmall, 0);
+        array_push($polesmall, 5);
+
+        array_push($pole, $polesmall);
+
+        dd($pole);*/
+        $first = $allItems[0]->order_id;
+        $lastItem = Item::get()->last();
+       
+            foreach($allItems as $oneItem) {
+                if($first == $oneItem->order_id) {
+                    if($oneItem->is_mixed == "ano") {
+                        array_push($polesmall, $oneItem->productMixed->code);
+                    } else {
+                        array_push($polesmall, $oneItem->productOriginal->code);
+                    }
+                    if($lastItem->id == $oneItem->id) {
+                        array_push($pole, $polesmall);
+                    }
+                } else {
+                    
+                    $first = $oneItem->order_id;
+                   
+                    array_push($pole, $polesmall);
+                    $polesmall = array();
+                    
+                    if($oneItem->is_mixed == "ano") {
+                        array_push($polesmall, $oneItem->productMixed->code);
+                    } else {
+                        array_push($polesmall, $oneItem->productOriginal->code);
+                    }
+                    
+                }
+                
+            }
+
+          // dd($pole);
+            $labels = [];
+        $associator = new Apriori($support = 0.5, $confidence = 0.5);
+        $associator->train($pole, $labels);
+
+       dd($associator->apriori());
+        
+
         return view('orders.show', [
             'order' => $order,
-            'items' => $items
+            'items' => $items,
+            'allItems' => $allItems
         ]);
     }
     

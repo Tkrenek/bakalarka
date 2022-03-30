@@ -4,7 +4,9 @@
   
 
         
-   
+@foreach ($allItems as $oneItem)
+   {{ $oneItem->order_id }}
+@endforeach
    
    <h1>ID objednávky: {{ $order->id }}</h1>
    @auth('customer')
