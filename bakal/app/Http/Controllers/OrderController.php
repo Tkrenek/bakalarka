@@ -86,19 +86,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show($id)
+
+    public function getFrequented()
     {
-        $order = Order::find($id);
-
-        $items = $order->item;
-
-        $allItems = Item::get();
-     
-
         $pole = array();
 
         $polesmall = array();
-
+        $allItems = Item::get();
 /*
         array_push($polesmall, 1);
         array_push($polesmall, 23);
@@ -113,7 +107,7 @@ class OrderController extends Controller
         array_push($pole, $polesmall);
 
         dd($pole);*/
-        $first = $allItems[0]->order_id;
+       $first = $allItems[0]->order_id;
         $lastItem = Item::get()->last();
        
             foreach($allItems as $oneItem) {
@@ -143,15 +137,54 @@ class OrderController extends Controller
                 
             }
 
-          // dd($pole);
-            $labels = [];
-        $associator = new Apriori($support = 0.5, $confidence = 0.5);
-        $associator->train($pole, $labels);
-
-       dd($associator->apriori());
+        return $pole;
         
 
+       // dd($associator->predict(['O-L-155','M-C-10000']));
+       //dd($associator->apriori());
+    }
+
+    public function show($id)
+    {
+        $order = Order::find($id);
+
+        $items = $order->item;
+
+        $allItems = Item::get();
+     
+
+        $samples = self::getFrequented();
+
+        $labels = [];
+        $associator = new Apriori($support = 0.1, $confidence = 0.1);
+        //$samples = [['M-C-154', 'O-L-155', 'M-C-10000'], ['', 'M-C-10000', 'M-C-154'], ['M-C-10000', 'M-C-154', 'O-M-400'], ['O-C-4125', 'O-L-155', 'M-C-154']];
+        $associator->train($samples, $labels);
+
+        $arrayOfThisItems = array();
+
+        foreach($order->item as $one) {
+            if($one->is_mixed == "ano") {
+         
+                array_push($arrayOfThisItems, $one->productMixed->code);
+            } else {
+                array_push($arrayOfThisItems, $one->productOriginal->code);
+            }
+            
+        }
+       // dd($arrayOfThisItems);
+       // dd($arrayOfThisItems);
+       $recommendedItems = array();
+       if (empty($arrayOfThisItems)) {
+       
+        } else {
+            $recommendedItems = $associator->predict($arrayOfThisItems);
+        }
+        
+      
+       //dd($associator->apriori());
+
         return view('orders.show', [
+            'recommended' => $recommendedItems,
             'order' => $order,
             'items' => $items,
             'allItems' => $allItems
@@ -313,10 +346,7 @@ class OrderController extends Controller
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
              ]);
-             return view('orders.index', [
-                'orders' => $orders,
-                
-            ]);
+             return redirect()->route('orders.index');
         
         
 

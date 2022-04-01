@@ -26,6 +26,8 @@ class Order extends Model
     ];
 
 
+    public static $frequented = array();
+
     public function item()
     {
         return $this->hasMany(Item::class);
@@ -41,10 +43,5 @@ class Order extends Model
         return $this->hasMany(OrderWork::class);
     }
 
-    public static function ziskatObjednavku($id_zakaznika){
-        return DB::table('orders')
-        ->where(['customer_id' => $id_zakaznika])
-        ->orderBy('term', 'asc')
-        ->get();
-        }
+   
 }

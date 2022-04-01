@@ -45,8 +45,7 @@ class ItemController extends Controller
             if($item = Item::where('is_mixed', 'ne')->where('product_original_id', $product->id)->where('order_id', "=", $orderid)->first()) {
                 $item->amount += $request->ammount;
                 $item->save();
-            }
-             else{
+            }else{
                 Item::create([
                     'amount' => $request->ammount,
                     'is_mixed' => "ne",
@@ -82,7 +81,7 @@ class ItemController extends Controller
             }
             
 
-            $product->on_store -= $request->amount;
+            $product->on_store -= $request->ammount;
             $product->save();
         }
 
@@ -105,23 +104,12 @@ class ItemController extends Controller
         return back();
     }
 
-    public function frequeny()
+    public function frequency()
     {
 
         $transactions = [];
         
-        $item = Item::find($id);
-
-        if($item->is_mixed == "ano") {
-            $item->productMixed->on_store += $item->amount;
-            $item->productMixed->save();
-        } else {
-            $item->productOriginal->on_store += $item->amount;
-            $item->productOriginal->save();
-        }
-        $item->delete();
-
-        return back();
+        
     }
     
 

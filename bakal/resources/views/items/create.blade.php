@@ -46,7 +46,13 @@
                                   Musíte zadat množství.
                      
                               @enderror
-                          </div>  
+                            </div>  
+                              @if ($message = Session::get('error'))
+                           
+                                  <strong>{{ $message }}</strong>   
+                               
+                             @endif
+                          
                         </div>
                         <div class="col">
                             <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
@@ -103,17 +109,18 @@
                 <label for="ammount" >Množsví</label>
                 <div class="row">
                     <div class="col">   
-                        <input type="text"  id="ammount" name="ammount" class="form-control">
+                        <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
                     </div>
                 </div>
-              @error('ammount')
-
-              Musíte vybrat množství.
-      
-              @enderror
+                <div class="invalid-feedback">
+                  @error('ammount')
+                      Musíte zadat množství.
+         
+                  @enderror
+                </div>  
               </div>
             
           </form>

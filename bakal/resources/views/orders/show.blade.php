@@ -3,10 +3,8 @@
 @section('content')
   
 
-        
-@foreach ($allItems as $oneItem)
-   {{ $oneItem->order_id }}
-@endforeach
+
+
    
    <h1>ID objednávky: {{ $order->id }}</h1>
    @auth('customer')
@@ -111,6 +109,15 @@
 
       
    </table>
+@if (empty($recommended))
+   
+@else
+<h3>Často nakupované položky s vaším zbožím:</h3>
+   @foreach ($recommended as $one)
+      {{ $one[0] }}
+   
+   @endforeach
+@endif
    
   
 
