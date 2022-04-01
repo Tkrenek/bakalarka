@@ -76,6 +76,8 @@ class OrderController extends Controller
 
     public function index()
     {
+
+        
         $orders = Order::orderBy('term', 'ASC')->get();
         
         return view('orders.index', [

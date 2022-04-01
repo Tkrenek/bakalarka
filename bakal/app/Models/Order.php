@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\Customer;
 
 use App\Models\OrderWork;
+Use DB;
 
 class Order extends Model
 {
@@ -40,5 +41,10 @@ class Order extends Model
         return $this->hasMany(OrderWork::class);
     }
 
-
+    public static function ziskatObjednavku($id_zakaznika){
+        return DB::table('orders')
+        ->where(['customer_id' => $id_zakaznika])
+        ->orderBy('term', 'asc')
+        ->get();
+        }
 }

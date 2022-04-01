@@ -18,12 +18,7 @@
                 <div class="form-group ">
                     
                     <label for="type">Kód nádoby</label>
-                    @error('type')
-
-                        Muíte vybrat kód.
-            
-                    @enderror
-                    
+          
                     <input type="text" value="{{ $container->code }}" id="code" name="code" class="form-control @error('code') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('code')

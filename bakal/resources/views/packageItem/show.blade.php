@@ -44,7 +44,13 @@
             
                     @enderror
                     <label for="count" class="sr-only">Množství</label>
-                    <input type="number"  id="count" name="count" class="form-control">
+                    <input type="number"  id="count" name="count" class="form-control @error('count') is-invalid @enderror">
+                    <div class="invalid-feedback">
+                     @error('count')
+                         Musíte zadat množství.
+            
+                     @enderror
+                 </div> 
                     </div>
                   <button type="submit" class="btn btn-secondary">Změnit počet</button>
               </form>

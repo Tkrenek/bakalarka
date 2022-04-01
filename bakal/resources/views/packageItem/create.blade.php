@@ -40,7 +40,13 @@
                   <label for="count" >Množsví</label>
                   <div class="row">
                       <div class="col">   
-                          <input type="text"  id="count" name="count" class="form-control">
+                          <input type="text"  id="count" name="count" class="form-control @error('count') is-invalid @enderror">
+                          <div class="invalid-feedback">
+                            @error('count')
+                                Musíte zadat množství.
+                   
+                            @enderror
+                        </div>  
                       </div>
                       <div class="col">
                           <button type="submit" class="btn btn-secondary">Přidat balení</button>

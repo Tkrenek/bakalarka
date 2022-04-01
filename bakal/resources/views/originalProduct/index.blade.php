@@ -51,7 +51,13 @@
         
                 @enderror
                 <label for="ammount" class="sr-only">Množsví</label>
-                <input type="text"  id="ammount" name="ammount" class="form-control">
+                <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <div class="invalid-feedback">
+                  @error('ammount')
+                      Musíte zadat množství.
+         
+                  @enderror
+              </div>  
                 </div>
               <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
@@ -80,7 +86,13 @@
         
                 @enderror
                 <label for="ammount" class="sr-only">Množsví</label>
-                <input type="number"  id="ammount" name="ammount" class="form-control">
+                <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <div class="invalid-feedback">
+                  @error('ammount')
+                      Musíte zadat množství.
+         
+                  @enderror
+              </div>  
                 </div>
               <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
@@ -155,7 +167,13 @@
           
                   @enderror
                   <label for="ammount" class="sr-only">Množství</label>
-                  <input type="number"  id="ammount" name="ammount" class="form-control" >
+                  <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
+                  <div class="invalid-feedback">
+                    @error('ammount')
+                        Musíte zadat množství.
+           
+                    @enderror
+                </div>  
                   </div>
                 <button type="submit " class="btn btn-secondary">Naskladnit</button>
               </form>
@@ -180,12 +198,13 @@
                <div class="form-group">
                
                 <label for="ammount" class="sr-only">Množství</label>
-                <input type="number"  id="ammount" name="ammount" class="form-control">
-                @error('ammount')
-
-                 Musíte zadat množství.
-    
-              @enderror
+                <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <div class="invalid-feedback">
+                  @error('ammount')
+                      Musíte zadat množství.
+         
+                  @enderror
+              </div>  
                 </div>
                <button type="submit" class="btn btn-secondary">Naskladnit</button>
             </form>
