@@ -25,6 +25,7 @@ use App\Http\Controllers\OrderWorkController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\LoginEmployeeController;
 use App\Http\Controllers\LoginCustomerController;
+use App\Http\Controllers\GoogleCalendarController;
 
 use Spatie\GoogleCalendar\Event;
 use Phpml\Association\Apriori;
@@ -192,6 +193,7 @@ Route::delete('/orderWork/{id}', [OrderWorkController::class, 'destroy'])->name(
 Route::get('/orderWork/create/admin/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
 Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'storeAsAdmin'])->name('orderWork.admin.store');
 
+Route::get('/calendar/index', [GoogleCalendarController::class, 'index'])->name('google.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

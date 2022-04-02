@@ -60,6 +60,13 @@
                         <a class="nav-link" href="{{ route('orderWork.index')}}" class="p-3">Práce na objednávce</a>
         
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('google.index')}}" class="p-3">Google kalendář</a>
+        
+                    </li>
+
+                    
                 @endauth
 
                 @auth

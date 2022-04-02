@@ -260,6 +260,7 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
+                'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
              return view('orders.index', [
                 'orders' => $orders,
@@ -301,6 +302,7 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
+                'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
              return back();
           }
@@ -345,7 +347,10 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$lastId,
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
+                //'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
+
+             
              return redirect()->route('orders.index');
         
         
