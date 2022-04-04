@@ -46,14 +46,16 @@
                                   Musíte zadat množství.
                      
                               @enderror
-                            </div>  
-                              @if ($message = Session::get('error'))
-                           
-                                  <strong>{{ $message }}</strong>   
-                               
-                             @endif
+                              
+                              
                           
                         </div>
+                        @if (Session::get('error'))
+                                  
+                                  <strong>Na skladě není dost zásob</strong>   
+                               
+                             @endif
+                      </div>
                         <div class="col">
                             <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
                         </div>
@@ -110,17 +112,26 @@
                 <div class="row">
                     <div class="col">   
                         <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
+                        <div class="invalid-feedback">
+                          @error('ammount')
+                              Musíte zadat množství.
+                 
+                          @enderror
+                          
+                          
+                      
+                      </div>
+                      @if (Session::get('error'))
+                              
+                              <strong>Na skladě není dost zásob</strong>   
+                           
+                         @endif
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
                     </div>
                 </div>
-                <div class="invalid-feedback">
-                  @error('ammount')
-                      Musíte zadat množství.
-         
-                  @enderror
-                </div>  
+                
               </div>
             
           </form>

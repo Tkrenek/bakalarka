@@ -104,12 +104,15 @@ class PackageItemController extends Controller
             'count' => 'required|numeric',
             
         ]);
+        
+
         $pckgItem = package_Item::find($id);
 
+        $order = $pckgItem->item->order;
         $pckgItem->count = $request->count;
         $pckgItem->save();
 
-        return back();
+        return \Redirect::route('orders.show', $order->id);
     }
     
 }

@@ -5,8 +5,12 @@
 
         
    
+   @if ($item->is_mixed == "ano")
+      <h1>Položka: {{ $item->productMixed->code }}</h1>
+   @else
+      <h1>Položka: {{ $item->productOriginal->code }}</h1>
+   @endif
    
-   <h1>ID položky: {{ $item->id }}</h1>
    
  
    <a href="{{ route('orders.show', $item->order->id) }}">Zpět na objednávku</a>

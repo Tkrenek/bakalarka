@@ -257,10 +257,11 @@ class OrderController extends Controller
           } catch (\Google_Service_Exception $e) {
             Event::create([
                 'id' => 'eventid'.$orderId,
+                'description' => 'založeno',
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
-                'addAttendee' => ['email' => 'kreny48@gmail.com']
+               // 'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
              return view('orders.index', [
                 'orders' => $orders,
@@ -299,10 +300,11 @@ class OrderController extends Controller
           } catch (\Google_Service_Exception $e) {
             Event::create([
                 'id' => 'eventid'.$orderId,
+                'description' => 'založeno',
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
-                'addAttendee' => ['email' => 'kreny48@gmail.com']
+                //'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
              return back();
           }
@@ -332,6 +334,7 @@ class OrderController extends Controller
     {
         Order::create([
         'state' => 'založeno',
+        
         'term' => Carbon::now()->add(1, 'week'),
         'customer_id' => $subId,
         'invoice' => 'bude doplněno'
@@ -344,7 +347,9 @@ class OrderController extends Controller
         
             Event::create([
                 'id' => 'eventid'.$lastId,
+                'description' => 'založeno',
                 'name' => 'Číslo objednávky: '.$lastId,
+                'description' => 'založeno',
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
                 //'addAttendee' => ['email' => 'kreny48@gmail.com']

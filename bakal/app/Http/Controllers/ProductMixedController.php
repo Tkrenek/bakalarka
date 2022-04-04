@@ -82,6 +82,12 @@ class ProductMixedController extends Controller
 
     public function addOnStore(Request $request, $id)
     {
+
+        $this->validate($request, [
+        
+            'ammount' => 'required|numeric',
+        ]);
+
         $product = Product_mixed::find($id);
 
 

@@ -59,20 +59,29 @@
          
          <td>{{ $item->amount }}</td>
          <td>
-            
+          
             @if ($item->is_mixed == "ano")
                {{ $item->amount * $item->productMixed->prize  }}
+
             @else
                {{ $item->amount * $item->productOriginal->prize }}   
+
             @endif
             Kč
             
          </td>
+         @php
+            $sumPckg = 0;
+         @endphp
          <td>
             @foreach ($item->packageItem as $pckg)
-               {{ $pckg->count * $pckg->container->prize }} Kč
+               @php
+                  $sumPckg += $pckg->count * $pckg->container->prize;
+               @endphp
+               
+             
             @endforeach
-
+            {{ $sumPckg }} Kč
          </td>
 
          <td>
@@ -109,6 +118,7 @@
 
       
    </table>
+
 @if (empty($recommended))
    
 @else
