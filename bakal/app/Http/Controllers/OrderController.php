@@ -92,8 +92,14 @@ class OrderController extends Controller
         $pole = array();
 
         $polesmall = array();
-        $allItems = Item::get();
-/*
+ 
+        $allItems = Item::orderBy('order_id')->get();
+
+        if($allItems->isEmpty()) {
+            return $pole;
+        }
+
+        /*
         array_push($polesmall, 1);
         array_push($polesmall, 23);
 
@@ -137,6 +143,7 @@ class OrderController extends Controller
                 
             }
 
+     
         return $pole;
         
 
@@ -154,10 +161,11 @@ class OrderController extends Controller
      
 
         $samples = self::getFrequented();
-
+        
+    
         $labels = [];
-        $associator = new Apriori($support = 0.1, $confidence = 0.1);
-        //$samples = [['M-C-154', 'O-L-155', 'M-C-10000'], ['', 'M-C-10000', 'M-C-154'], ['M-C-10000', 'M-C-154', 'O-M-400'], ['O-C-4125', 'O-L-155', 'M-C-154']];
+        $associator = new Apriori($support = 0.5, $confidence = 1);
+      //  $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta']];
         $associator->train($samples, $labels);
 
         $arrayOfThisItems = array();
@@ -171,6 +179,7 @@ class OrderController extends Controller
             }
             
         }
+
        // dd($arrayOfThisItems);
        // dd($arrayOfThisItems);
        $recommendedItems = array();
@@ -203,7 +212,10 @@ class OrderController extends Controller
 
         $orders = Order::get();
 
-        
+        $events = Event::get();
+
+   
+
         return view('orders.index', [
             'orders' => $orders,
             
