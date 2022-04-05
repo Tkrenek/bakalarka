@@ -154,11 +154,12 @@ Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('
 Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
 Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
+
 Route::get('/productMixed/create', [ProductMixedController::class, 'create'])->name('productMixed.create');
 Route::post('/productMixed/store', [ProductMixedController::class, 'store'])->name('productMixed.store');
 Route::get('/productMixed/{id}/edit', [ProductMixedController::class, 'edit'])->name('productMixed.edit');
 Route::put('/productMixed/{id}/update', [ProductMixedController::class, 'update'])->name('productMixed.update');
-Route::put('/productMixed/{id}/addStore', [ProductMixedController::class, 'addOnStore'])->name('productMixed.addStore');
+Route::put('/productMixed/{id}/asddStore', [ProductMixedController::class, 'addOnStore'])->name('productMixed.addStore');
 Route::delete('/productMixed/{id}', [ProductMixedController::class, 'destroy'])->name('productMixed.destroy');
 
 Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
@@ -173,6 +174,8 @@ Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('or
 Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
 Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
 Route::post('/orders/uploadFile/{orderId}', [OrderController::class, 'uploadFile'])->name('orders.uploadFile');
+
+Route::get('/orders/index/filter', [OrderController::class, 'indexFilter'])->name('orders.index.filter');
 
 
 Route::get('orders/downloadInvoice/{file_name}', function($file_name = null) {

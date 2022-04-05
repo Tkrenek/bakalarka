@@ -12,7 +12,7 @@ use Spatie\GoogleCalendar\Event;
 use Carbon\Carbon;
 use Phpml\Association\Apriori;
 
-
+use DB;
 
 class OrderController extends Controller
 {
@@ -31,7 +31,7 @@ class OrderController extends Controller
         ]);
 
         $orders = Order::get();
-        $lastId = Order::get()->last()->id;
+        $lastId = Order::get()->last()->id+1;
    
             
         Event::create([
@@ -69,8 +69,26 @@ class OrderController extends Controller
         $customer = Customer::find($id);
       
         
+        
         return view('orders.index', [
             'orders' => $customer->order,
+            
+        ]);
+    }
+
+    public function indexFilter(Request $request)
+    {
+        
+
+        $orders = Order::get()->where('id', '=', $request->input('query'))->where('customer_id', '=', auth('customer')->user()->id);
+
+        
+        if($orders->isEmpty()) {
+            return back()->with('error', 'Objednávka nenalezena.');
+        }
+
+        return view('orders.index', [
+            'orders' => $orders,
             
         ]);
     }

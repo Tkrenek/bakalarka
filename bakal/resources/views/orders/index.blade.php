@@ -7,14 +7,43 @@
 @endphp
 
 <h1 class="display-2 text-center mb-5">Přehled objednávek</h1>
-
-<form action="{{ route('orders.store') }}" method="post"  class="text-center">
-  @csrf
-  @auth('customer')
-    <button type="submit" class="btn btn-outline-secondary mb-5">Vytvořit novou objednávku</button>
-  @endauth
+<div class="row">
+  <div class="col">
+    <form action="{{ route('orders.store') }}" method="post"  class="">
+      @csrf
+      @auth('customer')
+        <button type="submit" class="btn btn-outline-secondary mb-5">Vytvořit novou objednávku</button>
+      @endauth
+      
+    </form> 
+  </div>
   
-</form> 
+  <div class="col">
+    <form action="{{ route('orders.index.filter') }}" type="get" class="float-right mb-5">
+      <div class="row">
+        <div class="col">
+          <input type="search" class="form-control mr-sm-2" name="query" placeholder="Zadejte ID">
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" type="submit" class="float-right">Vyhledat</button>
+        </div>
+      </div>
+      @if ($message = Session::get('error'))
+                        <div class="mt-2 text-danger">
+                          <strong>{{ $message }}  </strong>  
+                        </div>
+                             
+                         
+                        
+                        
+                    @endif
+      
+     
+    </form>
+  </div>
+  
+</div>
+
    <table class="table table-bordered">
       <thead>
         <tr>
