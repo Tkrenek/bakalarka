@@ -7,10 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Upravit originální produkt</div>
+            <div class="card-header text-center">Upravit originální produkt</div>
 
             <div class="card-body">
-    <form action="{{ route('productOriginal.update', $product->id) }}" method="POST" style="width: 450px; margin: auto;">
+    <form action="{{ route('productOriginal.update', $product->id) }}" method="POST" >
         
         @method('PUT')
         @csrf

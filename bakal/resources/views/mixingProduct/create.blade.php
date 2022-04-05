@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat recept</div>
+            <div class="card-header text-center">Přidat recept</div>
 
             <div class="card-body">  
     <form action="{{ route('mixingProduct.store') }}" method="POST">

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat originální produkt</div>
+            <div class="card-header text-center">Přidat originální produkt</div>
 
             <div class="card-body">
     <form action="{{ route('productOriginal.store') }}" method="POST">

@@ -2,6 +2,7 @@
 
 @section('content')
   
+<h1 class="text-center mb-5 display-2">Kontatní osoby </h1>
 <div class="d-flex justify-content-center">
         
    <table class="table table-bordered">

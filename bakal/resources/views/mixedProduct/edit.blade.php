@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Upravit míchaný produkt</div>
+            <div class="card-header text-center">Upravit míchaný produkt</div>
 
             <div class="card-body">
     <form action="{{ route('productMixed.update', $productMixed->id) }}" method="POST" style="width: 450px; margin: auto;">

@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Změna hesla</div>
+            <div class="card-header text-center">Změna hesla</div>
 
             <div class="card-body"> 
             <form  action="{{ route('customers.update_passwordAdmin', $customer->id) }}" method="POST">

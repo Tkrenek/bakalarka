@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat nádobu</div>
+            <div class="card-header text-center">Přidat nádobu</div>
 
             <div class="card-body">
         
@@ -15,11 +15,7 @@
                 <div class="form-group ">
                     
                     <label for="type">Kód nádoby</label>
-                    @error('type')
-
-                        Muíte vybrat kód.
-            
-                    @enderror
+                   
                     
                     <input type="text" value="{{ old('code') }}" id="code" name="code" class="form-control @error('code') is-invalid @enderror">
                     <div class="invalid-feedback">

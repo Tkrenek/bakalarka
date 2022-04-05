@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Přidat nádobu</div>
+            <div class="card-header text-center">Přidat nádobu</div>
 
             <div class="card-body">
         

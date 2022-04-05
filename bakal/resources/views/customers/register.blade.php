@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">Registrace zákazníka</div>
+                <div class="card-header text-center">Registrace zákazníka</div>
 
                 <div class="card-body ">
             <form action="{{ route('customers.store') }}" method="POST">
