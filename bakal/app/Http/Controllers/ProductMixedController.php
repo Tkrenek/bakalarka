@@ -103,17 +103,13 @@ class ProductMixedController extends Controller
   
         
         foreach($product->mixingProduct as $orig) {
+
             $orig->productOriginal->on_store -= $request->ammount;
             $orig->productOriginal->save();
         }
         
         
-        
-
-        return view('originalProduct.index', [
-            'products' => $products,
-            'productsMixed' => $productsMixed
-        ]);
+        return back();
     }
 
     public function destroy($id)

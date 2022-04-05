@@ -2,9 +2,10 @@
 
 @section('content')
   
+<h1 class="text-center display-2 mb-5">Zákazníci</h1>
 <div class="d-flex justify-content-center">
         
-   <table class="table">
+   <table class="table table-bordered">
       <thead>
         <tr>
        

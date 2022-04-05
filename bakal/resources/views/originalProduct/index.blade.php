@@ -3,8 +3,8 @@
 @section('content')
   
 
-  <h1>Originální produkty</h1>    
-   <table class="table table-hover">
+  <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
+   <table class="table  mb-5">
       <thead>
         <tr>
           <th scope="col">Kód</th>
@@ -106,7 +106,7 @@
       </tbody>
     </table>
 
-    <h1>Míchané produkty</h1> 
+    <h1 class="display-3 text-center">Míchané produkty</h1> 
   
     <table class="table">
       <thead >

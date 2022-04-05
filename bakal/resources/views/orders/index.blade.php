@@ -6,15 +6,16 @@
   use Carbon\Carbon as carbon;
 @endphp
 
+<h1 class="display-2 text-center mb-5">Přehled objednávek</h1>
 
-<form action="{{ route('orders.store') }}" method="post">
+<form action="{{ route('orders.store') }}" method="post"  class="text-center">
   @csrf
   @auth('customer')
-    <button type="submit" class="btn btn-outline-secondary">Vytvořit novou objednávku</button>
+    <button type="submit" class="btn btn-outline-secondary mb-5">Vytvořit novou objednávku</button>
   @endauth
   
 </form> 
-   <table class="table">
+   <table class="table table-bordered">
       <thead>
         <tr>
        
@@ -104,7 +105,15 @@
            @endauth
            @auth('customer')
            <td>
+           @if($order->invoice == "bude doplněno")
+
+              Bude doplněno
+
+           @else   
             <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">Stáhnout Fakturu</a>
+           @endif
+           
+           
            </td>
              
            @endauth

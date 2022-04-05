@@ -2,8 +2,9 @@
 
 @section('content')
   
+<h1 class="display-3 text-center mb-5">Přehled nádob</h1>
 
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
       <tr>
      
@@ -31,9 +32,9 @@
       <tr>
         
         <td>{{ $container->type }}</td>
-        <td>{{ $container->bulk }}</td>
-        <td>{{ $container->on_store }}</td>
-        <td>{{ $container->prize }}</td>
+        <td>{{ $container->bulk }} (litr)</td>
+        <td>{{ $container->on_store }} ks</td>
+        <td>{{ $container->prize }} Kč</td>
  
         @auth('employee')
         <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>

@@ -21,8 +21,9 @@ class OrderController extends Controller
     {
        
         
+        
         Order::create([
-            'state' => 'created',
+            'state' => 'vytvořeno',
             'term' => Carbon::now()->add(1, 'week'),
             'customer_id' => auth('customer')->user()->id,
             'invoice' => 'bude doplněno'
@@ -77,7 +78,16 @@ class OrderController extends Controller
     public function index()
     {
 
-        
+        $orders = Order::get();
+        $events = Event::get();
+
+        /*foreach($orders as $order) {
+            $order->delete();
+        }
+        foreach($events as $event) {
+            $event->delete();
+        }
+*/
         $orders = Order::orderBy('term', 'ASC')->get();
         
         return view('orders.index', [
@@ -212,7 +222,7 @@ class OrderController extends Controller
 
         $orders = Order::get();
 
-        $events = Event::get();
+        
 
    
 
@@ -345,17 +355,17 @@ class OrderController extends Controller
     public function storeAdmin($subId)
     {
         Order::create([
-        'state' => 'založeno',
-        
-        'term' => Carbon::now()->add(1, 'week'),
-        'customer_id' => $subId,
-        'invoice' => 'bude doplněno'
-    ]);
+            'state' => 'založeno',
+            
+            'term' => Carbon::now()->add(1, 'week'),
+            'customer_id' => $subId,
+            'invoice' => 'bude doplněno'
+        ]);
 
 
     $orders = Order::get();
-    $lastId = Order::get()->last()->id;
-
+    $lastId = Order::get()->last()->id+1;
+    
         
             Event::create([
                 'id' => 'eventid'.$lastId,
