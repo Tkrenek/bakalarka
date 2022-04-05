@@ -130,7 +130,7 @@ class RegisterCustomerController extends Controller
             
         ]);
 
-        //dd($admin->password);
+
         if(Hash::check($request->password_old, $customer->password)) {
             $customer->password = Hash::make($request->password);
             $customer->save();
@@ -164,5 +164,7 @@ class RegisterCustomerController extends Controller
             return back();
 
     }
+
+    
     
 }

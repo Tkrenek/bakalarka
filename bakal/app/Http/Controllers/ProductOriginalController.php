@@ -118,6 +118,11 @@ class ProductOriginalController extends Controller
 
     public function addOnStore($id, Request $request)
     {
+        $this->validate($request, [
+        
+            'ammount' => 'required|numeric',
+        ]);
+
         $product = Product_original::find($id);
 
 

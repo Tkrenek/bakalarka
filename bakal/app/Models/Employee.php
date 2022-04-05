@@ -47,5 +47,5 @@ class Employee extends Authenticatable
         return $this->hasMany(OrderWork::class);
     }
 
-
+    
 }

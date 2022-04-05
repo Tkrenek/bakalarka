@@ -64,7 +64,6 @@ class ItemController extends Controller
             $product = Product_mixed::where('code', $productcode)->first();
             if($request->ammount > $product->on_store) {
                 return back()->with('error', 'Na skladě není dost zásob.');
-
             }
             if($item = Item::where('is_mixed', 'ano')->where('product_original_id', $product->id)->where('order_id', "=", $orderid)->first()) {
                 $item->amount += $request->ammount;

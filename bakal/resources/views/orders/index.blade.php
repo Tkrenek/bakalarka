@@ -5,6 +5,8 @@
 @php
   use Carbon\Carbon as carbon;
 @endphp
+
+
 <form action="{{ route('orders.store') }}" method="post">
   @csrf
   @auth('customer')
@@ -76,14 +78,37 @@
             @endforeach
             {{ $sum + $sumPckg}} Kč
            </td>
-          <td>{{ $order->invoice }}
-            <form method="POST" action="{{ route('invoice.upload') }}" enctype="multipart/form-data">
-            @csrf
-
-            <input type="file" name="invoice">
-            <input type="submit" name="upload">
+           @auth()
+           <td>
+            <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group">
+                <label for="invoice">Vyberte fakturu</label>
+                <input type="file" class="form-control-file" id="invoice" name="invoice">
+              </div>
+              <button class="btn btn-primary">Nahrát</button>
             </form>
           </td>
+           @endauth
+           @auth('employee')
+           <td>
+            <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group">
+                <label for="invoice">Vyberte fakturu</label>
+                <input type="file" class="form-control-file" id="invoice" name="invoice">
+              </div>
+              <button class="btn btn-primary">Nahrát</button>
+            </form>
+          </td>
+           @endauth
+           @auth('customer')
+           <td>
+            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">Stáhnout Fakturu</a>
+           </td>
+             
+           @endauth
+          
           @auth
             <td>
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
@@ -131,7 +156,7 @@
           
 @auth
 
-<td>
+<td
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
 </td>
 </td>

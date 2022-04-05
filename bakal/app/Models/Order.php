@@ -22,7 +22,6 @@ class Order extends Model
         'term',
         'customer_id',
         'invoice',
-   
     ];
 
 

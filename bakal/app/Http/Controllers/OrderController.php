@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Order;
-use App\Models\File;
+//use App\Models\File;
 use App\Models\Item;
 use App\Models\Customer;
 use Spatie\GoogleCalendar\Event;
@@ -378,16 +378,25 @@ class OrderController extends Controller
         
     }
 
-    public function uploadFile(Request $request)
+    public function uploadFile(Request $request, $orderId)
     {
-        $size = $request->file('invoice')->getSize();
-        $name = $request->file('invoice')->getClientOriginalName();
+        if($request->hasFile('invoice')){
+            $path = 'public/invoices';
+            $invoice = $request->file('invoice');
+            $invoice_name = $invoice->getClientOriginalName();
+            $fullPath = $request->file('invoice')->storeAs($path, $invoice_name);
+            
+        
+            $input['invoice'] = $invoice_name;
+        } else {
+            dd('ne');
+        }
+        
+        $order = Order::find($orderId);
 
-        $request->file('invoice')->store('public/images/');
-        $file = new App\Models\File();
-        $file->name = $name;
-        $file->size = $size;
-        $file->save();
+        $order->invoice = $invoice_name;
+        $order->save();
+       
         return back();
     }
 

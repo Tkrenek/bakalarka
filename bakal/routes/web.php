@@ -172,7 +172,17 @@ Route::put('/orders/changeState/{idOrder}', [OrderController::class, 'changeStat
 Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
 Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
 Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
-Route::post('/orders/uploadFile', [OrderController::class, 'uploadFile'])->name('invoice.upload');
+Route::post('/orders/uploadFile/{orderId}', [OrderController::class, 'uploadFile'])->name('orders.uploadFile');
+
+
+Route::get('orders/downloadInvoice/{file_name}', function($file_name = null) {
+    $path = storage_path().'/app/public/invoices/'.$file_name;
+
+    if(file_exists($path)) {
+        
+        return Response::download($path);
+    }
+})->name('orders.downloadInvoice');
 
 Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
 Route::post('/packageItem/store/{itemid}/{containerid}', [PackageItemController::class, 'store'])->name('packageItem.store');

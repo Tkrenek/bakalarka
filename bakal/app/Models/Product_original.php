@@ -39,4 +39,17 @@ class Product_original extends Model
         return $this->hasMany(Mixing_product::class);
     }
 
+    public function addOnStore($id, Request $request)
+    {
+        $product = Product_original::find($id);
+
+
+        $product->on_store = $product->on_store + $request->ammount;
+
+        $product->save();
+
+        return back();
+        
+    }
+
 }
