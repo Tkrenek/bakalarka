@@ -12,7 +12,7 @@
         <th scope="col">Na skladě</th>
         <th scope="col">Cena</th>
 
-        @auth
+        @auth('admin')
             <th scope="col">Vybrat</th>
         @endauth
         @auth('customer')

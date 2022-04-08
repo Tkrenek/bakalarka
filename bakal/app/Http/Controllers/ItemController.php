@@ -34,8 +34,8 @@ class ItemController extends Controller
         ]);
 
 
-        
         if($productcode[0] == "O") {
+       
             $product = Product_original::where('code', $productcode)->first();
             if($request->ammount > $product->on_store) {
                 return back()->with('error', 'Na skladě není dost zásob.');
