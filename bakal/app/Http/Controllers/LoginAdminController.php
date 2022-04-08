@@ -21,8 +21,8 @@ class LoginAdminController extends Controller
 
         
         $credentials = $request->only('email', 'password');
- 
-        if (auth()->attempt($credentials)) {
+      
+        if (Auth::guard('admin')->attempt($credentials)) {
             return view('admins/success');
         } else {
             return back()->with('error', 'Zadán chybný email nebo heslo.');
@@ -39,7 +39,7 @@ class LoginAdminController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect('/');
     }
 }

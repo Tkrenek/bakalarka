@@ -17,7 +17,7 @@
           <th scope="col">Typ práce</th>
           <th scope="col">Datum</th>
           <th scope="col">Doba práce</th>
-          @auth
+          @auth('admin')
             <th scope="col">Smazat</th>
           @endauth
           @auth('employee')

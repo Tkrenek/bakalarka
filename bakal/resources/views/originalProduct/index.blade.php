@@ -13,7 +13,7 @@
           <th scope="col">Odvětví</th>
           <th scope="col">Cena(Kč)</th>
           <th scope="col">Dodavatel</th>
-          @auth
+          @auth('admin')
             
             <th scope="col">Naskladnit</th>
             <th scope="col">Upravit</th>
@@ -39,7 +39,7 @@
           <td>{{ $product->prize }}</td>
           <td>{{ $product->producer->name }}</td>
           
-          @auth
+          @auth('admin')
           <td>
             <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
               @csrf
@@ -117,7 +117,7 @@
           <th scope="col">Odvětví</th>
           <th scope="col">Cena(Kč)</th>
           <th scope="col">Recept</th>
-          @auth
+          @auth('admin')
             
             <th scope="col">Upravit recept</th>
             <th scope="col">Naskladnit</th>
@@ -154,7 +154,7 @@
          
             
 
-          @auth
+          @auth('admin')
           <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
             <td>
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">

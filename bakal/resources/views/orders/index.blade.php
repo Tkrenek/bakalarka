@@ -29,16 +29,12 @@
         </div>
       </div>
       @if ($message = Session::get('error'))
-                        <div class="mt-2 text-danger">
-                          <strong>{{ $message }}  </strong>  
-                        </div>
-                             
-                         
-                        
-                        
-                    @endif
-      
-     
+              <div class="mt-2 text-danger">
+                  <strong>{{ $message }}  </strong>  
+              </div>
+                                            
+      @endif
+
     </form>
   </div>
   
@@ -54,7 +50,7 @@
           <th scope="col">Termín objednávky</th>
           <th scope="col">Celková cena</th>
           <th scope="col">Faktura</th>
-          @auth
+          @auth('admin')
           
           <th scope="col">Odstranit objednávku</th>
        
@@ -108,7 +104,7 @@
             @endforeach
             {{ $sum + $sumPckg}} Kč
            </td>
-           @auth()
+           @auth('admin')
            <td>
             <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
               @csrf
@@ -147,7 +143,7 @@
              
            @endauth
           
-          @auth
+          @auth('admin')
             <td>
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                 @csrf
@@ -192,9 +188,9 @@
         
             
           
-@auth
+@auth('admin')
 
-<td
+<td>
     <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
 </td>
 </td>

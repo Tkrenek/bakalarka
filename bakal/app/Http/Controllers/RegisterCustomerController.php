@@ -76,7 +76,7 @@ class RegisterCustomerController extends Controller
             'address' =>'required',
             'town' => 'required',
             'login' => 'required',
-            'password' => 'confirmed',
+       
             'url' =>'required',
             
         ]);
@@ -86,7 +86,7 @@ class RegisterCustomerController extends Controller
         $customer->name = $request->name;
         $customer->address = $request->address;
         $customer->town = $request->town;
-        $customer->password = Hash::make($request->password);
+
         $customer->login = $request->login;
         $customer->url = $request->url;        
  

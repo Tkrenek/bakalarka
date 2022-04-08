@@ -39,7 +39,7 @@
                
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('productOriginal.index')}}" class="p-3">Seznam produktů</a>
+                        <a class="nav-link" href="{{ route('product.index')}}" class="p-3">Seznam produktů</a>
                     </li>
 
                     <li class="nav-item">
@@ -69,7 +69,11 @@
                     
                 @endauth
 
-                @auth
+                @auth('admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('stats.index')}}" class="p-3">Statistiky</a>
+    
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admins.index')}}" class="p-3">Registrovat Admina</a>
     
@@ -117,7 +121,7 @@
                 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('productOriginal.index')}}" class="p-3">Seznam produktů</a>
+                    <a class="nav-link" href="{{ route('product.index')}}" class="p-3">Seznam produktů</a>
     
                 </li>
                 
@@ -172,7 +176,7 @@
 
                
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('productOriginal.index')}}" class="p-3">Seznam produktů</a>
+                        <a class="nav-link" href="{{ route('product.index')}}" class="p-3">Seznam produktů</a>
         
                     </li>
 
@@ -261,7 +265,7 @@
                 </li>
      
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('productOriginal.index')}}" class="p-3">Seznam produktů</a>
+                    <a class="nav-link" href="{{ route('product.index')}}" class="p-3">Seznam produktů</a>
     
                 </li>
     
@@ -324,7 +328,7 @@
       <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              
-              <span class="ml-1" >{{ auth('employee')->user()->name }} {{ auth('employee')->user()->name }}</span>
+              <span class="ml-1" >{{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('employees.edit', auth('employee')->user()->id) }}" x-ref="profileLink">Upravit profil</a>
@@ -362,15 +366,14 @@
     
     @endauth
     
-    @auth
+    @auth('admin')
     
-      <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
-        <!--<ul class="navbar-nav ml-auto">-->
+     
         <ul class="navbar-nav ">
       <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              
-              <span class="ml-1" >{{ auth()->user()->name }} {{ auth()->user()->surname }}</span>
+              <span class="ml-1" >{{ auth('admin')->user()->name }} {{ auth('admin')->user()->surname }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('admins.edit', Auth::user()->id) }}" x-ref="profileLink">Upravit profil</a>

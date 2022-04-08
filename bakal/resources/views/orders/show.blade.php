@@ -11,7 +11,7 @@
    @auth('customer')
       <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-outline-secondary">Zpět na moje objednávky</a>
    @endauth
-   @auth
+   @auth('admin')
       <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
    @endauth
    @auth('employee')
@@ -35,7 +35,7 @@
       <th scope="col">Cena za balení</th>
       <th scope="col">Balení</th>
 
-      @auth
+      @auth('admin')
          <th scope="col">Vybrat balení</th>
          
          <th scope="col">Odstranit</th>
@@ -90,7 +90,7 @@
                {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }}ks)
             @endforeach
             </td>
-            @auth
+            @auth('admin')
                <td><a href="{{ route('packageItem.show', $item->id) }}" role="button" class="btn btn-primary">Upravit balení</a>
             
                   <td>

@@ -9,16 +9,16 @@
             <div class="card-header text-center">Označit práci na objedávce</div>
 
             <div class="card-body"> 
-                @auth
+                @auth('admin')
                     <form action="{{ route('orderWork.admin.store', $employee->id) }}" method="POST">
                 @endauth
                 @auth('employee')
-                <form action="{{ route('orderWork.store', $order->id) }}" method="POST">
+                    <form action="{{ route('orderWork.store', $order->id) }}" method="POST">
                 @endauth
     
         @csrf
 
-        @auth
+        @auth('admin')
         <div class="form-group ">
                             
             <label for="order">ID objednávky</label>

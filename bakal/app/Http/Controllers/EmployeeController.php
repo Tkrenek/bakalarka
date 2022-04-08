@@ -43,9 +43,9 @@ class EmployeeController extends Controller
             'surname' =>'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
-            'password' => 'confirmed',
+    
             'function' =>'required',
-            'birth_date' =>'required|date',
+   
             
         ]);
  
@@ -58,7 +58,7 @@ class EmployeeController extends Controller
         $empl->name = $request->name;
         $empl->surname = $request->surname;
         $empl->phone = $request->phone;
-        $empl->password = Hash::make($request->password);
+
         $empl->email = $request->email;
         $empl->function = $request->function;        
       
@@ -67,7 +67,9 @@ class EmployeeController extends Controller
     
 
         $empl->save();
-
+        if(auth('employee')) {
+            return view('employees/welcome');
+        }
         $employees = Employee::get();
         return view('employees.index', [
             'employees' => $employees

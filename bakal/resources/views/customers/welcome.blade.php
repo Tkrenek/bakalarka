@@ -13,7 +13,7 @@ Jste přihlášen jako zákazník.
     {{ auth('customer')->user()->login }}
 @endauth
 
-@auth
+@auth('admin')
     sfasf
 @endauth
 

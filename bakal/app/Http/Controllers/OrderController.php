@@ -79,8 +79,14 @@ class OrderController extends Controller
     public function indexFilter(Request $request)
     {
         
-
-        $orders = Order::get()->where('id', '=', $request->input('query'))->where('customer_id', '=', auth('customer')->user()->id);
+        if(auth('customer')->user()) {
+            
+            $orders = Order::get()->where('id', '=', $request->input('query'))->where('customer_id', '=', auth('customer')->user()->id);
+        } else {
+            
+            $orders = Order::get()->where('id', '=', $request->input('query'));
+        }
+        
 
         
         if($orders->isEmpty()) {
@@ -106,13 +112,24 @@ class OrderController extends Controller
             $event->delete();
         }
 */
+
+        $data = Order::select('id', 'created_at')->get()->groupBy(function($data) {
+           return  Carbon::parse($data->created_at)->format('M');
+        });
+
+
+  
         $orders = Order::orderBy('term', 'ASC')->get();
         
         return view('orders.index', [
             'orders' => $orders,
+            'data' => $data
+           
             
         ]);
     }
+
+
 
 
     public function getFrequented()

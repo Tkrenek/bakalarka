@@ -9,7 +9,7 @@
             <div class="card-header text-center">Přidat kontaktní osobu</div>
 
             <div class="card-body">
-        @auth
+        @auth('admin')
             <form  action="{{ route('contact.admin.store', $customer->id) }}" method="POST">
         @endauth
         @auth('customer')

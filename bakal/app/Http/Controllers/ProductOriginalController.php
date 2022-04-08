@@ -48,12 +48,14 @@ class ProductOriginalController extends Controller
         return back();
     }
 
+  
     public function index()
     {
+        
         $products = Product_original::get();
         $productsMixed = Product_mixed::get();
 
-   
+       
 
         return view('originalProduct.index', [
             'products' => $products,
@@ -64,6 +66,7 @@ class ProductOriginalController extends Controller
 
     public function edit($id)
     {
+    
         $product = Product_original::where('id', $id)->first();
         $producers = Producer::get();
         return view('originalProduct.update', [
@@ -102,8 +105,11 @@ class ProductOriginalController extends Controller
         $product->save();
 
         $products = Product_original::get();
+        $productsMixed = Product_mixed::get();
+
         return view('originalProduct.index', [
-            'products' => $products
+            'products' => $products,
+            'productsMixed' => $productsMixed
         ]);
       
     }

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header">Upravit profil admina</div>
+            <div class="card-header text-center">Upravit profil admina</div>
 
             <div class="card-body">
             <form  action="{{ route('admins.update', $admin->id) }}" method="POST">
@@ -45,18 +45,7 @@
                 </div>
                 
  
-                <div class="form-group">
-                    
-                    <label for="login">Login</label>
-                    <input type="text"  class="form-control @error('login') is-invalid @enderror" value="{{ $admin->login }}" id="login" name="login" >
-                    <div class="invalid-feedback">
-                        @error('login')
-
-                            Musíte zadat login. 
-            
-                        @enderror
-                    </div> 
-                </div>
+                
 
                 <div class="form-group">
                     

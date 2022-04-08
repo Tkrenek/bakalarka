@@ -12,7 +12,7 @@
         <th scope="col">Objem(v litrech)</th>
         <th scope="col">Na skladě</th>
         <th scope="col">Cena</th>
-        @auth
+        @auth('admin')
           <th scope="col">Upravit</th>
           <th scope="col">Naskladnit</th>
           <th scope="col">Odstranit</th>
@@ -65,7 +65,7 @@
           </form>
           </td>
         @endauth
-        @auth
+        @auth('admin')
         
           <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
           <td><form action="{{ route('containers.addStore', $container->id) }}" method="post">

@@ -21,13 +21,14 @@ class LoginEmployeeController extends Controller
         
  
         $credentials = $request->only('email', 'password');
+
  
         if (Auth::guard('employee')->attempt($credentials)) {
             
             return view('employees/welcome');
         }
 
-        return back()->with('error', 'Zadáno chybné heslo nebo email.');
+        return back()->with('error', 'Zadán chybný email nebo heslo');
 
         
     }
