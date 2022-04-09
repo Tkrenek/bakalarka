@@ -75,6 +75,10 @@
     
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('customers.create')}}" class="p-3">Vytvořit zákazníka</a>
+    
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admins.index')}}" class="p-3">Registrovat Admina</a>
     
                 </li>

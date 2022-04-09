@@ -49,6 +49,10 @@ class RegisterCustomerController extends Controller
 
         $credentials = $request->only('login', 'password');
  
+        if(auth('admin')->user()) {
+          
+            return redirect()->route('customers.index');
+        }
         if (Auth::guard('customer')->attempt($credentials)) {
             return view('customers/welcome');
         } else {

@@ -1,9 +1,11 @@
 @extends('layouts.navigation')
 
 @section('content')
-  
-<div class="justify-content-center d-flex p-5"><h1>Informační systém Colorex</h1></div>
-<div class="justify-content-center d-flex p-1">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
+  @guest
+  <div class="justify-content-center d-flex p-5"><h1>Informační systém Colorex</h1></div>
+  <div class="justify-content-center d-flex p-1">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
+  @endguest
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -115,11 +117,15 @@
 
                 </div>
             </form>
-            <span>Pokud již účet máte, přihlaste se: <a href="{{ route('customers.login') }}">zde</a></span>
+            @guest
+                <span>Pokud již účet máte, přihlaste se: <a href="{{ route('customers.login') }}">zde</a></span>
+            @endguest
             </div>
         </div> 
+        @guest
         Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.
-        </div>
+    </div>
+        @endguest
        
         </div>
         
