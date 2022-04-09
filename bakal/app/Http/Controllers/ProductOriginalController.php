@@ -53,8 +53,9 @@ class ProductOriginalController extends Controller
     {
         
         $products = Product_original::get();
+        
         $productsMixed = Product_mixed::get();
-
+    
        
 
         return view('originalProduct.index', [

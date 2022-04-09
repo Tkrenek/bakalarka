@@ -28,8 +28,16 @@
         </tr>
       </thead>
       <tbody>
+        @php
+          $isFirst = true;
+        @endphp
          @foreach ($products as $product)
-          
+          @php
+            if($isFirst) {
+              $isFirst = false;
+              continue;
+            }  
+          @endphp  
        
         <tr>
           <td>{{ $product->code }}</td>
@@ -135,7 +143,16 @@
         </tr>
       </thead>
       <tbody>
+        @php
+          $isFirst = true;
+        @endphp
          @foreach ($productsMixed as $product)
+         @php
+           if($isFirst) {
+          $isFirst = false;
+          continue;
+        } 
+         @endphp
           
        
         <tr>
