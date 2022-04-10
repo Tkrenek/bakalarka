@@ -140,7 +140,6 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
 </script>
 
 
-
         <script>
             var bal1 = JSON.parse('{!! json_encode($baleniPomer1) !!}');
             var bal2 = JSON.parse('{!! json_encode($baleniPomer2) !!}');
@@ -158,6 +157,40 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
                 },
             })
         </script>
+
+
+@php $label=array(); $data=array(); @endphp
+
+@foreach($maximaProdukty as $max) 
+    @php
+        array_push($label, $max->code);
+        
+        array_push($data, $max->count);
+     @endphp
+@endforeach
+
+
+
+
+<script>
+
+            var lbl = JSON.parse('{!! json_encode($label) !!}');
+            var dat = JSON.parse('{!! json_encode($data) !!}');
+            var ctx6 = document.getElementById('myChart6').getContext('2d');
+            var myChart = new Chart(ctx6, { 
+                
+                type: "pie",
+                data:{
+                    labels: lbl,
+                    datasets:[{
+                        label: "poměr baleni",
+                        data: dat,
+                        backgroundColor: ["#AC3131", "#254AA1", "#669966"],
+                    }]
+                },
+            })
+</script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

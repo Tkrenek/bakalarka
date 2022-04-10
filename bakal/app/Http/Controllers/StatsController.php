@@ -70,16 +70,28 @@ class StatsController extends Controller
         $baleniPomer1 = DB::select(DB::raw('select  sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code having containers.code like "K%"'));
         $baleniPomer2 = DB::select(DB::raw('select  sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code having containers.code like "P%"'));
 
+      
         $baleniPomer1 = self::getSum($baleniPomer1);
         $baleniPomer2 = self::getSum($baleniPomer2);
 
 
-        $produktyOrig = DB::select(DB::raw('select product_originals.code, sum(items.amount) as "count" from items join product_originals on product_originals.id = items.product_original_id group by product_originals.code'));
-        $produktyMixed = DB::select(DB::raw('select product_mixeds.code, sum(items.amount) as "count" from items join product_mixeds on product_mixeds.id = items.product_mixed_id group by product_mixeds.code '));
-       
-        dd($produktyOrig);
+        $produktyOrig = DB::select(DB::raw('select items.is_mixed, product_originals.code, sum(items.amount) as "count" from items join product_originals on product_originals.id = items.product_original_id group by product_originals.code, items.is_mixed having items.is_mixed = "ne"'));
+        $produktyMixed = DB::select(DB::raw('select items.is_mixed, product_mixeds.code, sum(items.amount) as "count" from items join product_mixeds on product_mixeds.id = items.product_mixed_id group by product_mixeds.code, items.is_mixed having items.is_mixed = "ano"'));
+      
+
 
         
-        return view('stats.index', compact('resultsOriginal', 'resultsMixed', 'nejvic', 'zamestnanci', 'baleni', 'baleniPomer1', 'baleniPomer2'));
+        $maximaProdukty = array();
+        foreach($produktyMixed as $pm) {
+            array_push($maximaProdukty, $pm);
+        }
+        foreach($produktyOrig as $po) {
+            array_push($maximaProdukty, $po);
+        }
+        
+
+        $maximaProdukty = self::getMaxFrom($maximaProdukty, 3);
+        
+        return view('stats.index', compact('resultsOriginal', 'resultsMixed', 'nejvic', 'zamestnanci', 'baleni', 'baleniPomer1', 'baleniPomer2', 'maximaProdukty'));
     }
 }
