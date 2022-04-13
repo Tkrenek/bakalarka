@@ -6,16 +6,14 @@
     use Illuminate\Support\Facades\Auth;
 @endphp
 
+<h2 class="display-2 text-center mb-5">Jste přihlášen jako zákazník.</h2>
 
-Jste přihlášen jako zákazník.
 
-@auth('customer')
+
+
     {{ auth('customer')->user()->login }}
-@endauth
+    {{ auth('customer')->user()->address }}
 
-@auth('admin')
-    sfasf
-@endauth
 
 
 

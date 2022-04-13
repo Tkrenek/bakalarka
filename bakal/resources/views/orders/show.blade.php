@@ -3,7 +3,9 @@
 @section('content')
   
 
-
+@php
+   $orderSum = 0;
+@endphp
 
    
    <h1 class="text-center mb-5 display-2">ID objednávky: {{ $order->id }}</h1>
@@ -33,7 +35,9 @@
 
       <th scope="col">Cena</th>
       <th scope="col">Cena za balení</th>
+      <th scope="col">Celková cena</th>
       <th scope="col">Balení</th>
+
 
       @auth('admin')
          <th scope="col">Vybrat balení</th>
@@ -59,15 +63,27 @@
          
          
          <td>{{ $item->amount }}</td>
+         @php
+            $sumProduct = 0;
+         @endphp
          <td>
           
             @if ($item->is_mixed == "ano")
-               {{ $item->amount * $item->productMixed->prize  }}
+               @php
+                  $sumProduct = $item->amount * $item->productMixed->prize
+                  
+               @endphp
+               
 
             @else
-               {{ $item->amount * $item->productOriginal->prize }}   
+               @php
+                  $sumProduct = $item->amount * $item->productOriginal->prize
+                  
+               @endphp
+                 
 
             @endif
+            {{ $sumProduct }} 
             Kč
             
          </td>
@@ -78,6 +94,7 @@
             @foreach ($item->packageItem as $pckg)
                @php
                   $sumPckg += $pckg->count * $pckg->container->prize;
+                  
                @endphp
                
              
@@ -85,6 +102,12 @@
             {{ $sumPckg }} Kč
          </td>
 
+         <td>
+            {{ $sumPckg + $sumProduct }} Kč
+            @php
+               $orderSum += $sumPckg + $sumProduct
+            @endphp
+         </td>
          <td>
             @foreach ($item->packageItem as $cont)
                {{ $cont->container->type }} - {{ $cont->container->bulk }}l({{ $cont->count }}ks)
@@ -119,6 +142,8 @@
 
       
    </table>
+
+  <h5>Celková cena: {{ $orderSum }} Kč</h5> 
 
 @if (empty($recommended))
    
