@@ -264,7 +264,7 @@ Auth::routes();
 
 Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 
-
+Route::get('/test', [OrderController::class, 'test'])->name('test');
 
 
 ////////////////////////////////////////

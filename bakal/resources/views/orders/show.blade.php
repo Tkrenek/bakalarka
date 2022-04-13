@@ -143,14 +143,25 @@
       
    </table>
 
-  <h5>Celková cena: {{ $orderSum }} Kč</h5> 
+  <h5  class="float-right">Celková cena: {{ $orderSum }} Kč</h5> 
 
+@php
+   $pole = array()
+@endphp
 @if (empty($recommended))
    
 @else
 <h3>Často nakupované položky s vaším zbožím:</h3>
    @foreach ($recommended as $one)
+      @if (in_array($one[0], $pole))
+         
+      @else 
       {{ $one[0] }}
+      @endif
+      
+      @php
+         array_push($pole, $one[0])
+      @endphp
    
    @endforeach
 @endif

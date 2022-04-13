@@ -349,7 +349,7 @@
 
     @auth('customer')
     <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
-        <!--<ul class="navbar-nav ml-auto">-->
+        
         <ul class="navbar-nav ">
       <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -371,7 +371,7 @@
     @endauth
     
     @auth('admin')
-    
+    <nav class=" navbar navbar-expand navbar-white navbar-light ml-auto">
      
         <ul class="navbar-nav ">
       <li class="nav-item dropdown ">

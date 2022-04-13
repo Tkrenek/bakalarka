@@ -15,8 +15,20 @@ use Phpml\Association\Apriori;
 use DB;
 
 class OrderController extends Controller
-{
-   
+{ 
+    public function test()
+    {
+        $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'theta']];
+        $labels  = [];
+       
+        $associator = new Apriori($support = 0.6, $confidence = 0.5);
+
+        $associator->train($samples, $labels);
+        dd($associator->predict(['alpha', 'beta']));
+        
+    }
+    
+
     public function store()
     {
        
@@ -115,7 +127,6 @@ class OrderController extends Controller
            return  Carbon::parse($data->created_at)->format('M');
         });
 
-
   
         $orders = Order::orderBy('term', 'ASC')->get();
         
@@ -125,10 +136,8 @@ class OrderController extends Controller
            
             
         ]);
+
     }
-
-
-
 
     public function getFrequented()
     {
@@ -181,9 +190,9 @@ class OrderController extends Controller
     {
         $samples = self::getFrequented();
         
-    
+        
         $labels = [];
-        $associator = new Apriori($support = 0.5, $confidence = 1);
+        $associator = new Apriori($support = 0.6, $confidence = 0.5);
         $associator->train($samples, $labels);
 
         $arrayOfThisItems = array();
@@ -206,6 +215,9 @@ class OrderController extends Controller
             $recommendedItems = $associator->predict($arrayOfThisItems);
         }
 
+  
+   
+        
         return $recommendedItems;
     }
 
