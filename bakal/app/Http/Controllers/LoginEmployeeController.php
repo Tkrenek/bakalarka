@@ -13,6 +13,16 @@ class LoginEmployeeController extends Controller
 {
     public function index()
     {
+        if(auth('customer')->user()){
+            Auth::guard('customer')->logout();
+     
+        } else if (auth('admin')->user()){
+            Auth::guard('admin')->logout();
+    
+        } else if(auth('employee')->user()){
+            Auth::guard('employee')->logout();
+
+        } 
         return view('employees.login');
     }
 

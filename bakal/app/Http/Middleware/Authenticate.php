@@ -19,11 +19,13 @@ class Authenticate extends Middleware
             if(auth('customer')->user()){
                 Auth::guard('customer')->logout();
                 return route('start');
-            } else if (auth('admin')->user()){
+        } else if (auth('admin')->user()){
                 Auth::guard('admin')->logout();
                 return route('start');
             } else if(auth('employee')->user()){
                 Auth::guard('employee')->logout();
+                return route('start');
+            } else {
                 return route('start');
             }
                 

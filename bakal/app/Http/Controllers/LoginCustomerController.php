@@ -14,13 +14,24 @@ class LoginCustomerController extends Controller
 {
     public function index()
     {
+        if(auth('customer')->user()){
+            Auth::guard('customer')->logout();
+     
+        } else if (auth('admin')->user()){
+            Auth::guard('admin')->logout();
+    
+        } else if(auth('employee')->user()){
+            Auth::guard('employee')->logout();
+
+        } 
+
         return view('customers.login');
     }
 
     public function login(Request $request)
     {
+
         
- 
         $credentials = $request->only('login', 'password');
  
         if (Auth::guard('customer')->attempt($credentials)) {

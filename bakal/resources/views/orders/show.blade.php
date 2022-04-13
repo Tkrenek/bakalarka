@@ -21,7 +21,7 @@
    @auth('customer')
       <a class="btn btn-outline-secondary float-right mb-4" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
-   @auth()
+   @auth('admin')
       <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
 

@@ -32,6 +32,7 @@ use App\Http\Controllers\StatsController;
 use Spatie\GoogleCalendar\Event;
 use Phpml\Association\Apriori;
 
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,13 +46,31 @@ use Phpml\Association\Apriori;
 */
 
 Route::get('/', function () {
-    return view('customers.login');
+    
+    if(auth('admin')->user()) {
+        
+        return view('admins/success');
+    } else if(auth('employee')->user()) {
+        
+        return view('employees/welcome');
+    } else if(auth('customer')->user()) {
+        
+        return view('customers/welcome');
+    }else {
+        return view('customers.login');
+    }
+    
 })->name('start');
 
 
 
 
 Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
+
+    Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
+Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
+
     Route::get('/customers/index', [RegisterCustomerController::class, 'index'])->name('customers.index');
     Route::delete('/customers/{id}', [RegisterCustomerController::class, 'destroy'])->name('customers.destroy');
 
@@ -219,8 +238,14 @@ Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
     })->name('orders.downloadInvoice');
 });
 
-Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
-Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
+Route::group(['middleware' => 'guest'], function () {
+    
+    
+
+    
+});
+
+
 
 Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
 Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
@@ -232,17 +257,14 @@ Route::post('/employees/login', [LoginEmployeeController::class, 'login'])->name
 
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');
-Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
 
-
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 ////////////////////////////////////////

@@ -20,8 +20,6 @@ class OrderController extends Controller
     public function store()
     {
        
-        
-        
         Order::create([
             'state' => 'vytvořeno',
             'term' => Carbon::now()->add(1, 'week'),
@@ -144,20 +142,6 @@ class OrderController extends Controller
             return $pole;
         }
 
-        /*
-        array_push($polesmall, 1);
-        array_push($polesmall, 23);
-
-        array_push($pole, $polesmall);
-
-        $polesmall = array();
-
-        array_push($polesmall, 0);
-        array_push($polesmall, 5);
-
-        array_push($pole, $polesmall);
-
-        dd($pole);*/
        $first = $allItems[0]->order_id;
         $lastItem = Item::get()->last();
        
@@ -183,11 +167,8 @@ class OrderController extends Controller
                     } else {
                         array_push($polesmall, $oneItem->productOriginal->code);
                     }
-                    
                 }
-                
             }
-
      
         return $pole;
         
@@ -196,21 +177,13 @@ class OrderController extends Controller
        //dd($associator->apriori());
     }
 
-    public function show($id)
+    public function calculateApriori(Order $order)
     {
-        $order = Order::find($id);
-
-        $items = $order->item;
-
-        $allItems = Item::get();
-     
-
         $samples = self::getFrequented();
         
     
         $labels = [];
         $associator = new Apriori($support = 0.5, $confidence = 1);
-      //  $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta']];
         $associator->train($samples, $labels);
 
         $arrayOfThisItems = array();
@@ -225,14 +198,28 @@ class OrderController extends Controller
             
         }
 
-       // dd($arrayOfThisItems);
-       // dd($arrayOfThisItems);
+      
        $recommendedItems = array();
        if (empty($arrayOfThisItems)) {
        
         } else {
             $recommendedItems = $associator->predict($arrayOfThisItems);
         }
+
+        return $recommendedItems;
+    }
+
+    public function show($id)
+    {
+        $order = Order::find($id);
+
+        $items = $order->item;
+
+        $allItems = Item::get();
+     
+        $recommendedItems = array();
+        $recommendedItems = self::calculateApriori($order);
+
         
       
        //dd($associator->apriori());
@@ -256,10 +243,6 @@ class OrderController extends Controller
         $event->delete();
 
         $orders = Order::get();
-
-        
-
-   
 
         return view('orders.index', [
             'orders' => $orders,
@@ -318,7 +301,7 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
-               // 'addAttendee' => ['email' => 'kreny48@gmail.com']
+               
              ]);
              return view('orders.index', [
                 'orders' => $orders,
@@ -434,7 +417,7 @@ class OrderController extends Controller
         
             $input['invoice'] = $invoice_name;
         } else {
-            dd('ne');
+            return back();
         }
         
         $order = Order::find($orderId);
