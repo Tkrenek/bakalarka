@@ -68,8 +68,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
 
-    Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
-Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
+    
 
     Route::get('/customers/index', [RegisterCustomerController::class, 'index'])->name('customers.index');
     Route::delete('/customers/{id}', [RegisterCustomerController::class, 'destroy'])->name('customers.destroy');
@@ -89,8 +88,7 @@ Route::post('/employees/{id}/update_passwordAdmin', [RegisterEmployeeController:
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 
-Route::get('/admins/index', [RegisterAdminController::class, 'index'])->name('admins.index');
-Route::post('/admins/store', [RegisterAdminController::class, 'store'])->name('admins.store');
+
 Route::get('/admins/{id}/edit', [RegisterAdminController::class, 'edit'])->name('admins.edit');
 Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->name('admins.update');
 
@@ -171,6 +169,8 @@ Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.st
 });
 
 Route::group(['middleware' => 'auth:customer,admin'], function () {
+    
+
     Route::get('/customers/{id}/edit', [RegisterCustomerController::class, 'edit'])->name('customers.edit');
 Route::put('/customers/{id}/update', [RegisterCustomerController::class, 'update'])->name('customers.update');
 
@@ -245,7 +245,8 @@ Route::group(['middleware' => 'guest'], function () {
     
 });
 
-
+Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
+Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
 
 Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
 Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
@@ -265,6 +266,9 @@ Auth::routes();
 Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 
 Route::get('/test', [OrderController::class, 'test'])->name('test');
+
+Route::get('/admins/index', [RegisterAdminController::class, 'index'])->name('admins.index');
+Route::post('/admins/store', [RegisterAdminController::class, 'store'])->name('admins.store');
 
 
 ////////////////////////////////////////

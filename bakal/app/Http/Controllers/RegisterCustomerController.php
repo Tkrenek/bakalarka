@@ -27,13 +27,15 @@ class RegisterCustomerController extends Controller
     public function store(Request $request)
     {
 
+        
     $this->validate($request, [
+
             'name' => 'required|unique:customers',
             'town' =>'required',
             'address' => 'required|unique:customers',
             'login' => 'required|unique:customers',
             'password' => 'required|confirmed',
-            'url' =>'unique:customers',
+            
 
         ]);
 
@@ -59,9 +61,6 @@ class RegisterCustomerController extends Controller
             return back()->with('error', 'Zadán chybný login nebo heslo.');
         }
 
-        
-
-        
     }
 
     public function edit($id)
@@ -90,10 +89,8 @@ class RegisterCustomerController extends Controller
         $customer->name = $request->name;
         $customer->address = $request->address;
         $customer->town = $request->town;
-
         $customer->login = $request->login;
         $customer->url = $request->url;        
- 
 
         $customer->save();
 
@@ -103,12 +100,7 @@ class RegisterCustomerController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $customer = Customer::find($id);

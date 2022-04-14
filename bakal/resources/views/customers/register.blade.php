@@ -64,7 +64,7 @@
                     <div class="invalid-feedback">
                         @error('login')
 
-                            Musíte zadat login.
+                            Musíte zadat login, který není obsazen.
             
                         @enderror
                     </div>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                     
-                    <label for="url" class="form-label">URL</label>
+                    <label for="url" class="form-label">URL(nepovinné)</label>
                     <input type="text" value="{{ old('url') }}" id="url" name="url" class="form-control @error('url') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('url')

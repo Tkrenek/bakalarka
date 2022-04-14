@@ -31,7 +31,7 @@ class RegisterEmployeeController extends Controller
     $this->validate($request, [
            'name' => 'required',
             'surname' =>'required',
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|unique:employees',
             'email' => 'required|email|unique:employees',
             'password' => 'required|confirmed',
             'function' =>'required',

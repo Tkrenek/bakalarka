@@ -90,8 +90,13 @@
                     <input type="text" id="email" placeholder="jmeno@domena.cz" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror">
                     <div class="invalid-feedback">
                         @error('email')
+                            @if($message == "The email has already been taken.")
+                                Tento email už je obsazen.
+                            @else
+                                Musíte zadat e-mail ve správném formátu.
+                            @endif
 
-                            Musíte zadat e-mail ve správném formátu.
+                            
             
                         @enderror
                     </div>
@@ -103,7 +108,7 @@
                     <div class="invalid-feedback">
                         @error('phone')
 
-                            Musíte zadat telefonní číslo.
+                            Musíte zadat telefonní číslo, které není obsazené.
             
                         @enderror
                     </div>

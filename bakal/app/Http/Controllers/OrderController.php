@@ -31,8 +31,9 @@ class OrderController extends Controller
 
     public function store()
     {
-       
-        Order::create([
+        
+        
+        $newOrder = Order::create([
             'state' => 'vytvořeno',
             'term' => Carbon::now()->add(1, 'week'),
             'customer_id' => auth('customer')->user()->id,
@@ -40,25 +41,30 @@ class OrderController extends Controller
 
         ]);
 
-        $orders = Order::get();
-        $lastId = Order::get()->last()->id+1;
    
             
-        Event::create([
-            'id' => 'eventid'.$lastId,
-            'name' => 'Číslo objednávky: '.$lastId,
-            'startDate' => Carbon::now()->add(1, 'week'),
-            'endDate' => Carbon::now()->add(1, 'week'),
-            ]);
-            return redirect()->route('orders.index');
-/*
-            return view('orders.index', [
-            'orders' => $orders,
-                    
-            ]);
-  */      
+        try {
+            Event::create([
+                'id' => 'eventid'.$newOrder->id,
+                'name' => 'Číslo objednávky: '.$newOrder->id,
+                'startDate' => Carbon::now()->add(1, 'week'),
+                'endDate' => Carbon::now()->add(1, 'week'),
+                ]);
+          } catch (\Google_Service_Exception $e) {
+            $ev = Event::find('eventid'.$newOrder->id);
+
+            $ev->startDate = Carbon::now()->add(1, 'week');
+            $ev->endDate = Carbon::now()->add(1, 'week');
+            $ev->status = "confirmed";
+            $ev->addAttendee(['email' => 'krenekzakaznik@gmail.com']);
+            $ev->save();
+           
+        }
+             
 
 
+
+            $orders = Order::get();
         if(auth('customer')->user()) {
             $customer = Customer::find(auth('customer')->user()->id);
        
@@ -77,6 +83,9 @@ class OrderController extends Controller
     {
 
         $customer = Customer::find($id);
+      
+        $events = Event::get();
+
       
         
         
@@ -114,6 +123,8 @@ class OrderController extends Controller
 
         $orders = Order::get();
         $events = Event::get();
+
+        
 
         /*foreach($orders as $order) {
             $order->delete();
@@ -216,8 +227,6 @@ class OrderController extends Controller
         }
 
   
-   
-        
         return $recommendedItems;
     }
 
@@ -250,9 +259,14 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->delete();
 
+        $events = Event::get();
+        
+    
 
         $event = Event::find('eventid'.$order->id);
         $event->delete();
+
+        
 
         $orders = Order::get();
 
@@ -384,35 +398,38 @@ class OrderController extends Controller
 
     public function storeAdmin($subId)
     {
-        Order::create([
+        $newOrder = Order::create([
             'state' => 'založeno',
-            
             'term' => Carbon::now()->add(1, 'week'),
             'customer_id' => $subId,
             'invoice' => 'bude doplněno'
         ]);
-
-
-    $orders = Order::get();
-    $lastId = Order::get()->last()->id+1;
-    
         
+        
+        try {
             Event::create([
-                'id' => 'eventid'.$lastId,
+                'id' => 'eventid'.$newOrder,
                 'description' => 'založeno',
-                'name' => 'Číslo objednávky: '.$lastId,
+                'name' => 'Číslo objednávky: '.$newOrder,
                 'description' => 'založeno',
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
+                
                 //'addAttendee' => ['email' => 'kreny48@gmail.com']
              ]);
-
-             
-             return redirect()->route('orders.index');
+        } catch (\Google_Service_Exception $e) {
+            $ev = Event::find('eventid'.$newOrder->id);
+            $ev->status = "confirmed";
+            $ev->startDate = Carbon::now()->add(1, 'week');
+            $ev->endDate = Carbon::now()->add(1, 'week');
+            $ev->save();
+        
+        }
         
         
+        
 
-    return redirect()->route('orders.index');
+        return redirect()->route('orders.index');
 
 
         
