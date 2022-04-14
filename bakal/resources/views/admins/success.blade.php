@@ -7,10 +7,16 @@
 @endphp
 
 
-<h1 class="display-2 text-center">Jste přihlášen jako správce</h1>
+<h3 class="display-3 text-center mb-5">Jste přihlášen jako správce</h3>
 
-<h3 class="display-4 text-center">{{ auth('admin')->user()->name }} {{ auth('admin')->user()->surname }}</h3>
-<h3 class="display-4 text-center">{{ auth('admin')->user()->email }}</h3>
-<h3 class="display-4 text-center">{{ auth('admin')->user()->phone }}</h3>
+<div class="text-center">
+    Jméno a příjmení: {{ auth('admin')->user()->name }} {{ auth('admin')->user()->surname }} <br />
+        Telefon: {{ auth('admin')->user()->phone }}<br />
+        Email: {{ auth('admin')->user()->email }}
+</div>
+
+        
+      
+
 
 @endsection

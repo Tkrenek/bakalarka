@@ -29,9 +29,16 @@ class MixingProductController extends Controller
         ]);
 
         $original = Product_original::where('code', $request->code)->first();
+
+        $test = Mixing_product::where('product_mixed_id', $mixedId)->where('product_original_id', $original->id);
+        
        // $mixed = Product_mixed::where('code', $request->mixed)->first();
 
-
+       if($test->first()) {
+            return back()->with('error', 'Tato položka již v receptu je');
+       }
+        
+      
         Mixing_product::create([
             'product_original_id' => $original->id,
             'product_mixed_id' => $mixedId,
@@ -51,10 +58,10 @@ class MixingProductController extends Controller
 
     public function show($mixedId)
     {
-
+        
         $mixedProduct = Product_mixed::find($mixedId);
         $originals = Product_original::get();
-
+        
         return view('mixingProduct.show', [
             'mixedProduct' => $mixedProduct,
             'originals' => $originals

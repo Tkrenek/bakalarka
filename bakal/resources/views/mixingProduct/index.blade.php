@@ -18,7 +18,10 @@
       <tbody>
            
                 @foreach ($mixeds as $mixed)
-                <tr>
+                @if ($mixed->id == 1)
+                  
+                @else
+                  <tr>
                     <td>    
 
                     {{ $mixed->code }}
@@ -32,6 +35,8 @@
                         @endforeach
                     </td>
                 </tr>    
+                @endif
+                
                 @endforeach
 
         

@@ -4,7 +4,7 @@
   
 
         
-<a href="{{ route('productOriginal.index')}}">Zpět na seznam produktů</a>
+<a href="{{ route('product.index')}}" class="btn btn-secondary float-right">Zpět na seznam produktů</a>
    
    <h1>Kód produktu : {{ $mixedProduct->code }}</h1>
    
@@ -19,9 +19,22 @@
                     
                     <select name="code" id="code" class="form-control custom-select @error('code') is-invalid @enderror">
                         @foreach ($originals as  $original)
-                            <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option>
+                            @if($original->id == 1) 
+                                
+                            @else
+                                <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option>
+                            @endif
+                            
                         @endforeach
                     </select>
+                    @if ($message = Session::get('error'))
+                        <div>
+                            <strong>{{ $message }}  </strong>   
+                        </div>    
+                        
+                        
+                    @endif
+                    
               </div>
           
             @error('code')
