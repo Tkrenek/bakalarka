@@ -16,17 +16,14 @@
         <div class="form-group">
             <div class="col-lg-2">
                 <label for="code">Kód produktu</label>
-                    
-                    <select name="code" id="code" class="form-control custom-select @error('code') is-invalid @enderror">
-                        @foreach ($originals as  $original)
-                            @if($original->id == 1) 
-                                
-                            @else
-                                <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option>
-                            @endif
-                            
-                        @endforeach
-                    </select>
+                <input type="text" id="code" name="code" class="form-control" >
+                
+                    @error('code')
+
+                        <strong>Musíte zadat kód produktu.</strong>
+        
+                    @enderror
+               
                     @if ($message = Session::get('error'))
                         <div>
                             <strong>{{ $message }}  </strong>   
@@ -37,13 +34,8 @@
                     
               </div>
           
-            @error('code')
-
-              Musíte zadat kód produktu.
-  
-            @enderror
           </div>
-        <button type="submit" class="btn btn-secondary">Přidat</button>
+        <button type="submit" class="btn btn-secondary ml-3">Přidat</button>
     </form>
     <h3>Přísady:</h3>
   

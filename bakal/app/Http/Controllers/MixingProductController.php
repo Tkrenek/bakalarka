@@ -28,7 +28,12 @@ class MixingProductController extends Controller
                         
         ]);
 
+
+
         $original = Product_original::where('code', $request->code)->first();
+        if(!$original) {
+            return back()->with('error', 'Tento produkt neexistuje');
+        }
 
         $test = Mixing_product::where('product_mixed_id', $mixedId)->where('product_original_id', $original->id);
         
