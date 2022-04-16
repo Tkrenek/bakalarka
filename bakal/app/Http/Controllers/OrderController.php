@@ -56,7 +56,7 @@ class OrderController extends Controller
             $ev->startDate = Carbon::now()->add(1, 'week');
             $ev->endDate = Carbon::now()->add(1, 'week');
             $ev->status = "confirmed";
-            $ev->addAttendee(['email' => 'krenekzakaznik@gmail.com']);
+            
             $ev->save();
            
         }
@@ -150,7 +150,7 @@ class OrderController extends Controller
 
     }
 
-    public function getFrequented()
+    public function getProductsByOrder()
     {
         $pole = array();
 
@@ -199,31 +199,29 @@ class OrderController extends Controller
 
     public function calculateApriori(Order $order)
     {
-        $samples = self::getFrequented();
-        
+        $samples = self::getProductsByOrder();
         
         $labels = [];
         $associator = new Apriori($support = 0.6, $confidence = 0.5);
         $associator->train($samples, $labels);
 
-        $arrayOfThisItems = array();
+        $itemsInOrder = array();
 
         foreach($order->item as $one) {
             if($one->is_mixed == "ano") {
          
-                array_push($arrayOfThisItems, $one->productMixed->code);
+                array_push($itemsInOrder, $one->productMixed->code);
             } else {
-                array_push($arrayOfThisItems, $one->productOriginal->code);
+                array_push($itemsInOrder, $one->productOriginal->code);
             }
             
         }
-
       
        $recommendedItems = array();
-       if (empty($arrayOfThisItems)) {
+       if (empty($itemsInOrder)) {
        
         } else {
-            $recommendedItems = $associator->predict($arrayOfThisItems);
+            $recommendedItems = $associator->predict($itemsInOrder);
         }
 
   
@@ -370,7 +368,7 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$orderId,
                 'startDate' => Carbon::createFromDate($request->term),
                 'endDate' => Carbon::createFromDate($request->term),
-                //'addAttendee' => ['email' => 'kreny48@gmail.com']
+               
              ]);
              return back();
           }
@@ -415,7 +413,7 @@ class OrderController extends Controller
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
                 
-                //'addAttendee' => ['email' => 'kreny48@gmail.com']
+            
              ]);
         } catch (\Google_Service_Exception $e) {
             $ev = Event::find('eventid'.$newOrder->id);

@@ -24,6 +24,18 @@ class CreateAdminsTable extends Migration
             $table->timestamps();
             $table->rememberToken();
         });
+
+        DB::table('admins')->insert(
+            array(
+                'name' => 'Tomáš',
+                'surname' => 'Křenek',
+                'phone' => '156458754',
+                'email' => 'admin@admin.cz',
+                'password' => Hash::make('admin'),
+
+                'birth_date' => '1999-03-03',
+            )
+        );
     }
 
     /**

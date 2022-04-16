@@ -2,7 +2,7 @@
 
 @section('content')
   
-<div class="justify-content-center d-flex p-5"><h1 class="display-1">Informační systém Colorex</h1></div>
+<div class="justify-content-center d-flex p-5"><h1 class="display-1">Informační systém Coloral</h1></div>
 <div class="justify-content-center d-flex p-1">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
 
 <div class="container">
@@ -71,4 +71,5 @@
 </div>
 Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.
 
+</div></div></div>
 @endsection

@@ -105,7 +105,7 @@ Route::get('/contact/index', [ContactPersonController::class, 'index'])->name('c
  
 
 
-Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
+Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
 
 Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
 

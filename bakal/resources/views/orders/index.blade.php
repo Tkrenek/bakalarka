@@ -106,6 +106,9 @@
            </td>
            @auth('admin')
            <td>
+             @if($order->invoice != "bude doplněno")
+              <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
+             @endif
             <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
@@ -118,6 +121,9 @@
            @endauth
            @auth('employee')
            <td>
+            @if($order->invoice != "bude doplněno")
+            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
+           @endif
             <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">

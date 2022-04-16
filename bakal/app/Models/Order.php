@@ -24,6 +24,7 @@ class Order extends Model
         'invoice',
     ];
 
+  
 
     public static $frequented = array();
 

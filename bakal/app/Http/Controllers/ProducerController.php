@@ -8,9 +8,9 @@ use App\Models\Producer;
 
 class ProducerController extends Controller
 {
-    public function index()
+    public function create()
     {
-        return view('producers.index');
+        return view('producers.create');
     }
 
     public function store(Request $request)
@@ -19,7 +19,8 @@ class ProducerController extends Controller
             'name' => 'required|unique:producers',
             'phone' => 'required|numeric|unique:producers',
             'email' => 'required|email|unique:producers',
-            'address' =>'required|unique:producers',
+            'address' =>'required',
+            'town' => 'required'
             
         ]);
         
@@ -28,7 +29,8 @@ class ProducerController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'address' =>'required|unique:producers',
+            'address' => $request->address,
+            'town' => $request->town,
 
 
         ]);

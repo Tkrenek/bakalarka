@@ -22,7 +22,19 @@ class CreateProductOriginalsTable extends Migration
             $table->integer('prize');
             $table->foreignId('producer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            
         });
+        DB::table('product_originals')->insert(
+            array(
+                'name' => 'default_original',
+                'branch' => 'default',
+                'code' => 'O-default',
+                'prize' => 1,
+                'on_store' => 1,
+                'producer_id' => 1,
+            )
+        );
     }
 
     /**

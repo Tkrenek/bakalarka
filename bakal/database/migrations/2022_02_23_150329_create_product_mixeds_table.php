@@ -22,6 +22,16 @@ class CreateProductMixedsTable extends Migration
             $table->integer('on_store')->default(0);
             $table->timestamps();
         });
+
+        DB::table('product_mixeds')->insert(
+            array(
+                'name' => 'default',
+                'code' => 'M-default',
+                'branch' => 1,
+                'prize' => 1,
+                'on_store' => 1
+            )
+        );
     }
 
     /**

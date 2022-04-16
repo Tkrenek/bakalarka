@@ -7,7 +7,7 @@
 @endphp
 
 
-<h1>Úspěšně přihlášen do systému jako zaměstnanec</h1>
+<h1 class="text-center display-2">Úspěšně přihlášen do systému jako zaměstnanec</h1>
 
 
 

@@ -16,11 +16,24 @@ class CreateProducersTable extends Migration
         Schema::create('producers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address');
+            
             $table->string('email');
             $table->string('phone');
+            $table->string('address');
+            $table->string('town');
             $table->timestamps();
+
+           
         });
+        DB::table('producers')->insert(
+            array(
+                'name' => 'default',
+                'phone' => '999999999',
+                'email' => 'email@email.cz',
+                'address' => 'default',
+                'town' => 'default',
+            )
+        );
     }
 
     /**

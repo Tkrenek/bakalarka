@@ -54,6 +54,18 @@
                     </div>
                 </div>
 
+                <div class="form-group ">
+                    
+                    <label for="address">Město</label>
+                    <input type="text" id="town" name="town" class="form-control @error('town') is-invalid @enderror">
+                    <div class="invalid-feedback">
+                        @error('town')
+
+                            Musíte zadat město, kde dodavatel sídlí.
+            
+                        @enderror
+                    </div>
+                </div>
              
                 <div class="form-group ">
                     
@@ -67,6 +79,8 @@
                         @enderror
                     </div>
                 </div>
+
+                
                         
                     
         

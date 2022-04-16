@@ -16,6 +16,7 @@ class Producer extends Model
         'phone',
         'email',
         'address',
+        'town'
     ];
 
     public function productOriginal()
