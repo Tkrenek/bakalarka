@@ -10,28 +10,49 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
         <script src="{{ asset('chart.js/chart.js') }}"></script>
 
-        <h3 class="display-6 text-center">Nejprodávanější</h3>
-        <div class="row mt-4 mb-4">
-            <h6 class="display-6 text-cener">Podíl míchaných a<br /> originálních produktů</h6>
+
+        <div class="row mt-4 mb-5">
+            
+
+         
+            
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl míchaných a originálních produktů
+                </div>
                 <canvas id="myChart1"></canvas>
             </div>
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Největší zákazníci
+                </div>
                 <canvas id="myChart2"></canvas>
             </div>
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Nejpilnější zaměstnanci
+                </div>
                 <canvas id="myChart3"></canvas>
             </div>
         </div>
-        <h3 class="display-6 text-center mt-4 mb-4">Balení objednávek</h3>
-        <div class="row">
+  
+        <div class="row mb-5 mt-5">
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Nejprodávaněší nádoby
+                </div>
                 <canvas id="myChart4"></canvas>
             </div>
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl kanistrů a plechovek
+                </div>
                 <canvas id="myChart5"></canvas>
             </div>
             <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Nejprodávanější produkty
+                </div>
                 <canvas id="myChart6"></canvas>
             </div>
         </div>
@@ -91,6 +112,7 @@
             @endphp
         @endforeach
 
+        
 <script>
 
 var lbl = JSON.parse('{!! json_encode($label1) !!}');

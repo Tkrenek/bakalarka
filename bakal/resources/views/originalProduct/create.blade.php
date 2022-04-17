@@ -94,7 +94,10 @@
                     
                     <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
                         @foreach ($producers as  $producer)
+                            @if($producer->id != 1) 
                             <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
+                            @endif
+                            
                         @endforeach
                     </select>
 

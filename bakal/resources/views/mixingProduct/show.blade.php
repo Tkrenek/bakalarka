@@ -16,7 +16,13 @@
         <div class="form-group">
             <div class="col-lg-2">
                 <label for="code">Kód produktu</label>
-                <input type="text" id="code" name="code" class="form-control" >
+                <select name="code" id="code" class="form-control custom-select">
+                    @foreach ($originals as  $original)
+                    @if($original->id != 1)
+                        <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option class="form-control @error('department') is-invalid @enderror">
+                    @endif    
+                    @endforeach
+                </select> 
                 
                     @error('code')
 

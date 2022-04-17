@@ -14,17 +14,17 @@
       <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-outline-secondary">Zpět na moje objednávky</a>
    @endauth
    @auth('admin')
-      <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
+      <a href="{{ route('orders.index')}}" class="btn btn-secondary mb-3">Zpět na  objednávky</a>
    @endauth
    @auth('employee')
-      <a href="{{ route('orders.index')}}">Zpět na  objednávky</a>
+      <a href="{{ route('orders.index')}}" class="btn btn-secondary mb-3">Zpět na  objednávky</a>
    @endauth
 
    @auth('customer')
-      <a class="btn btn-outline-secondary float-right mb-4" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+      <a class="btn btn-secondary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
    @auth('admin')
-      <a class="btn btn-outline-secondary" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+      <a class="btn btn-secondary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
 
    <table class="table table-bordered">
