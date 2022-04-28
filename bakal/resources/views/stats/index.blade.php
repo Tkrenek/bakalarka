@@ -201,11 +201,11 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
             var ctx6 = document.getElementById('myChart6').getContext('2d');
             var myChart = new Chart(ctx6, { 
                 
-                type: "pie",
+                type: "bar",
                 data:{
                     labels: lbl,
                     datasets:[{
-                        label: "poměr baleni",
+                        label: "Nejprodávanější produkty",
                         data: dat,
                         backgroundColor: ["#AC3131", "#254AA1", "#669966"],
                     }]

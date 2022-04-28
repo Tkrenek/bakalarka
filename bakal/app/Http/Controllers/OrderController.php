@@ -18,12 +18,26 @@ class OrderController extends Controller
 { 
     public function test()
     {
-        $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'theta']];
-        $labels  = [];
-       
-        $associator = new Apriori($support = 0.6, $confidence = 0.5);
+        $samples = [['alpha'],
+        ['alpha', 'beta', 'gamma'],
+        ['alpha', 'beta', 'theta'],
+        ['alpha', 'beta', 'gamma'],
+        ['alpha', 'beta', 'theta'],
+        ['alpha', 'beta', 'gamma'],
+        ['beta', 'alpha'],
+        ['alpha', 'beta', 'theta'],
+        ['alpha', 'beta', 'gamma'],
+        ];
 
+
+        $labels  = [];
+
+
+
+        $associator = new Apriori($support = 0.2, $confidence = 0.1);
         $associator->train($samples, $labels);
+
+
         dd($associator->predict(['alpha', 'beta']));
         
     }
@@ -201,8 +215,9 @@ class OrderController extends Controller
     {
         $samples = self::getProductsByOrder();
         
+ 
         $labels = [];
-        $associator = new Apriori($support = 0.6, $confidence = 0.5);
+        $associator = new Apriori($support = 0.5, $confidence = 0.5);
         $associator->train($samples, $labels);
 
         $itemsInOrder = array();
@@ -223,7 +238,7 @@ class OrderController extends Controller
         } else {
             $recommendedItems = $associator->predict($itemsInOrder);
         }
-
+        
   
         return $recommendedItems;
     }

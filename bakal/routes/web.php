@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\RegisterCustomerController;
-use App\Http\Controllers\RegisterEmployeeController;
+use App\Http\Controllers\CustomerController;
+
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 
-use App\Http\Controllers\RegisterAdminController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactPersonController;
 
 use App\Http\Controllers\ProducerController;
@@ -70,30 +70,31 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     
 
-    Route::get('/customers/index', [RegisterCustomerController::class, 'index'])->name('customers.index');
-    Route::delete('/customers/{id}', [RegisterCustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
+    Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
-    Route::get('/customers/{id}/change_passwordAdmin', [RegisterCustomerController::class, 'change_passwordAdmin'])->name('customers.change_passwordAdmin');
-    Route::post('/customers/{id}/update_passwordAdmin', [RegisterCustomerController::class, 'update_passwordAdmin'])->name('customers.update_passwordAdmin');
+    Route::get('/customers/{id}/change_passwordAdmin', [CustomerController::class, 'change_passwordAdmin'])->name('customers.change_passwordAdmin');
+    Route::post('/customers/{id}/update_passwordAdmin', [CustomerController::class, 'update_passwordAdmin'])->name('customers.update_passwordAdmin');
 
-    Route::get('/employees/create', [RegisterEmployeeController::class, 'index'])->name('employees.create');
-    Route::post('/employees/store', [RegisterEmployeeController::class, 'store'])->name('employees.store');
+
+    Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+    Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employees.store');
     Route::get('/employees/index', [EmployeeController::class, 'index'])->name('employees.index');
 
     Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
 
-    Route::get('/employees/change_password/{emplId}', [RegisterEmployeeController::class, 'change_passwordAdmin'])->name('employees.change_password.admin');
-Route::post('/employees/{id}/update_passwordAdmin', [RegisterEmployeeController::class, 'update_passwordAdmin'])->name('employees.update_passwordAdmin');
+    Route::get('/employees/change_password/{emplId}', [EmployeeController::class, 'change_passwordAdmin'])->name('employees.change_password.admin');
+Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'update_passwordAdmin'])->name('employees.update_passwordAdmin');
 
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 
 
-Route::get('/admins/{id}/edit', [RegisterAdminController::class, 'edit'])->name('admins.edit');
-Route::post('/admins/{id}/update', [RegisterAdminController::class, 'update'])->name('admins.update');
+Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
+Route::post('/admins/{id}/update', [AdminController::class, 'update'])->name('admins.update');
 
-Route::get('/admins/change_password', [RegisterAdminController::class, 'change_password'])->name('admins.change_password');
-Route::post('/admins/{id}/update_password', [RegisterAdminController::class, 'update_password'])->name('admins.update_password');
+Route::get('/admins/change_password', [AdminController::class, 'change_password'])->name('admins.change_password');
+Route::post('/admins/{id}/update_password', [AdminController::class, 'update_password'])->name('admins.update_password');
 
 Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('admins.success');
 
@@ -145,8 +146,8 @@ Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'sto
 Route::group(['middleware' => 'auth:employee'], function () {
     Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
 Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
-Route::get('/employees/change_password', [RegisterEmployeeController::class, 'change_password'])->name('employees.change_password');
-Route::post('/employees/{id}/update_password', [RegisterEmployeeController::class, 'update_password'])->name('employees.update_password');
+Route::get('/employees/change_password', [EmployeeController::class, 'change_password'])->name('employees.change_password');
+Route::post('/employees/{id}/update_password', [EmployeeController::class, 'update_password'])->name('employees.update_password');
 
 Route::get('/calendar/index', [GoogleCalendarController::class, 'index'])->name('google.index');
 });
@@ -156,8 +157,8 @@ Route::group(['middleware' => 'auth:customer'], function () {
 
     Route::get('/customers/logout', [LoginCustomerController::class, 'logout'])->name('customers.logout');
 
-    Route::get('/customers/change_password', [RegisterCustomerController::class, 'change_password'])->name('customers.change_password');
-Route::post('/customers/{id}/update_password', [RegisterCustomerController::class, 'update_password'])->name('customers.update_password');
+    Route::get('/customers/change_password', [CustomerController::class, 'change_password'])->name('customers.change_password');
+Route::post('/customers/{id}/update_password', [CustomerController::class, 'update_password'])->name('customers.update_password');
 Route::get('/customers/welcome', [LoginCustomerController::class, 'welcome'])->name('customers.welcome');
 
 Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
@@ -171,8 +172,8 @@ Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.st
 Route::group(['middleware' => 'auth:customer,admin'], function () {
     
 
-    Route::get('/customers/{id}/edit', [RegisterCustomerController::class, 'edit'])->name('customers.edit');
-Route::put('/customers/{id}/update', [RegisterCustomerController::class, 'update'])->name('customers.update');
+    Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customers.update');
 
 Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
 Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
@@ -245,8 +246,8 @@ Route::group(['middleware' => 'guest'], function () {
     
 });
 
-Route::get('/customers/create', [RegisterCustomerController::class, 'create'])->name('customers.create');
-Route::post('/customers/store', [RegisterCustomerController::class, 'store'])->name('customers.store');
+Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
+Route::post('/customers/store', [CustomerController::class, 'store'])->name('customers.store');
 
 Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
 Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
@@ -267,8 +268,8 @@ Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 
 Route::get('/test', [OrderController::class, 'test'])->name('test');
 
-Route::get('/admins/index', [RegisterAdminController::class, 'index'])->name('admins.index');
-Route::post('/admins/store', [RegisterAdminController::class, 'store'])->name('admins.store');
+Route::get('/admins/index', [AdminController::class, 'create'])->name('admins.index');
+Route::post('/admins/store', [AdminController::class, 'store'])->name('admins.store');
 
 
 ////////////////////////////////////////

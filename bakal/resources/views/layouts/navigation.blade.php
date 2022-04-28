@@ -395,8 +395,8 @@
 
         <footer class="mt-auto bg-light text-center text-lg-start">
             
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-              © 2022 Tomáš Křenek
+            <div class="text-center p-3" style="background-color: #212529;">
+              <div class="text-white">© 2022 Tomáš Křenek</div> 
               
             </div>
             
