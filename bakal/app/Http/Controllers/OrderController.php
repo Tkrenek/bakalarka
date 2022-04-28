@@ -325,7 +325,7 @@ class OrderController extends Controller
 
         $order->term = $request->term;
         $order->state = $request->state;
-        $order->invoice = 'bude doplněno';
+        
 
         $order->save();
 

@@ -46,19 +46,7 @@
                 </div>
               
 
-                <div class="form-group ">
-                    
-                    <label for="invoice">Faktura objednávky</label>
-                       
-                    <input type="text" value="{{ $order->invoice }}" id="invoice" name="invoice" class="form-control @error('invoice') is-invalid @enderror">
-                    <div class="invalid-feedback">
-                        @error('invoice')
-
-                            Musíte zadat fakturu.
             
-                        @enderror
-                    </div>
-                </div>
 
                 
            

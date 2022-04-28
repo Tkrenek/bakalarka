@@ -141,7 +141,7 @@
               Bude doplněno
 
            @else   
-            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">Stáhnout Fakturu</a>
+            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
            @endif
            
            
