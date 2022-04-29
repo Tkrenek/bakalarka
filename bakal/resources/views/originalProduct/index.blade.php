@@ -1,7 +1,8 @@
 @extends('layouts.navigation')
 
 @section('content')
-  
+<a class="btn btn-secondary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
+<a class="btn btn-secondary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
 
   <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
    <table class="table  mb-5">

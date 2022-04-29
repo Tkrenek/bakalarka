@@ -262,8 +262,6 @@ class OrderController extends Controller
 
         $events = Event::get();
         
-    
-
         $event = Event::find('eventid'.$order->id);
         $event->delete();
 

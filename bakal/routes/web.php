@@ -86,8 +86,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/employees/change_password/{emplId}', [EmployeeController::class, 'changePasswordAdmin'])->name('employees.change_password.admin');
 Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'updatePasswordAdmin'])->name('employees.update_passwordAdmin');
 
+
+Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
+Route::delete('/departments/{id}/destroy', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
 
 Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
@@ -102,8 +105,7 @@ Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAs
 Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
 
 
-Route::get('/contact/index', [ContactPersonController::class, 'index'])->name('contact.index');
- 
+Route::get('/contact/{id}/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
 
 
 Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
@@ -163,7 +165,7 @@ Route::get('/customers/welcome', [LoginCustomerController::class, 'welcome'])->n
 
 Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
 Route::post('/contact/store', [ContactPersonController::class, 'store'])->name('contact.store');
-Route::get('/contact/{subId}/index', [ContactPersonController::class, 'indexSub'])->name('contact.index.sub');
+Route::get('/contact/{subId}/indexSub', [ContactPersonController::class, 'indexSub'])->name('contact.index.sub');
 
 Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
 

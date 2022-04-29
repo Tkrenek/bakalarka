@@ -2,7 +2,8 @@
 
 @section('content')
   
-<h1 class="text-center display-2 mb-5">Zákazníci</h1>
+<h1 class="text-center display-2 mb-5">Seznam zákazníků</h1>
+<a class="btn-secondary btn mb-3" href="{{ route('customers.create')}}" class="p-3">Přidat zákazníka</a>
 <div class="d-flex justify-content-center">
         
    <table class="table table-bordered">
@@ -16,7 +17,9 @@
           <th scope="col">Upravit</th>
           <th scope="col">Změnit heslo</th>
           <th scope="col">Nová objednávka</th>
+          <th scope="col">Kontaktní osoby</th>
           <th scope="col">Nová kontaktní osoba</th>
+
           <th scope="col">Odstranit</th>
         </tr>
       </thead>
@@ -38,6 +41,9 @@
               <button type="submit" class="btn btn-secondary">Vytvořit objednávku</button>
             </form> 
          </td>
+         <td>
+          <a href="{{ route('contact.indexAdmin', $customer->id) }}" type="btn" class="btn btn-secondary">Zobrazit kontakty</a> 
+          </td>
          <td>
           <a href="{{ route('contact.admin.create', $customer->id) }}" type="btn" class="btn btn-secondary">Přidat osobu</a> 
        </td>

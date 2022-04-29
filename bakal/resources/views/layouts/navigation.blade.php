@@ -75,25 +75,17 @@
     
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('customers.create')}}" class="p-3">Vytvořit zákazníka</a>
-    
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admins.index')}}" class="p-3">Registrovat Admina</a>
-    
+                
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('employees.create')}}" class="p-3">Registrovat zaměstnance</a>
-    
-                </li>
-             
+                
                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Zobrazit Zaměstnance</a>
                 </li>
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('departments.index') }}" class="p-3">Přidat oddělení</a>
+                    <a class="nav-link" href="{{ route('departments.index') }}" class="p-3">Seznam oddělení</a>
                 </li>
     
 
@@ -102,26 +94,13 @@
                 </li>
     
             
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Zobrazit kontaktní osoby</a>
-    
-                </li>
+            
     
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('producers.create')}}" class="p-3">Registrace Dodavatele</a>
     
                 </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
-    
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
-    
-                </li>
-     
+                
                 
 
                 <li class="nav-item">
@@ -147,30 +126,18 @@
     
                 </li>
 
-              
-                
-                    
-               
-               
-                
-    
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('mixingProduct.index')}}" class="p-3">Recepty</a>
     
                 </li>
-    
-                
-    
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('orderWork.index')}}" class="p-3">Práce na objednávce</a>
-    
                 </li>
                 @endauth
-
+                
                 @auth('customer')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('containers.index')}}" class="p-3">Seznam nádob</a>
-    
                 </li>
                 
 
@@ -230,9 +197,7 @@
                     <a class="nav-link" href="{{ route('employees.index') }}" class="p-3">Upravit Zaměstnance</a>
                 </li>
     
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('departments.index') }}" class="p-3">Přidat oddělení</a>
-                </li>
+            
     
                 
                 <li class="nav-item">
@@ -248,10 +213,6 @@
     
               
     
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact.index')}}" class="p-3">Přidat kontaktní osobu</a>
-    
-                </li>
     
                
     

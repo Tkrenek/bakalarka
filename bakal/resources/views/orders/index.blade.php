@@ -40,7 +40,7 @@
   
 </div>
 
-   <table class="table table-bordered">
+   <table class="table table-bordered text-center align-middle">
       <thead>
         <tr>
        
@@ -75,7 +75,7 @@
        
         <tr>
            
-          <td><a href="{{  route('orders.show', $order->id) }}">{{ $order->id }}</a></td> 
+          <td><a class="link" href="{{  route('orders.show', $order->id) }}">{{ $order->id }}</a></td> 
           <td>{{ $order->customer->name }}</td> 
           <td>{{ $order->state }}</td>
           <td>{{ Carbon::parse($order->term)->format('d.m. Y')}} </td>
@@ -197,7 +197,7 @@
 @auth('admin')
 
 <td>
-    <a href="{{ route('orders.edit', $order->id) }}">Upravit objednávku(Admin)</a>
+    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-secondary">Upravit objednávku</a>
 </td>
 </td>
 @endauth

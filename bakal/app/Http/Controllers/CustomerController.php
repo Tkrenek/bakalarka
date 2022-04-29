@@ -209,6 +209,7 @@ class CustomerController extends Controller
    
         $customer->password = Hash::make($request->password); // zmena hesla
         $customer->save(); // ulozeni v databazi
+        
         return back()->with('success', 'Heslo úspěšně změněno');
 
     }

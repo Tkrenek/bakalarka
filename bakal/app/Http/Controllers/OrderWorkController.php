@@ -49,7 +49,7 @@ class OrderWorkController extends Controller
 
         
 
-        return back();
+        return redirect()->route('orders.index');
     }
 
     public function storeAsAdmin(Request $request, $emplId)

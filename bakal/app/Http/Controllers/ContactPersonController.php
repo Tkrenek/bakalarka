@@ -112,10 +112,15 @@ class ContactPersonController extends Controller
      * Vraci pohle se vsemi kontaktnimi osobami
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index($id)
     {
+        
         $contacts = ContactPerson::get(); // vsechny kontaktni osoby ulozi do promenne
 
+        $customer = Customer::find($id);
+
+        $contacts = $customer->contact;
+        $contact = ContactPerson::find($id);
         // vraci pohled s promennou, ve ktere jsou vsechny kontaktni osoby
         return view('contact.index', [
             'contacts' => $contacts

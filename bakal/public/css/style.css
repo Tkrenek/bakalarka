@@ -6,3 +6,14 @@
     background-color: rgb(201, 210, 228);
     
 }
+
+
+.link {
+    text-decoration: none;
+    color: grey;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: black;
+}

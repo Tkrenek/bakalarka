@@ -12,9 +12,22 @@ class DepartmentController extends Controller
      * 
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function create()
     {
         return view('departments.create'); // vraci pohled
+    }
+
+
+    public function index()
+    {
+        $departments = Department::get();
+
+        
+        
+        // vraci pohled
+        return view('departments.index', [
+            'departments' => $departments
+        ]);
     }
 
      /**
@@ -33,6 +46,15 @@ class DepartmentController extends Controller
         Department::create([
             'name' => $request->name,
         ]);
+
+        return back();
+    }
+    
+    public function destroy($id)
+    {
+        $deparment = Department::find($id);
+
+        $deparment->delete();
 
         return back();
     }

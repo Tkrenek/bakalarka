@@ -4,7 +4,7 @@
   
 
         
-  <h1>Recepty produktů</h1>
+  <h2 class="text-center display-2 mb-5">Recepty produktů</h2>
    <table class="table">
       <thead>
         <tr>

@@ -1,9 +1,12 @@
 @extends('layouts.navigation')
 
 @section('content')
-  
+
+<h2 class="display-2 text-center">Seznam zaměstnanců</h2>
+
+<a class="btn-secondary btn mb-3" href="{{ route('employees.create')}}" class="p-3">Přidat zaměstnance</a>
 <div class="d-flex justify-content-center">
-        
+  
    <table class="table table-bordered table-hover">
       <thead>
         <tr>

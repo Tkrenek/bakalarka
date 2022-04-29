@@ -4,6 +4,16 @@
   
 
   <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
+  <div class="row">
+    @if ($message = Session::get('error'))
+                        <div class="alert alert-block alert-danger color-danger text-center">
+                            <strong>{{ $message }}  </strong>   
+                        </div>    
+                        
+                        
+                    @endif
+  </div>
+  
    <table class="table mb-5">
       <thead>
         <tr>
@@ -62,11 +72,7 @@
                               
                           
                         </div>
-                        @if (Session::get('error'))
-                                  
-                                  <strong>Na skladě není dost zásob</strong>   
-                               
-                             @endif
+                        
                       </div>
                         <div class="col">
                             <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
@@ -143,11 +149,7 @@
                           
                       
                       </div>
-                      @if (Session::get('error'))
-                              
-                              <strong>Na skladě není dost zásob</strong>   
-                           
-                         @endif
+                     
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>

@@ -6,7 +6,7 @@
   use Carbon\Carbon;
 @endphp
         
-    <h1>Práce na zakázce</h1>
+    <h2 class="text-center display-2">Práce na zakázce</h2>
 
    <table class="table">
       <thead>

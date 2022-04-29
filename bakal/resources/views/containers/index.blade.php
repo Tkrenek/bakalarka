@@ -18,9 +18,7 @@
           <th scope="col">Odstranit</th>
         @endauth
         @auth('employee')
-          <th scope="col">Upravit</th>
           <th scope="col">Naskladnit</th>
-          <th scope="col">Odstranit</th>
         @endauth
         
       </tr>
@@ -37,7 +35,7 @@
         <td>{{ $container->prize }} Kč</td>
  
         @auth('employee')
-        <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+        
         
           <td>
             <form action="{{ route('containers.addStore', $container->id) }}" method="post">
@@ -57,13 +55,7 @@
               <button type="submit" class="btn btn-secondary">Naskladnit</button>
           </form>
           </td>
-          <td>
-            <form action="{{ route('containers.destroy', $container->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-secondary">Smazat</button>
-          </form>
-          </td>
+          
         @endauth
         @auth('admin')
         
@@ -89,7 +81,7 @@
           <form action="{{ route('containers.destroy', $container->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-secondary">Smazat</button>
+            <button type="submit" class="btn btn-danger">Smazat</button>
         </form>
         </td>
         @endauth
