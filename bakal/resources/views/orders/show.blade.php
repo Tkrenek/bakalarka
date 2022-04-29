@@ -156,9 +156,10 @@
       @if (in_array($one[0], $pole))
          
       @else 
-      {{ $one[0] }}
-      @endif
       
+      ({{ $one[0] }})
+      @endif
+     
       @php
          array_push($pole, $one[0])
       @endphp

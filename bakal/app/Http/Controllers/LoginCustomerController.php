@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginCustomerController extends Controller
 {
+    /**
+     * Vraci pohled s formularem pro zakaznika
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
+        // pokud se o tuto akci snazi jiz prihlaseny uzivatel je odhlasen
         if(auth('customer')->user()){
             Auth::guard('customer')->logout();
      
@@ -24,33 +29,44 @@ class LoginCustomerController extends Controller
             Auth::guard('employee')->logout();
 
         } 
-
-        return view('customers.login');
+        return view('customers.login'); // vraceni pohledu
     }
 
+    /**
+     * Prihlasi zakaznika do systemu
+     * @param Illuminate\Http\Request
+     */
     public function login(Request $request)
     {
 
-        
+        // ziskani udaju z formulare
         $credentials = $request->only('login', 'password');
  
+        // overenoi udaju z formulare
         if (Auth::guard('customer')->attempt($credentials)) {
             return view('customers/welcome');
         } else {
-            return back()->with('error', 'Zadán chybný login nebo heslo.');
+            return back()->with('error', 'Zadán chybný login nebo heslo.'); //chybove hlaseni
         }
 
         
     }
 
+    /**
+     * Vraci pohled po prihlaseni zakaznika
+     * @return \Illuminate\View\View
+     */
     public function welcome()
     {
         return view('customers.welcome');
     }
 
+    /**
+     * Slouzi pro odhlaseni zakaznika ze systemu
+     */
     public function logout()
     {
-        Auth::guard('customer')->logout();
+        Auth::guard('customer')->logout(); // odhlaseni
         return redirect('/');
     }
 }

@@ -18,6 +18,13 @@
                         
                         
                     @endif
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block text-center">
+                        <strong >{{ $message }}</strong>   
+                    </div>    
+                    
+                    
+                @endif
                
                 <div class="form-group">
                     
@@ -74,6 +81,7 @@
 
             </div>
         </div>
+    </div>
     </div>
 </div>
 </div>

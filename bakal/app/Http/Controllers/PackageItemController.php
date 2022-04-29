@@ -16,11 +16,11 @@ class PackageItemController extends Controller
 
         $containers = Container::get();
 
-        
+        $item = Item::find($itemid);
 
         return view('packageItem.create', [
             'containers' => $containers,
-            'itemid' => $itemid
+            'item' => $item
         ]);
     }
 

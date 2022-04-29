@@ -73,8 +73,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
     Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
-    Route::get('/customers/{id}/change_passwordAdmin', [CustomerController::class, 'change_passwordAdmin'])->name('customers.change_passwordAdmin');
-    Route::post('/customers/{id}/update_passwordAdmin', [CustomerController::class, 'update_passwordAdmin'])->name('customers.update_passwordAdmin');
+    Route::get('/customers/{id}/change_passwordAdmin', [CustomerController::class, 'changePasswordAdmin'])->name('customers.change_passwordAdmin');
+    Route::post('/customers/{id}/update_passwordAdmin', [CustomerController::class, 'updatePasswordAdmin'])->name('customers.update_passwordAdmin');
 
 
     Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
@@ -83,8 +83,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
 
-    Route::get('/employees/change_password/{emplId}', [EmployeeController::class, 'change_passwordAdmin'])->name('employees.change_password.admin');
-Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'update_passwordAdmin'])->name('employees.update_passwordAdmin');
+    Route::get('/employees/change_password/{emplId}', [EmployeeController::class, 'changePasswordAdmin'])->name('employees.change_password.admin');
+Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'updatePasswordAdmin'])->name('employees.update_passwordAdmin');
 
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
@@ -146,8 +146,8 @@ Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'sto
 Route::group(['middleware' => 'auth:employee'], function () {
     Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
 Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
-Route::get('/employees/change_password', [EmployeeController::class, 'change_password'])->name('employees.change_password');
-Route::post('/employees/{id}/update_password', [EmployeeController::class, 'update_password'])->name('employees.update_password');
+Route::get('/employees/change_password', [EmployeeController::class, 'changePassword'])->name('employees.change_password');
+Route::post('/employees/{id}/update_password', [EmployeeController::class, 'updatePassword'])->name('employees.update_password');
 
 Route::get('/calendar/index', [GoogleCalendarController::class, 'index'])->name('google.index');
 });

@@ -13,7 +13,7 @@
     <form action="{{ route('mixingProduct.store') }}" method="POST">
         @csrf
 
-
+{{-- This comment will not be present in the rendered HTML --}}
                 <div class="form-group ">
                                     
                     <label for="mixed">Míchaný produkt</label>

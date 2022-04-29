@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class ContactPersonController extends Controller
 {
     /**
-     * Funkce, která vrátí pohled obsahující formulář
-     * pro přidání kontaktní osoby
-     * 
-     */
+     * Vraci formular pro vytvvni kontaktni osoby
+     * @return \Illuminate\View\View
+     */ 
     public function create()
     {
         $customers = Customer::get();  // uložení všech zákazníků do proměnné
@@ -27,29 +26,31 @@ class ContactPersonController extends Controller
     }
 
     /**
-     * Funkce pro vytvořní kontaktní osoby,
-     * pokud je přihlášen d systému admin
+     * Vraci pohled s formularem pro vytvoreni kontaktni osoby
+     * pro zakaznika z role admina
      * 
-     * $subId  Parametr určující id zákazníka,
-     * ke kterému bude kontaktní osoba přiřazena
-     */
-    public function createAsAdmin($subId)
+     * @return \Illuminate\View\View
+     */ 
+    public function createAsAdmin($customerId)
     {
-        $customer = Customer::find($subId); // Nalezení zákazníka podle ID
+        $customer = Customer::find($customerId); // Vyhledani zákazníka podle ID
 
-        return view('contact.create', [
+        return view('contact.create', [  // vraci pohled se zakaznikem
             'customer' => $customer
         ]);
         
     }
 
     /**
-     * Funkce pro uchování záznamu o kontaktní osobě
-     */
+     * 
+     * Ulozi udaje o kontaktni osobe do databaze
+     * 
+     * @param Illuminate\Http\Request
+     */ 
     public function store(Request $request)
     {
-    
-        $this->validate($request, [ // validace zadaných údajů ve formuláři
+        // validace zadaných údajů ve formuláři
+        $this->validate($request, [ 
             'name' => 'required',
             'surname' =>'required',
             'phone' => 'required|numeric',
@@ -73,10 +74,17 @@ class ContactPersonController extends Controller
             
     }
 
+    /**
+     * Ulozi udaje o kontaktni osobe do databaze
+     * z role admina
+     * 
+     * @param Illuminate\Http\Request
+     */ 
     public function storeAsAdmin(Request $request, $subId)
     {
     
-    $this->validate($request, [
+        // overeni udaju z formulare
+        $this->validate($request, [
             'name' => 'required',
             'surname' =>'required',
             'phone' => 'required|numeric',
@@ -86,35 +94,45 @@ class ContactPersonController extends Controller
         ]);
 
 
-            ContactPerson::create([
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'phone' => $request->phone,
-                'email' => $request->email,
-    
-                'birth_date' => $request->birth_date,
-                
-                
-                'customer_id' => $subId,
-    
-            ]);
+        // vytvoreni nove kontaktni osoby
+        ContactPerson::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'birth_date' => $request->birth_date,
+            'customer_id' => $subId,
+        ]);
         
-            return redirect()->route('contact.index');
+        return redirect()->route('contact.index'); // presmerovani
     }
 
 
+    /**
+     * Vraci pohle se vsemi kontaktnimi osobami
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        $contacts = ContactPerson::get();
+        $contacts = ContactPerson::get(); // vsechny kontaktni osoby ulozi do promenne
 
+        // vraci pohled s promennou, ve ktere jsou vsechny kontaktni osoby
         return view('contact.index', [
             'contacts' => $contacts
         ]);
     }
 
+
+    /**
+     * Vraci pohle s formularem pro upravu kontaktni osoby
+     * @return \Illuminate\View\View
+     */
     public function edit($id)
     {
-        $contact = ContactPerson::where('id', $id)->first();
+
+        $contact = ContactPerson::where('id', $id)->first(); // vyhledani kontaktni osoby podle ID
+
+        // pohled s touto kntaktni osobou
         return view('contact.update', [
             'contact' => $contact
         ]);
@@ -122,57 +140,67 @@ class ContactPersonController extends Controller
 
     }
 
-
+    /**
+     * Upravi udaje o kontaktni osobe v databazi
+     * 
+     * @param Illuminate\Http\Request
+     */ 
     public function update(Request $request, $id)
     {
-    
    
-    $this->validate($request, [
+        // overi zadane udaje z formulare
+        $this->validate($request, [
             'name' => 'required',
             'surname' =>'required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
-            
             'birth_date' =>'required|date',
         ]);
 
-    
+        $contact = ContactPerson::find($id); // vyhleda osobu podle ID
 
-        $contact = ContactPerson::find($id);
-
+        // Upravi se udaje
         $contact->name = $request->name;
         $contact->surname = $request->surname;
         $contact->phone = $request->phone;
-   
         $contact->email = $request->email;
-      
         $contact->birth_date = $request->birth_date;
 
-    
+        $contact->save(); // ulozeni v databazi
 
-        $contact->save();
+        $contacts = ContactPerson::get(); // ziskani vsech kontaktnich osob
 
-        $contacts = ContactPerson::get();
+        // pohed se vsemi kontaktnimi osobami
         return view('contact.index', [
             'contacts' => $contacts
         ]);
       
     }
 
+    /**
+     * Odstrani zaznam z databaze
+     */
     public function destroy($id)
     {
-        $contact = ContactPerson::find($id);
-        $contact->delete();
+        $contact = ContactPerson::find($id); // vyhleda osobu podle ID
+        $contact->delete();  // smaze osobu
 
         return back();
     }
 
+    /**
+     * Zobrazeni pohledu svych kontaktnich osob pro
+     * zakaznika
+     * 
+     * @return \Illuminate\View\View
+     */
     public function indexSub($subId)
     {
         
-        $customer = Customer::find($subId);
-        $contacts = $customer->contact;
+        $customer = Customer::find($subId); // vyhledani zakaznika podle ID
+        $contacts = $customer->contact; // ulozeni kontaktnich osob do promenne
 
+        // pohled s kontaktnimi osobami
         return view('contact.subindex', [
             'contacts' => $contacts
         ]);

@@ -13,7 +13,7 @@
    
    
  
-   <a href="{{ route('orders.show', $item->order->id) }}">Zpět na objednávku</a>
+   <a type="button" class="btn btn-secondary mb-3" href="{{ route('orders.show', $item->order->id) }}">Zpět na objednávku</a>
   
    <table class="table">
       <th scope="col">Kód nádoby</th>
@@ -48,7 +48,7 @@
             
                     @enderror
                     <label for="count" class="sr-only">Množství</label>
-                    <input type="number"  id="count" name="count" class="form-control @error('count') is-invalid @enderror">
+                    <input type="number"  id="count" name="count" style="width: 120px;" class="form-control @error('count') is-invalid @enderror">
                     <div class="invalid-feedback">
                      @error('count')
                          Musíte zadat množství.
@@ -56,7 +56,7 @@
                      @enderror
                  </div> 
                     </div>
-                  <button type="submit" class="btn btn-secondary">Změnit počet</button>
+                  <button type="submit" class="btn btn-secondary" >Změnit počet</button>
               </form>
                 </td>
             </td>

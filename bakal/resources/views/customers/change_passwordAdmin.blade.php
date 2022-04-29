@@ -12,7 +12,13 @@
             <form  action="{{ route('customers.update_passwordAdmin', $customer->id) }}" method="POST">
                 @csrf
                
-             
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block text-center">
+                    <strong >{{ $message }}</strong>   
+                </div>    
+                
+                
+            @endif
                 <div class="form-group">
                     
                     <label for="password" class=>Nové heslo</label>

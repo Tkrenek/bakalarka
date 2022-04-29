@@ -42,189 +42,177 @@ class OrderController extends Controller
         
     }
     
-
+    /**
+     * Vytvori v databazi zaznam o nove objednavce
+     * @throws Google_Service_Exception
+     */
     public function store()
     {
-        
-        
+
+        // vytvoreni nove objednavky
         $newOrder = Order::create([
             'state' => 'vytvořeno',
             'term' => Carbon::now()->add(1, 'week'),
             'customer_id' => auth('customer')->user()->id,
             'invoice' => 'bude doplněno'
-
         ]);
 
-   
-            
         try {
+            // vytvoreni nove udalosti v google kalendari
             Event::create([
                 'id' => 'eventid'.$newOrder->id,
                 'name' => 'Číslo objednávky: '.$newOrder->id,
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
                 ]);
-          } catch (\Google_Service_Exception $e) {
-            $ev = Event::find('eventid'.$newOrder->id);
 
+          } catch (\Google_Service_Exception $e) { // zachyceni vyjimky, pokud jiz udalost existuje
+
+            $ev = Event::find('eventid'.$newOrder->id); // vyhledame udalost podle id
+
+            // upravime parametry
             $ev->startDate = Carbon::now()->add(1, 'week');
             $ev->endDate = Carbon::now()->add(1, 'week');
             $ev->status = "confirmed";
             
-            $ev->save();
-           
+            $ev->save(); // ulozime
         }
              
 
+        $orders = Order::get(); // vyhledame vsechny objednavky
 
-
-            $orders = Order::get();
+        // pokud je prihlasen zakaznik
         if(auth('customer')->user()) {
             $customer = Customer::find(auth('customer')->user()->id);
-       
             return back();
-        } else {
+        } else { // pokud je prihlasen admin, vratime pohled se vsemi objednavkami
             
-            $orders = Order::get();
-
-            return view('orders.index', [
-                'orders' => $orders,
-            ]);
+            return redirect()->route('orders.index');
         }
     }
 
+    /**
+     * Vraci pohled s objednavkami prihlaseneho zakaznika
+     * @return \Illuminate\View\View
+     */
     public function myindex($id)
     {
 
-        $customer = Customer::find($id);
-      
-        $events = Event::get();
+        $customer = Customer::find($id); // vyhledani zakaznika podle ID
 
-      
-        
-        
+        // vraceni pohledu
         return view('orders.index', [
             'orders' => $customer->order,
             
         ]);
     }
 
+    /**
+     * Zobrazeni pohledu s vybranou objednavkou
+     * @return \Illuminate\View\View
+     */
     public function indexFilter(Request $request)
     {
-        
+        //  vyhledani objedadnavky podle ID
         if(auth('customer')->user()) {
-            
             $orders = Order::get()->where('id', '=', $request->input('query'))->where('customer_id', '=', auth('customer')->user()->id);
         } else {
             
             $orders = Order::get()->where('id', '=', $request->input('query'));
         }
         
-
-        
+        // pokud nic neni nalezeno
         if($orders->isEmpty()) {
-            return back()->with('error', 'Objednávka nenalezena.');
-        }
+            return back()->with('error', 'Objednávka nenalezena.'); // chybova hlaska
+        } 
 
+        // vraceni pohledu
         return view('orders.index', [
-            'orders' => $orders,
-            
+            'orders' => $orders, 
         ]);
     }
 
+    /**
+     * Zobrazeni pohledu se vsemi objednavkami
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-
-        $orders = Order::get();
-        $events = Event::get();
-
         
+        $orders = Order::get(); // vyhledani vsech objednavek
 
-        /*foreach($orders as $order) {
-            $order->delete();
-        }
-        foreach($events as $event) {
-            $event->delete();
-        }
-*/
-
-        $data = Order::select('id', 'created_at')->get()->groupBy(function($data) {
-           return  Carbon::parse($data->created_at)->format('M');
-        });
-
-  
-        $orders = Order::orderBy('term', 'ASC')->get();
+        $orders = Order::orderBy('term', 'ASC')->get(); // serazen objednavek podle terminu
         
+        // vraceni pohledu
         return view('orders.index', [
-            'orders' => $orders,
-            'data' => $data
-           
-            
+            'orders' => $orders,   
         ]);
-
     }
 
+    /**
+     * Funkce pro seskupeni produktu podle objednavek
+     * @return array - pole se produkty podle objednavek
+     */
     public function getProductsByOrder()
     {
-        $pole = array();
-
-        $polesmall = array();
+        $arr = array();
+        $arrsmall = array();
  
-        $allItems = Item::orderBy('order_id')->get();
+        $allItems = Item::orderBy('order_id')->get(); // ziskani vsech polozek
 
+        // pokud nic neni nalezeno
         if($allItems->isEmpty()) {
-            return $pole;
+            return $arr;
         }
 
-       $first = $allItems[0]->order_id;
+        // zjistime prvi ID objednavky
+        $first = $allItems[0]->order_id;
+        // zjistime posledni polozku
         $lastItem = Item::get()->last();
        
-            foreach($allItems as $oneItem) {
-                if($first == $oneItem->order_id) {
-                    if($oneItem->is_mixed == "ano") {
-                        array_push($polesmall, $oneItem->productMixed->code);
-                    } else {
-                        array_push($polesmall, $oneItem->productOriginal->code);
-                    }
-                    if($lastItem->id == $oneItem->id) {
-                        array_push($pole, $polesmall);
-                    }
-                } else {
-                    
-                    $first = $oneItem->order_id;
-                   
-                    array_push($pole, $polesmall);
-                    $polesmall = array();
-                    
-                    if($oneItem->is_mixed == "ano") {
-                        array_push($polesmall, $oneItem->productMixed->code);
-                    } else {
-                        array_push($polesmall, $oneItem->productOriginal->code);
-                    }
+        // prochazime vsechny polozky
+        foreach($allItems as $oneItem) {
+            if($first == $oneItem->order_id) { // pokud je to prvni objednavka
+                if($oneItem->is_mixed == "ano") { // pokud se jedna o michany produkt
+                    array_push($arrsmall, $oneItem->productMixed->code); // do pole vlozime kod michaneho produktu
+                } else { // pokud se jedna o originalni produkt
+                    array_push($arrsmall, $oneItem->productOriginal->code); // do pole vlozime kod originalnih produktu
+                } 
+                // pokud je to posledni polozka
+                if($lastItem->id == $oneItem->id) {
+                    array_push($arr, $arrsmall);
+                }
+            } else { // pokud to neni prvni objednavka
+                $first = $oneItem->order_id; // ziskani objednavky
+                array_push($arr, $arrsmall); // vlozime mensi pole do hlavniho pole
+                $arrsmall = array(); // vyprazdnime mensi pole
+                if($oneItem->is_mixed == "ano") { // pokud se jedna o michany produkt
+                    array_push($arrsmall, $oneItem->productMixed->code); // ulozime michany produkt
+                } else { // pokud se jedna o originalni produkt
+                    array_push($arrsmall, $oneItem->productOriginal->code); // ulozime originalni produkt
                 }
             }
-     
-        return $pole;
-        
-
-       // dd($associator->predict(['O-L-155','M-C-10000']));
-       //dd($associator->apriori());
+        }
+        return $arr; // vratime pole
     }
 
+    /**
+     * Funkce vrati doporucene produkty pomoci metody apriori
+     * @return array - pole se produkty podle objednavek
+     */
     public function calculateApriori(Order $order)
     {
-        $samples = self::getProductsByOrder();
-        
+        $samples = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
  
         $labels = [];
-        $associator = new Apriori($support = 0.5, $confidence = 0.5);
-        $associator->train($samples, $labels);
+        $associator = new Apriori($support = 0.5, $confidence = 0.5); // vytvoreni instance tridy Apriori
+        $associator->train($samples, $labels); // vytrenovani instance
 
         $itemsInOrder = array();
 
+        // prochazime produkty objednavky
         foreach($order->item as $one) {
-            if($one->is_mixed == "ano") {
-         
+            if($one->is_mixed == "ano") { // pokud se jedna o michany produkt
                 array_push($itemsInOrder, $one->productMixed->code);
             } else {
                 array_push($itemsInOrder, $one->productOriginal->code);
@@ -391,20 +379,7 @@ class OrderController extends Controller
           $event->startDate = Carbon::createFromDate($request->term);
           $event->endDate = Carbon::createFromDate($request->term);
           $event->save();
-          /*
-        Event::create([
-            'id' => 'eventid'.$orderId,
-            'name' => 'Číslo objednávky: '.$orderId,
-            'startDate' => Carbon::createFromDate($request->term),
-            'endDate' => Carbon::createFromDate($request->term),
-         ]);
-  
-*/
-      //  $event->save();
-/*
-        $e = Event::get();
-
-        dd($e);*/
+     
 
         return back();
     }

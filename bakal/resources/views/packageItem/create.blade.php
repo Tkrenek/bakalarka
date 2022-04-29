@@ -2,11 +2,11 @@
 
 @section('content')
   
-
+<a href="{{ route('packageItem.show', $item->id) }}" class="btn btn-secondary mb-3">Vrátit se zpět</a>
   <table class="table">
     <thead>
       <tr>
-     
+        
         <th scope="col">Typ nádoby</th>
         <th scope="col">Objem(v litrech)</th>
         <th scope="col">Na skladě</th>
@@ -33,7 +33,7 @@
         <td>{{ $container->prize }}</td>
         <td>
             
-            <form action="{{ route('packageItem.store', ['itemid' => $itemid, 'containerid' => $container->id]) }}" method="post">
+            <form action="{{ route('packageItem.store', ['itemid' => $item->id, 'containerid' => $container->id]) }}" method="post">
               @csrf
               <div class="form-group ">
   
