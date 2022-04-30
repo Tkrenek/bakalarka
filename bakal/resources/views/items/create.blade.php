@@ -2,8 +2,13 @@
 
 @section('content')
   
+<a href="{{ route('orders.show', $order->id) }}" class="btn btn-secondary">Vrátit se zpět</a>
 
-  <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
+
+  
+
+
+<h1 class="display-3 text-center mb-5">Originální produkty</h1>    
   <div class="row">
     @if ($message = Session::get('error'))
                         <div class="alert alert-block alert-danger color-danger text-center">
@@ -14,7 +19,7 @@
                     @endif
   </div>
   
-   <table class="table mb-5">
+   <table class="table mb-5 table-bordered">
       <thead>
         <tr>
           <th scope="col">Kód</th>
@@ -35,10 +40,7 @@
         @php
           $isFirst = true;
           @endphp
-         
-           
-         
-         
+
          @foreach ($products as $product)
          @php
          if($isFirst) {
@@ -92,7 +94,7 @@
 
     <h1 class="display-3 text-center mb-5"> Míchané produkty</h1> 
   
-    <table class="table mb-5">
+    <table class="table mb-5 table-bordered">
       <thead >
         <tr>
           <th scope="col">Kód</th>
@@ -143,11 +145,7 @@
                         <div class="invalid-feedback">
                           @error('ammount')
                               Musíte zadat množství.
-                 
                           @enderror
-                          
-                          
-                      
                       </div>
                      
                     </div>

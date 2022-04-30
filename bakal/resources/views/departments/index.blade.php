@@ -9,7 +9,7 @@
 <h1 class="display-2 text-center mb-5">Seznam oddělení</h1>
 
     <a class="btn btn-secondary mb-3" href="{{ route('departments.create') }}">Přidat Oddělení</a>
-   <table class="table table-bordered text-center align-middle">
+   <table class="table table-bordered text-center">
       <thead>
         <tr>
        

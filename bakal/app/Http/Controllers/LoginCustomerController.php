@@ -38,7 +38,6 @@ class LoginCustomerController extends Controller
      */
     public function login(Request $request)
     {
-
         // ziskani udaju z formulare
         $credentials = $request->only('login', 'password');
  

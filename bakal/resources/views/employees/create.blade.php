@@ -4,7 +4,7 @@
   
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
         <div class="col-lg-6">
             <div class="card">
             <div class="card-header text-center">Registrace zaměstnance</div>
@@ -139,19 +139,7 @@
                         @enderror
                     </div>  
                 </div>
-                <!--
-                <div class="form-group">
-                    <label for="birth_date">Datum narození</label>
-                    <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
-                    <div class="invalid-feedback">
-                        @error('birth_date')
-
-                            {{  $message }}
-            
-                        @enderror
-                    </div>  
-                </div>
-            -->
+                
                 <div class="form-group ">
                     
                     <label for="department">Oddělení</label>
@@ -182,7 +170,11 @@
     </div>
 
     
-            </div></div></div></div>
+            </div>
         </div>
+    </div>
+</div>
+ 
+</div>
        
 @endsection

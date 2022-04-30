@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header text-center">Přihlášení zákazníka</div>
+            <div class="card-header text-center text-white bg-primary">Přihlášení zákazníka</div>
 
             <div class="card-body">
             <form  action="{{ route('customers.login.post') }}" method="POST">
@@ -56,7 +56,7 @@
                
                 
                 <div class="d-flex justify-content-center p-3">
-                    <button type="submit" class="btn btn-primary">Přihlásit zákazníka</button>
+                    <button type="submit" class="btn btn-primary">Přihlásit se</button>
 
                 </div>
             </form>

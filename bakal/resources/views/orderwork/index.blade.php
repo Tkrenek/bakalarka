@@ -6,31 +6,31 @@
   use Carbon\Carbon;
 @endphp
         
-    <h2 class="text-center display-2">Práce na zakázce</h2>
+    <h2 class="text-center display-2 mb-5">Odvedená práce</h2>
 
-   <table class="table">
+   <table class="table table-bordered">
       <thead>
         <tr>
        
           <th scope="col">ID objednávky</th>
-          <th scope="col">Zaměstnanec</th>
+          
           <th scope="col">Typ práce</th>
           <th scope="col">Datum</th>
           <th scope="col">Doba práce</th>
           @auth('admin')
+            <th scope="col">Zaměstnanec</th>
             <th scope="col">Smazat</th>
+            
           @endauth
           @auth('employee')
             <th scope="col">Smazat</th>
           @endauth
 
-          
 
         </tr>
       </thead>
       <tbody>
-          
-            
+
                 @foreach ($orderworks as $orderwork)
                 <tr>
                     <td>    
@@ -39,9 +39,7 @@
                   
 
                     </td>      
-                    <td>
-                      {{ $orderwork->employee->name }} {{ $orderwork->employee->surname }}
-                    </td>
+                    
                     <td>
                       {{ $orderwork->work_type }} </td>
                   
@@ -51,6 +49,11 @@
                     
   
                       </td>     
+                      @auth('admin')
+                      <td>
+                        {{ $orderwork->employee->name }} {{ $orderwork->employee->surname }}
+                      </td>                        
+                      @endauth
                       <td>    
 
                         {{ $orderwork->time }}

@@ -17,7 +17,7 @@ class LoginAdminController extends Controller
      */
     public function index()
     {
-        // pokud se o tuto akci snazi jiz prihlaseny uzivatel je odhlasens
+        // pokud se o tuto akci snazi jiz prihlaseny uzivatel je odhlasen
         if(auth('customer')->user()){
             Auth::guard('customer')->logout();
      
@@ -28,7 +28,7 @@ class LoginAdminController extends Controller
             Auth::guard('employee')->logout();
 
         } 
-        return view('admins.login'); // vceni pohledu
+        return view('admins.login'); // vraceni pohledu
     }
 
      /**

@@ -11,7 +11,7 @@
    <h1 class="text-center mb-5 display-2">ID objednávky: {{ $order->id }}</h1>
 
    @auth('customer')
-      <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-outline-secondary">Zpět na moje objednávky</a>
+      <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-secondary">Zpět na moje objednávky</a>
    @endauth
    @auth('admin')
       <a href="{{ route('orders.index')}}" class="btn btn-secondary mb-3">Zpět na  objednávky</a>

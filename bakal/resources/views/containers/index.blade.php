@@ -2,7 +2,9 @@
 
 @section('content')
   
-<h1 class="display-3 text-center mb-5">Přehled nádob</h1>
+<h1 class="display-3 text-center mb-2">Přehled nádob</h1>
+
+<a class="btn btn-secondary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
 
   <table class="table table-bordered">
     <thead>
@@ -37,14 +39,14 @@
         @auth('employee')
         
         
-          <td>
+          <td class="pr-0 mr-0" style="width: 150px">
             <form action="{{ route('containers.addStore', $container->id) }}" method="post">
               @csrf
               @method('PUT')
               <div class="form-group">
                
                 <label for="ammount" class="sr-only">Množství</label>
-                <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <input type="number" style="width: 125px"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
                 <div class="invalid-feedback">
                   @error('ammount')
                       Musíte zadat množství.
@@ -60,7 +62,8 @@
         @auth('admin')
         
           <td><a href="{{ route('containers.edit', $container->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
-          <td><form action="{{ route('containers.addStore', $container->id) }}" method="post">
+          <td style="width: 200px">
+            <form action="{{ route('containers.addStore', $container->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group">

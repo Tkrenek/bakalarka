@@ -1,11 +1,14 @@
 @extends('layouts.navigation')
 
 @section('content')
+@auth('admin')
 <a class="btn btn-secondary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
 <a class="btn btn-secondary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
+@endauth
+
 
   <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
-   <table class="table  mb-5">
+   <table class="table  table-bordered mb-5">
       <thead>
         <tr>
           <th scope="col">Kód</th>
@@ -49,16 +52,12 @@
           <td>{{ $product->producer->name }}</td>
           
           @auth('admin')
-          <td>
+          <td style="width: 150px">
             <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
               @csrf
               @method('PUT')
               <div class="form-group ">
-                @error('ammount')
-
-                    {{  $message }}
-        
-                @enderror
+                
                 <label for="ammount" class="sr-only">Množsví</label>
                 <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
                 <div class="invalid-feedback">
@@ -84,16 +83,12 @@
 
           @auth('employee')
 
-          <td>
+          <td style="width: 150px">
             <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
               @csrf
               @method('PUT')
               <div class="form-group">
-                @error('ammount')
-
-                    {{  $message }}
-        
-                @enderror
+                
                 <label for="ammount" class="sr-only">Množsví</label>
                 <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
                 <div class="invalid-feedback">
@@ -115,9 +110,9 @@
       </tbody>
     </table>
 
-    <h1 class="display-3 text-center">Míchané produkty</h1> 
+    <h1 class="display-3 text-center mb-5">Míchané produkty</h1> 
   
-    <table class="table">
+    <table class="table table-bordered">
       <thead >
         <tr>
           <th scope="col">Kód</th>
@@ -174,16 +169,12 @@
 
           @auth('admin')
           <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
-            <td>
+            <td style="width: 150px">
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                  @error('ammount')
-
-                      {{  $message }}
-          
-                  @enderror
+           
                   <label for="ammount" class="sr-only">Množství</label>
                   <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
                   <div class="invalid-feedback">
@@ -209,7 +200,7 @@
 
           @auth('employee')
           
-          <td>
+          <td style="width: 150px">
             <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                @csrf
                @method('PUT')

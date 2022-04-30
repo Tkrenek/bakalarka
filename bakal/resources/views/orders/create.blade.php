@@ -12,8 +12,6 @@
         
     <form action="{{ route('orders.store') }}" method="POST">
         @csrf
-
-
                 <div class="form-group ">
                     
                     <label for="name" class="col-md-4 col-form-label">Name</label>

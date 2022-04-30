@@ -55,7 +55,7 @@ Route::get('/', function () {
         return view('employees/welcome');
     } else if(auth('customer')->user()) {
         
-        return view('customers/welcome');
+        return redirect()->route('customers.welcome');
     }else {
         return view('customers.login');
     }
@@ -107,8 +107,12 @@ Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsA
 
 Route::get('/contact/{id}/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
 
-
+Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
 Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
+
+Route::get('/producers/edit/{id}', [ProducerController::class, 'edit'])->name('producers.edit');
+Route::put('/producers/{id}/update', [ProducerController::class, 'update'])->name('producers.update');
+Route::delete('/producers/{id}', [ProducerController::class, 'destroy'])->name('producers.destroy');
 
 Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
 
@@ -181,7 +185,7 @@ Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->nam
 Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
 Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
 
-Route::put('/containers/{id}/addStore', [ContainerController::class, 'addOnStore'])->name('containers.addStore');
+
 
 Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
@@ -201,7 +205,7 @@ Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name
 });
 
 Route::group(['middleware' => 'auth:employee,admin'], function () {
-
+    Route::put('/containers/{id}/addStore', [ContainerController::class, 'addOnStore'])->name('containers.addStore');
     Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::put('/employees/{id}/update', [EmployeeController::class, 'update'])->name('employees.update');
 

@@ -205,8 +205,8 @@ class OrderController extends Controller
         $samples = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
  
         $labels = [];
-        $associator = new Apriori($support = 0.5, $confidence = 0.5); // vytvoreni instance tridy Apriori
-        $associator->train($samples, $labels); // vytrenovani instance
+        $association = new Apriori($support = 0.5, $confidence = 0.2); // vytvoreni instance tridy Apriori
+        $association->train($samples, $labels); // vytrenovani instance
 
         $itemsInOrder = array();
 
@@ -224,7 +224,7 @@ class OrderController extends Controller
        if (empty($itemsInOrder)) {
        
         } else {
-            $recommendedItems = $associator->predict($itemsInOrder);
+            $recommendedItems = $association->predict($itemsInOrder);
         }
         
   
@@ -262,17 +262,20 @@ class OrderController extends Controller
 
         $events = Event::get();
         
-        $event = Event::find('eventid'.$order->id);
-        $event->delete();
 
         
+        
 
-        $orders = Order::get();
-
-        return view('orders.index', [
-            'orders' => $orders,
+         try {
+            $event = Event::find('eventid'.$order->id);
+            $event->delete();
+          } catch (\Google_Service_Exception $e) {
             
-        ]);
+             return redirect()->route('orders.index');
+          }
+
+
+          return redirect()->route('orders.index');
     }
 
     public function changeState($orderId, Request $request)

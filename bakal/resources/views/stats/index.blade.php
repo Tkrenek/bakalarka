@@ -11,23 +11,24 @@
         <script src="{{ asset('chart.js/chart.js') }}"></script>
 
 
+        @auth('admin')
         <div class="row mt-4 mb-5">
             
 
          
-            
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl míchaných a originálních produktů
+                    Nejprodávaněší nádoby
                 </div>
-                <canvas id="myChart1"></canvas>
+                <canvas id="myChart4"></canvas>
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Největší zákazníci
+                    Nejprodávanější produkty
                 </div>
-                <canvas id="myChart2"></canvas>
+                <canvas id="myChart6"></canvas>
             </div>
+           
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
                     Nejpilnější zaměstnanci
@@ -37,6 +38,72 @@
         </div>
   
         <div class="row mb-5 mt-5">
+            
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl míchaných a originálních produktů (v %)
+                </div>
+                <canvas id="myChart1"></canvas>
+            </div>
+            <div class="chart-container mt-5 col-4">
+                <div class="text-center mb-4">
+                    Největší zákazníci
+                </div>
+                <canvas id="myChart2"></canvas>
+            </div>
+            
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl kanistrů a plechovek (v %)
+                </div>
+                <canvas id="myChart5"></canvas>
+            </div>
+        </div>
+        @endauth
+        @auth('customer')
+
+        <div class="row mt-4 mb-5">
+   
+            <div class="chart-container col-4 offset-2">
+                <div class="text-center mb-4">
+                    Nejprodávaněší nádoby
+                </div>
+                <canvas id="myChart4"></canvas>
+            </div>
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Nejprodávanější produkty
+                </div>
+                <canvas id="myChart6"></canvas>
+            </div>
+           
+         
+        </div>
+  
+        <div class="row mb-5 mt-5">
+            
+            <div class="chart-container col-4 offset-2">
+                <div class="text-center mb-4">
+                    Podíl míchaných a originálních produktů (v %)
+                </div>
+                <canvas id="myChart1"></canvas>
+            </div>
+         
+            
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl kanistrů a plechovek (v %)
+                </div>
+                <canvas id="myChart5"></canvas>
+            </div>
+        </div>
+        @endauth
+
+        @auth('employee')
+        <div class="row mt-4 mb-5">
+            
+
+         
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
                     Nejprodávaněší nádoby
@@ -45,17 +112,38 @@
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanistrů a plechovek
-                </div>
-                <canvas id="myChart5"></canvas>
-            </div>
-            <div class="chart-container col-4">
-                <div class="text-center mb-4">
                     Nejprodávanější produkty
                 </div>
                 <canvas id="myChart6"></canvas>
             </div>
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Největší zákazníci
+                </div>
+                <canvas id="myChart2"></canvas>
+            </div>
+           
         </div>
+  
+        <div class="row mb-5 mt-5">
+            
+            <div class="chart-container col-4 offset-2">
+                <div class="text-center mb-4">
+                    Podíl míchaných a originálních produktů (v %)
+                </div>
+                <canvas id="myChart1"></canvas>
+            </div>
+            
+            
+            <div class="chart-container col-4">
+                <div class="text-center mb-4">
+                    Podíl kanistrů a plechovek (v %)
+                </div>
+                <canvas id="myChart5"></canvas>
+            </div>
+        </div>
+        @endauth
+        
         
 
 
@@ -120,7 +208,7 @@ var lbl = JSON.parse('{!! json_encode($label1) !!}');
   var ctx3 = document.getElementById('myChart3').getContext('2d');
   var myChart = new Chart(ctx3, { 
     
-    type: "pie",
+    type: "bar",
     data:{
         labels: lbl,
         datasets:[{
@@ -149,11 +237,11 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
   var ctx4 = document.getElementById('myChart4').getContext('2d');
   var myChart = new Chart(ctx4, { 
     
-    type: "pie",
+    type: "bar",
     data:{
         labels: lbl,
         datasets:[{
-            label: "Zaměstnanci",
+            label: "Nádoby",
             data: dt,
             backgroundColor: ["#AC3131", "#254AA1", '#AC3131'],
         }]

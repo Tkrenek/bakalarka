@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header text-center">Přidat kontaktní osobu</div>
+            <div class="card ">
+            <div class="card-header text-center text-white bg-primary">Přidat kontaktní osobu</div>
 
             <div class="card-body">
         @auth('admin')

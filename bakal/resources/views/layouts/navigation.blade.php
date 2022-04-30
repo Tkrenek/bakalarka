@@ -66,7 +66,9 @@
         
                     </li>
 
-                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stats.index')}}" class="p-3">Statistiky</a>
+                    </li>
                 @endauth
 
                 @auth('admin')
@@ -97,7 +99,7 @@
             
     
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('producers.create')}}" class="p-3">Registrace Dodavatele</a>
+                    <a class="nav-link" href="{{ route('producers.index')}}" class="p-3">Zobrazit Dodavatele</a>
     
                 </li>
                 
@@ -109,10 +111,7 @@
                 </li>
                 
     
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
-    
-                </li>
+         
     
                
                 <li class="nav-item">
@@ -136,6 +135,9 @@
                 @endauth
                 
                 @auth('customer')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('stats.index')}}" class="p-3">Statistiky</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('containers.index')}}" class="p-3">Seznam nádob</a>
                 </li>

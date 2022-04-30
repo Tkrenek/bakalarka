@@ -4,93 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Stats;
+
 use DB;
 
 class StatsController extends Controller
 {
-    public function getMaxFrom($pole, $pocet)
-    {
-        $nejvic = array();
-        
-        $counts = array();
-
-        foreach($pole as $zak) {
-            array_push($counts, $zak->count);
-        }
-
-     
-        for($i = 0; $i < $pocet; $i++) {
-            if(empty($counts)) {
-                break;
-            }
-            $key = array_search(max($counts), $counts);
-
-            array_push($nejvic, $pole[$key]);
-            
-            unset($pole[$key]);
-            unset($counts[$key]);
-        }
-        
-        
-        
-       
-
-        return $nejvic;
-    }
-
-    public function getSum($pole)
-    {
-        $sum = 0;
-        foreach($pole as $bal) {
-            $sum += $bal->count;
-        }
-
-        return $sum;
-    }
 
     public function index()
     {
-        $resultsOriginal = DB::table('items')->where('is_mixed', 'ne')->count('*');
-
-        $resultsMixed = DB::table('items')->where('is_mixed', 'ano')->count('*');
+        $resultsOriginal = Stats::getResultsOriginal();
+        $resultsMixed = Stats::getResultsMixed();
+        $celkemProdukty = $resultsMixed + $resultsOriginal;
+        $resultsMixed /= $celkemProdukty / 100;
+        $resultsOriginal /= $celkemProdukty / 100;
 
      
-        $zakaznici = DB::select(DB::raw('select customers.name, count(customer_id) as "count" from orders join customers on customers.id = orders.customer_id group by customers.name'));
-        $nejvic = self::getMaxFrom($zakaznici, 3);
+        $nejvic = Stats::getCustomerMax();
 
    
-        $zamestnanci = DB::select(DB::raw('select CONCAT(employees.name, " ",employees.surname)  as "name", sum(order_works.time) as "count" from order_works join employees on employees.id = order_works.employee_id group by employees.name, employees.surname'));
-        $zamestnanci = self::getMaxFrom($zamestnanci, 3);
+        $zamestnanci = Stats::getEmployeesMax();
 
 
-        $baleni = DB::select(DB::raw('select containers.code, sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code'));
-        $baleni = self::getMaxFrom($baleni, 3);
+        $baleni = Stats::getContainersMax();
        
 
-        $baleniPomer1 = DB::select(DB::raw('select  sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code having containers.code like "K%"'));
-        $baleniPomer2 = DB::select(DB::raw('select  sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code having containers.code like "P%"'));
 
+        $baleniPomer1 = Stats::getBaleniKanistr();
+        $baleniPomer2 = Stats::getBaleniPlech();
+        $celkem = $baleniPomer1 + $baleniPomer2;
+        $baleniPomer1 /= $celkem / 100;
+        $baleniPomer2 /= $celkem / 100;
+
+
+        $produktyOrig = Stats::getProduktyOriginal();
+        $produktyMixed = Stats::getProduktyMixed();
       
-        $baleniPomer1 = self::getSum($baleniPomer1);
-        $baleniPomer2 = self::getSum($baleniPomer2);
 
 
-        $produktyOrig = DB::select(DB::raw('select items.is_mixed, product_originals.code, sum(items.amount) as "count" from items join product_originals on product_originals.id = items.product_original_id group by product_originals.code, items.is_mixed having items.is_mixed = "ne"'));
-        $produktyMixed = DB::select(DB::raw('select items.is_mixed, product_mixeds.code, sum(items.amount) as "count" from items join product_mixeds on product_mixeds.id = items.product_mixed_id group by product_mixeds.code, items.is_mixed having items.is_mixed = "ano"'));
-      
-
-
+        $merged = Stats::mergeProducts($produktyOrig, $produktyMixed);
         
-        $maximaProdukty = array();
-        foreach($produktyMixed as $pm) {
-            array_push($maximaProdukty, $pm);
-        }
-        foreach($produktyOrig as $po) {
-            array_push($maximaProdukty, $po);
-        }
         
 
-        $maximaProdukty = self::getMaxFrom($maximaProdukty, 3);
+        $maximaProdukty = Stats::getMaxFrom($merged, 3);
+
+
         
         return view('stats.index', compact('resultsOriginal', 'resultsMixed', 'nejvic', 'zamestnanci', 'baleni', 'baleniPomer1', 'baleniPomer2', 'maximaProdukty'));
     }

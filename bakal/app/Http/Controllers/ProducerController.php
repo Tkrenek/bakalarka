@@ -8,9 +8,58 @@ use App\Models\Producer;
 
 class ProducerController extends Controller
 {
+
+    public function index()
+    {
+        $producers = Producer::get();
+
+        return view('producers.index', [
+            'producers' => $producers
+        ]);
+    }
+
     public function create()
     {
         return view('producers.create');
+    }
+
+    public function edit($id)
+    {
+        $producer = Producer::find($id);
+        return view('producers.edit', [
+            'producer' => $producer
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+       
+
+        // overeni udaju z formulare
+        $this->validate($request, [
+            'name' => 'required',
+            'address' =>'required',
+            'town' => 'required',
+            'email' => 'required',
+            'phone' => 'required|numeric',
+        ]);
+ 
+        $producer = Producer::find($id); // vyhledani zakaznika podle ID
+
+        // zmeni udaje zakaznika
+        $producer->name = $request->name;
+        $producer->address = $request->address;
+        $producer->town = $request->town;
+        $producer->email = $request->email;
+        $producer->phone = $request->phone;        
+
+        $producer->save(); // ulozi udaje zakaznika v databazi
+
+        
+
+        return redirect()->route('producers.index'); 
+        
+        
     }
 
     public function store(Request $request)
@@ -37,6 +86,14 @@ class ProducerController extends Controller
 
         
 
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        $producer = Producer::find($id);
+
+        $producer->delete();
         return back();
     }
     

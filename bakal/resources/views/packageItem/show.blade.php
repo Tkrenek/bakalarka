@@ -42,11 +42,7 @@
                   @csrf
                   @method('PUT')
                   <div class="form-group">
-                    @error('count')
-      
-                        {{  $message }}
-            
-                    @enderror
+                    
                     <label for="count" class="sr-only">Množství</label>
                     <input type="number"  id="count" name="count" style="width: 120px;" class="form-control @error('count') is-invalid @enderror">
                     <div class="invalid-feedback">

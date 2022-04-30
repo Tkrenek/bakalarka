@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header text-center">Registrace zákazníka</div>
+                <div class="card-header text-center text-white bg-primary">Registrace zákazníka</div>
 
                 <div class="card-body ">
             <form action="{{ route('customers.store') }}" method="POST">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center p-3">
-                    <button type="submit" class="btn btn-primary">Registrovat zákazníka</button>
+                    <button type="submit" class="btn btn-primary">Registrovat se</button>
 
                 </div>
             </form>
