@@ -5,7 +5,7 @@
 <h1 class="text-center mb-5 display-2">Moje kontatní osoby </h1>
 <div class="d-flex justify-content-center">
         
-   <table class="table table-bordered">
+   <table class="table">
       <thead>
         <tr>
        

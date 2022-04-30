@@ -7,7 +7,7 @@
 <a class="btn-secondary btn mb-3" href="{{ route('employees.create')}}" class="p-3">Přidat zaměstnance</a>
 <div class="d-flex justify-content-center">
   
-   <table class="table table-bordered table-hover">
+   <table class="table">
       <thead>
         <tr>
        

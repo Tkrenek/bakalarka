@@ -27,8 +27,9 @@
       <a class="btn btn-secondary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
 
-   <table class="table table-bordered">
-      <th scope="col">Kód produktu</th>
+   <table class="table">
+      <thead>
+         <th scope="col">Kód produktu</th>
       <th scope="col">Název produktu</th>
       <th scope="col">Množství(v litrech)</th>
     
@@ -49,6 +50,8 @@
          
          <th scope="col">Odstranit</th>
       @endauth
+      </thead>
+      
      
 
       @foreach ($items as $item)

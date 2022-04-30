@@ -2,11 +2,14 @@
 
 @section('content')
   
-<h1 class="display-3 text-center mb-2">Přehled nádob</h1>
+<h1 class="display-3 text-center mb-4">Přehled nádob</h1>
 
-<a class="btn btn-secondary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
+@auth('admin')
+  <a class="btn btn-secondary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
+@endauth
 
-  <table class="table table-bordered">
+
+  <table class="table">
     <thead>
       <tr>
      

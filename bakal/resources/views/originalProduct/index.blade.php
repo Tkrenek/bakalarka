@@ -8,7 +8,7 @@
 
 
   <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
-   <table class="table  table-bordered mb-5">
+   <table class="table  mb-5">
       <thead>
         <tr>
           <th scope="col">Kód</th>
@@ -112,7 +112,7 @@
 
     <h1 class="display-3 text-center mb-5">Míchané produkty</h1> 
   
-    <table class="table table-bordered">
+    <table class="table">
       <thead >
         <tr>
           <th scope="col">Kód</th>

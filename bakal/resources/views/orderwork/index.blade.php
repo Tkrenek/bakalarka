@@ -8,7 +8,7 @@
         
     <h2 class="text-center display-2 mb-5">Odvedená práce</h2>
 
-   <table class="table table-bordered">
+   <table class="table">
       <thead>
         <tr>
        
@@ -49,17 +49,18 @@
                     
   
                       </td>     
-                      @auth('admin')
-                      <td>
-                        {{ $orderwork->employee->name }} {{ $orderwork->employee->surname }}
-                      </td>                        
-                      @endauth
+                      
                       <td>    
 
                         {{ $orderwork->time }}
                       
     
                         </td>    
+                        @auth('admin')
+                      <td>
+                        {{ $orderwork->employee->name }} {{ $orderwork->employee->surname }}
+                      </td>                        
+                      @endauth
                         <td>
                           <form action="{{ route('orderWork.destroy', $orderwork->id) }}" method="post">
                             @csrf

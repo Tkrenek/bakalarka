@@ -6,7 +6,7 @@
 <a class="btn-secondary btn mb-3" href="{{ route('customers.create')}}" class="p-3">Přidat zákazníka</a>
 <div class="d-flex justify-content-center">
         
-   <table class="table table-bordered">
+   <table class="table">
       <thead>
         <tr>
        

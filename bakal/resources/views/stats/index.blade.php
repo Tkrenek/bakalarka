@@ -54,7 +54,7 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanistrů a plechovek (v %)
+                    Podíl kanystrů a plechovek (v %)
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>
@@ -92,7 +92,7 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanistrů a plechovek (v %)
+                    Podíl kanystrů a plechovek (v %)
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>
@@ -137,7 +137,7 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanistrů a plechovek (v %)
+                    Podíl kanystrů a plechovek (v %)
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>
@@ -258,7 +258,7 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
                 
                 type: "pie",
                 data:{
-                    labels: ["kanistry", "plechovky"],
+                    labels: ["kanystry", "plechovky"],
                     datasets:[{
                         label: "poměr baleni",
                         data: [bal1, bal2],

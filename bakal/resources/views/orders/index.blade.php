@@ -12,12 +12,14 @@
     <form action="{{ route('orders.store') }}" method="post"  class="">
       @csrf
       @auth('customer')
-        <button type="submit" class="btn btn-outline-secondary mb-5">Vytvořit novou objednávku</button>
+        <button type="submit" class="btn btn-secondary mb-5">Vytvořit novou objednávku</button>
       @endauth
       
     </form> 
   </div>
-  
+  <div class="col text-center">
+    Pro detail objednávky klikněte na číslo objednávky.
+  </div>
   <div class="col">
     <form action="{{ route('orders.index.filter') }}" type="get" class="float-right mb-5">
       <div class="row">
@@ -40,7 +42,7 @@
   
 </div>
 
-   <table class="table table-bordered text-center align-middle">
+   <table class="table text-center align-middle mb-5">
       <thead>
         <tr>
        
@@ -64,7 +66,7 @@
           @endauth
           @auth('customer')
             <th scope="col">Změnit termín</th>
-           <!-- <th scope="col">Upravit objednávku</th> -->
+
           @endauth
           
         </tr>

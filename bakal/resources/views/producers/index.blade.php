@@ -7,7 +7,7 @@
 <a class="btn-secondary btn mb-3" href="{{ route('producers.create')}}" class="p-3">Přidat dodavatele</a>
 <div class="d-flex justify-content-center">
   
-   <table class="table table-bordered">
+   <table class="table">
       <thead>
         <tr>
        

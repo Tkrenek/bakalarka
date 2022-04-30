@@ -8,45 +8,49 @@
    
    <h1>Kód produktu : {{ $mixedProduct->code }}</h1>
    
-    <h3>Přidat novou přísadu: </h3>
-    <form action="{{ route('mixingProduct.store', $mixedProduct->id) }}" method="post">
-
-   
-        @csrf
-        <div class="form-group">
-            <div class="col-lg-2">
-                <label for="code">Kód produktu</label>
-                <select name="code" id="code" class="form-control custom-select">
-                    @foreach ($originals as  $original)
-                    @if($original->id != 1)
-                        <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option class="form-control @error('department') is-invalid @enderror">
-                    @endif    
-                    @endforeach
-                </select> 
-                
-                    @error('code')
-
-                        <strong>Musíte zadat kód produktu.</strong>
+   <div class="row">
+        <div class="col-6">
+            <h3>Přidat novou přísadu: </h3>
+            <form action="{{ route('mixingProduct.store', $mixedProduct->id) }}" method="post">
         
-                    @enderror
-               
-                    @if ($message = Session::get('error'))
-                        <div>
-                            <strong>{{ $message }}  </strong>   
-                        </div>    
+           
+                @csrf
+                <div class="form-group">
+                    <div class="col-lg-2">
+                        <label for="code">Kód produktu</label>
+                        <select name="code" id="code" class="form-control custom-select" style="width: 200px">
+                            @foreach ($originals as  $original)
+                            @if($original->id != 1)
+                                <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option class="form-control @error('department') is-invalid @enderror">
+                            @endif    
+                            @endforeach
+                        </select> 
                         
-                        
-                    @endif
-                    
-              </div>
-          
-          </div>
-        <button type="submit" class="btn btn-secondary ml-3">Přidat</button>
-    </form>
-    <h3>Přísady:</h3>
+                            @error('code')
+        
+                                <strong>Musíte zadat kód produktu.</strong>
+                
+                            @enderror
+                       
+                            @if ($message = Session::get('error'))
+                                <div>
+                                    <strong>{{ $message }}  </strong>   
+                                </div>    
+                                
+                                
+                            @endif
+                            
+                      </div>
+                  
+                  </div>
+                <button type="submit" class="btn btn-secondary ml-3">Přidat</button>
+            </form>
+        </div>
+        <div class="col-6">
+            <h3>Přísady:</h3>
   
     
-        <table class="table">
+        <table class="table" style="width: 400px">
           <thead>
               <th class="col">Kód přísady</th>
               <th class="col">Smazat</th>
@@ -70,6 +74,12 @@
               
           </tbody>
         </table>
+
+        </div>
+
+   </div>
+    
+    
    
 
   

@@ -2,50 +2,67 @@
     color: red;
 }
 
-.table-header {
-    background-color: rgb(201, 210, 228);
-    
-}
+
 
 
 .link {
     text-decoration: none;
-    color: grey;
+    color: blue;
+    font-size: larger;
+
 }
 
 .link:hover {
     text-decoration: none;
     color: black;
-}
-
-
-
-.card-header {
-    background-color: grey !important;
-    color: white;
+    
 }
 
 .welcome-text {
     font-size: 1.2rem;
 }
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 100;
-    padding: 70px 0 0 10px;
-    border-right: 1px solid #d3d3d3;
-  }
+table {
+    text-align: center;
+    border-right: 1px solid black !important;
+    border-left: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+}
+
+.table-header {
+    border-right: 1px solid black !important;
+    border-left: 1px solid black !important;
+    border-top: 1px solid black !important;
+    height: 50px !important;
+    background-color: #FFFFE8 !important;
+    margin: auto !important;
+}
+
+thead {
+    background-color: #FFFFE8 !important;
+
+
+  height: 100px;
   
-  .left-sidebar {
-    position: sticky;
-    top:0;
-    height: calc(100vh - 70px)
-  }
-  
-  .sidebar-nav li .nav-link {
-    color: #333;
-    font-weight: 500;
-  }
+  vertical-align: middle !important;
+  margin-bottom: 5px;
+ 
+}
+
+td {
+    vertical-align: middle !important;
+    vertical-align: middle !important;
+}
+
+th {
+    border-top: 1px solid black !important;
+    vertical-align: middle !important;
+
+    
+}
+
+.btn-secondary {
+    background-color: #0099FF !important;
+    color: black !important;
+}
+
