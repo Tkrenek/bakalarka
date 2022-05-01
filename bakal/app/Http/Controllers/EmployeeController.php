@@ -92,7 +92,7 @@ class EmployeeController extends Controller
 
         // pokud je prihlasen zamestnanec, zobrazi se mu uvodniobrazovka
         if(auth('employee')->user()) {
-            return view('employees/welcome');
+            return redirect()->route('employees.welcome');
         }
 
         return redirect()->route('employees.index'); // presmerovani na vsechny zamestnance

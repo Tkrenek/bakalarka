@@ -2,9 +2,22 @@
 
 @section('content')
 @auth('admin')
-<a class="btn btn-secondary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
-<a class="btn btn-secondary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
+<a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
+
+
+
+<a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
+
+
 @endauth
+
+<div class="text-center text-danger" style="font-size: larger;">
+
+  @error('ammount')
+                      Musíte zadat množství!
+         
+                  @enderror
+</div>
 
 
   <h1 class="display-3 text-center mb-5">Originální produkty</h1>    
@@ -59,18 +72,15 @@
               <div class="form-group ">
                 
                 <label for="ammount" class="sr-only">Množsví</label>
-                <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <input type="text"  id="ammount" name="ammount" class="form-control " placeholder="množství">
                 <div class="invalid-feedback">
-                  @error('ammount')
-                      Musíte zadat množství.
-         
-                  @enderror
+             
               </div>  
                 </div>
-              <button type="submit" class="btn btn-secondary">Naskladnit</button>
+              <button type="submit" class="btn btn-primary">Naskladnit</button>
             </form>
           </td>
-            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+            <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-primary">Upravit</a></td>
            
             <td>
               <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
@@ -90,15 +100,12 @@
               <div class="form-group">
                 
                 <label for="ammount" class="sr-only">Množsví</label>
-                <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+                <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="množství">
                 <div class="invalid-feedback">
-                  @error('ammount')
-                      Musíte zadat množství.
-         
-                  @enderror
+       
               </div>  
                 </div>
-              <button type="submit" class="btn btn-secondary">Naskladnit</button>
+              <button type="submit" class="btn btn-primary">Naskladnit</button>
             </form>
           </td>
          
@@ -168,26 +175,23 @@
             
 
           @auth('admin')
-          <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-secondary">Změnit recept</a></td>
+          <td><a href="{{ route('mixingProduct.show', $product->id) }}" type="submit" class="btn btn-primary">Změnit recept</a></td>
             <td style="width: 150px">
               <form action="{{ route('productMixed.addStore', $product->id) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
            
-                  <label for="ammount" class="sr-only">Množství</label>
-                  <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
+   
+                  <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="množství">
                   <div class="invalid-feedback">
-                    @error('ammount')
-                        Musíte zadat množství.
-           
-                    @enderror
+                  
                 </div>  
                   </div>
-                <button type="submit " class="btn btn-secondary">Naskladnit</button>
+                <button type="submit " class="btn btn-primary">Naskladnit</button>
               </form>
             </td>
-            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-secondary">Upravit</a></td>
+            <td><a href="{{ route('productMixed.edit', $product->id) }}" type="submit" class="btn btn-primary">Upravit</a></td>
             
             <td>
               <form action="{{ route('productMixed.destroy', $product->id) }}" method="post">
@@ -206,16 +210,13 @@
                @method('PUT')
                <div class="form-group">
                
-                <label for="ammount" class="sr-only">Množství</label>
-                <input type="number"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
+
+                <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="množství">
                 <div class="invalid-feedback">
-                  @error('ammount')
-                      Musíte zadat množství.
-         
-                  @enderror
+            
               </div>  
                 </div>
-               <button type="submit" class="btn btn-secondary">Naskladnit</button>
+               <button type="submit" class="btn btn-primary">Naskladnit</button>
             </form>
           </td>
           

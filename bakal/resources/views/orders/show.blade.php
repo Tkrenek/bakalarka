@@ -11,20 +11,20 @@
    <h1 class="text-center mb-5 display-2">ID objednávky: {{ $order->id }}</h1>
 
    @auth('customer')
-      <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-secondary">Zpět na moje objednávky</a>
+      <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-primary">Zpět na moje objednávky</a>
    @endauth
    @auth('admin')
-      <a href="{{ route('orders.index')}}" class="btn btn-secondary mb-3">Zpět na  objednávky</a>
+      <a href="{{ route('orders.index')}}" class="btn btn-primary mb-3">Zpět na  objednávky</a>
    @endauth
    @auth('employee')
-      <a href="{{ route('orders.index')}}" class="btn btn-secondary mb-3">Zpět na  objednávky</a>
+      <a href="{{ route('orders.index')}}" class="btn btn-primary mb-3">Zpět na  objednávky</a>
    @endauth
 
    @auth('customer')
-      <a class="btn btn-secondary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+      <a class="btn btn-primary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
    @auth('admin')
-      <a class="btn btn-secondary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
+      <a class="btn btn-primary float-right mb-3" href="{{ route('items.create', $order->id) }}" role="button">Přidat položku</a>
    @endauth
 
    <table class="table">
@@ -148,12 +148,15 @@
 
   <h5  class="float-right">Celková cena: {{ $orderSum }} Kč</h5> 
 
+@auth('customer')
+
 @php
    $pole = array()
 @endphp
 @if (empty($recommended))
    
 @else
+
 <h3>Často nakupované položky s vaším zbožím:</h3>
    @foreach ($recommended as $one)
       @if (in_array($one[0], $pole))
@@ -169,7 +172,32 @@
    
    @endforeach
 @endif
+@endauth
+@auth('admin')
+
+@php
+   $pole = array()
+@endphp
+@if (empty($recommended))
    
+@else
+
+<h3>Doporučené položky:</h3>
+   @foreach ($recommended as $one)
+      @if (in_array($one[0], $pole))
+         
+      @else 
+      
+      ({{ $one[0] }})
+      @endif
+     
+      @php
+         array_push($pole, $one[0])
+      @endphp
+   
+   @endforeach
+@endif
+@endauth
   
 
 

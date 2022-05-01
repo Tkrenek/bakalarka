@@ -3,14 +3,14 @@
 @section('content')
   
 <div class="justify-content-center d-flex p-5"><h1 class="display-1">Informační systém Coloral</h1></div>
-<div class="justify-content-center d-flex p-1">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
-<div class="justify-content-center d-flex p-1">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
+<div class="justify-content-center d-flex p-1 login-option">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
+<div class="justify-content-center d-flex p-1 login-option">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header text-center  ">Přihlášení admina</div>
+            <div class="card-header text-center ">Přihlášení admina</div>
 
             <div class="card-body">
             <form  action="{{ route('admins.login.post') }}" method="POST">

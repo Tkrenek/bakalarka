@@ -19,7 +19,7 @@
                         
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-block">
-                            <strong>{{ $message }}  </strong>   
+                        <strong>{{ $message }}  </strong>   
                         </div>    
                         
                         

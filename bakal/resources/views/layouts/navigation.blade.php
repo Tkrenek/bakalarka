@@ -49,10 +49,6 @@
 
                  
         
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('mixingProduct.index')}}" class="p-3">Recepty</a>
-        
-                    </li>
         
                     
         
@@ -125,10 +121,6 @@
     
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('mixingProduct.index')}}" class="p-3">Recepty</a>
-    
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('orderWork.index')}}" class="p-3">Práce na objednávce</a>
                 </li>

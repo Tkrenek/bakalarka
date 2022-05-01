@@ -12,12 +12,12 @@
     <form action="{{ route('orders.store') }}" method="post"  class="">
       @csrf
       @auth('customer')
-        <button type="submit" class="btn btn-secondary mb-5">Vytvořit novou objednávku</button>
+        <button type="submit" class="btn btn-primary mb-5">Vytvořit novou objednávku</button>
       @endauth
       
     </form> 
   </div>
-  <div class="col text-center">
+  <div class="col text-center tip">
     Tip: Pro detail objednávky klikněte na číslo objednávky.
   </div>
   <div class="col">
@@ -42,7 +42,7 @@
   
 </div>
 
-   <table class="table text-center align-middle mb-5">
+   <table class="table text-center align-middle mb-5 order-table">
       <thead>
         <tr>
        
@@ -53,13 +53,13 @@
           <th scope="col">Celková cena</th>
           <th scope="col">Faktura</th>
           @auth('admin')
-          
+          <th scope="col">Nahrát fakturu</th>
           <th scope="col">Odstranit objednávku</th>
        
           <th scope="col">Upravit objednávku</th>
           @endauth
           @auth('employee')
-          
+            <th scope="col">Nahrát fakturu</th>
             <th scope="col">Označit práci</th>
             <th scope="col">Změnit stav objednávky</th>
             
@@ -109,8 +109,10 @@
            @auth('admin')
            <td>
              @if($order->invoice != "bude doplněno")
-              <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
+              <a class="invoice" href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
              @endif
+           </td>
+           <td>
             <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
@@ -124,8 +126,10 @@
            @auth('employee')
            <td>
             @if($order->invoice != "bude doplněno")
-            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
+            <a class="invoice" href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
            @endif
+           </td>
+           <td>
             <form method="post" action="{{ route('orders.uploadFile', $order->id) }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
@@ -143,7 +147,7 @@
               Bude doplněno
 
            @else   
-            <a href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
+            <a class="invoice" href="{{ route('orders.downloadInvoice', $order->invoice) }}">{{ $order->invoice }}</a>
            @endif
            
            
@@ -156,7 +160,7 @@
               <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Odstranit objednávku</button>
+                <button type="submit" class="btn btn-danger">Smazat</button>
             </form>
             </td>
           @endauth
@@ -166,7 +170,7 @@
             @auth('employee')
             <td>
 
-              <a href="{{ route('orderWork.create', $order->id) }}" type="btn" class="btn btn-secondary">Označit</a>
+              <a href="{{ route('orderWork.create', $order->id) }}" type="btn" class="btn btn-primary">Označit</a>
             </td>
             <td>
             <form action="{{ route('orders.changeState', $order->id) }}" method="post">
@@ -189,7 +193,7 @@
                 @enderror
             </div>  
                </div>
-              <button type="submit" class="btn btn-secondary">Změnit stav objednávky</button>
+              <button type="submit" class="btn btn-primary">Změnit stav objednávky</button>
               </form>
             </td>
           @endauth
@@ -199,7 +203,7 @@
 @auth('admin')
 
 <td>
-    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-secondary">Upravit objednávku</a>
+    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary">Upravit</a>
 </td>
 </td>
 @endauth
@@ -212,7 +216,7 @@
     @method('PUT')
     <div class="form-group">
       <label for="term">Změnit termín</label>
-      <input type="date" id="term" name="term" class="@error('term') is-invalid @enderror form-control" >
+      <input type="date" id="term" name="term" class="@error('term') is-invalid @enderror form-control">
       <div class="invalid-feedback">
           @error('term')
 
@@ -221,13 +225,13 @@
           @enderror
       </div>  
   </div>
-    <button type="submit" class="btn btn-secondary">Změnit termín objednávky</button>
+    <button type="submit" class="btn btn-primary">Změnit termín</button>
     
 </form>
 </td>
 <!--
   <td>
-    <a href="{{ route('orders.edit', $order->id) }}" type="submit" class="btn btn-secondary">Změnit objednávku</a>
+    <a href="{{ route('orders.edit', $order->id) }}" type="submit" class="btn btn-primary">Změnit objednávku</a>
 </td>
 -->
 @endauth

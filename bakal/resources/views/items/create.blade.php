@@ -2,7 +2,15 @@
 
 @section('content')
   
-<a href="{{ route('orders.show', $order->id) }}" class="btn btn-secondary">Vrátit se zpět</a>
+<div class="text-center text-danger" style="font-size: larger;">
+
+  @error('ammount')
+                      Musíte zadat množství!
+         
+                  @enderror
+</div>
+
+<a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">Vrátit se zpět</a>
 
 
   
@@ -19,7 +27,7 @@
                     @endif
   </div>
   
-   <table class="table mb-5 table-bordered">
+   <table class="table mb-5">
       <thead>
         <tr>
           <th scope="col">Kód</th>
@@ -56,7 +64,7 @@
           <td>{{ $product->branch }}</td>
           <td>{{ $product->prize }}</td>
           <td>{{ $product->producer->name }}</td>
-          <td>
+          <td style="width: 150px">
              
             <form action="{{ route('items.store', ['orderid'=>$order->id,'productcode'=>$product->code]) }}" method="post">
                 @csrf
@@ -64,25 +72,18 @@
                     <label for="ammount" >Množsví</label>
                     <div class="row">
                         <div class="col">   
-                            <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror">
-                            <div class="invalid-feedback">
-                              @error('ammount')
-                                  Musíte zadat množství.
-                     
-                              @enderror
-                              
-                              
-                          
-                        </div>
+                            <input placeholder="množství" style="width: 170px" type="text"  id="ammount" name="ammount" class="mb-3 form-control ">
+                            
                         
                       </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
+                            <button type="submit" class="btn btn-primary">Přidat k objednávce</button>
                         </div>
                     </div>
               </form>
 
           </td>
+         
           
   
           
@@ -94,7 +95,7 @@
 
     <h1 class="display-3 text-center mb-5"> Míchané produkty</h1> 
   
-    <table class="table mb-5 table-bordered">
+    <table class="table mb-5">
       <thead >
         <tr>
           <th scope="col">Kód</th>
@@ -133,24 +134,20 @@
           <td>{{ $product->branch }}</td>
           
           <td>{{ $product->prize }}</td>
-          <td>
+          <td style="width: 150px">
           <form action="{{ route('items.store', ['orderid'=>$order->id,'productcode'=>$product->code]) }}" method="post">
             @csrf
-            <div class="form-group ">
+            <div class="form-group">
 
                 <label for="ammount" >Množsví</label>
                 <div class="row">
                     <div class="col">   
-                        <input type="text"  id="ammount" name="ammount" class="form-control @error('ammount') is-invalid @enderror" >
-                        <div class="invalid-feedback">
-                          @error('ammount')
-                              Musíte zadat množství.
-                          @enderror
-                      </div>
+                        <input placeholder="množství" style="width: 170px" type="text"  id="ammount" name="ammount" class="mb-2 form-control " >
+                        
                      
                     </div>
                     <div class="col">
-                        <button type="submit" class="btn btn-secondary">Přidat k objednávce</button>
+                        <button type="submit" class="btn btn-primary">Přidat k objednávce</button>
                     </div>
                 </div>
                 

@@ -92,7 +92,7 @@ class AdminController extends Controller
 
         $admin->save(); // ulozi udaje
 
-        return view('admins.success'); // vraci pohled
+        return redirect()->route('admins.success'); // vraci pohled
         
     }
 

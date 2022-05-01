@@ -4,12 +4,12 @@
   
 
         
-<a href="{{ route('product.index')}}" class="btn btn-secondary float-right">Zpět na seznam produktů</a>
+<a href="{{ route('product.index')}}" class="btn btn-primary float-right">Zpět na seznam produktů</a>
    
-   <h1>Kód produktu : {{ $mixedProduct->code }}</h1>
+   <h1 class="display-3 text-center mb-5">Kód produktu : {{ $mixedProduct->code }}</h1>
    
    <div class="row">
-        <div class="col-6">
+        <div class="col-8">
             <h3>Přidat novou přísadu: </h3>
             <form action="{{ route('mixingProduct.store', $mixedProduct->id) }}" method="post">
         
@@ -34,7 +34,7 @@
                        
                             @if ($message = Session::get('error'))
                                 <div>
-                                    <strong>{{ $message }}  </strong>   
+                                    <span class="text-danger">{{ $message }}</span>  
                                 </div>    
                                 
                                 
@@ -43,10 +43,10 @@
                       </div>
                   
                   </div>
-                <button type="submit" class="btn btn-secondary ml-3">Přidat</button>
+                <button type="submit" class="btn btn-primary ml-3">Přidat</button>
             </form>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <h3>Přísady:</h3>
   
     

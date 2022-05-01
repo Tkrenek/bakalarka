@@ -4,7 +4,7 @@
 
 <h2 class="display-2 text-center">Seznam dodavatelů</h2>
 
-<a class="btn-secondary btn mb-3" href="{{ route('producers.create')}}" class="p-3">Přidat dodavatele</a>
+<a class="btn-primary btn mb-3" href="{{ route('producers.create')}}" class="p-3">Přidat dodavatele</a>
 <div class="d-flex justify-content-center">
   
    <table class="table">
@@ -31,7 +31,7 @@
           <td>{{ $producer->phone }}</td>
           <td>{{ $producer->address }}, {{ $producer->town }}</td>
 
-          <td><a href="{{ route('producers.edit', $producer->id) }}" type="submit" class="btn btn-secondary">Upravit profil</a>
+          <td><a href="{{ route('producers.edit', $producer->id) }}" type="submit" class="btn btn-primary">Upravit profil</a>
 
        
           <td>

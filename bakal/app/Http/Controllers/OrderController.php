@@ -145,7 +145,7 @@ class OrderController extends Controller
         
         // vraceni pohledu
         return view('orders.index', [
-            'orders' => $orders,   
+            'orders' => $orders
         ]);
     }
 
@@ -426,24 +426,34 @@ class OrderController extends Controller
 
     public function uploadFile(Request $request, $orderId)
     {
+
         if($request->hasFile('invoice')){
             $path = 'public/invoices';
             $invoice = $request->file('invoice');
             $invoice_name = $invoice->getClientOriginalName();
             $fullPath = $request->file('invoice')->storeAs($path, $invoice_name);
             
-        
             $input['invoice'] = $invoice_name;
         } else {
             return back();
         }
         
+        
         $order = Order::find($orderId);
+       
+        $time = $order->term;
 
         $order->invoice = $invoice_name;
-        $order->save();
        
-        return back();
+        $order->save();
+
+        
+        $order->term = $time;
+        $order->save();
+
+
+
+        return redirect()->route('orders.index');
     }
 
     

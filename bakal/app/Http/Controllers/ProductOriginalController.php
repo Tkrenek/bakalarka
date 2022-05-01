@@ -30,7 +30,6 @@ class ProductOriginalController extends Controller
             'producer' => 'required',
 
             
-            
         ]);
         $producer = Producer::where('name', $request->producer)->first();
         
@@ -98,6 +97,7 @@ class ProductOriginalController extends Controller
             'branch' =>'required',
             'prize' => 'required|numeric',
             'on_store' => 'required|numeric',
+            'producer' => 'required'
         ]);
         
         $product = Product_original::find($id);

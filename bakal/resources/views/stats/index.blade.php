@@ -172,7 +172,7 @@
         datasets:[{
             label: "Prodkty",
             data: [{!!$resultsOriginal!!}, {!!$resultsMixed!!}],
-            backgroundColor: ["#AC3131", "#254AA1", '#AC3131'],
+            backgroundColor: ["#AC3131", "#254AA1", '#669966'],
         }]
     },
   })
@@ -243,7 +243,7 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
         datasets:[{
             label: "Nádoby",
             data: dt,
-            backgroundColor: ["#AC3131", "#254AA1", '#AC3131'],
+            backgroundColor: ["#AC3131", "#254AA1", '#669966'],
         }]
     },
   })

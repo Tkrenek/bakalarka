@@ -22,7 +22,14 @@
                     
                     <label for="state">Stav objednávky</label>
                    
-                    <input type="text" value="{{ $order->state }}" id="state" name="state" class="form-control @error('code') is-invalid @enderror" value="{{ $order->term }}">
+                    <select name="state" id="state" class="form-control custom-select">
+                       
+                        <option id="založeno" name="založeno">Založeno</option class="form-control @error('state') is-invalid @enderror">
+                        <option id="namícháno" name="namícháno">Namícháno</option class="form-control @error('state') is-invalid @enderror">
+                        <option id="zabaleno" name="zabaleno">Zabaleno</option class="form-control @error('state') is-invalid @enderror">
+                        <option id="vyřízeno" name="vyřízeno">Vyřízeno</option class="form-control @error('state') is-invalid @enderror">
+                    </select> 
+                    
                     <div class="invalid-feedback">
                         @error('state')
 
@@ -35,7 +42,12 @@
                 <div class="form-group ">
             
                     <label for="term">Termín objednávky</label>
-                    <input type="date" id="term" value="{{ carbon::parse($order->term)->format('d.m.Y') }}" name="term" class="form-control @error('term') is-invalid @enderror">
+                    <input type="date" id="term" value="{{  $order->term }}" name="term" class="form-control @error('term') is-invalid @enderror">
+                    @php $date = Carbon::parse($order->term); @endphp
+                    <script>
+
+                        document.getElementById('term').valueAsDate = new Date(<?php echo json_encode($date) ?>);
+                    </script>
                     <div class="invalid-feedback">
                         @error('term')
 

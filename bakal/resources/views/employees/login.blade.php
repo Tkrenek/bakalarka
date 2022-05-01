@@ -3,7 +3,7 @@
 @section('content')
   
 <div class="justify-content-center d-flex p-5"><h1 class="display-1">Informační systém Coloral</h1></div>
-<div class="justify-content-center d-flex p-1">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
+<div class="justify-content-center d-flex p-1 login-option">Jste zákazník? Klikněte: <a href="/"> zde </a>.</div>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -69,7 +69,7 @@
     </div>
     
 </div>
-Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.
+<div class="login-option">Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</div> 
 
 </div></div></div>
 @endsection

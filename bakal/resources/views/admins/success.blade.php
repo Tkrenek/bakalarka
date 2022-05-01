@@ -21,7 +21,7 @@
 <hr>
 <div class="row">
     <div class="col-sm-6">
-        <div class="card border-4">
+        <div class="card ">
           <div class="card-body text-center">
             <h5 class="card-title">Seznam objenávek</h5>
             <p class="card-text">Zobrazte si svoje objednávky</p>
@@ -30,7 +30,7 @@
         </div>
       </div>
     <div class="col-sm-6">
-      <div class="card border-4">
+      <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title">Seznam nádob</h5>
           <p class="card-text">Prohédněte si seznam nádob, které jsou nabízeny.</p>
@@ -43,7 +43,7 @@
   
   <div class="row mt-3">
     <div class="col-sm-6">
-      <div class="card border-4">
+      <div class="card ">
         <div class="card-body text-center">
           <h5 class="card-title">Seznam produktů</h5>
           <p class="card-text">Prohlédněte si seznam nabízených produktů.</p>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="card border-4">
+      <div class="card ">
         <div class="card-body text-center">
           <h5 class="card-title">Zobrazit zaměstnance</h5>
           <p class="card-text">Přidejte do systému další kontaktní osoby.</p>
@@ -64,7 +64,7 @@
 
   <div class="row mt-3 mb-5">
     <div class="col-sm-6">
-        <div class="card border-4">
+        <div class="card">
           <div class="card-body text-center">
             <h5 class="card-title">Zobrazit zákazníky</h5>
             <p class="card-text">Zobrazte si svoje objednávky</p>
@@ -73,7 +73,7 @@
         </div>
       </div>
     <div class="col-sm-6">
-      <div class="card border-4">
+      <div class="card ">
         <div class="card-body text-center">
           <h5 class="card-title">Registrace dodavatele</h5>
           <p class="card-text">Prohédněte si seznam nádob, které jsou nabízeny.</p>

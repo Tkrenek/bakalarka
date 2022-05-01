@@ -63,8 +63,9 @@ th {
 .card-header {
     background-color: #FFFFE8 !important;
     color: black !important;
-    height: 45px;
+    height: 60px;
     vertical-align: middle !important;
+    font-size: x-large !important;
 }
 
 
@@ -72,3 +73,31 @@ th {
     font-size: xx-large;
 }
 
+.card {
+    border: black solid 1px !important;
+}
+
+.card-header
+ {
+    border-bottom: black solid 1px !important;
+ }
+
+ .login-option {
+     font-size: large;
+ }
+
+ .invoice {
+    text-decoration: none !important;
+ }
+
+ .order-table {
+    font-size: 1rem;
+ }
+
+ .tip {
+     font-size: large;
+ }
+
+ .calendar {
+     font-size: x-large;
+ }

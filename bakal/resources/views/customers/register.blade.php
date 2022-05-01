@@ -3,7 +3,7 @@
 @section('content')
   @guest
   <div class="justify-content-center d-flex p-5 "><h1 class="display-1">Informační systém Coloral</h1></div>
-  <div class="justify-content-center d-flex p-1">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
+  <div class="justify-content-center d-flex p-1 login-option">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
   @endguest
 
 <div class="container">
@@ -123,7 +123,7 @@
             </div>
         </div> 
         @guest
-        Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.
+      <span class="login-option">Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</span>  
     </div>
         @endguest
        

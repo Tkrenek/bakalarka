@@ -2,8 +2,16 @@
 
 @section('content')
   
-<a href="{{ route('packageItem.show', $item->id) }}" class="btn btn-secondary mb-3">Vrátit se zpět</a>
-  <table class="table">
+<div class="text-center text-danger" style="font-size: larger;">
+
+  @error('count')
+                      Musíte zadat množství!
+         
+                  @enderror
+</div>
+
+<a href="{{ route('packageItem.show', $item->id) }}" class="btn btn-primary mb-3">Vrátit se zpět</a>
+  <table class="table mb-5">
     <thead>
       <tr>
         
@@ -31,32 +39,22 @@
         <td>{{ $container->bulk }}</td>
         <td>{{ $container->on_store }}</td>
         <td>{{ $container->prize }}</td>
-        <td>
+        <td style="width: 200px">
             
             <form action="{{ route('packageItem.store', ['itemid' => $item->id, 'containerid' => $container->id]) }}" method="post">
               @csrf
               <div class="form-group ">
   
-                  <label for="count" >Množsví</label>
-                  <div class="row">
-                      <div class="col">   
-                          <input type="text"  id="count" name="count" class="form-control @error('count') is-invalid @enderror">
-                          <div class="invalid-feedback">
-                            @error('count')
-                                Musíte zadat množství.
-                   
-                            @enderror
-                        </div>  
-                      </div>
-                      <div class="col">
-                          <button type="submit" class="btn btn-secondary">Přidat balení</button>
-                      </div>
-                  </div>
-                @error('count')
-  
-                Musíte vybrat množství.
+       
         
-                @enderror
+                    
+
+                          <input placeholder="množství" type="text"  id="count" name="count" class="mb-3 form-control " style="width: 170px">
+                          
+                      
+                          <button type="submit" class="btn btn-primary mr-3">Přidat balení</button>
+        
+               
                 </div>
               
             </form>

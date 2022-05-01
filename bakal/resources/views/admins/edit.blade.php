@@ -76,6 +76,10 @@
                 <div class="form-group">
                     <label for="birth_date">Datum narození</label>
                     <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
+                 
+                    <script>
+                        document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($admin->birth_date); ?>)
+                    </script>
                     <div class="invalid-feedback">
                         @error('birth_date')
 
