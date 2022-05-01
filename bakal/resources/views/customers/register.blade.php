@@ -7,10 +7,10 @@
   @endguest
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header text-center text-white bg-primary">Registrace zákazníka</div>
+                <div class="card-header text-center">Registrace zákazníka</div>
 
                 <div class="card-body ">
             <form action="{{ route('customers.store') }}" method="POST">

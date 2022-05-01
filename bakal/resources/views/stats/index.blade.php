@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="display-2 text-center mb-5">Statistiky</h1>
+<h1 class="display-1 text-center mb-5">Statistiky</h1>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,20 +18,20 @@
          
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejprodávaněší nádoby
+                    <span class="stats">Nejprodávaněší nádoby</span> 
                 </div>
                 <canvas id="myChart4"></canvas>
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejprodávanější produkty
+                    <span class="stats">Nejprodávanější produkty</span>
                 </div>
                 <canvas id="myChart6"></canvas>
             </div>
            
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejpilnější zaměstnanci
+                    <span class="stats">Nejpilnější zaměstnanci</span>
                 </div>
                 <canvas id="myChart3"></canvas>
             </div>
@@ -41,20 +41,20 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl míchaných a originálních produktů (v %)
+                    <span class="stats">Podíl míchaných a originálních produktů (v %)</span>
                 </div>
                 <canvas id="myChart1"></canvas>
             </div>
             <div class="chart-container mt-5 col-4">
                 <div class="text-center mb-4">
-                    Největší zákazníci
+                    <span class="stats ">Největší zákazníci</span>
                 </div>
                 <canvas id="myChart2"></canvas>
             </div>
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanystrů a plechovek (v %)
+                    <span class="stats">Podíl kanystrů a plechovek (v %)</span>
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>
@@ -66,13 +66,13 @@
    
             <div class="chart-container col-4 offset-2">
                 <div class="text-center mb-4">
-                    Nejprodávaněší nádoby
+                    <span class="stats">Nejprodávaněší nádoby</span>
                 </div>
                 <canvas id="myChart4"></canvas>
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejprodávanější produkty
+                    <span class="stats">Nejprodávanější produkty</span>
                 </div>
                 <canvas id="myChart6"></canvas>
             </div>
@@ -84,7 +84,7 @@
             
             <div class="chart-container col-4 offset-2">
                 <div class="text-center mb-4">
-                    Podíl míchaných a originálních produktů (v %)
+                    <span class="stats">Podíl míchaných a originálních produktů (v %)</span>
                 </div>
                 <canvas id="myChart1"></canvas>
             </div>
@@ -92,7 +92,7 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanystrů a plechovek (v %)
+                    <span class="stats">Podíl kanystrů a plechovek (v %)</span>
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>
@@ -106,19 +106,19 @@
          
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejprodávaněší nádoby
+                    <span class="stats">Nejprodávaněší nádoby</span>
                 </div>
                 <canvas id="myChart4"></canvas>
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Nejprodávanější produkty
+                    <span class="stats">Nejprodávanější produkty</span>
                 </div>
                 <canvas id="myChart6"></canvas>
             </div>
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Největší zákazníci
+                    <span class="stats">Největší zákazníci</span>
                 </div>
                 <canvas id="myChart2"></canvas>
             </div>
@@ -129,7 +129,7 @@
             
             <div class="chart-container col-4 offset-2">
                 <div class="text-center mb-4">
-                    Podíl míchaných a originálních produktů (v %)
+                    <span class="stats">Podíl míchaných a originálních produktů (v %)</span>
                 </div>
                 <canvas id="myChart1"></canvas>
             </div>
@@ -137,7 +137,7 @@
             
             <div class="chart-container col-4">
                 <div class="text-center mb-4">
-                    Podíl kanystrů a plechovek (v %)
+                    <span class="stats">Podíl kanystrů a plechovek (v %)</span>
                 </div>
                 <canvas id="myChart5"></canvas>
             </div>

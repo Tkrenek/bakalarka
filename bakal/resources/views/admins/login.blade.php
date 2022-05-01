@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card">
-            <div class="card-header text-center text-white bg-primary">Přihlášení admina</div>
+            <div class="card-header text-center  ">Přihlášení admina</div>
 
             <div class="card-body">
             <form  action="{{ route('admins.login.post') }}" method="POST">

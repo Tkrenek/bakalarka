@@ -42,7 +42,7 @@
         @auth('employee')
         
         
-          <td class="pr-0 mr-0" style="width: 150px">
+          <td  style="width: 135px">
             <form action="{{ route('containers.addStore', $container->id) }}" method="post">
               @csrf
               @method('PUT')

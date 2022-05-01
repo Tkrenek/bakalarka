@@ -16,8 +16,15 @@ class StatsController extends Controller
         $resultsOriginal = Stats::getResultsOriginal();
         $resultsMixed = Stats::getResultsMixed();
         $celkemProdukty = $resultsMixed + $resultsOriginal;
-        $resultsMixed /= $celkemProdukty / 100;
-        $resultsOriginal /= $celkemProdukty / 100;
+        
+        try {
+            $resultsMixed /= $celkemProdukty / 100;
+            $resultsOriginal /= $celkemProdukty / 100;
+        }catch(Exception $e){
+            $resultsMixed = 0;
+            $resultsOriginal = 0;
+        }
+        
 
      
         $nejvic = Stats::getCustomerMax();
@@ -33,8 +40,15 @@ class StatsController extends Controller
         $baleniPomer1 = Stats::getBaleniKanistr();
         $baleniPomer2 = Stats::getBaleniPlech();
         $celkem = $baleniPomer1 + $baleniPomer2;
-        $baleniPomer1 /= $celkem / 100;
-        $baleniPomer2 /= $celkem / 100;
+
+        try{
+            $baleniPomer1 /= $celkem / 100;
+            $baleniPomer2 /= $celkem / 100;
+        } catch(Exception $e){
+            $baleniPomer1 = 0;
+            $baleniPomer2 = 0;
+        }
+        
 
 
         $produktyOrig = Stats::getProduktyOriginal();

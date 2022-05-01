@@ -18,7 +18,7 @@
     </form> 
   </div>
   <div class="col text-center">
-    Pro detail objednávky klikněte na číslo objednávky.
+    Tip: Pro detail objednávky klikněte na číslo objednávky.
   </div>
   <div class="col">
     <form action="{{ route('orders.index.filter') }}" type="get" class="float-right mb-5">
