@@ -229,11 +229,7 @@
     
 </form>
 </td>
-<!--
-  <td>
-    <a href="{{ route('orders.edit', $order->id) }}" type="submit" class="btn btn-primary">Změnit objednávku</a>
-</td>
--->
+
 @endauth
 
 

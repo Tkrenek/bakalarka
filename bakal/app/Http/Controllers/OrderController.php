@@ -242,9 +242,9 @@ class OrderController extends Controller
         $recommendedItems = array();
         $recommendedItems = self::calculateApriori($order);
 
-        
+  
       
-       //dd($associator->apriori());
+
 
         return view('orders.show', [
             'recommended' => $recommendedItems,
@@ -426,6 +426,11 @@ class OrderController extends Controller
 
     public function uploadFile(Request $request, $orderId)
     {
+        $order = Order::find($orderId);
+
+        $date = $order->term;
+
+        
 
         if($request->hasFile('invoice')){
             $path = 'public/invoices';
@@ -439,22 +444,13 @@ class OrderController extends Controller
         }
         
         
-        $order = Order::find($orderId);
-       
-        $time = $order->term;
-
-        $order->invoice = $invoice_name;
-       
-        $order->save();
-
-        
-        $order->term = $time;
-        $order->save();
-
+        DB::update(DB::raw('UPDATE orders SET orders.invoice = "'.$invoice_name.'", orders.term = "'.$order->term.'"  WHERE orders.id = '.$orderId.''));
 
 
         return redirect()->route('orders.index');
     }
+
+    
 
     
 }

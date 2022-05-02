@@ -163,7 +163,7 @@
          
       @else 
       
-      ({{ $one[0] }})
+      {{ $one[0] }}
       @endif
      
       @php
@@ -176,7 +176,8 @@
 @auth('admin')
 
 @php
-   $pole = array()
+   $pole = array();
+   $konec = 0;   
 @endphp
 @if (empty($recommended))
    
@@ -188,7 +189,11 @@
          
       @else 
       
-      ({{ $one[0] }})
+            <span class="recommended">
+               {{ $one[0] }}  &nbsp
+            </span>
+            
+         
       @endif
      
       @php
