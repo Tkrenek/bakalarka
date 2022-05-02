@@ -66,7 +66,7 @@ class Stats extends Authenticatable
     public static function getCustomerMax()
     {
         $zakaznici = DB::select(DB::raw('select customers.name, count(customer_id) as "count" from orders join customers on customers.id = orders.customer_id group by customers.name'));
-        $nejvic = Stats::getMaxFrom($zakaznici, 3);
+        $nejvic = Stats::getMaxFrom($zakaznici, 5);
 
         return $nejvic;
     }
@@ -74,7 +74,7 @@ class Stats extends Authenticatable
     public static function getEmployeesMax()
     {
         $zamestnanci = DB::select(DB::raw('select CONCAT(employees.name, " ",employees.surname)  as "name", sum(order_works.time) as "count" from order_works join employees on employees.id = order_works.employee_id group by employees.name, employees.surname'));
-        $zamestnanci = Stats::getMaxFrom($zamestnanci, 3);
+        $zamestnanci = Stats::getMaxFrom($zamestnanci, 5);
 
         return $zamestnanci;
     }
@@ -83,7 +83,7 @@ class Stats extends Authenticatable
     public static function getContainersMax()
     {
         $baleni = DB::select(DB::raw('select containers.code, sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code'));
-        $baleni = Stats::getMaxFrom($baleni, 3);
+        $baleni = Stats::getMaxFrom($baleni, 5);
 
         return $baleni;
     }

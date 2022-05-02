@@ -60,7 +60,7 @@ class StatsController extends Controller
         
         
 
-        $maximaProdukty = Stats::getMaxFrom($merged, 3);
+        $maximaProdukty = Stats::getMaxFrom($merged, 5);
 
 
         

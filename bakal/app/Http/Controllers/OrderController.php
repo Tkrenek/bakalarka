@@ -202,11 +202,11 @@ class OrderController extends Controller
      */
     public function calculateApriori(Order $order)
     {
-        $samples = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
+        $items1 = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
  
-        $labels = [];
-        $association = new Apriori($support = 0.5, $confidence = 0.2); // vytvoreni instance tridy Apriori
-        $association->train($samples, $labels); // vytrenovani instance
+        $items2 = [];
+        $apriori = new Apriori($support = 0.5, $confidence = 0.4); // vytvoreni instance tridy Apriori
+        $apriori->train($items1, $items2); // vytrenovani instance
 
         $itemsInOrder = array();
 
@@ -224,10 +224,9 @@ class OrderController extends Controller
        if (empty($itemsInOrder)) {
        
         } else {
-            $recommendedItems = $association->predict($itemsInOrder);
+            $recommendedItems = $apriori->predict($itemsInOrder);
         }
-        
-  
+
         return $recommendedItems;
     }
 

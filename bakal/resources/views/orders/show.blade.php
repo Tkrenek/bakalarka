@@ -163,7 +163,9 @@
          
       @else 
       
-      {{ $one[0] }}
+      <span class="recommended">
+         {{ $one[0] }}  &nbsp 
+      </span>
       @endif
      
       @php

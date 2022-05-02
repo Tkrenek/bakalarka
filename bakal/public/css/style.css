@@ -20,13 +20,14 @@ table {
     border-right: 1px solid black !important;
     border-left: 1px solid black !important;
     border-bottom: 1px solid black !important;
-   
+    border-top: 1px solid black !important;
 }
 
 .table-header {
     border-right: 1px solid black !important;
     border-left: 1px solid black !important;
     border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
     height: 50px !important;
     background-color: #FFFFE8 !important;
     margin: auto !important;
@@ -35,7 +36,7 @@ table {
 thead {
     background-color: #FFFFE8 !important;
 
-
+    border-bottom: 1px solid black !important;
   height: 100px;
   
   vertical-align: middle !important;
@@ -50,6 +51,7 @@ td {
 
 th {
     border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
     vertical-align: middle !important;
 
     
@@ -103,5 +105,5 @@ th {
  }
 
  .recommended {
-     font-size: large;
+     font-size: larger;
  }

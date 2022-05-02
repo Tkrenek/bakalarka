@@ -172,7 +172,7 @@
         datasets:[{
             label: "Prodkty",
             data: [{!!$resultsOriginal!!}, {!!$resultsMixed!!}],
-            backgroundColor: ["#AC3131", "#254AA1", '#669966'],
+            backgroundColor: ["#AC3131", "#254AA1", '#669966', '#FFA500', '#FFFF00'],
         }]
     },
   })
@@ -186,7 +186,7 @@
         datasets:[{
             label: "Nejvíce objednávek",
             data: dt,
-            backgroundColor: ["#AC3131", "#254AA1", "#669966"]
+            backgroundColor: ["#AC3131", "#254AA1", "#669966", '#FFA500', '#FFFF00']
         }]
     },
   })
@@ -214,7 +214,7 @@ var lbl = JSON.parse('{!! json_encode($label1) !!}');
         datasets:[{
             label: "Zaměstnanci",
             data: dt,
-            backgroundColor: ["#AC3131", "#254AA1", '#AC3131'],
+            backgroundColor: ["#AC3131", "#254AA1", '#AC3131', '#FFA500', '#FFFF00'],
         }]
     },
   })
@@ -243,7 +243,7 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
         datasets:[{
             label: "Nádoby",
             data: dt,
-            backgroundColor: ["#AC3131", "#254AA1", '#669966'],
+            backgroundColor: ["#AC3131", "#254AA1", '#669966', '#FFA500', '#FFFF00'],
         }]
     },
   })
@@ -295,7 +295,7 @@ var lbl = JSON.parse('{!! json_encode($label) !!}');
                     datasets:[{
                         label: "Nejprodávanější produkty",
                         data: dat,
-                        backgroundColor: ["#AC3131", "#254AA1", "#669966"],
+                        backgroundColor: ["#AC3131", "#254AA1", "#669966", '#FFA500', '#FFFF00'],
                     }]
                 },
             })
