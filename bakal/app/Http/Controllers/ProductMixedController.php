@@ -61,32 +61,28 @@ class ProductMixedController extends Controller
     public function update(Request $request, $id)
     {
         $productMixed = Product_mixed::Find($id);
-
+        
 
         $this->validate($request, [
         
             'name' => 'required',
             'branch' =>'required',
             'prize' => 'required|numeric',
-            'on_store' => 'required|numeric',
+   
         ]);
         
         $productMixed->name = $request->name;
         $productMixed->branch = $request->branch;
         $productMixed->prize = $request->prize;
-        $productMixed->on_store = $request->on_store;
-
+        $productMixed->branch = $request->branch;
 
         
         $productMixed->save();
 
         $products = Product_original::get();
         $productsMixed = Product_mixed::get();
-
-        return view('originalProduct.index', [
-            'products' => $products,
-            'productsMixed' => $productsMixed
-        ]);
+        
+        return redirect()->route('product.index');
         
     }
 

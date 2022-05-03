@@ -74,7 +74,10 @@
 
         
    
-        <button type="submit" class="btn btn-primary">Upravit produkt</button>
+        <div class="d-flex justify-content-center p-3">
+            <button type="submit" class="btn btn-primary">Upravit produkt</button>
+
+        </div>
         </form>
        
             </div></div></div></div></div>

@@ -111,9 +111,7 @@ class ContainerController extends Controller
         $containers = Container::get(); // ulozeni vsech nadob do promenne
 
         // vraci pohled s nadobami
-        return view('containers.index', [
-            'containers' => $containers
-        ]);
+        return redirect()->route('containers.index');
     }
 
     /**

@@ -330,10 +330,7 @@ class OrderController extends Controller
                 'endDate' => Carbon::createFromDate($request->term),
                
              ]);
-             return view('orders.index', [
-                'orders' => $orders,
-                
-            ]);
+             return redirect()->route('orders.index');
           }
         
           $event->startDate = Carbon::createFromDate($request->term);
@@ -341,10 +338,7 @@ class OrderController extends Controller
           $event->save();
 
 
-        return view('orders.index', [
-            'orders' => $orders,
-            
-        ]);
+          return redirect()->route('orders.index');
         
     }
 

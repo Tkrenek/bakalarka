@@ -24,7 +24,7 @@
 <h5 class="display-5 text-center mt-3">Vyberte svoji další akci</h5>
 <hr>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="card">
           <div class="card-body text-center">
             <h5 class="card-title">Seznam objenávek</h5>
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title">Seznam nádob</h5>
@@ -42,11 +42,7 @@
         </div>
       </div>
     </div>
-    
-</div>
-  
-  <div class="row mt-2">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title">Seznam produktů</h5>
@@ -55,7 +51,11 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+</div>
+  
+  <div class="row mt-2">
+   
+    <div class="col-sm-4">
       <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title">Recepty</h5>
@@ -64,35 +64,31 @@
         </div>
       </div>
     </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Odvedená práce</h5>
+          <p class="card-text">Zobrazte si svoji práci na objednávkách.</p>
+          <a href="{{ route('orderWork.index')}}" class="btn btn-primary">Přejít</a>
+        </div>
+      </div>
   </div>
+<div class="col-sm-4">
+    <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Google kalendář</h5>
+          <p class="card-text">Temíny objednávek ve vašem google kalendáři.</p>
+          <a href="{{ route('google.index') }}" class="btn btn-primary">Přejít</a>
+        </div>
+      </div>
+</div>
+</div>
 
 
-  <div class="row mt-2 mb-5">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Odvedená práce</h5>
-              <p class="card-text">Zobrazte si svoji práci na objednávkách.</p>
-              <a href="{{ route('orderWork.index')}}" class="btn btn-primary">Přejít</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Google kalendář</h5>
-              <p class="card-text">Návod na zobrazení temínů objednávek ve vašem google kalendáři.</p>
-              <a href="{{ route('google.index') }}" class="btn btn-primary">Přejít</a>
-            </div>
-          </div>
-    </div>
-  </div>
-
-  
         
     
-    
-  </div>
+
 
  
 

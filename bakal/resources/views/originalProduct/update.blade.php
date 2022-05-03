@@ -96,11 +96,9 @@
             <label for="producer" class="sr-only">Dodavatel</label>
             <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
                 @foreach ($producers as  $producer)
-                    @if ($loop->first)
-                        
-                    @else
+                   
                         <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
-                    @endif
+                   
                     
                 @endforeach
             </select>

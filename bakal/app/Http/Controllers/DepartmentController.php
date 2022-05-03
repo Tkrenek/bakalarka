@@ -47,7 +47,7 @@ class DepartmentController extends Controller
             'name' => $request->name,
         ]);
 
-        return back();
+        return redirect()->route('departments.index');
     }
     
     public function destroy($id)

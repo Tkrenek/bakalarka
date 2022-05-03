@@ -2,8 +2,6 @@
 
 @section('content')
   
-<h1 class="display-3 text-center mb-4">Přehled nádob</h1>
-
 <div class="text-center text-danger" style="font-size: larger;">
 
   @error('ammount')
@@ -12,7 +10,13 @@
                   @enderror
 </div>
 
+
+<h1 class="display-3 text-center mb-4">Přehled nádob</h1>
 @auth('admin')
+
+
+
+
   <a class="btn btn-primary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
 @endauth
 
@@ -58,7 +62,7 @@
               <div class="form-group">
                
                 <label for="ammount" class="sr-only">Množství</label>
-                <input type="number" style="width: 125px"  id="ammount" name="ammount" class="form-control ">
+                <input type="number" style="width: 125px"  id="ammount" name="ammount" class="form-control" placeholder="Počet">
                  
                 </div>
               <button type="submit" class="btn btn-primary">Naskladnit</button>

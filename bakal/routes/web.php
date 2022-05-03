@@ -105,7 +105,7 @@ Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAs
 Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
 
 
-Route::get('/contact/{id}/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
+Route::get('/contact/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
 
 Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
 Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
@@ -179,11 +179,11 @@ Route::group(['middleware' => 'auth:customer,admin'], function () {
     
 
     Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customers.update');
+    Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customers.update');
 
-Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
-Route::get('/contact/{id}', [ContactPersonController::class, 'edit'])->name('contact.edit');
-Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
+    Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
+    Route::get('/contact/{id}/edit', [ContactPersonController::class, 'edit'])->name('contact.edit');
+    Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
 
 
 

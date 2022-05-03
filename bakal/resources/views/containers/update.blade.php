@@ -36,7 +36,7 @@
                     <label for="type">Typ nádoby</label>
                     
                     <select name="type" id="type" value="{{  $container->type  }}" class="form-control custom-select @error('type') is-invalid @enderror" >
-                        <option id="kanistr" name="kanistr">Kanistr</option>
+                        <option id="kanystr" name="kanystr">Kanystr</option>
                         <option id="plechovka" name="plechovka">Plechovka</option>
                     </select> 
                     <div class="invalid-feedback">
@@ -98,5 +98,7 @@
             
        
             </div></div></div></div></div>
+        </div>
+    </div>
 
 @endsection

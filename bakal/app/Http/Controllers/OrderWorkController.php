@@ -75,7 +75,7 @@ class OrderWorkController extends Controller
 
         
 
-        return back();
+        return redirect()->route('orderWork.index');
     }
 
     public function index()
