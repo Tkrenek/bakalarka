@@ -11,6 +11,16 @@
 
 @endauth
 
+<div class="text-danger text-center" style="font-size: large">
+@if ($message = Session::get('error'))
+                    <div class="color-danger tex-center">
+                        <strong>{{ $message }}  </strong>   
+                    </div>    
+                    
+                    
+                @endif
+              </div>
+
 <div class="text-center text-danger" style="font-size: larger;">
 
   @error('ammount')

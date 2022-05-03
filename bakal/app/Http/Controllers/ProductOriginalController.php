@@ -25,8 +25,8 @@ class ProductOriginalController extends Controller
             'name' => 'required',
             'branch' =>'required',
             'code' => 'required',
-            'prize' => 'required|numeric',
-            'on_store' => 'required',
+            'prize' => 'required|numeric|min:1',
+            'on_store' => 'required|numeric|min:1',
             'producer' => 'required',
 
             
@@ -48,13 +48,9 @@ class ProductOriginalController extends Controller
         
         $productsMixed = Product_mixed::get();
     
-       
+       return redirect()->route('product.index');
 
-        return view('originalProduct.index', [
-            'products' => $products,
-            'productsMixed' => $productsMixed
-
-        ]);
+        
     }
 
   
@@ -134,7 +130,7 @@ class ProductOriginalController extends Controller
     {
         $this->validate($request, [
         
-            'ammount' => 'required|numeric',
+            'ammount' => 'required|numeric|min:1',
         ]);
 
         $product = Product_original::find($id);

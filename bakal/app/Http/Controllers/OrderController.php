@@ -19,9 +19,9 @@ class OrderController extends Controller
     public function test()
     {
         $samples = [['alpha'],
-        ['alpha', 'beta', 'gamma'],
-        ['alpha', 'beta', 'theta'],
-        ['alpha', 'beta', 'gamma'],
+        ['alpha', 'beta', 'gamma', 'eps'],
+        ['alpha', 'beta', 'theta', 'eps'],
+        ['alpha', 'beta', 'gamma', 'eps'],
         ['alpha', 'beta', 'theta'],
         ['alpha', 'beta', 'gamma'],
         ['beta', 'alpha'],
@@ -32,9 +32,9 @@ class OrderController extends Controller
 
         $labels  = [];
 
+        
 
-
-        $associator = new Apriori($support = 0.2, $confidence = 0.1);
+        $associator = new Apriori($support = 0.2, $confidence = 0.2);
         $associator->train($samples, $labels);
 
 
@@ -205,7 +205,7 @@ class OrderController extends Controller
         $items1 = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
  
         $items2 = [];
-        $apriori = new Apriori($support = 0.5, $confidence = 0.4); // vytvoreni instance tridy Apriori
+        $apriori = new Apriori($support = 0.4, $confidence = 0.4); // vytvoreni instance tridy Apriori
         $apriori->train($items1, $items2); // vytrenovani instance
 
         $itemsInOrder = array();
@@ -226,7 +226,7 @@ class OrderController extends Controller
         } else {
             $recommendedItems = $apriori->predict($itemsInOrder);
         }
-
+        dd($recommendedItems);
         return $recommendedItems;
     }
 

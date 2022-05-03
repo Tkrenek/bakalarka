@@ -5,7 +5,7 @@
 <div class="text-center text-danger" style="font-size: larger;">
 
   @error('ammount')
-                      Musíte zadat množství!
+                      Musíte vybrat množství ve správném formátu.
          
                   @enderror
 </div>

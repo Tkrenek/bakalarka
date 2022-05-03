@@ -39,7 +39,7 @@ class ItemController extends Controller
     {
         // overeni dat z formulare
         $this->validate($request, [
-            'ammount' => 'required',
+            'ammount' => 'required|numeric|min:1',
         ]);
 
 

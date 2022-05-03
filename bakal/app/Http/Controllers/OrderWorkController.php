@@ -32,7 +32,7 @@ class OrderWorkController extends Controller
     {
         $this->validate($request, [
             'type' => 'required',
-            'time' => 'required',
+            'time' => 'required|numeric|min:1',
             'date' => 'required',
             
         ]);

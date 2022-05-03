@@ -107,3 +107,7 @@ th {
  .recommended {
      font-size: larger;
  }
+
+ a:link{
+     text-decoration: none !important;
+ }

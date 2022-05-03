@@ -28,9 +28,9 @@ class ContainerController extends Controller
         // Overeni udaju z formulare
         $this->validate($request, [
             'type' => 'required',
-            'bulk' =>'required|numeric',
-            'on_store' => 'required|numeric',
-            'prize' => 'required|numeric',
+            'bulk' =>'required|numeric|min:1',
+            'on_store' => 'required|numeric|min:1',
+            'prize' => 'required|numeric|min:1',
             'code' => 'required'
         ]);
 
@@ -90,9 +90,9 @@ class ContainerController extends Controller
         // overeni udaju z formulare
         $this->validate($request, [
             'type' => 'required',
-            'bulk' =>'required',
-            'prize' => 'required',
-            'on_store' => 'required',
+            'bulk' =>'required|numeric|min:1',
+            'prize' => 'required|numeric|min:1',
+            'on_store' => 'required|numeric|min:1',
             'code' => 'required'
             
         ]);
@@ -137,7 +137,7 @@ class ContainerController extends Controller
 
         // overeni, zda bylo zadano mnozstvi
         $this->validate($request, [
-            'ammount' => 'required|numeric',
+            'ammount' => 'required|numeric|min:1',
         ]);
 
         $container->on_store = $container->on_store + $request->ammount; // doplneni zasob na sklade

@@ -41,11 +41,7 @@ class ProductMixedController extends Controller
     
        
 
-        return view('originalProduct.index', [
-            'products' => $products,
-            'productsMixed' => $productsMixed
-
-        ]);
+        return redirect()->route('product.index');
     }
 
     public function edit($id)
@@ -67,7 +63,7 @@ class ProductMixedController extends Controller
         
             'name' => 'required',
             'branch' =>'required',
-            'prize' => 'required|numeric',
+            'prize' => 'required|numeric|min:1',
    
         ]);
         
@@ -91,7 +87,7 @@ class ProductMixedController extends Controller
 
         $this->validate($request, [
         
-            'ammount' => 'required|numeric',
+            'ammount' => 'required|numeric|min:1',
         ]);
 
         $product = Product_mixed::find($id);
@@ -109,9 +105,15 @@ class ProductMixedController extends Controller
   
         
         foreach($product->mixingProduct as $orig) {
-
-            $orig->productOriginal->on_store -= $request->ammount;
-            $orig->productOriginal->save();
+            
+            if($request->ammnount < $orig->productOriginal->on_store) {
+                
+                return back()->with('error', 'Na skladě není dost produktu na namíchání.');
+            } else {
+                $orig->productOriginal->on_store -= $request->ammount;
+                $orig->productOriginal->save();
+            }
+            
         }
         
         

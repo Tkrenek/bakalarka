@@ -27,7 +27,7 @@ class PackageItemController extends Controller
     public function store($itemid, Request $request, $containerid)
     {
         $this->validate($request, [
-            'count' => 'required',
+            'count' => 'required|numeric|min:1',
 
         ]);
 
@@ -101,7 +101,7 @@ class PackageItemController extends Controller
     public function changeCount($id, Request $request)
     {
         $this->validate($request, [
-            'count' => 'required|numeric',
+            'count' => 'required|numeric|min:1',
             
         ]);
         
