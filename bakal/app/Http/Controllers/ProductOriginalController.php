@@ -70,6 +70,33 @@ class ProductOriginalController extends Controller
         ]);
     }
 
+    public function indexOriginal()
+    {
+        
+        $products = Product_original::get();
+        
+
+        return view('originalProduct.indexOriginal', [
+            'products' => $products,
+        ]);
+    }
+
+    public function indexMixed()
+    {
+        
+     
+        
+        $productsMixed = Product_mixed::get();
+    
+       
+
+        return view('originalProduct.indexMixed', [
+     
+            'productsMixed' => $productsMixed
+
+        ]);
+    }
+
     public function edit($id)
     {
     

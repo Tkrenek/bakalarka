@@ -226,7 +226,7 @@ class OrderController extends Controller
         } else {
             $recommendedItems = $apriori->predict($itemsInOrder);
         }
-        dd($recommendedItems);
+   
         return $recommendedItems;
     }
 

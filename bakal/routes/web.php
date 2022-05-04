@@ -188,6 +188,8 @@ Route::group(['middleware' => 'auth:customer,admin'], function () {
 
 
 Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
+Route::get('/items/createOriginal/{orderid}', [ItemController::class, 'createOriginal'])->name('items.createOriginal');
+Route::get('/items/createMixed/{orderid}', [ItemController::class, 'createMixed'])->name('items.createMixed');
 Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
 Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
@@ -226,7 +228,8 @@ Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('ord
 Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
     Route::get('/containers/index', [ContainerController::class, 'index'])->name('containers.index');
     Route::get('/productOriginal/index', [ProductOriginalController::class, 'index'])->name('product.index');
-
+    Route::get('/productOriginal/indexOriginal', [ProductOriginalController::class, 'indexOriginal'])->name('product.indexOriginal');
+    Route::get('/productOriginal/indexMixed', [ProductOriginalController::class, 'indexMixed'])->name('product.indexMixed');
     Route::put('/productMixed/{id}/asddStore', [ProductMixedController::class, 'addOnStore'])->name('productMixed.addStore');
 
  

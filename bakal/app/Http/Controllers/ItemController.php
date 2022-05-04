@@ -31,6 +31,35 @@ class ItemController extends Controller
         ]);
     }
 
+    public function createOriginal($orderid)
+    {
+        $products = Product_original::get(); // vyhleda vsechny originalni produkty
+
+
+        $order = Order::Find($orderid); // vyhleda objedavku podle ID
+
+        // vrati pohled
+        return view('items.createOriginal', [
+            'products' => $products,
+            'order' => $order
+        ]);
+    }
+
+    public function createMixed($orderid)
+    {
+        
+        $productsMixed = Product_mixed::get(); // vyhleda vsechny michane produkty
+
+        $order = Order::Find($orderid); // vyhleda objedavku podle ID
+
+        // vrati pohled
+        return view('items.createMixed', [
+            
+            'productsMixed' => $productsMixed,
+            'order' => $order
+        ]);
+    }
+
     /**
      * Vlozi do databaze zaznam s nonou polozkou 
      * @param Illuminate\Http\Request
