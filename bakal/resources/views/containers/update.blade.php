@@ -3,6 +3,7 @@
 <div class="container" >
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro upravu nadoby --}}
          <div class="card">
             <div class="card-header text-center">Přidat nádobu</div>
             <div class="card-body">
@@ -14,7 +15,7 @@
                      <input type="text" value="{{ $container->code }}" id="code" name="code" class="form-control @error('code') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('code')
-                        Musíte vybrat kód.
+                           Musíte vybrat kód.
                         @enderror
                      </div>
                   </div>
@@ -26,7 +27,7 @@
                      </select>
                      <div class="invalid-feedback">
                         @error('type')
-                        Musíte vybrat kód.
+                           Musíte vybrat kód.
                         @enderror
                      </div>
                      <div class="form-group ">
@@ -34,7 +35,7 @@
                         <input type="number" value="{{ $container->bulk }}" id="bulk" name="bulk" class="form-control @error('bulk') is-invalid @enderror">
                         <div class="invalid-feedback">
                            @error('bulk')
-                           Musíte vybrat objem.
+                              Musíte vybrat objem.
                            @enderror
                         </div>
                         <div class="form-group ">
@@ -42,7 +43,7 @@
                            <input type="number" value="{{ $container->on_store }}" id="on_store" name="on_store" class="form-control @error('on_store') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('bulk')
-                              Musíte vybrat množství na skladě.
+                                 Musíte vybrat množství na skladě.
                               @enderror
                            </div>
                         </div>
@@ -51,7 +52,7 @@
                            <input type="number" value="{{ $container->prize }}" id="prize" name="prize" class="form-control @error('prize') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('prize')
-                              Musíte vybrat cenu.
+                                 Musíte vybrat cenu.
                               @enderror
                            </div>
                         </div>
@@ -59,7 +60,8 @@
                            <button type="submit" class="btn btn-primary">Upravit údaje</button>
                         </div>
                </form>
-               </div></div>
+               </div>
+            </div>
             </div>
          </div>
       </div>

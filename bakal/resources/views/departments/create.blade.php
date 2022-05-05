@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center" >
       <div class="col-lg-6">
+         {{-- Formular pro pridani oddeleni --}}
          <div class="card">
             <div class="card-header text-center">Přidat oddělení</div>
             <div class="card-body">
@@ -13,7 +14,7 @@
                      <input type="text" value="{{ old('name') }}" id="name" name="name" class="form-control custom-select @error('name') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('name')
-                        Musíte zadat název oddělení.
+                           Musíte zadat název oddělení.
                         @enderror
                      </div>
                   </div>

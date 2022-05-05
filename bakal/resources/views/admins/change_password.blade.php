@@ -3,16 +3,19 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formualr pro zmenu hesla admina --}}
          <div class="card">
             <div class="card-header">Změna hesla</div>
             <div class="card-body">
                <form  action="{{ route('admins.update_password', auth()->user()->id) }}" method="POST">
                   @csrf
+                  {{-- Pri spatnem heslu se vypise chybova hlaska --}}
                   @if ($message = Session::get('error'))
                   <div class="alert alert-danger alert-block">
                      <strong>{{ $message }}  </strong>   
                   </div>
                   @endif
+                  {{-- V pripade uspechu se vypise hlaska uspechu --}}
                   @if ($message = Session::get('success'))
                   <div class="alert alert-success alert-block text-center">
                      <strong >{{ $message }}</strong>   

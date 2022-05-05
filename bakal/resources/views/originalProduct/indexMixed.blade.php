@@ -39,7 +39,7 @@
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
       @foreach ($productsMixed as $product)
       @php

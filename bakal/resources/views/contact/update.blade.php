@@ -6,6 +6,7 @@ use Carbon\Carbon;
 <div class="container">
    <div class="row justify-content-center" >
       <div class="col-lg-6">
+         {{-- Formular pro zmenu udaju kontaktni osoby --}}
          <div class="card">
             <div class="card-header text-center">Upravit kontaktní osobu</div>
             <div class="card-body">

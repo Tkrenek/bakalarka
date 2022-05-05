@@ -7,6 +7,7 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro prihlaseni zamestnance --}}
          <div class="card">
             <div class="card-header text-center">Přihlášení zaměstnance</div>
             <div class="card-body">
@@ -15,16 +16,16 @@
                   <div class="row">
                      <div class="col">
                         @if ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
-                           <strong>{{ $message }}  </strong>   
-                        </div>
+                           <div class="alert alert-danger alert-block">
+                              <strong>{{ $message }}  </strong>   
+                           </div>
                         @endif
                         <div class="form-group">
                            <label for="email">Email</label>
                            <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email">
                            <div class="invalid-feedback">
                               @error('email')
-                              Musíte zadat e-mail. 
+                                 Musíte zadat e-mail. 
                               @enderror
                            </div>
                         </div>
@@ -33,13 +34,13 @@
                            <input class="form-control @error('password') is-invalid @enderror"  type="password" id="password" name="password">
                            <div class="invalid-feedback">
                               @error('password')
-                              Musíte zadat heslo.
+                                 Musíte zadat heslo.
                               @enderror
                            </div>
                            <div class="d-flex justify-content-center p-3">
                               <button type="submit" class="btn btn-primary">Přihlásit se</button>
                            </div>
-               </form>
+                  </form>
                </div>
                </div>
                </div> 

@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center" >
       <div class="col-lg-6">
+         {{-- Formular pro upravu zakaznikas --}}
          <div class="card">
             <div class="card-header text-center">Upravit zákazníka</div>
             <div class="card-body">
@@ -14,7 +15,7 @@
                      <input type="text" value="{{ $customer->name }}" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('name')
-                        Musíte zadat název společnosti.
+                           Musíte zadat název společnosti.
                         @enderror
                      </div>
                   </div>
@@ -23,7 +24,7 @@
                      <input type="text" value="{{ $customer->town }}" id="town" name="town" class="form-control @error('town') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('town')
-                        Musíte zadat město, ve kterém společnost sídlí.
+                           Musíte zadat město, ve kterém společnost sídlí.
                         @enderror
                      </div>
                   </div>
@@ -32,7 +33,7 @@
                      <input type="text" id="address" value="{{ $customer->address }}" name="address" class="form-control @error('address') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('address')
-                        Musíte zadat adresu, na které společnost sídlí.
+                           Musíte zadat adresu, na které společnost sídlí.
                         @enderror
                      </div>
                   </div>
@@ -41,7 +42,7 @@
                      <input type="text" id="login" value="{{ $customer->login }}" name="login" class="form-control @error('login') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('login')
-                        Musíte zadat login.
+                           Musíte zadat login.
                         @enderror
                      </div>
                   </div>
@@ -50,7 +51,7 @@
                      <input type="text" value="{{ $customer->url }}" id="url" name="url" class="form-control @error('url') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('url')
-                        Musíte zadat url adresu.
+                           Musíte zadat url adresu.
                         @enderror
                      </div>
                   </div>

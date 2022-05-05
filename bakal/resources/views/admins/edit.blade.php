@@ -2,6 +2,7 @@
 @section('content')
 <div class="row justify-content-center">
    <div class="col-lg-6">
+      {{-- Formular pro upravu udaju admina --}}
       <div class="card">
          <div class="card-header text-center">Upravit profil admina</div>
          <div class="card-body">
@@ -52,6 +53,7 @@
                <div class="form-group">
                   <label for="birth_date">Datum narození</label>
                   <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
+                  {{-- javascript kod pro zobrazeni v poli data puvodni datum narozeni --}}
                   <script>
                      document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($admin->birth_date); ?>)
                   </script>

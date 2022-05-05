@@ -1,8 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+
+{{-- Zobrazeni vsech produktu --}}
 @auth('admin')
-<a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
-<a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
+   <a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
+   <a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
 @endauth
 <div class="row mt-3">
    <div class="col-2">
@@ -21,10 +23,11 @@
 </div>
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
-   Musíte zadat množství!
+      Musíte zadat množství!
    @enderror
 </div>
 <h1 class="display-3 text-center mb-5">Originální produkty</h1>
+{{-- Tabulka se vsemi produkty --}}}
 <table class="table  mb-5">
    <thead>
       <tr>
@@ -35,25 +38,26 @@
          <th scope="col">Cena(Kč)</th>
          <th scope="col">Dodavatel</th>
          @auth('admin')
-         <th scope="col">Naskladnit</th>
-         <th scope="col">Upravit</th>
-         <th scope="col">Odstranit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Odstranit</th>
          @endauth
          @auth('employee')
-         <th scope="col">Naskladnit</th>
+            <th scope="col">Naskladnit</th>
          @endauth          
       </tr>
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
-      @foreach ($products as $product)
+         {{-- Pruchod pres vsechny originalni produkty --}}
+         @foreach ($products as $product)
       @php
-      if($isFirst) {
-      $isFirst = false;
-      continue;
-      }  
+         if($isFirst) {
+            $isFirst = false;
+            continue;
+         }  
       @endphp  
       <tr>
          <td>{{ $product->code }}</td>
@@ -105,6 +109,7 @@
    </tbody>
 </table>
 <h1 class="display-3 text-center mb-5">Míchané produkty</h1>
+{{-- Tabulkad s michanymi produkty --}}
 <table class="table mb-5">
    <thead >
       <tr>
@@ -115,27 +120,28 @@
          <th scope="col">Cena(Kč)</th>
          <th scope="col">Recept</th>
          @auth('admin')
-         <th scope="col">Upravit recept</th>
-         <th scope="col">Naskladnit</th>
-         <th scope="col">Upravit</th>
-         <th scope="col">Odstranit</th>
+            <th scope="col">Upravit recept</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Odstranit</th>
          @endauth
          @auth('employee')
-         <th scope="col">Naskladnit</th>
+            <th scope="col">Naskladnit</th>
          @endauth
       </tr>
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
-      @foreach ($productsMixed as $product)
-      @php
-      if($isFirst) {
-      $isFirst = false;
-      continue;
-      } 
-      @endphp
+         {{-- Pruchod pres michane produkty --}}
+         @foreach ($productsMixed as $product)
+            @php
+               if($isFirst) {
+                  $isFirst = false;
+                  continue;
+               } 
+            @endphp
       <tr>
          <td>{{ $product->code }}</td>
          <td>{{ $product->name }}</td>

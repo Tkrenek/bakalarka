@@ -1,14 +1,15 @@
 @extends('layouts.navigation')
 @section('content')
 @guest
-<div class="justify-content-center d-flex p-5 ">
-   <h1 class="display-1">Informační systém Coloral</h1>
-</div>
-<div class="justify-content-center d-flex p-1 login-option">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
+   <div class="justify-content-center d-flex p-5 ">
+      <h1 class="display-1">Informační systém Coloral</h1>
+   </div>
+   <div class="justify-content-center d-flex p-1 login-option">Jste zaměstnanec? Klikněte: <a href="{{ route('employees.login') }}"> zde </a>.</div>
 @endguest
 <div class="container">
    <div class="row justify-content-center mb-5">
       <div class="col-lg-6">
+         {{-- Formular pro registraci zakaznika --}}
          <div class="card">
             <div class="card-header text-center">Registrace zákazníka</div>
             <div class="card-body ">
@@ -19,7 +20,7 @@
                      <input type="text" value="{{ old('name') }}" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('name')
-                        Musíte zadat název společnosti.
+                           Musíte zadat název společnosti.
                         @enderror
                      </div>
                   </div>
@@ -28,7 +29,7 @@
                      <input type="text" value="{{ old('town') }}" id="town" name="town" class="form-control @error('town') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('town')
-                        Musíte zadat město, ve kterém společnost sídlí.
+                           Musíte zadat město, ve kterém společnost sídlí.
                         @enderror
                      </div>
                   </div>
@@ -37,7 +38,7 @@
                      <input type="text" id="address" value="{{ old('address') }}" name="address" class="form-control @error('address') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('address')
-                        Musíte zadat adresu, na které společnost sídlí.
+                           Musíte zadat adresu, na které společnost sídlí.
                         @enderror
                      </div>
                   </div>
@@ -46,7 +47,7 @@
                      <input type="text" id="login" value="{{ old('login') }}" name="login" class="form-control @error('login') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('login')
-                        Musíte zadat login, který není obsazen.
+                           Musíte zadat login, který není obsazen.
                         @enderror
                      </div>
                   </div>
@@ -56,9 +57,9 @@
                      <div class="invalid-feedback">
                         @error('password')
                         @if ($message == "The password confirmation does not match.")
-                        Hesla se musí shodovat.
+                           Hesla se musí shodovat.
                         @else
-                        Musíte zadat heslo.
+                           sMusíte zadat heslo.
                         @endif
                         @enderror
                      </div>
@@ -68,11 +69,11 @@
                      <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('password')
-                        @if ($message == "The password confirmation does not match.")
-                        Hesla se musí shodovat.
-                        @else
-                        Musíte zadat heslo.
-                        @endif
+                           @if ($message == "The password confirmation does not match.")
+                              Hesla se musí shodovat.
+                           @else
+                              Musíte zadat heslo.
+                           @endif
                         @enderror
                      </div>
                   </div>
@@ -81,7 +82,7 @@
                      <input type="text" value="{{ old('url') }}" id="url" name="url" class="form-control @error('url') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('url')
-                        Musíte zadat url adresu.
+                           Musíte zadat url adresu.
                         @enderror
                      </div>
                   </div>

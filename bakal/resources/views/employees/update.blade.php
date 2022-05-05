@@ -1,11 +1,12 @@
 @extends('layouts.navigation')
 @section('content')
 @php
-use Carbon\Carbon as carbon;
+   use Carbon\Carbon as carbon;
 @endphp
 <div class="container">
    <div class="row justify-content-center" >
       <div class="col-lg-6">
+         {{-- Formular pro zmenu udaju zamestnance --}}
          <div class="card">
             <div class="card-header text-center">Upravit zaměstnance</div>
             <div class="card-body">

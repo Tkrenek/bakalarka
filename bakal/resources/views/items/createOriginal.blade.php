@@ -1,8 +1,9 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- Pohled pro pridani polozek do objednavky, zobrazeni pouze originalnich produktu --}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
-   Musíte vybrat množství ve správném formátu.
+      Musíte vybrat množství ve správném formátu.
    @enderror
 </div>
 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">Vrátit se zpět</a>
@@ -16,6 +17,7 @@
    </div>
    @endif
 </div>
+{{-- Tabulka pro zobrazeni vsech originalnich produktu --}}
 <table class="table mb-5">
    <thead>
       <tr>
@@ -26,22 +28,23 @@
          <th scope="col">Cena(Kč)</th>
          <th scope="col">Dodavatel</th>
          @auth('admin')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
          @auth('customer')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
       </tr>
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
+      {{-- Prucho pres vsechny originalni produkty --}}
       @foreach ($products as $product)
       @php
       if($isFirst) {
-      $isFirst = false;
-      continue;
+         $isFirst = false;
+         continue;
       } 
       @endphp
       <tr>

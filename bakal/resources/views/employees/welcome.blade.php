@@ -1,11 +1,14 @@
 @extends('layouts.navigation')
 @section('content')
 @php
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon as carbon;
+   use Illuminate\Support\Facades\Auth;
+   use Carbon\Carbon as carbon;
 @endphp
+{{-- Privitaci obrazovka po prihlaseni zamestnance --}}
+
 <h2 class="display-2 text-center mb-5">Úspěšně přihlášen do systému</h2>
 <div class="text-center welcome-text">
+   {{-- Vypis udaju o prihlasenem zamestnanci --}}
    Jméno a příjmení: {{ auth('employee')->user()->name }} {{ auth('employee')->user()->surname }} <br>
    Datum narození: {{ Carbon::parse(auth('employee')->user()->birth_date)->format('d.m. Y')}} <br>
    Email: {{ auth('employee')->user()->email }}  <br>

@@ -2,7 +2,7 @@
 @section('content')
 <div class="text-center text-danger" style="font-size: larger;">
    @error('count')
-   Musíte zadat množství!
+      Musíte zadat množství!
    @enderror
 </div>
 <a href="{{ route('packageItem.show', $item->id) }}" class="btn btn-primary mb-3">Vrátit se zpět</a>

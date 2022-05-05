@@ -1,10 +1,12 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- Stranka s receptem jednoho produktu a pridanim prisad do receptu --}}
 <a href="{{ route('product.index')}}" class="btn btn-primary float-right">Zpět na seznam produktů</a>
 <h1 class="display-3 text-center mb-5">Kód produktu : {{ $mixedProduct->code }}</h1>
 <div class="row">
    <div class="col-8">
       <h3>Přidat novou přísadu: </h3>
+      
       <form action="{{ route('mixingProduct.store', $mixedProduct->id) }}" method="post">
          @csrf
          <div class="form-group">
@@ -18,7 +20,7 @@
                      @endforeach
                </select>
                @error('code')
-               <strong>Musíte zadat kód produktu.</strong>
+                  <strong>Musíte zadat kód produktu.</strong>
                @enderror
                @if ($message = Session::get('error'))
                <div>

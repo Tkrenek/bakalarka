@@ -3,25 +3,26 @@
 <div class="container" >
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro vytvoreni noveho receptu --}}
          <div class="card">
             <div class="card-header text-center">Přidat recept</div>
             <div class="card-body">
                <form action="{{ route('mixingProduct.store') }}" method="POST">
                   @csrf
-                  {{-- This comment will not be present in the rendered HTML --}}
+                  
                   <div class="form-group ">
                      <label for="mixed">Míchaný produkt</label>
                      @error('mixed')
-                     {{  $message }}
+                        {{  $message }}
                      @enderror
                      <select name="mixed" id="mixed" class="form-control custom-select">
                         @foreach ($mixeds as  $mixed)
-                        <option id="{{ $mixed->code }}" name="{{ $mixed->code }}">{{ $mixed->code }}</option>
+                           <option id="{{ $mixed->code }}" name="{{ $mixed->code }}">{{ $mixed->code }}</option>
                         @endforeach
                      </select>
                      <div class="invalid-feedback">
                         @error('mixed')
-                        Musíte vybrat kód produktu.
+                           Musíte vybrat kód produktu.
                         @enderror
                      </div>
                   </div>
@@ -29,12 +30,12 @@
                      <label for="original">Originální produkt(přísada)</label>
                      <select name="original" id="original" class="form-control custom-select">
                         @foreach ($originals as  $original)
-                        <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option>
+                           <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option>
                         @endforeach
                      </select>
                      <div class="invalid-feedback">
                         @error('mixed')
-                        Musíte vybrat kód produktu.
+                           Musíte vybrat kód produktu.
                         @enderror
                      </div>
                   </div>

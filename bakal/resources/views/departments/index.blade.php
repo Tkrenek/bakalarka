@@ -1,10 +1,11 @@
 @extends('layouts.navigation')
 @section('content')
 @php
-use Carbon\Carbon as carbon;
+   use Carbon\Carbon as carbon;
 @endphp
 <h1 class="display-2 text-center mb-5">Seznam oddělení</h1>
 <a class="btn btn-primary mb-3" href="{{ route('departments.create') }}">Přidat Oddělení</a>
+{{-- Zobrazeni vsech oddeleni --}}
 <table class="table text-center">
    <thead>
       <tr>
@@ -14,11 +15,13 @@ use Carbon\Carbon as carbon;
       </tr>
    </thead>
    <tbody>
+      {{-- Pruchod pres vsechny oddeleni --}}
       @foreach ($departments as $department)
       <tr>
          <td>
             {{ $department->name }}
          </td>
+         {{-- Zobrazeni poctu zamestnancu na oddeleni --}}
          <td>
             {{ $count2 = \DB::table('employees')->where('department_id', '=', $department->id)->count() }}
          </td>

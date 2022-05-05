@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro vytvoreni noveho michaneho produktu --}}
          <div class="card">
             <div class="card-header text-center">Přidat míchaný produkt</div>
             <div class="card-body">
@@ -13,7 +14,7 @@
                      <input type="text" value="{{ old('code') }}" id="code" name="code" class="form-control @error('code') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('code')
-                        Musíte zadat kód produktu.
+                           Musíte zadat kód produktu.
                         @enderror
                      </div>
                   </div>
@@ -31,7 +32,7 @@
                      </select>
                      <div class="invalid-feedback">
                         @error('branch')
-                        Musíte vybrat typ produtku
+                           Musíte vybrat typ produtku
                         @enderror
                      </div>
                   </div>
@@ -40,7 +41,7 @@
                      <input type="number" value="{{ old('prize') }}" id="prize" name="prize" class="form-control @error('prize') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('prize')
-                        Musíte zadat cenu.
+                           Musíte zadat cenu.
                         @enderror
                      </div>
                   </div>

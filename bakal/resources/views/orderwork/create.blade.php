@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro oznaceni prace na objednavce --}}
          <div class="card">
             <div class="card-header text-center">Označit práci na objedávce</div>
             <div class="card-body">

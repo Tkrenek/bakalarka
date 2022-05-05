@@ -1,8 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
 @php
-use Illuminate\Support\Facades\Auth;
+   use Illuminate\Support\Facades\Auth;
 @endphp
+
+{{--  Privitaci obrazvka po prihlaseni zakaznika --}}
 <h2 class="display-2 text-center mb-5">Úspěšně přihlášen do systému</h2>
 <div class="text-center welcome-text">
    Název společnosti: {{ auth('customer')->user()->name }} <br>

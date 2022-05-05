@@ -1,11 +1,12 @@
 @extends('layouts.navigation')
 @section('content')
 @php
-use Carbon\Carbon as carbon;
+   use Carbon\Carbon as carbon;
 @endphp
 <div class="container" >
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro zmenu objednavky --}}
          <div class="card">
             <div class="card-header text-center">Upravit objednávku</div>
             <div class="card-body">
@@ -22,7 +23,7 @@ use Carbon\Carbon as carbon;
                      </select>
                      <div class="invalid-feedback">
                         @error('state')
-                        Musíte zadat stav objednávky.
+                           Musíte zadat stav objednávky.
                         @enderror
                      </div>
                   </div>
@@ -35,7 +36,7 @@ use Carbon\Carbon as carbon;
                      </script>
                      <div class="invalid-feedback">
                         @error('term')
-                        {{  $message }}
+                           {{  $message }}
                         @enderror
                      </div>
                   </div>

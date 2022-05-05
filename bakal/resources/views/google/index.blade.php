@@ -1,5 +1,7 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- Pohled s navodem pro zprovozneni google kalendare pro zamestnance --}}
+
 <div class="d-flex justify-content-center">
    <h2 class="display-2 mb-4">Aktivace google kalendáře</h2>
 </div>

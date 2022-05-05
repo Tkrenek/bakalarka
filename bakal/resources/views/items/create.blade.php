@@ -1,8 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+
+{{-- Pohled pro pridani polozek do objednavky --}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
-   Musíte vybrat množství ve správném formátu.
+      Musíte vybrat množství ve správném formátu.
    @enderror
 </div>
 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">Vrátit se zpět</a>
@@ -16,6 +18,7 @@
    </div>
    @endif
 </div>
+{{-- Zobrazeni originalnich produktu --}}
 <table class="table mb-5">
    <thead>
       <tr>
@@ -26,24 +29,25 @@
          <th scope="col">Cena(Kč)</th>
          <th scope="col">Dodavatel</th>
          @auth('admin')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
          @auth('customer')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
       </tr>
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
-      @foreach ($products as $product)
-      @php
-      if($isFirst) {
-      $isFirst = false;
-      continue;
-      } 
-      @endphp
+         {{-- Pruchod pres originalni produkty --}}
+         @foreach ($products as $product)
+         @php
+         if($isFirst) {
+            $isFirst = false;
+            continue;
+         } 
+         @endphp
       <tr>
          <td>{{ $product->code }}</td>
          <td>{{ $product->name }}</td>
@@ -71,6 +75,7 @@
    </tbody>
 </table>
 <h1 class="display-3 text-center mb-5"> Míchané produkty</h1>
+{{-- Tabulka pro zobrazeni michanych produktu --}}
 <table class="table mb-5">
    <thead >
       <tr>
@@ -80,23 +85,24 @@
          <th scope="col">Odvětví</th>
          <th scope="col">Cena(Kč)</th>
          @auth('admin')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
          @auth('customer')
-         <th scope="col">Vybrat</th>
+            <th scope="col">Vybrat</th>
          @endauth
       </tr>
    </thead>
    <tbody>
       @php
-      $isFirst = true;
+         $isFirst = true;
       @endphp
+      {{-- Prucho pres michane produkty --}}
       @foreach ($productsMixed as $product)
-      @php
-      if($isFirst) {
-      $isFirst = false;
-      continue;
-      } 
+         @php
+         if($isFirst) {
+            $isFirst = false;
+            continue;
+         } 
       @endphp
       <tr>
          <td>{{ $product->code }}</td>

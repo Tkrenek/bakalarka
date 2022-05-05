@@ -7,6 +7,7 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro prihlaseni zakaznika --}}
          <div class="card">
             <div class="card-header text-center">Přihlášení zákazníka</div>
             <div class="card-body">
@@ -15,16 +16,16 @@
                   <div class="row">
                      <div class="col">
                         @if ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
-                           <strong>{{ $message }}  </strong>   
-                        </div>
+                           <div class="alert alert-danger alert-block">
+                              <strong>{{ $message }}  </strong>   
+                           </div>
                         @endif
                         <div class="form-group">
                            <label for="login">Login</label>
                            <input type="text" id="login" class="form-control @error('login') is-invalid @enderror" value="{{ old('login') }}" name="login">
                            <div class="invalid-feedback">
                               @error('login')
-                              Musíte zadat Login. 
+                                 Musíte zadat Login. 
                               @enderror
                            </div>
                         </div>
@@ -34,9 +35,9 @@
                            <div class="invalid-feedback">
                               @error('password')
                               @if($message == "The password confirmation does not match.") 
-                              Hesla se neshodují.
+                                 Hesla se neshodují.
                               @else
-                              Musíte zadat heslo.
+                                 Musíte zadat heslo.
                               @endif
                               @enderror
                            </div>

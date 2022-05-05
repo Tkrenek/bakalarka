@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center mb-5">
       <div class="col-lg-6">
+         {{-- Formular pro vytvoreni noveho zamestnance --}}
          <div class="card">
             <div class="card-header text-center">Registrace zaměstnance</div>
             <div class="card-body">
@@ -15,7 +16,7 @@
                            <input type="text" value="{{ old('name') }}" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('name')
-                              Musíte zadat jméno.
+                                 Musíte zadat jméno.
                               @enderror
                            </div>
                         </div>
@@ -26,7 +27,7 @@
                            <input type="text" value="{{ old('surname') }}" id="surname" name="surname" class="form-control @error('surname') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('surname')
-                              Musíte zadat příjmení.
+                                 Musíte zadat příjmení.
                               @enderror
                            </div>
                         </div>
@@ -37,11 +38,11 @@
                      <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('password')
-                        @if ($message == "The password confirmation does not match.")
-                        Hesla se musí shodovat.
-                        @else
-                        Musíte zadat heslo.
-                        @endif
+                           @if ($message == "The password confirmation does not match.")
+                              Hesla se musí shodovat.
+                           @else
+                              Musíte zadat heslo.
+                           @endif
                         @enderror
                      </div>
                   </div>
@@ -50,11 +51,11 @@
                      <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('password')
-                        @if ($message == "The password confirmation does not match.")
-                        Hesla se musí shodovat.
-                        @else
-                        Musíte zadat heslo.
-                        @endif
+                           @if ($message == "The password confirmation does not match.")
+                              Hesla se musí shodovat.
+                           @else
+                              Musíte zadat heslo.
+                           @endif
                         @enderror
                      </div>
                   </div>
@@ -63,11 +64,11 @@
                      <input type="text" id="email" placeholder="jmeno@domena.cz" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('email')
-                        @if($message == "The email has already been taken.")
-                        Tento email už je obsazen.
-                        @else
-                        Musíte zadat e-mail ve správném formátu.
-                        @endif
+                           @if($message == "The email has already been taken.")
+                              Tento email už je obsazen.
+                           @else
+                              Musíte zadat e-mail ve správném formátu.
+                           @endif
                         @enderror
                      </div>
                   </div>
@@ -76,7 +77,7 @@
                      <input type="text" id="phone" value="{{ old('phone') }}"  name="phone" class="form-control @error('phone') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('phone')
-                        Musíte zadat telefonní číslo, které není obsazené.
+                           Musíte zadat telefonní číslo, které není obsazené.
                         @enderror
                      </div>
                   </div>
@@ -85,7 +86,7 @@
                      <input type="text" id="function"  name="function" value="{{ old('function') }}" class="form-control @error('function') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('function')
-                        Musíte zadat funkci, kterou bude zaměstnanec vykonávat.
+                           Musíte zadat funkci, kterou bude zaměstnanec vykonávat.
                         @enderror
                      </div>
                   </div>
@@ -94,7 +95,7 @@
                      <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
                      <div class="invalid-feedback">
                         @error('birth_date')
-                        Musíte zadat datum narození. 
+                           Musíte zadat datum narození. 
                         @enderror
                      </div>
                   </div>
