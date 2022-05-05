@@ -13,10 +13,15 @@
           <th scope="col">Příjmení</th>
           <th scope="col">Email</th>
           <th scope="col">Telefon</th>
+          
           <th scope="col">Datum narození</th>
           <th scope="col">Společnost</th>
+
+          @auth('admin')
           <th scope="col">Upravit</th>
-          <th scope="col">Smazat</th>
+          <th scope="col">Smazat</th> 
+          @endauth
+         
           
         </tr>
       </thead>
@@ -32,6 +37,7 @@
           <td>{{ $contact->phone }}</td>
           <td>{{ \Carbon\Carbon::parse($contact->birth_date)->format('d.m.Y') }}</td>
           <td>{{ $contact->customer->name }}</td>
+          @auth('admin')
           <td><a href="{{ route('contact.edit', $contact->id) }}" type="submit" class="btn btn-primary">Upravit profil</a></td>
           <td>
              <form action="{{ route('contact.destroy', $contact->id) }}" method="post">
@@ -39,7 +45,9 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Smazat</button>
             </form>
-          
+          </td>
+          @endauth
+         
           
       </tr>
         @endforeach

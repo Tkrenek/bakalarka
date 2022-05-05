@@ -15,33 +15,7 @@ use Phpml\Association\Apriori;
 use DB;
 
 class OrderController extends Controller
-{ 
-    public function test()
-    {
-        $samples = [['alpha'],
-        ['alpha', 'beta', 'gamma', 'eps'],
-        ['alpha', 'beta', 'theta', 'eps'],
-        ['alpha', 'beta', 'gamma', 'eps'],
-        ['alpha', 'beta', 'theta'],
-        ['alpha', 'beta', 'gamma'],
-        ['beta', 'alpha'],
-        ['alpha', 'beta', 'theta'],
-        ['alpha', 'beta', 'gamma'],
-        ];
-
-
-        $labels  = [];
-
-        
-
-        $associator = new Apriori($support = 0.2, $confidence = 0.2);
-        $associator->train($samples, $labels);
-
-
-        dd($associator->predict(['alpha', 'beta']));
-        
-    }
-    
+{
     /**
      * Vytvori v databazi zaznam o nove objednavce
      * @throws Google_Service_Exception
@@ -220,31 +194,33 @@ class OrderController extends Controller
             
         }
       
-       $recommendedItems = array();
-       if (empty($itemsInOrder)) {
-       
+        // pole pro dopoporucene polozky
+        $recommendedItems = array();
+        if (empty($itemsInOrder)) {
+        
         } else {
-            $recommendedItems = $apriori->predict($itemsInOrder);
+            $recommendedItems = $apriori->predict($itemsInOrder); // predpoved doporucenych polozek
         }
-   
-        return $recommendedItems;
+    
+        return $recommendedItems; // vraceni doporucenych polozek
     }
 
+    /**
+     * Metoda pro zobrazeni detailu objednavky
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
-        $order = Order::find($id);
+        $order = Order::find($id); // vyhleda se objednavka podle ID
 
-        $items = $order->item;
+        $items = $order->item; // ziskani polozek v objednavce
 
-        $allItems = Item::get();
+        $allItems = Item::get(); // ziskani vsech polozek
      
-        $recommendedItems = array();
-        $recommendedItems = self::calculateApriori($order);
+        $recommendedItems = array(); //pole pro doporcene produkty
+        $recommendedItems = self::calculateApriori($order); // zjisteni doporucenych polozek metodou Apriori
 
-  
-      
-
-
+        // vraceni pohledu
         return view('orders.show', [
             'recommended' => $recommendedItems,
             'order' => $order,
@@ -253,75 +229,87 @@ class OrderController extends Controller
         ]);
     }
     
-    
+    /**
+     * Metoda pro smazani objednavky
+     */
     public function destroy($id)
     {
-        $order = Order::find($id);
-        $order->delete();
+        $order = Order::find($id); // nalezeni objednavky podle ID
+        $order->delete(); // smazani objednavky
 
-        $events = Event::get();
-        
-
-        
-        
 
          try {
-            $event = Event::find('eventid'.$order->id);
+            $event = Event::find('eventid'.$order->id); // vyhledani a smazani udalosti z google kalendare
             $event->delete();
-          } catch (\Google_Service_Exception $e) {
+          } catch (\Google_Service_Exception $e) { // pokud je jit udalost smzana
             
-             return redirect()->route('orders.index');
+             return redirect()->route('orders.index'); // presmerovani
           }
 
 
-          return redirect()->route('orders.index');
+          return redirect()->route('orders.index'); // presmerovani
     }
 
+    /**
+     * Zmeni stav ovbjednavky
+     * @param Illuminate\Http\Request
+     */
     public function changeState($orderId, Request $request)
     {
-        $order = Order::find($orderId);
+        $order = Order::find($orderId); // vyhleda objednavku podle ID
 
-
+        // overi, zda byl zadan stav
         $this->validate($request, [
             'state' => 'required', 
         ]);
-        $order->state = $request->state;
+
+        $order->state = $request->state; // zmeni stav
         $order->save();
 
         return back();
     }
 
+    /**
+     * Zobrazi pohled s formularem pro zmenu objednavky
+     * @return \Illuminate\View\View
+     */
     public function edit($orderId)
     {
 
-        $order = Order::Find($orderId);
+        $order = Order::Find($orderId); // vyhleda objednavku
 
+        // posle pohled
         return view('orders.edit', [
             'order' => $order
         ]);
     }
 
+    /**
+     * Zmeni data o objednavce v databazi
+     * @param Illuminate\Http\Request
+     */
     public function update(Request $request, $orderId)
     {
-        $order = Order::Find($orderId);
+        $order = Order::Find($orderId); // najde objednavku podle ID
 
-
+        // overi zda byly zadany spravne udaje
         $this->validate($request, [
             'state' => 'required',
             'term' =>'required|date',
         ]);
 
+        // zmeni udaje
         $order->term = $request->term;
         $order->state = $request->state;
         
 
-        $order->save();
+        $order->save(); // ulozi
 
-        $orders = Order::get();
+
 
         try {
-            $event = Event::find('eventid'.$orderId);
-          } catch (\Google_Service_Exception $e) {
+            $event = Event::find('eventid'.$orderId);  // vyhleda udalost v google kalendari
+          } catch (\Google_Service_Exception $e) { // pokud tam udalost neni, vytvori ji znovu
             Event::create([
                 'id' => 'eventid'.$orderId,
                 'description' => 'založeno',
@@ -330,36 +318,39 @@ class OrderController extends Controller
                 'endDate' => Carbon::createFromDate($request->term),
                
              ]);
-             return redirect()->route('orders.index');
+             return redirect()->route('orders.index'); // prsmerovani na objednavky
           }
         
-          $event->startDate = Carbon::createFromDate($request->term);
+          $event->startDate = Carbon::createFromDate($request->term); // zmeni udalost v google kalendari
           $event->endDate = Carbon::createFromDate($request->term);
           $event->save();
 
 
-          return redirect()->route('orders.index');
+          return redirect()->route('orders.index'); // presmerovani
         
     }
 
+    /**
+     * Zmeni termin objednavky
+     * @param Illuminate\Http\Request
+     */
     public function changeTerm(Request $request, $orderId)
     {
-        $order = Order::find($orderId);
+        $order = Order::find($orderId); // vyhleda objednavku podle ID
 
-        
-
+        // overeni data z formulare
         $this->validate($request, [
-            'term' => 'required', 
+            'term' => 'required|date', 
         ]);
 
 
-        $order->term = $request->term;
+        $order->term = $request->term; // zmena terminu
         $order->save();
 
         try {
-            $event = Event::find('eventid'.$orderId);
-          } catch (\Google_Service_Exception $e) {
-            Event::create([
+            $event = Event::find('eventid'.$orderId); // vyhledani udalosti v google calendari
+          } catch (\Google_Service_Exception $e) { // pokud udalost neni nalezena
+            Event::create([ // vytvori se nova udalost v google calendari
                 'id' => 'eventid'.$orderId,
                 'description' => 'založeno',
                 'name' => 'Číslo objednávky: '.$orderId,
@@ -367,10 +358,10 @@ class OrderController extends Controller
                 'endDate' => Carbon::createFromDate($request->term),
                
              ]);
-             return back();
+             return back(); 
           }
         
-          $event->startDate = Carbon::createFromDate($request->term);
+          $event->startDate = Carbon::createFromDate($request->term); // zmena udalosti v google calendari
           $event->endDate = Carbon::createFromDate($request->term);
           $event->save();
      
@@ -378,18 +369,22 @@ class OrderController extends Controller
         return back();
     }
 
+    /**
+     * Adminovkse vytvoreni objednavky
+     */
     public function storeAdmin($subId)
     {
+        // vytvoreni objednavky
         $newOrder = Order::create([
             'state' => 'založeno',
             'term' => Carbon::now()->add(1, 'week'),
-            'customer_id' => $subId,
+            'customer_id' => $subId, 
             'invoice' => 'bude doplněno'
         ]);
         
         
         try {
-            Event::create([
+            Event::create([ // vytvoreni udalosti v google calendari
                 'id' => 'eventid'.$newOrder,
                 'description' => 'založeno',
                 'name' => 'Číslo objednávky: '.$newOrder,
@@ -399,48 +394,44 @@ class OrderController extends Controller
                 
             
              ]);
-        } catch (\Google_Service_Exception $e) {
-            $ev = Event::find('eventid'.$newOrder->id);
-            $ev->status = "confirmed";
-            $ev->startDate = Carbon::now()->add(1, 'week');
+        } catch (\Google_Service_Exception $e) { // pokud jiz tato udalost existuje
+            $ev = Event::find('eventid'.$newOrder->id); // vyhledani udalosti
+            $ev->status = "confirmed"; // pro pripad, ze udalost byla vymazana, po nastaveni na confirmed bude zase aktivni
+            $ev->startDate = Carbon::now()->add(1, 'week'); // zmena udalosti
             $ev->endDate = Carbon::now()->add(1, 'week');
             $ev->save();
-        
         }
-        
-        
-        
-
-        return redirect()->route('orders.index');
-
-
-        
+        return redirect()->route('orders.index'); // presmerovani
+   
     }
 
+    /**
+     * Metoda pro nagrani faktury
+     * @param Illuminate\Http\Request
+     */
     public function uploadFile(Request $request, $orderId)
     {
-        $order = Order::find($orderId);
+        $order = Order::find($orderId); // vyhledani objednavky podle ID
 
-        $date = $order->term;
+        $date = $order->term; // ziskani aktualniho terminu objednavky
 
-        
-
-        if($request->hasFile('invoice')){
-            $path = 'public/invoices';
+        if($request->hasFile('invoice')){ // pokud byla zadana faktura
+            // ulozime fakturu
+            $path = 'public/invoices'; 
             $invoice = $request->file('invoice');
             $invoice_name = $invoice->getClientOriginalName();
             $fullPath = $request->file('invoice')->storeAs($path, $invoice_name);
             
             $input['invoice'] = $invoice_name;
         } else {
-            return back();
+            return back()->with('errorInvoice', 'Musíte nahrát fakturu.');
         }
         
-        
+        // nahrani nazvu fatury do databaze
         DB::update(DB::raw('UPDATE orders SET orders.invoice = "'.$invoice_name.'", orders.term = "'.$order->term.'"  WHERE orders.id = '.$orderId.''));
 
 
-        return redirect()->route('orders.index');
+        return redirect()->route('orders.index'); // presmerovani
     }
 
     

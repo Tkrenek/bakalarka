@@ -58,6 +58,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customers.index')}}" class="p-3">Zobrazit Zákazníky</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('google.index')}}" class="p-3">Google kalendář</a>
         
                     </li>

@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
 
     // routy pro praci se zakazniky
-    Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
+    
     Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
     Route::get('/customers/{id}/change_passwordAdmin', [CustomerController::class, 'changePasswordAdmin'])->name('customers.change_passwordAdmin');
     Route::post('/customers/{id}/update_passwordAdmin', [CustomerController::class, 'updatePasswordAdmin'])->name('customers.update_passwordAdmin');
@@ -102,7 +102,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     // routy pro praci s kontaktnimi osobam
     Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAsAdmin'])->name('contact.admin.create');
     Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
-    Route::get('/contact/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
+    
 
     // routy pro praci s dodavateli
     Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
@@ -237,11 +237,16 @@ Route::group(['middleware' => 'auth:employee,admin'], function () {
     Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
     Route::delete('/orderWork/destroy/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
     Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
+
+    Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
+
+    Route::get('/contact/indexAdminEmpl', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
     
 });
 
 // routy pro vsechny prihlasene uzivatele
 Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
+
     // zobrazeni nadob
     Route::get('/containers/index', [ContainerController::class, 'index'])->name('containers.index');
     
@@ -271,7 +276,7 @@ Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
 });
 
 
-// vytveni zakaznika
+// vytvoreni zakaznika
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customers.store');
 

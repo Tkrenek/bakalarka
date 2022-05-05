@@ -10,34 +10,50 @@ use App\Models\Employee;
 
 class OrderWorkController extends Controller
 {
+    /**
+     * Zobrazeni pohledu s formularem pro oznaceni prace
+     * @return \Illuminate\View\View
+     */
     public function create($orderId)
     {
-        $order = Order::find($orderId);
+        $order = Order::find($orderId); // vyhledani objednavky podle ID
 
+        // vraceni pohledu
         return view('orderwork.create', [
             'order' => $order
         ]);
     }
 
+    /**
+     * Vraceni pohledu s formularem pro oznaceni prace pro admina
+     * @return \Illuminate\View\View
+     */
     public function  createAsAdmin($emplId)
     {
-        $employee = Employee::find($emplId);
+        $employee = Employee::find($emplId); // vyhledani zamestnance podle ID
 
+        // vraceni pohledu se zamestnanci
         return view('orderwork.create', [
             'employee' => $employee
         ]);
     }
    
+    /**
+     * Metoda pro ulozeni prace na objednavce do databaze
+     *@param Illuminate\Http\Request
+     */
     public function store(Request $request, $orderId)
     {
+        // overeni dat z formulare
         $this->validate($request, [
             'type' => 'required',
             'time' => 'required|numeric|min:1',
-            'date' => 'required',
+            'date' => 'required|date',
             
         ]);
         
 
+        // Vytvoreni prace na objednavce v databazi
         OrderWork::create([
             'order_id' => $orderId,
             'employee_id' => auth('employee')->user()->id,
@@ -47,23 +63,26 @@ class OrderWorkController extends Controller
 
         ]);
 
-        
-
-        return redirect()->route('orders.index');
+        return redirect()->route('orders.index'); // presmerovani
     }
 
+    /**
+     * Ulozeni prace na objednavce jako admin
+     * @param Illuminate\Http\Request
+     */
     public function storeAsAdmin(Request $request, $emplId)
     {
+        // overeni dat z formulare
         $this->validate($request, [
             'order' => 'required|numeric',
             'type' => 'required',
-            'time' => 'required',
-            'date' => 'required',
-            
+            'time' => 'required|numeric|min:1',
+            'date' => 'required|date',
         ]);
         
-        $employee = Employee::find($emplId);
+        $employee = Employee::find($emplId); // vyhledani zamestnance podle ID
 
+        // vytoverni prace na obednavce
         OrderWork::create([
             'order_id' => $request->order,
             'employee_id' => $employee->id,
@@ -73,34 +92,38 @@ class OrderWorkController extends Controller
 
         ]);
 
-        
 
-        return redirect()->route('orderWork.index');
+        return redirect()->route('orderWork.index'); // presmerovani
     }
 
+    /**
+     * Zobrazeni praci na objednavce
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         
-        
-
-        if(auth('employee')->user()){
-            
+        if(auth('employee')->user()){ // pokd je prilasen zamestnaec
             return view('orderwork.index', [
-                'orderworks' => auth('employee')->user()->orderWork
+                'orderworks' => auth('employee')->user()->orderWork // vrati se prace ktere odvedl prihlaseny zamestnanec
             ]);
         }
-        $orderworks = OrderWork::get();
+        // pokud je prihlasen admin
+        $orderworks = OrderWork::get(); // zikani vsech praci na objednavkach
+
+        // vraceni pohledu se vsemi pracemi na objednavkach
         return view('orderwork.index', [
             'orderworks' => $orderworks
         ]);
     }
 
+    /**
+     * Metoda pro odstraneni zaznamu o provedene praci z databaze
+     */
     public function destroy($id)
     {
-        $orderWokrk = OrderWork::find($id);
-        $orderWokrk->delete();
-
-
+        $orderWokrk = OrderWork::find($id); // vyhledani konkretni prace
+        $orderWokrk->delete(); // smazani
 
         return back();
     }

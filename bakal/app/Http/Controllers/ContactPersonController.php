@@ -104,7 +104,7 @@ class ContactPersonController extends Controller
             'customer_id' => $subId,
         ]);
         
-        return redirect()->route('contact.index'); // presmerovani
+        return redirect()->route('contact.indexAdmin'); // presmerovani
     }
 
 

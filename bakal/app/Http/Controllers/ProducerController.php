@@ -9,32 +9,50 @@ use App\Models\Producer;
 class ProducerController extends Controller
 {
 
+    /**
+     * Zobrazi pohled se vsemi dodavateli
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        $producers = Producer::get();
+        $producers = Producer::get(); // vyhledani vsech dodavatelu
 
+        // vraceni pohledu
         return view('producers.index', [
             'producers' => $producers
         ]);
     }
 
+    /**
+     * vraci formular pro vytvoreni noveho dodavatele
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
-        return view('producers.create');
+        return view('producers.create'); // vraceni pohledu
     }
 
+    /**
+     * Vraci formular pro upravu dodavatele
+     * @return \Illuminate\View\View
+     */
     public function edit($id)
     {
-        $producer = Producer::find($id);
+        $producer = Producer::find($id); // vyhledani dodavatele podle ID
+
+        // vraceni pohledu s formularem
         return view('producers.edit', [
             'producer' => $producer
         ]);
     }
 
+
+    /**
+     * Zmeni data o dodavateli v databazi
+     * @param Illuminate\Http\Request
+     */
     public function update(Request $request, $id)
     {
-       
-
         // overeni udaju z formulare
         $this->validate($request, [
             'name' => 'required',
@@ -57,13 +75,18 @@ class ProducerController extends Controller
 
         
 
-        return redirect()->route('producers.index'); 
+        return redirect()->route('producers.index'); // presmerovani
         
         
     }
 
+    /**
+     * Vytvori v databazi zaznam o novem dodavateli
+     * @param Illuminate\Http\Request
+     */
     public function store(Request $request)
     {
+        // overi data z formulare
         $this->validate($request, [
             'name' => 'required|unique:producers',
             'phone' => 'required|numeric|unique:producers',
@@ -73,7 +96,7 @@ class ProducerController extends Controller
             
         ]);
         
-
+        // vytvoreni dodavatele
         Producer::create([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -84,16 +107,18 @@ class ProducerController extends Controller
 
         ]);
 
-        
-
         return back();
     }
 
+    /**
+     * Smaze dodavatele z databaze
+     */
     public function destroy($id)
     {
-        $producer = Producer::find($id);
+        $producer = Producer::find($id); // vyhledani dodavatele podle ID
 
-        $producer->delete();
+        $producer->delete(); // smazani dodavatele
+        
         return back();
     }
     

@@ -88,7 +88,7 @@ class Stats extends Authenticatable
         return $baleni;
     }
 
-    public static function getBaleniKanistr()
+    public static function getBaleniKanystr()
     {
         $baleniPomer1 = DB::select(DB::raw('select  sum(package_items.count) as "count" from package_items join containers on containers.id = package_items.container_id group by containers.code having containers.code like "K%"'));
         $baleniPomer1 = Stats::getSum($baleniPomer1);
