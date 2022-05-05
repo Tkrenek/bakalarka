@@ -2,6 +2,11 @@
 
 @section('content')
   
+@php
+  use Carbon\Carbon as carbon;
+@endphp
+
+
 <div class="container">
     <div class="row justify-content-center" >
         <div class="col-lg-6">
@@ -93,9 +98,10 @@
             <div class="form-group">
                 <label for="birth_date">Datum narození</label>
                 <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
-             
+                @php $date = Carbon::parse($employee->birth_date); @endphp
                 <script>
-                    document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($employee->birth_date); ?>)
+
+                    document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($date) ?>);
                 </script>
                 <div class="invalid-feedback">
                      

@@ -11,22 +11,24 @@ use DB;
 class StatsController extends Controller
 {
 
+
+        public function divnum($numerator, $denominator)
+        {
+            return $denominator == 0 ? 0 : ($numerator / $denominator);
+        }
+
+  
+
     public function index()
     {
         $resultsOriginal = Stats::getResultsOriginal();
         $resultsMixed = Stats::getResultsMixed();
         $celkemProdukty = $resultsMixed + $resultsOriginal;
+    
         
-        try {
-            $resultsMixed /= $celkemProdukty / 100;
-            $resultsOriginal /= $celkemProdukty / 100;
-        }catch(Exception $e){
-            $resultsMixed = 0;
-            $resultsOriginal = 0;
-        }
-        
+        $resultsMixed = self::divnum($resultsMixed,$celkemProdukty) * 100;
+        $resultsOriginal = self::divnum($resultsOriginal,$celkemProdukty) * 100;
 
-     
         $nejvic = Stats::getCustomerMax();
 
    
@@ -41,15 +43,10 @@ class StatsController extends Controller
         $baleniPomer2 = Stats::getBaleniPlech();
         $celkem = $baleniPomer1 + $baleniPomer2;
 
-        try{
-            $baleniPomer1 /= $celkem / 100;
-            $baleniPomer2 /= $celkem / 100;
-        } catch(Exception $e){
-            $baleniPomer1 = 0;
-            $baleniPomer2 = 0;
-        }
+  
         
-
+        $baleniPomer1 = self::divnum($baleniPomer1, $celkem) * 100;
+        $baleniPomer2 = self::divnum($baleniPomer2, $celkem) * 100;
 
         $produktyOrig = Stats::getProduktyOriginal();
         $produktyMixed = Stats::getProduktyMixed();

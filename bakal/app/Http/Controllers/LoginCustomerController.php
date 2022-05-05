@@ -43,7 +43,7 @@ class LoginCustomerController extends Controller
  
         // overenoi udaju z formulare
         if (Auth::guard('customer')->attempt($credentials)) {
-            return view('customers/welcome');
+            return redirect()->route('customers.welcome');
         } else {
             return back()->with('error', 'Zadán chybný login nebo heslo.'); //chybove hlaseni
         }

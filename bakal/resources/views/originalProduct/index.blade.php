@@ -12,12 +12,12 @@
 
 @endauth
 
-<div class="row">
+<div class="row mt-3">
   <div class="col-2">
     <a class="btn btn-primary float-left" href="{{ route('product.indexOriginal')}}" class="p-3">Pouze originální produkty</a>
   </div>
   
-  <div class="col-2 offset-10">
+  <div class="col-2 offset-8">
     
 
   <a class="btn btn-primary float-right" href="{{ route('product.indexMixed')}}" class="p-3">Pouze Míchané produkty</a>

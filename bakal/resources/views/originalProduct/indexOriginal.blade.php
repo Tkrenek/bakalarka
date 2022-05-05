@@ -6,11 +6,8 @@
 
 
 
-
-
-<a class="btn btn-primary float-right" href="{{ route('productOriginal.index')}}" class="p-3">Pouze originální produkty</a>
-
 @endauth
+<a class="btn btn-primary float-right" href="{{ route('product.indexMixed')}}" class="p-3">Pouze míchané produkty</a>
 
 <div class="text-danger text-center" style="font-size: large">
 @if ($message = Session::get('error'))

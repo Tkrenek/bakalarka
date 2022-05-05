@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->timestamp('birth_date');
+            $table->dateTime('birth_date');
             $table->foreignId('department_id');
             $table->string('function');
             $table->timestamps();

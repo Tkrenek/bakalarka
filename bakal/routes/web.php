@@ -66,178 +66,197 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => 'auth:admin'], function () {
+
+    Route::get('/admins/index', [AdminController::class, 'create'])->name('admins.index');
+    Route::post('/admins/store', [AdminController::class, 'store'])->name('admins.store');
+    // odhlaseni admina
     Route::get('/admins/logout', [LoginAdminController::class, 'logout'])->name('admins.logout');
 
-    
-
+    // routy pro praci se zakazniky
     Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
     Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
-
     Route::get('/customers/{id}/change_passwordAdmin', [CustomerController::class, 'changePasswordAdmin'])->name('customers.change_passwordAdmin');
     Route::post('/customers/{id}/update_passwordAdmin', [CustomerController::class, 'updatePasswordAdmin'])->name('customers.update_passwordAdmin');
 
-
+    // routy pro praci se zamestnanci
     Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
     Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employees.store');
     Route::get('/employees/index', [EmployeeController::class, 'index'])->name('employees.index');
-
     Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
-
     Route::get('/employees/change_password/{emplId}', [EmployeeController::class, 'changePasswordAdmin'])->name('employees.change_password.admin');
-Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'updatePasswordAdmin'])->name('employees.update_passwordAdmin');
+    Route::post('/employees/{id}/update_passwordAdmin', [EmployeeController::class, 'updatePasswordAdmin'])->name('employees.update_passwordAdmin');
 
+    // routy pro praci s oddelenimi
+    Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+    Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
+    Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
+    Route::delete('/departments/{id}/destroy', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
-Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
-Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
-Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
-Route::delete('/departments/{id}/destroy', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+    // routy pro praci s adminy
+    Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
+    Route::post('/admins/{id}/update', [AdminController::class, 'update'])->name('admins.update');
+    Route::get('/admins/change_password', [AdminController::class, 'change_password'])->name('admins.change_password');
+    Route::post('/admins/{id}/update_password', [AdminController::class, 'update_password'])->name('admins.update_password');
+    Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('admins.success');
 
+    // routy pro praci s kontaktnimi osobam
+    Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAsAdmin'])->name('contact.admin.create');
+    Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
+    Route::get('/contact/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
 
-Route::get('/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
-Route::post('/admins/{id}/update', [AdminController::class, 'update'])->name('admins.update');
+    // routy pro praci s dodavateli
+    Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
+    Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
+    Route::get('/producers/edit/{id}', [ProducerController::class, 'edit'])->name('producers.edit');
+    Route::put('/producers/{id}/update', [ProducerController::class, 'update'])->name('producers.update');
+    Route::delete('/producers/{id}', [ProducerController::class, 'destroy'])->name('producers.destroy');
+    Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
 
-Route::get('/admins/change_password', [AdminController::class, 'change_password'])->name('admins.change_password');
-Route::post('/admins/{id}/update_password', [AdminController::class, 'update_password'])->name('admins.update_password');
+    // routy pro praci s produkty originalnimi
+    Route::get('/productOriginal/create', [ProductOriginalController::class, 'create'])->name('productOriginal.create');
+    Route::post('/productOriginal/store', [ProductOriginalController::class, 'store'])->name('productOriginal.store');
+    Route::get('/productOriginal/edit/{id}', [ProductOriginalController::class, 'edit'])->name('productOriginal.edit');
+    Route::put('/productOriginal/{id}/update', [ProductOriginalController::class, 'update'])->name('productOriginal.update');
+    Route::delete('/productOriginal/{id}', [ProductOriginalController::class, 'destroy'])->name('productOriginal.destroy');
 
-Route::get('/admins/success', [LoginAdminController::class, 'success'])->name('admins.success');
+    // routy pro praci s nadobami
+    Route::get('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
+    Route::post('/containers/store', [ContainerController::class, 'store'])->name('containers.store');
+    Route::get('/containers/{id}/edit', [ContainerController::class, 'edit'])->name('containers.edit');
+    Route::put('/containers/{id}/update', [ContainerController::class, 'update'])->name('containers.update');
+    Route::delete('/containers/{id}', [ContainerController::class, 'destroy'])->name('containers.destroy');
 
-Route::get('/contact/{subid}/create', [ContactPersonController::class, 'createAsAdmin'])->name('contact.admin.create');
-Route::post('/contact/{subid}/store', [ContactPersonController::class, 'storeAsAdmin'])->name('contact.admin.store');
+    // routy pro praci s produkty michanymi
+    Route::get('/productMixed/create', [ProductMixedController::class, 'create'])->name('productMixed.create');
+    Route::post('/productMixed/store', [ProductMixedController::class, 'store'])->name('productMixed.store');
+    Route::get('/productMixed/{id}/edit', [ProductMixedController::class, 'edit'])->name('productMixed.edit');
+    Route::put('/productMixed/{id}/update', [ProductMixedController::class, 'update'])->name('productMixed.update');
+    Route::delete('/productMixed/{id}', [ProductMixedController::class, 'destroy'])->name('productMixed.destroy');
 
+    // uchovani objednavky
+    Route::post('/orders/{subid}/store', [OrderController::class, 'storeAdmin'])->name('orders.admin.store');
 
-Route::get('/contact/indexAdmin', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
+    // michani produktu
+    Route::get('/mixingProduct/create', [MixingProductController::class, 'create'])->name('mixingProduct.create');
+    Route::post('/mixingProduct/store/{mixedId}', [MixingProductController::class, 'store'])->name('mixingProduct.store');
+    Route::delete('/mixingProduct/{mixingId}', [MixingProductController::class, 'destroy'])->name('mixingProduct.destroy');
 
-Route::get('/producers/index', [ProducerController::class, 'index'])->name('producers.index');
-Route::get('/producers/create', [ProducerController::class, 'create'])->name('producers.create');
-
-Route::get('/producers/edit/{id}', [ProducerController::class, 'edit'])->name('producers.edit');
-Route::put('/producers/{id}/update', [ProducerController::class, 'update'])->name('producers.update');
-Route::delete('/producers/{id}', [ProducerController::class, 'destroy'])->name('producers.destroy');
-
-Route::post('/producers/store', [ProducerController::class, 'store'])->name('producers.store');
-
-Route::get('/productOriginal/create', [ProductOriginalController::class, 'create'])->name('productOriginal.create');
-Route::post('/productOriginal/store', [ProductOriginalController::class, 'store'])->name('productOriginal.store');
-
-Route::get('/productOriginal/edit/{id}', [ProductOriginalController::class, 'edit'])->name('productOriginal.edit');
-Route::put('/productOriginal/{id}/update', [ProductOriginalController::class, 'update'])->name('productOriginal.update');
-Route::delete('/productOriginal/{id}', [ProductOriginalController::class, 'destroy'])->name('productOriginal.destroy');
-
-
-Route::get('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
-Route::post('/containers/store', [ContainerController::class, 'store'])->name('containers.store');
-
-Route::get('/containers/{id}/edit', [ContainerController::class, 'edit'])->name('containers.edit');
-Route::put('/containers/{id}/update', [ContainerController::class, 'update'])->name('containers.update');
-Route::delete('/containers/{id}', [ContainerController::class, 'destroy'])->name('containers.destroy');
-
-Route::get('/productMixed/create', [ProductMixedController::class, 'create'])->name('productMixed.create');
-Route::post('/productMixed/store', [ProductMixedController::class, 'store'])->name('productMixed.store');
-Route::get('/productMixed/{id}/edit', [ProductMixedController::class, 'edit'])->name('productMixed.edit');
-Route::put('/productMixed/{id}/update', [ProductMixedController::class, 'update'])->name('productMixed.update');
-Route::delete('/productMixed/{id}', [ProductMixedController::class, 'destroy'])->name('productMixed.destroy');
-
-Route::post('/orders/{subid}/store', [OrderController::class, 'storeAdmin'])->name('orders.admin.store');
-
-
-Route::get('/mixingProduct/create', [MixingProductController::class, 'create'])->name('mixingProduct.create');
-Route::post('/mixingProduct/store/{mixedId}', [MixingProductController::class, 'store'])->name('mixingProduct.store');
-Route::delete('/mixingProduct/{mixingId}', [MixingProductController::class, 'destroy'])->name('mixingProduct.destroy');
-
-Route::get('/orderWork/create/admin/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
-Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'storeAsAdmin'])->name('orderWork.admin.store');
+    // oznaovani prace na objednavce
+    Route::get('/orderWork/create/admin/{emplId}', [OrderWorkController::class, 'createAsAdmin'])->name('orderWork.admin.create');
+    Route::post('/orderWork/store/admin/{emplId}', [OrderWorkController::class, 'storeAsAdmin'])->name('orderWork.admin.store');
 });
 
-
+// routy pouze pro zaměstnance
 Route::group(['middleware' => 'auth:employee'], function () {
+    // prace se svym uctem
     Route::get('/employees/logout', [LoginEmployeeController::class, 'logout'])->name('employees.logout');
-Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
-Route::get('/employees/change_password', [EmployeeController::class, 'changePassword'])->name('employees.change_password');
-Route::post('/employees/{id}/update_password', [EmployeeController::class, 'updatePassword'])->name('employees.update_password');
+    Route::get('/employees/welcome', [LoginEmployeeController::class, 'welcome'])->name('employees.welcome');
+    Route::get('/employees/change_password', [EmployeeController::class, 'changePassword'])->name('employees.change_password');
+    Route::post('/employees/{id}/update_password', [EmployeeController::class, 'updatePassword'])->name('employees.update_password');
 
-Route::get('/calendar/index', [GoogleCalendarController::class, 'index'])->name('google.index');
+    //zobrazeni navodu pro google calendar
+    Route::get('/calendar/index', [GoogleCalendarController::class, 'index'])->name('google.index');
 });
 
+// routy pouze prozakzniky
 Route::group(['middleware' => 'auth:customer'], function () {
+    // prace s objednavkami
     Route::get('/orders/{id}/index', [OrderController::class, 'myindex'])->name('orders.myindex');
+    Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
 
+    // prace se svym uctem
     Route::get('/customers/logout', [LoginCustomerController::class, 'logout'])->name('customers.logout');
-
     Route::get('/customers/change_password', [CustomerController::class, 'change_password'])->name('customers.change_password');
-Route::post('/customers/{id}/update_password', [CustomerController::class, 'update_password'])->name('customers.update_password');
-Route::get('/customers/welcome', [LoginCustomerController::class, 'welcome'])->name('customers.welcome');
+    Route::post('/customers/{id}/update_password', [CustomerController::class, 'update_password'])->name('customers.update_password');
+    Route::get('/customers/welcome', [LoginCustomerController::class, 'welcome'])->name('customers.welcome');
 
-Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
-Route::post('/contact/store', [ContactPersonController::class, 'store'])->name('contact.store');
-Route::get('/contact/{subId}/indexSub', [ContactPersonController::class, 'indexSub'])->name('contact.index.sub');
+    // prace s kontaktni osobou
+    Route::get('/contact/create', [ContactPersonController::class, 'create'])->name('contact.create');
+    Route::post('/contact/store', [ContactPersonController::class, 'store'])->name('contact.store');
+    Route::get('/contact/{subId}/indexSub', [ContactPersonController::class, 'indexSub'])->name('contact.index.sub');
 
-Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
+
 
 });
 
+// routy pro zakaznika a admina
 Route::group(['middleware' => 'auth:customer,admin'], function () {
-    
 
+    // prace se zakazniky
     Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customers.update');
 
+    // prace s kontaktnimi osobami
     Route::delete('/contact/{id}', [ContactPersonController::class, 'destroy'])->name('contact.destroy');
     Route::get('/contact/{id}/edit', [ContactPersonController::class, 'edit'])->name('contact.edit');
     Route::put('/contact/{id}/update', [ContactPersonController::class, 'update'])->name('contact.update');
 
+    // prace s polozkami
+    Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
+    Route::get('/items/createOriginal/{orderid}', [ItemController::class, 'createOriginal'])->name('items.createOriginal');
+    Route::get('/items/createMixed/{orderid}', [ItemController::class, 'createMixed'])->name('items.createMixed');
+    Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
+    Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
+    // baleni polozek
+    Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
+    Route::post('/packageItem/store/{itemid}/{containerid}', [PackageItemController::class, 'store'])->name('packageItem.store');
+    Route::get('/packageItem/show/{itemid}', [PackageItemController::class, 'show'])->name('packageItem.show');
+    Route::delete('/packageItem/{id}', [PackageItemController::class, 'destroy'])->name('packageItem.destroy');
+    Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'changeCount'])->name('packageItem.changeCount');
 
-Route::get('/items/create/{orderid}', [ItemController::class, 'create'])->name('items.create');
-Route::get('/items/createOriginal/{orderid}', [ItemController::class, 'createOriginal'])->name('items.createOriginal');
-Route::get('/items/createMixed/{orderid}', [ItemController::class, 'createMixed'])->name('items.createMixed');
-Route::post('/items/store/{orderid}/{productcode}', [ItemController::class, 'store'])->name('items.store');
-Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
-
-Route::get('/packageItem/create/{itemid}', [PackageItemController::class, 'create'])->name('packageItem.create');
-Route::post('/packageItem/store/{itemid}/{containerid}', [PackageItemController::class, 'store'])->name('packageItem.store');
-Route::get('/packageItem/show/{itemid}', [PackageItemController::class, 'show'])->name('packageItem.show');
-Route::delete('/packageItem/{id}', [PackageItemController::class, 'destroy'])->name('packageItem.destroy');
-Route::put('/packageItem/changeCount/{id}', [PackageItemController::class, 'changeCount'])->name('packageItem.changeCount');
-
-Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
-Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
-
-Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
-Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
+    // prace s objednavkami
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
+    Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
 });
 
+// routy pro admina a zamestnance
 Route::group(['middleware' => 'auth:employee,admin'], function () {
+    // naskladneni nadob
     Route::put('/containers/{id}/addStore', [ContainerController::class, 'addOnStore'])->name('containers.addStore');
+    
+    // prace se zamestnaneckym uctem
     Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::put('/employees/{id}/update', [EmployeeController::class, 'update'])->name('employees.update');
 
+    // naskladneni produktu
     Route::put('/productOriginal/{id}/addStore', [ProductOriginalController::class, 'addOnStore'])->name('productOriginal.addStore');
 
+    // michani produktu
     Route::get('/mixingProduct/index', [MixingProductController::class, 'index'])->name('mixingProduct.index');
-Route::get('/mixingProduct/show/{mixedId}', [MixingProductController::class, 'show'])->name('mixingProduct.show');
+    Route::get('/mixingProduct/show/{mixedId}', [MixingProductController::class, 'show'])->name('mixingProduct.show');
 
-Route::put('/orders/changeState/{idOrder}', [OrderController::class, 'changeState'])->name('orders.changeState');
-Route::post('/orders/uploadFile/{orderId}', [OrderController::class, 'uploadFile'])->name('orders.uploadFile');
+    // prace s objednavkami
+    Route::put('/orders/changeState/{idOrder}', [OrderController::class, 'changeState'])->name('orders.changeState');
+    Route::post('/orders/uploadFile/{orderId}', [OrderController::class, 'uploadFile'])->name('orders.uploadFile');
 
-Route::get('/orderWork/create/{orderId}', [OrderWorkController::class, 'create'])->name('orderWork.create');
-Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
-Route::delete('/orderWork/destroy/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
-Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
+    // prce na objednavce
+    Route::get('/orderWork/create/{orderId}', [OrderWorkController::class, 'create'])->name('orderWork.create');
+    Route::post('/orderWork/store/{orderId}', [OrderWorkController::class, 'store'])->name('orderWork.store');
+    Route::delete('/orderWork/destroy/{id}', [OrderWorkController::class, 'destroy'])->name('orderWork.destroy');
+    Route::get('/orderWork/index', [OrderWorkController::class, 'index'])->name('orderWork.index');
     
 });
+
+// routy pro vsechny prihlasene uzivatele
 Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
+    // zobrazeni nadob
     Route::get('/containers/index', [ContainerController::class, 'index'])->name('containers.index');
+    
+    // prace s produkty
     Route::get('/productOriginal/index', [ProductOriginalController::class, 'index'])->name('product.index');
     Route::get('/productOriginal/indexOriginal', [ProductOriginalController::class, 'indexOriginal'])->name('product.indexOriginal');
     Route::get('/productOriginal/indexMixed', [ProductOriginalController::class, 'indexMixed'])->name('product.indexMixed');
     Route::put('/productMixed/{id}/asddStore', [ProductMixedController::class, 'addOnStore'])->name('productMixed.addStore');
 
- 
+    // objednavky
     Route::get('/orders/index/filter', [OrderController::class, 'indexFilter'])->name('orders.index.filter');
-
     Route::get('/orders/index', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [OrderController::class, 'show'])->name('orders.show');
 
+    // stahovani souboru
     Route::get('orders/downloadInvoice/{file_name}', function($file_name = null) {
         $path = storage_path().'/app/public/invoices/'.$file_name;
     
@@ -246,39 +265,39 @@ Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
             return Response::download($path);
         }
     })->name('orders.downloadInvoice');
+
+
+
 });
 
-Route::group(['middleware' => 'guest'], function () {
-    
-    
 
-    
-});
-
+// vytveni zakaznika
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customers.store');
 
+// prhlasovani uzitelu
 Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
 Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
 
 Route::get('/employees/login', [LoginEmployeeController::class, 'index'])->name('employees.login');
 Route::post('/employees/login', [LoginEmployeeController::class, 'login'])->name('employees.login.post');
 
-
-
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
+// zobrazeni statistik
 Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
+
+
 
 Route::get('/test', [OrderController::class, 'test'])->name('test');
 
-Route::get('/admins/index', [AdminController::class, 'create'])->name('admins.index');
-Route::post('/admins/store', [AdminController::class, 'store'])->name('admins.store');
+
 
 
 ////////////////////////////////////////

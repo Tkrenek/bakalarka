@@ -11,7 +11,7 @@
 <div class="text-center welcome-text">
     Název společnosti: {{ auth('customer')->user()->name }} <br>
     Adresa: {{ auth('customer')->user()->address }}, {{ auth('customer')->user()->town }} <br>
-    Název společnosti: {{ auth('customer')->user()->login }} <br>
+    Login: {{ auth('customer')->user()->login }} <br>
 </div>
 
 <h5 class="display-5 text-center mt-3">Vyberte svoji další akci</h5>

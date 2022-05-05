@@ -1,18 +1,22 @@
 @extends('layouts.navigation')
 
 @section('content')
-@auth('admin')
+
+
+  <a class="btn btn-primary " href="{{ route('product.indexOriginal')}}" >Pouze originální produkty</a>
+
+  @auth('admin')
+
+  <a class="btn btn-primary float-right " href="{{ route('productMixed.create')}}" class="p-3 ">Přidat míchaný produkt</a>
+  
+  
+  
+  @endauth
 
 
 
 
-<a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3 ">Přidat míchaný produkt</a>
 
-
-
-@endauth
-
-<a class="btn btn-primary float-right" href="{{ route('product.indexOriginal')}}" class="p-3">Pouze originální produkty</a>
 
 <div class="text-danger text-center" style="font-size: large">
 @if ($message = Session::get('error'))
