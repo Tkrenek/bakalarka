@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Order.php
+ * Model pro objednavku
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -28,16 +33,29 @@ class Order extends Model
 
     public static $frequented = array();
 
+    
+    /**
+     * Metoda polozky, ktere jsou soucasti teto objednavky
+     * @return App\Models\Item
+     */
     public function item()
     {
         return $this->hasMany(Item::class);
     }
 
+    /**
+     * Metoda vraci zakaznnika, kteremu tato objednavka patri
+     * @return App\Models\Customer
+     */
     public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
 
+    /**
+     * Metoda vraci prace na teto objednavce
+     * @return App\Models\OrderWork
+     */
     public function orderWork()
     {
         return $this->hasMany(OrderWork::class);

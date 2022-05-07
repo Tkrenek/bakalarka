@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ProducerController.php
+ * Controller pro spravu dodavatelu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

@@ -63,8 +63,9 @@
                   <div class="form-group ">
                      <label for="producer" class="sr-only">Dodavatel</label>
                      <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
+                        {{-- Pruchod pres dodavatele --}}
                         @foreach ($producers as  $producer)
-                        <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
+                           <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
                         @endforeach
                      </select>
                      <div class="invalid-feedback">

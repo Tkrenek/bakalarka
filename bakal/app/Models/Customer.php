@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Customer.php
+ * Model pro zakaznika
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -26,11 +31,19 @@ class Customer extends Authenticatable
         'url'
     ];
 
+    /**
+     * Metoda vraci kontaktni osoby, ktere patri k zakaznikovi
+     * @return App\Models\ContactPerson
+     */
     public function contact()
     {
         return $this->hasMany(ContactPerson::class);
     }
 
+    /**
+     * Metoda vraci objednavky, ktere patri k zakaznikovi
+     * @return App\Models\Order
+     */
     public function order()
     {
         return $this->hasMany(Order::class);

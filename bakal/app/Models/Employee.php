@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Employee.php
+ * Model pro zamestnance
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -36,12 +41,19 @@ class Employee extends Authenticatable
     ];
 
     
-
+    /**
+     * Metoda vraci oddeleni, na kterem zakaznik pracuje
+     * @return App\Models\Department
+     */
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
 
+    /**
+     * Metoda vraci prace, ktere provedl zamestnanec
+     * @return App\Models\OrderWork
+     */
     public function orderWork()
     {
         return $this->hasMany(OrderWork::class);

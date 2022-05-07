@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Container.php
+ * Model pro nadobu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -19,6 +24,10 @@ class Container extends Model
         'code'
     ];
 
+    /**
+     * Metoda vraci polozky, ktere jsou zabaleny do konkretni nadoby
+     * @return App\Models\Package_item
+     */
     public function packageItem()
     {
         return $this->hasMany(Package_item::class);

@@ -3,6 +3,7 @@
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
+         {{-- Formular pro pridani noveho dodavatele --}}
          <div class="card">
             <div class="card-header text-center">Přidat dodavatele</div>
             <div class="card-body">
@@ -13,7 +14,7 @@
                      <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('name')
-                        Musíte zadat název dodavatele.
+                           Musíte zadat název dodavatele.
                         @enderror
                      </div>
                   </div>
@@ -22,7 +23,7 @@
                      <input type="text" id="email" name="email" class="form-control @error('email') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('email')
-                        Musíte zadat email dodavatele.
+                           Musíte zadat email dodavatele.
                         @enderror
                      </div>
                   </div>
@@ -31,7 +32,7 @@
                      <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('phone')
-                        Musíte zadat telefon dodavatele.
+                           Musíte zadat telefon dodavatele.
                         @enderror
                      </div>
                   </div>
@@ -40,7 +41,7 @@
                      <input type="text" id="town" name="town" class="form-control @error('town') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('town')
-                        Musíte zadat město, kde dodavatel sídlí.
+                           Musíte zadat město, kde dodavatel sídlí.
                         @enderror
                      </div>
                   </div>
@@ -49,7 +50,7 @@
                      <input type="text" id="address" name="address" class="form-control @error('phone') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('address')
-                        Musíte zadat adresu dodavatele.
+                           Musíte zadat adresu dodavatele.
                         @enderror
                      </div>
                   </div>

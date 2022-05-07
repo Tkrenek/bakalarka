@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: DepartmentController.php
+ * Controller pro oddeleni
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

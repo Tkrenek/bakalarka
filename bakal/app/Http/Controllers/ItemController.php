@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ItemController.php
+ * Controller pro polozku v objednavce
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 
@@ -151,6 +156,43 @@ class ItemController extends Controller
         return back();
     }
 
+    /**
+     * Metoda pro zobrazeni pouze vyhledaneho produktu
+     * @param Illuminate\Http\Request
+     */
+    public function indexFilter(Request $request, $orderid)
+    {
+        // overeni, zda je vyplneno vyhledavaci pole
+        $this->validate($request, [
+            'query' => 'required',
+        ]);
+        
+        // pokud je zadano jako prvni znak M
+        if($request->input('query')[0] == 'M') {
+            $productsMixed = Product_mixed::get()->where('code', '=', $request->input('query')); // hledame v michanych produktech
+            $products = Product_original::get()->where('code', '=', 'M'); // originalni budou bez vysledku
+        } else if($request->input('query')[0] == 'O') { // pokud je zadano jako prvni znak O
+            $products = Product_original::get()->where('code', '=', $request->input('query')); // hledame v originalnich produktech
+            $productsMixed = Product_mixed::get()->where('code', '=', 'O'); // michane budou bez vysledku
+        } else {
+            return back()->with('errorFilter', 'Tento produkt neexistuje'); // vracime se s chybou
+        }
+
+        // pokud se nic nenajde, nastane chyba    
+        if($products->isEmpty() && $productsMixed->isEmpty()) {
+            return back()->with('errorFilter', 'Tento produkt neexistuje');
+        }
+    
+    
+        $order = Order::Find($orderid); // vyhleda objedavku podle ID
+
+        // vrati pohled
+        return view('items.create', [
+            'products' => $products,
+            'productsMixed' => $productsMixed,
+            'order' => $order
+        ]);
+    }
     
 
     

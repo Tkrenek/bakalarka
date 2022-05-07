@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Package_Item.php
+ * Model pro baleni objednavky
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -19,11 +24,19 @@ class Package_item extends Model
         'count',
     ];
 
+    /**
+     * Metoda vraci polozky, ktere jsou zabaleny
+     * @return App\Models\Item
+     */
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
 
+    /**
+     * Metoda vraci nadoby, do kterych je polozka zabalena
+     * @return App\Models\Container
+     */
     public function container()
     {
         return $this->belongsTo(Container::class);

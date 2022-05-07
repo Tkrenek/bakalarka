@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: PackageItemController.php
+ * Controller pro praci s balenim polozek
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

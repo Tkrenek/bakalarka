@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: File.php
+ * Model pro fakturu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 

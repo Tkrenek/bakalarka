@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: StatsContoller.php
+ * Controller pro zobrazeni statistik
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

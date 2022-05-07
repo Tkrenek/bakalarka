@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ProcuctOriginalController.php
+ * Controller pro originalni produkty
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 
@@ -190,6 +195,36 @@ class ProductOriginalController extends Controller
         return back();
         
     }
+
+    public function indexFilter(Request $request)
+    {
+        //  vyhledani objedadnavky podle ID
+        $this->validate($request, [
+            'query' => 'required',
+        ]);
+
+        // pokud je zadano jako prvni znak M
+        if($request->input('query')[0] == 'M') {
+            $productsMixed = Product_mixed::get()->where('code', '=', $request->input('query')); // hledame v michanych produktech
+            $products = Product_original::get()->where('code', '=', 'M'); // originalni budou bez vysledku
+        } else if($request->input('query')[0] == 'O') { // pokud je zadano jako prvni znak O
+            $products = Product_original::get()->where('code', '=', $request->input('query')); // hledame v originalnich produktech
+            $productsMixed = Product_mixed::get()->where('code', '=', 'O'); // michane budou bez vysledku
+        } else {
+            return back()->with('errorFilter', 'Tento produkt neexistuje'); // vracime se s chybou
+        }
+            
+        // pokud se nic nenajde, nastane chyba 
+        if($products->isEmpty() && $productsMixed->isEmpty()) {
+            return back()->with('errorFilter', 'Tento produkt neexistuje');
+        }
     
+      
+        // vraceni pohledu se vsemi produkty
+        return view('originalProduct.index', [
+            'products' => $products,
+            'productsMixed' => $productsMixed
+        ]); 
+    }
 }
 

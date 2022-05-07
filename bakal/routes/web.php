@@ -210,6 +210,8 @@ Route::group(['middleware' => 'auth:customer,admin'], function () {
     Route::put('/orders/changeTerm/{orderId}', [OrderController::class, 'changeTerm'])->name('orders.changeTerm');
     Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
+
+    Route::get('/items/index/filter/{orderid}', [ItemController::class, 'indexFilter'])->name('items.index.filter');
 });
 
 // routy pro admina a zamestnance
@@ -253,6 +255,7 @@ Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
     // prace s produkty
     Route::get('/productOriginal/index', [ProductOriginalController::class, 'index'])->name('product.index');
     Route::get('/productOriginal/indexOriginal', [ProductOriginalController::class, 'indexOriginal'])->name('product.indexOriginal');
+    Route::get('/productOriginal/index/filter', [ProductOriginalController::class, 'indexFilter'])->name('product.index.filter');
     Route::get('/productOriginal/indexMixed', [ProductOriginalController::class, 'indexMixed'])->name('product.indexMixed');
     Route::put('/productMixed/{id}/asddStore', [ProductMixedController::class, 'addOnStore'])->name('productMixed.addStore');
 

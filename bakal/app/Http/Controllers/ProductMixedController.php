@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ProductMixedController.php
+ * Controller pro michane produkty
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

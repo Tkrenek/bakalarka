@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Product_mixed.php
+ * Model pro michane produkty
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -20,11 +25,19 @@ class Product_mixed extends Model
 
     ];
 
+    /**
+     * Metoda vraci polozku, ke ktere patri tento produkt
+     * @return App\Models\Item
+     */
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
 
+    /**
+     * Metoda vraci recept tohoto produktu
+     * @return App\Models\Mixing_product
+     */
     public function mixingProduct()
     {
         return $this->hasMany(Mixing_product::class);

@@ -3,6 +3,7 @@
 <h2 class="display-2 text-center">Seznam dodavatelů</h2>
 <a class="btn-primary btn mb-3" href="{{ route('producers.create')}}" class="p-3">Přidat dodavatele</a>
 <div class="d-flex justify-content-center">
+   {{-- Zobrazemi vsech dodavaetelu v tabulce --}}
    <table class="table">
       <thead>
          <tr>
@@ -15,6 +16,7 @@
          </tr>
       </thead>
       <tbody>
+         {{-- Pruchod pres vsechny dodavatele --}}
          @foreach ($producers as $producer)
          <tr>
             <td>{{ $producer->name }}</td>

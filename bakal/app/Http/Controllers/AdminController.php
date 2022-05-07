@@ -1,4 +1,10 @@
 <?php
+/**
+ * Nazev souboru: AdminController.php
+ * Controller pro admina
+ * @author Tomas Krenek(xkrene15)
+ */
+
 
 namespace App\Http\Controllers;
 

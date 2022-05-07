@@ -7,10 +7,40 @@
       Musíte vybrat množství ve správném formátu.
    @enderror
 </div>
-<a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">Vrátit se zpět</a>
+ 
+   <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary">Vrátit se zpět</a>
 <a href="{{ route('items.createOriginal', $order->id) }}" class="btn btn-primary float-right ml-2">Pouze originální</a>
-<a href="{{ route('items.createMixed', $order->id) }}" class="btn btn-primary float-right ">Pouze Míchané</a>
+<a href="{{ route('items.createMixed', $order->id) }}" class="btn btn-primary float-right">Pouze Míchané</a>
+
+<div class="row mt-2 col-4">
+   <form action="{{ route('items.index.filter', $order->id) }}" type="get" class="float-left ml-0">
+      <div class="row">
+         <div class="col">
+            <input type="search" class="form-control mr-sm-2" name="query" placeholder="Kód produktu">
+         </div>
+         <div class="col">
+            <button class="btn btn-primary" type="submit" class="float-right">Vyhledat</button>
+         </div>
+      </div>
+      @if ($message = Session::get('errorFilter'))
+         <div class="mt-2 text-danger">
+            <strong>{{ $message }}  </strong>  
+         </div>
+      @endif
+      @error('query')
+         <div class="mt-2 text-danger">
+            <strong>Musíte zadat kód produktu</strong>  
+         </div>
+      @enderror
+   </form>
+</div>
+
+   
+
+
+@if (!$products->isEmpty())
 <h1 class="display-3 text-center mb-5">Originální produkty</h1>
+
 <div class="row">
    @if ($message = Session::get('error'))
    <div class="alert alert-block alert-danger color-danger text-center">
@@ -43,7 +73,7 @@
          {{-- Pruchod pres originalni produkty --}}
          @foreach ($products as $product)
          @php
-         if($isFirst) {
+         if($isFirst && !$productsMixed->isEmpty()) {
             $isFirst = false;
             continue;
          } 
@@ -74,6 +104,8 @@
       @endforeach
    </tbody>
 </table>
+@endif
+@if(!$productsMixed->isEmpty())
 <h1 class="display-3 text-center mb-5"> Míchané produkty</h1>
 {{-- Tabulka pro zobrazeni michanych produktu --}}
 <table class="table mb-5">
@@ -99,7 +131,7 @@
       {{-- Prucho pres michane produkty --}}
       @foreach ($productsMixed as $product)
          @php
-         if($isFirst) {
+         if($isFirst && !$products->isEmpty()) {
             $isFirst = false;
             continue;
          } 
@@ -130,4 +162,5 @@
       @endforeach
    </tbody>
 </table>
+@endif
 @endsection

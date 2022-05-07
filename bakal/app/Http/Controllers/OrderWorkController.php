@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: OrderWorkController.php
+ * Controller pro odvedenou praci na objednavkach
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

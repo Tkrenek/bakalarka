@@ -10,6 +10,10 @@
    Název společnosti: {{ auth('customer')->user()->name }} <br>
    Adresa: {{ auth('customer')->user()->address }}, {{ auth('customer')->user()->town }} <br>
    Login: {{ auth('customer')->user()->login }} <br>
+   
+   @if(auth('customer')->user()->contact()->count() == 0) 
+     <div class="text-danger"><strong>Varování:</strong> Přidejte si prosím alespoň jednu kontaktní osobu, nebo bude váš účet odstraněn.</div> 
+   @endif
 </div>
 <h5 class="display-5 text-center mt-3">Vyberte svoji další akci</h5>
 <hr>

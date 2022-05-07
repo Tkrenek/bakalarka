@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: LoginCustomerController.php
+ * Controller pro prihlasovani zakaznika do systemu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

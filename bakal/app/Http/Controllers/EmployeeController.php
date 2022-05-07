@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: EmployeeController.php
+ * Controller pro zamestnance
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

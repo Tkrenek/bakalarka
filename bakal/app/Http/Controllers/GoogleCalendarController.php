@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: AdminController.php
+ * Controller pro google calendar
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

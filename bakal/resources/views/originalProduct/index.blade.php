@@ -6,28 +6,55 @@
    <a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
    <a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
 @endauth
-<div class="row mt-3">
+<div class="row mt-3 nav-products">
    <div class="col-2">
       <a class="btn btn-primary float-left" href="{{ route('product.indexOriginal')}}" class="p-3">Pouze originální produkty</a>
    </div>
-   <div class="col-2 offset-8">
+   <div class="col-4 offset-2">
+      <form action="{{ route('product.index.filter') }}" type="get" class="float-right mb-5">
+         <div class="row">
+            <div class="col">
+               <input type="search" class="form-control mr-sm-2" name="query" placeholder="Kód produktu">
+            </div>
+            <div class="col">
+               <button class="btn btn-primary" type="submit" class="float-right">Vyhledat</button>
+            </div>
+         </div>
+         @if ($message = Session::get('errorFilter'))
+            <div class="mt-2 text-danger">
+               <strong>{{ $message }}  </strong>  
+            </div>
+         @endif
+         @error('query')
+            <div class="mt-2 text-danger">
+               <strong>Musíte zadat kód produktu</strong>  
+            </div>
+         @enderror
+      </form>
+   </div>
+   <div class="col-2 offset-2">
       <a class="btn btn-primary float-right" href="{{ route('product.indexMixed')}}" class="p-3">Pouze Míchané produkty</a>
    </div>
 </div>
 <div class="text-danger text-center" style="font-size: large">
    @if ($message = Session::get('error'))
-   <div class="color-danger tex-center">
-      <strong>{{ $message }}  </strong>   
-   </div>
+      <div class="color-danger tex-center">
+         <strong>{{ $message }}  </strong>   
+      </div>
    @endif
 </div>
+
+   
+
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
       Musíte zadat množství!
    @enderror
 </div>
+
+@if (!$products->isEmpty())
 <h1 class="display-3 text-center mb-5">Originální produkty</h1>
-{{-- Tabulka se vsemi produkty --}}}
+{{-- Tabulka se vsemi produkty --}}
 <table class="table  mb-5">
    <thead>
       <tr>
@@ -54,7 +81,7 @@
          {{-- Pruchod pres vsechny originalni produkty --}}
          @foreach ($products as $product)
       @php
-         if($isFirst) {
+         if($isFirst && !$productsMixed->isEmpty()) {
             $isFirst = false;
             continue;
          }  
@@ -108,8 +135,10 @@
       @endforeach
    </tbody>
 </table>
+@endif
+@if (!$productsMixed->isEmpty() )
 <h1 class="display-3 text-center mb-5">Míchané produkty</h1>
-{{-- Tabulkad s michanymi produkty --}}
+{{-- Tabulka s michanymi produkty --}}
 <table class="table mb-5">
    <thead >
       <tr>
@@ -137,7 +166,7 @@
          {{-- Pruchod pres michane produkty --}}
          @foreach ($productsMixed as $product)
             @php
-               if($isFirst) {
+               if($isFirst && !$products->isEmpty()) {
                   $isFirst = false;
                   continue;
                } 
@@ -194,4 +223,5 @@
       @endforeach
    </tbody>
 </table>
+@endif
 @endsection

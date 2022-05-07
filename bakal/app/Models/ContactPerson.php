@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ContactPerson.php
+ * Model pro kontaktni osobu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -21,7 +26,10 @@ class ContactPerson extends Model
     ];
 
 
-
+    /**
+     * Metoda vraci zakaznika, ke kteremu patri kontaktni osoba
+     * @return App\Models\Customer
+     */
     public function customer()
     {
         return $this->belongsTo(Customer::class);

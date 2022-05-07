@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: LoginAdminController.php
+ * Controller pro prihlasovani admina do systemu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

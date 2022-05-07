@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: LoginEmployeeController.php
+ * Controller pro prihlasovani zamestnance do systemu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

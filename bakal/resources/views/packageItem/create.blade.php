@@ -6,6 +6,7 @@
    @enderror
 </div>
 <a href="{{ route('packageItem.show', $item->id) }}" class="btn btn-primary mb-3">Vrátit se zpět</a>
+{{-- Tabulka pro  vyber baleni--}}
 <table class="table mb-5">
    <thead>
       <tr>
@@ -22,6 +23,7 @@
       </tr>
    </thead>
    <tbody>
+      {{-- Projdeme pres vsechny nadoby v systemu --}}
       @foreach ($containers as $container)
       <tr>
          <td>{{ $container->type }}</td>

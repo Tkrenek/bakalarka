@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Nazev souboru: ContactPersonController.php
+ * Controller pro kontaktni osoby
+ * @author Tomas Krenek(xkrene15)
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: ContainerController.php
+ * Controller pro nadoby v systemu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

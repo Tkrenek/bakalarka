@@ -1,9 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- Pohled pro zobrazeni pouze originalnich produktu --}}
 @auth('admin')
-<a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
+   <a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
 @endauth
-<a class="btn btn-primary float-right" href="{{ route('product.indexMixed')}}" class="p-3">Pouze míchané produkty</a>
+<a class="btn btn-primary" href="{{ route('product.indexMixed')}}" class="p-3">Pouze míchané produkty</a>
 <div class="text-danger text-center" style="font-size: large">
    @if ($message = Session::get('error'))
    <div class="color-danger tex-center">
@@ -13,7 +14,7 @@
 </div>
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
-   Musíte zadat množství!
+      Musíte zadat množství!
    @enderror
 </div>
 <h1 class="display-3 text-center mb-5">Originální produkty</h1>
@@ -27,12 +28,12 @@
          <th scope="col">Cena(Kč)</th>
          <th scope="col">Dodavatel</th>
          @auth('admin')
-         <th scope="col">Naskladnit</th>
-         <th scope="col">Upravit</th>
-         <th scope="col">Odstranit</th>
+            <th scope="col">Naskladnit</th>
+            <th scope="col">Upravit</th>
+            <th scope="col">Odstranit</th>
          @endauth
          @auth('employee')
-         <th scope="col">Naskladnit</th>
+            <th scope="col">Naskladnit</th>
          @endauth          
       </tr>
    </thead>

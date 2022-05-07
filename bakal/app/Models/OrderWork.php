@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: OrderWork.php
+ * Model pro praci na objednavce
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -21,11 +26,19 @@ class OrderWork extends Model
     ];
 
 
+    /**
+     * Metoda vraci objednavku, na ktere je provedena tato prace
+     * @return App\Models\Order
+     */
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
 
+    /**
+     * Metoda vraci zamestnance, kteri provedli praci na teto objednavce
+     * @return App\Models\Employee
+     */
     public function employee()
     {
         return $this->belongsTo(Employee::class);

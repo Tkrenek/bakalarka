@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: Admin.php
+ * Model pro Admina
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Models;
 
@@ -14,6 +19,7 @@ class Admin extends Authenticatable
 
     protected $table = 'admins';
 
+    
     protected $fillable = [
         'name',
         'surname',
@@ -22,6 +28,7 @@ class Admin extends Authenticatable
         'password',
         'phone',
     ];
+
     protected $hidden = [
         'password', 'rememberToken'
     ];

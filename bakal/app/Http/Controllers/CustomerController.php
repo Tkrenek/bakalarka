@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: CustomerController.php
+ * Controller pro zakazniky
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 

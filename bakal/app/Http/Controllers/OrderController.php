@@ -1,4 +1,9 @@
 <?php
+/**
+ * Nazev souboru: OrderController.php
+ * Controller pro praci s objednavkami
+ * @author Tomas Krenek(xkrene15)
+ */
 
 namespace App\Http\Controllers;
 
@@ -58,7 +63,7 @@ class OrderController extends Controller
         // pokud je prihlasen zakaznik
         if(auth('customer')->user()) {
             $customer = Customer::find(auth('customer')->user()->id);
-            return back();
+            return redirect()->route('orders.myindex',  auth('customer')->user()->id );
         } else { // pokud je prihlasen admin, vratime pohled se vsemi objednavkami
             
             return redirect()->route('orders.index');
