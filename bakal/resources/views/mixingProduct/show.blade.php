@@ -1,6 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Stranka s receptem jednoho produktu a pridanim prisad do receptu --}}
+{{-- 
+-- Nazev souboru: show.blade.php 
+-- Pohled pro zobrazeni receptu produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <a href="{{ route('product.index')}}" class="btn btn-primary float-right">Zpět na seznam produktů</a>
 <h1 class="display-3 text-center mb-5">Kód produktu : {{ $mixedProduct->code }}</h1>
 <div class="row">
@@ -14,7 +18,7 @@
                <label for="code">Kód produktu</label>
                <select name="code" id="code" class="form-control custom-select" style="width: 200px">
                   @foreach ($originals as  $original)
-                  @if($original->id != 1)
+                  @if($original->code != 'O-default')
                   <option id="{{ $original->code }}" name="{{ $original->code }}">{{ $original->code }}</option class="form-control @error('department') is-invalid @enderror">
                      @endif    
                      @endforeach

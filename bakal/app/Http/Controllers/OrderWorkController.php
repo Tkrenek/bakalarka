@@ -54,6 +54,7 @@ class OrderWorkController extends Controller
             'type' => 'required',
             'time' => 'required|numeric|min:1',
             'date' => 'required|date',
+            'order' => 'required|exists:orders,id|numeric'
             
         ]);
         
@@ -79,7 +80,7 @@ class OrderWorkController extends Controller
     {
         // overeni dat z formulare
         $this->validate($request, [
-            'order' => 'required|numeric',
+            'order' => 'required|exists:orders,id|numeric',
             'type' => 'required',
             'time' => 'required|numeric|min:1',
             'date' => 'required|date',

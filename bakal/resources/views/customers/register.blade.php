@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: register.blade.php 
+-- Pohled pro registraci zakazniku
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @guest
    <div class="justify-content-center d-flex p-5 ">
       <h1 class="display-1">Informační systém Coloral</h1>

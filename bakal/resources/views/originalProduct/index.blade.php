@@ -1,7 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-
-{{-- Zobrazeni vsech produktu --}}
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni vsech produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @auth('admin')
    <a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
    <a class="btn btn-primary float-right" href="{{ route('productMixed.create')}}" class="p-3">Přidat míchaný produkt</a>
@@ -75,63 +78,58 @@
       </tr>
    </thead>
    <tbody>
-      @php
-         $isFirst = true;
-      @endphp
-         {{-- Pruchod pres vsechny originalni produkty --}}
-         @foreach ($products as $product)
-      @php
-         if($isFirst && !$productsMixed->isEmpty()) {
-            $isFirst = false;
-            continue;
-         }  
-      @endphp  
-      <tr>
-         <td>{{ $product->code }}</td>
-         <td>{{ $product->name }}</td>
-         <td>{{ $product->on_store }}</td>
-         <td>{{ $product->branch }}</td>
-         <td>{{ $product->prize }}</td>
-         <td>{{ $product->producer->name }}</td>
-         @auth('admin')
-         <td style="width: 150px">
-            <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
-               @csrf
-               @method('PUT')
-               <div class="form-group ">
-                  <label for="ammount" class="sr-only">Množsví</label>
-                  <input type="text"  id="ammount" name="ammount" class="form-control " placeholder="množství">
-                  <div class="invalid-feedback">
-                  </div>
-               </div>
-               <button type="submit" class="btn btn-primary">Naskladnit</button>
-            </form>
-         </td>
-         <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-primary">Upravit</a></td>
-         <td>
-            <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
-               @csrf
-               @method('DELETE')
-               <button type="submit" class="btn btn-danger">Odstranit</button>
-            </form>
-         </td>
-         @endauth
-         @auth('employee')
-         <td style="width: 150px">
-            <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
-               @csrf
-               @method('PUT')
-               <div class="form-group">
-                  <label for="ammount" class="sr-only">Množsví</label>
-                  <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="množství">
-                  <div class="invalid-feedback">
-                  </div>
-               </div>
-               <button type="submit" class="btn btn-primary">Naskladnit</button>
-            </form>
-         </td>
-         @endauth
-      </tr>
+      
+      {{-- Pruchod pres vsechny originalni produkty --}}
+      @foreach ($products as $product)
+         @if($product->code != 'O-default')
+            
+            <tr>
+               <td>{{ $product->code }}</td>
+               <td>{{ $product->name }}</td>
+               <td>{{ $product->on_store }}</td>
+               <td>{{ $product->branch }}</td>
+               <td>{{ $product->prize }}</td>
+               <td>{{ $product->producer->name }}</td>
+               @auth('admin')
+               <td style="width: 150px">
+                  <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
+                     @csrf
+                     @method('PUT')
+                     <div class="form-group ">
+                        <label for="ammount" class="sr-only">Množsví</label>
+                        <input type="text"  id="ammount" name="ammount" class="form-control " placeholder="množství">
+                        <div class="invalid-feedback">
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Naskladnit</button>
+                  </form>
+               </td>
+               <td><a href="{{ route('productOriginal.edit', $product->id) }}" type="submit" class="btn btn-primary">Upravit</a></td>
+               <td>
+                  <form action="{{ route('productOriginal.destroy', $product->id) }}" method="post">
+                     @csrf
+                     @method('DELETE')
+                     <button type="submit" class="btn btn-danger">Odstranit</button>
+                  </form>
+               </td>
+               @endauth
+               @auth('employee')
+               <td style="width: 150px">
+                  <form action="{{ route('productOriginal.addStore', $product->id) }}" method="post">
+                     @csrf
+                     @method('PUT')
+                     <div class="form-group">
+                        <label for="ammount" class="sr-only">Množsví</label>
+                        <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="množství">
+                        <div class="invalid-feedback">
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Naskladnit</button>
+                  </form>
+               </td>
+               @endauth
+            </tr>
+         @endif
       @endforeach
    </tbody>
 </table>
@@ -160,17 +158,10 @@
       </tr>
    </thead>
    <tbody>
-      @php
-         $isFirst = true;
-      @endphp
+      
          {{-- Pruchod pres michane produkty --}}
          @foreach ($productsMixed as $product)
-            @php
-               if($isFirst && !$products->isEmpty()) {
-                  $isFirst = false;
-                  continue;
-               } 
-            @endphp
+            @if($product->code != 'M-default')
       <tr>
          <td>{{ $product->code }}</td>
          <td>{{ $product->name }}</td>
@@ -220,6 +211,7 @@
          </td>
          @endauth
       </tr>
+      @endif
       @endforeach
    </tbody>
 </table>

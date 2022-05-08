@@ -110,7 +110,7 @@ class ContactPersonController extends Controller
             'customer_id' => $subId,
         ]);
         
-        return redirect()->route('contact.indexAdmin'); // presmerovani
+        return redirect()->route('contact.indexAdmin', $subId); // presmerovani
     }
 
 
@@ -118,10 +118,11 @@ class ContactPersonController extends Controller
      * Vraci pohle se vsemi kontaktnimi osobami
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index($customerId)
     {
-        
-        $contacts = ContactPerson::get(); // vsechny kontaktni osoby ulozi do promenne
+        $customer = Customer::find($customerId);
+     
+        $contacts = $customer->contact; // vsechny kontaktni osoby ulozi do promenne
 
  
 
@@ -178,10 +179,11 @@ class ContactPersonController extends Controller
 
         $contact->save(); // ulozeni v databazi
 
+        $customerId = $contact->customer;
 
         // pohed se vsemi kontaktnimi osobami
         if(auth('admin')->user()) {
-            return redirect()->route('contact.indexAdmin');
+            return redirect()->route('contact.indexAdmin', $customerId);
         } else if (auth('customer')->user()) {
             return redirect()->route('contact.index.sub', auth('customer')->user()->id);
         }

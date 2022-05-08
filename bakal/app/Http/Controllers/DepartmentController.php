@@ -25,10 +25,8 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = Department::get();
+        $departments = Department::get(); // ziskani vsech oddeleni
 
-        
-        
         // vraci pohled
         return view('departments.index', [
             'departments' => $departments

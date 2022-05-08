@@ -23,8 +23,8 @@ class ItemController extends Controller
      */
     public function create($orderid)
     {
-        $products = Product_original::get(); // vyhleda vsechny originalni produkty
-        $productsMixed = Product_mixed::get(); // vyhleda vsechny michane produkty
+        $products = Product_original::orderBy('code', 'ASC')->get(); // vyhleda vsechny originalni produkty
+        $productsMixed = Product_mixed::orderBy('code', 'ASC')->get(); // vyhleda vsechny michane produkty
 
         $order = Order::Find($orderid); // vyhleda objedavku podle ID
 
@@ -38,7 +38,7 @@ class ItemController extends Controller
 
     public function createOriginal($orderid)
     {
-        $products = Product_original::get(); // vyhleda vsechny originalni produkty
+        $products = Product_original::orderBy('code', 'ASC')->get(); // vyhleda vsechny originalni produkty
 
 
         $order = Order::Find($orderid); // vyhleda objedavku podle ID
@@ -53,7 +53,7 @@ class ItemController extends Controller
     public function createMixed($orderid)
     {
         
-        $productsMixed = Product_mixed::get(); // vyhleda vsechny michane produkty
+        $productsMixed = Product_mixed::orderBy('code', 'ASC')->get(); // vyhleda vsechny michane produkty
 
         $order = Order::Find($orderid); // vyhleda objedavku podle ID
 

@@ -1,6 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled pro zobrazeni pouze originalnich produktu --}}
+{{-- 
+-- Nazev souboru: indexOriginal.blade.php 
+-- Pohled pro zobrazeni pouze originalnich produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @auth('admin')
    <a class="btn btn-primary" href="{{ route('productOriginal.create')}}" class="p-3">Přidat originální produkt</a>
 @endauth

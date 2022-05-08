@@ -38,6 +38,7 @@ class OrderController extends Controller
 
         try {
             // vytvoreni nove udalosti v google kalendari
+            // inspirace: https://github.com/spatie/laravel-google-calendar
             Event::create([
                 'id' => 'eventid'.$newOrder->id,
                 'name' => 'Číslo objednávky: '.$newOrder->id,
@@ -50,6 +51,7 @@ class OrderController extends Controller
             $ev = Event::find('eventid'.$newOrder->id); // vyhledame udalost podle id
 
             // upravime parametry
+            // inspirace: https://github.com/spatie/laravel-google-calendar
             $ev->startDate = Carbon::now()->add(1, 'week');
             $ev->endDate = Carbon::now()->add(1, 'week');
             $ev->status = "confirmed";
@@ -177,14 +179,16 @@ class OrderController extends Controller
 
     /**
      * Funkce vrati doporucene produkty pomoci metody apriori
+     * inspirace: https://php-ml.readthedocs.io/en/latest/machine-learning/association/apriori/
      * @return array - pole se produkty podle objednavek
      */
     public function calculateApriori(Order $order)
     {
         $items1 = self::getProductsByOrder(); // ziskame si produkty podle objednavek pomoci sve funkce
  
+        // inspirace: https://php-ml.readthedocs.io/en/latest/machine-learning/association/apriori/
         $items2 = [];
-        $apriori = new Apriori($support = 0.4, $confidence = 0.4); // vytvoreni instance tridy Apriori
+        $apriori = new Apriori($support = 0.2, $confidence = 0.2); // vytvoreni instance tridy Apriori
         $apriori->train($items1, $items2); // vytrenovani instance
 
         $itemsInOrder = array();
@@ -202,7 +206,6 @@ class OrderController extends Controller
         // pole pro dopoporucene polozky
         $recommendedItems = array();
         if (empty($itemsInOrder)) {
-        
         } else {
             $recommendedItems = $apriori->predict($itemsInOrder); // predpoved doporucenych polozek
         }
@@ -242,12 +245,11 @@ class OrderController extends Controller
         $order = Order::find($id); // nalezeni objednavky podle ID
         $order->delete(); // smazani objednavky
 
-
+        // inspirace: https://github.com/spatie/laravel-google-calendar
          try {
             $event = Event::find('eventid'.$order->id); // vyhledani a smazani udalosti z google kalendare
             $event->delete();
           } catch (\Google_Service_Exception $e) { // pokud je jit udalost smzana
-            
              return redirect()->route('orders.index'); // presmerovani
           }
 
@@ -311,7 +313,7 @@ class OrderController extends Controller
         $order->save(); // ulozi
 
 
-
+        // inspirace: https://github.com/spatie/laravel-google-calendar
         try {
             $event = Event::find('eventid'.$orderId);  // vyhleda udalost v google kalendari
           } catch (\Google_Service_Exception $e) { // pokud tam udalost neni, vytvori ji znovu
@@ -326,6 +328,7 @@ class OrderController extends Controller
              return redirect()->route('orders.index'); // prsmerovani na objednavky
           }
         
+          // inspirace: https://github.com/spatie/laravel-google-calendar
           $event->startDate = Carbon::createFromDate($request->term); // zmeni udalost v google kalendari
           $event->endDate = Carbon::createFromDate($request->term);
           $event->save();
@@ -352,6 +355,7 @@ class OrderController extends Controller
         $order->term = $request->term; // zmena terminu
         $order->save();
 
+        // inspirace: https://github.com/spatie/laravel-google-calendar
         try {
             $event = Event::find('eventid'.$orderId); // vyhledani udalosti v google calendari
           } catch (\Google_Service_Exception $e) { // pokud udalost neni nalezena
@@ -366,6 +370,7 @@ class OrderController extends Controller
              return back(); 
           }
         
+          // inspirace: https://github.com/spatie/laravel-google-calendar
           $event->startDate = Carbon::createFromDate($request->term); // zmena udalosti v google calendari
           $event->endDate = Carbon::createFromDate($request->term);
           $event->save();
@@ -387,7 +392,7 @@ class OrderController extends Controller
             'invoice' => 'bude doplněno'
         ]);
         
-        
+        // inspirace: https://github.com/spatie/laravel-google-calendar
         try {
             Event::create([ // vytvoreni udalosti v google calendari
                 'id' => 'eventid'.$newOrder,
@@ -396,7 +401,6 @@ class OrderController extends Controller
                 'description' => 'založeno',
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
-                
             
              ]);
         } catch (\Google_Service_Exception $e) { // pokud jiz tato udalost existuje

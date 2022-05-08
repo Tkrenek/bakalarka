@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni oddeleni
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @php
    use Carbon\Carbon as carbon;
 @endphp

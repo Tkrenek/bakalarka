@@ -1,7 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-
-{{-- Pohled pro pridani polozek do objednavky --}}
+{{-- 
+-- Nazev souboru: create.blade.php 
+-- Pohled pro vytvoreni polozek
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
       Musíte vybrat množství ve správném formátu.
@@ -67,17 +70,11 @@
       </tr>
    </thead>
    <tbody>
-      @php
-         $isFirst = true;
-      @endphp
+     
          {{-- Pruchod pres originalni produkty --}}
          @foreach ($products as $product)
-         @php
-         if($isFirst && !$productsMixed->isEmpty()) {
-            $isFirst = false;
-            continue;
-         } 
-         @endphp
+         @if($product->code != 'O-default')
+         
       <tr>
          <td>{{ $product->code }}</td>
          <td>{{ $product->name }}</td>
@@ -101,6 +98,7 @@
             </form>
          </td>
       </tr>
+      @endif
       @endforeach
    </tbody>
 </table>
@@ -125,17 +123,10 @@
       </tr>
    </thead>
    <tbody>
-      @php
-         $isFirst = true;
-      @endphp
+    
       {{-- Prucho pres michane produkty --}}
       @foreach ($productsMixed as $product)
-         @php
-         if($isFirst && !$products->isEmpty()) {
-            $isFirst = false;
-            continue;
-         } 
-      @endphp
+      @if($product->code != 'M-default')
       <tr>
          <td>{{ $product->code }}</td>
          <td>{{ $product->name }}</td>
@@ -159,6 +150,7 @@
             </form>
          </td>
       </tr>
+      @endif
       @endforeach
    </tbody>
 </table>

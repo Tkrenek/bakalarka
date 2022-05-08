@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: change_password.blade.php 
+-- Pohled pro registraci admina 
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">

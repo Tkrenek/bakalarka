@@ -1,4 +1,8 @@
 <?php
+/**
+ * Migracni soubor pro tabulku originalnich produktu
+ * @author Tomas Krenek(xkrene15)
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -7,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateProductOriginalsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Spusteni migrace.
      *
      * @return void
      */
@@ -37,11 +41,7 @@ class CreateProductOriginalsTable extends Migration
         );
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('product_originals');

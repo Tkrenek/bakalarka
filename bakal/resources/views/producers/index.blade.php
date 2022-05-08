@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni dodavatele
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <h2 class="display-2 text-center">Seznam dodavatelů</h2>
 <a class="btn-primary btn mb-3" href="{{ route('producers.create')}}" class="p-3">Přidat dodavatele</a>
 <div class="d-flex justify-content-center">

@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: create.blade.php 
+-- Pohled pro pridani baleni produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('count')
       Musíte zadat množství!

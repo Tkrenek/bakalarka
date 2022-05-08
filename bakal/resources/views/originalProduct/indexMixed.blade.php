@@ -1,6 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled pro zobrazeni pouze michanych produktu --}}
+{{-- 
+-- Nazev souboru: indexMixed.blade.php 
+-- Pohled pro zobrazeni pouze michanych produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <a class="btn btn-primary " href="{{ route('product.indexOriginal')}}" >Pouze originální produkty</a>
 @auth('admin')
    <a class="btn btn-primary" href="{{ route('productMixed.create')}}" class="p-3 ">Přidat míchaný produkt</a>

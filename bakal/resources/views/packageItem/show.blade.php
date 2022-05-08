@@ -1,6 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled se zobrazenim zabaleni konkretni polozky --}}
+{{-- 
+-- Nazev souboru: show.blade.php 
+-- Pohled pro zobrazeni zabaleni produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @if ($item->is_mixed == "ano")
    <h2 class="display-2 text-center">Položka: {{ $item->productMixed->code }}</h2>
 @else

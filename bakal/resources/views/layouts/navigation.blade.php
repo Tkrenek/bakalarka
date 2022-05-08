@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-{{-- Hlavni sablona, kazdy pohled je vlozen v teto sablone --}}
+{{-- 
+-- Nazev souboru: navigation.blade.php 
+-- Hlavni sablona, kazdy pohled je vlozen v teto sablone
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
    <head>
       <meta charset="UTF-8">
@@ -173,10 +177,17 @@
       </div>
       {{-- Footer dokumentu --}}
       <footer class="mt-auto bg-light text-center text-lg-start">
-         <div class="text-center p-3" style="background-color: #212529;">
-            <div class="text-white">© 2022 Tomáš Křenek</div>
+         <div class="p-3" style="background-color: #212529;">
+            
+            <div class="text-white text-center">© 2022 Tomáš Křenek <br>
+                
+                Email: tom.krenek48@gmail.com  &nbsp; &nbsp; Telefon: 739 718 142
+            </div>
+            
+            
          </div>
-      </footer>
+         
+        </footer>
       </div>
       </div>
 </body>

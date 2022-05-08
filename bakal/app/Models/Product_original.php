@@ -58,7 +58,6 @@ class Product_original extends Model
 
     /**
      * Metoda pro naskladneni
-     * @return App\Models\Order
      */
     public function addOnStore($id, Request $request)
     {

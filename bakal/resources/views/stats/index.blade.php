@@ -1,6 +1,11 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled se zobrazenim statistik --}}
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni statistik
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
+{{-- Inspirace pri vytvoreni grafu z: https://appdividend.com/2022/02/28/add-charts-laravel-using-chartjs/ --}}
 <h1 class="display-1 text-center mb-5">Statistiky</h1>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -128,6 +133,7 @@
    @endphp
 @endforeach
 <script>
+   // inspirace z: https://www.php.net/manual/en/function.json-encode.php
    var lbl = JSON.parse('{!! json_encode($label) !!}'); // prevedeni dat do promennych javascriptu, ktere se daji zobrazit v grafu
    var dt = JSON.parse('{!! json_encode($data) !!}'); 
    var ctx1 = document.getElementById('myChart1').getContext('2d');
@@ -169,6 +175,7 @@
 @endforeach
 
 <script>
+   // inspirace z: https://www.php.net/manual/en/function.json-encode.php
      var lbl = JSON.parse('{!! json_encode($label1) !!}'); // prevedeni dat do promennych javascriptu, ktere se daji zobrazit v grafu
      var dt = JSON.parse('{!! json_encode($data1) !!}');
      var ctx3 = document.getElementById('myChart3').getContext('2d');
@@ -179,7 +186,7 @@
            datasets:[{
                label: "Zaměstnanci",
                data: dt,
-               backgroundColor: ["#AC3131", "#254AA1", '#AC3131', '#FFA500', '#FFFF00'],
+               backgroundColor: ["#AC3131", "#254AA1", '#669966', '#FFA500', '#FFFF00'],
            }]
        },
      })
@@ -194,6 +201,7 @@
    @endphp
 @endforeach
 <script>
+   // inspirace z: https://www.php.net/manual/en/function.json-encode.php
    var lbl = JSON.parse('{!! json_encode($label) !!}');
    var dt = JSON.parse('{!! json_encode($data) !!}');
    var ctx4 = document.getElementById('myChart4').getContext('2d');
@@ -212,6 +220,7 @@
 </script>
 {{-- Graf pro zobrazeni pomeru kanystru a plechovek --}}
 <script>
+   // inspirace z: https://www.php.net/manual/en/function.json-encode.php
    var bal1 = JSON.parse('{!! json_encode($baleniPomer1) !!}');
    var bal2 = JSON.parse('{!! json_encode($baleniPomer2) !!}');
    var ctx5 = document.getElementById('myChart5').getContext('2d');
@@ -237,6 +246,7 @@
    @endphp
 @endforeach
 <script>
+   // inspirace z: https://www.php.net/manual/en/function.json-encode.php
    var lbl = JSON.parse('{!! json_encode($label) !!}');
    var dat = JSON.parse('{!! json_encode($data) !!}');
    var ctx6 = document.getElementById('myChart6').getContext('2d');

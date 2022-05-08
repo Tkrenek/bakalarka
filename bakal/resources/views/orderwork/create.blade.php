@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: create.blade.php 
+-- Pohled pro oznaceni prace na objednavce
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">
@@ -20,7 +25,7 @@
                      <input type="text" id="order" name="order" class="form-control @error('order') is-invalid @enderror" value="{{ old('order') }}">
                      <div class="invalid-feedback">
                         @error('order')
-                        Musíte zadat ID objednávky. 
+                        Musíte zadat ID objednávky, která existuje. 
                         @enderror
                      </div>
                   </div>
@@ -28,6 +33,7 @@
                   <div class="form-group ">
                      <label for="type">Typ práce na objednávce</label>
                      <select name="type" id="type" class="form-control custom-select">
+                        <option id="naskladneni" name="naskladneni">Naskladění</option>
                         <option id="míchání" name="míchání">Míchání</option>
                         <option id="balení" name="balení">Balení</option>
                         <option id="expedice" name="expedice">Expedice</option>
@@ -38,7 +44,7 @@
                      <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}">
                      <div class="invalid-feedback">
                         @error('date')
-                        Musíte zadat datum. 
+                           Musíte zadat datum. 
                         @enderror
                      </div>
                   </div>

@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: edit.blade.php 
+-- Pohled pro upravu admina 
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="row justify-content-center">
    <div class="col-lg-6">
       {{-- Formular pro upravu udaju admina --}}

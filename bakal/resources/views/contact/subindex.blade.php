@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: subindex.blade.php 
+-- Pohled pro zobrazeni zuakaznikovych kontaktnich osob
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <h1 class="text-center mb-5 display-2">Moje kontatní osoby </h1>
 <div class="d-flex justify-content-center">
    {{-- Zobrazeni kontaktnich osob pro zakaznika --}}

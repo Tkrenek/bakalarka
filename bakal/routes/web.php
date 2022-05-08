@@ -242,7 +242,7 @@ Route::group(['middleware' => 'auth:employee,admin'], function () {
 
     Route::get('/customers/index', [CustomerController::class, 'index'])->name('customers.index');
 
-    Route::get('/contact/indexAdminEmpl', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
+    Route::get('/contact/indexAdminEmpl/{customerId}', [ContactPersonController::class, 'index'])->name('contact.indexAdmin');
     
 });
 
@@ -293,8 +293,6 @@ Route::post('/employees/login', [LoginEmployeeController::class, 'login'])->name
 Route::get('/admins/login', [LoginAdminController::class, 'index'])->name('admins.login');
 Route::post('/admins/login', [LoginAdminController::class, 'login'])->name('admins.login.post');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

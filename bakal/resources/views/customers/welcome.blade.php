@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: welcome.blade.php 
+-- Pohled pro privitani zakazniku
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @php
    use Illuminate\Support\Facades\Auth;
 @endphp

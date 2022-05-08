@@ -1,6 +1,11 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled s navodem pro zprovozneni google kalendare pro zamestnance --}}
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled s navodem pro zprovozneni google kalendare pro zamestnance
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
+
 
 <div class="d-flex justify-content-center">
    <h2 class="display-2 mb-4">Aktivace google kalendáře</h2>

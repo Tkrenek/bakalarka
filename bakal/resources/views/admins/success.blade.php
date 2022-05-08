@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: success.blade.php 
+-- Pohled pro privitaci obrazovku admina 
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @php
    use Illuminate\Support\Facades\Auth;
    use Carbon\Carbon as carbon;

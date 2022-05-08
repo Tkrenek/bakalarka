@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: create.blade.php 
+-- Pohled pro pridani dodavatele
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-6">

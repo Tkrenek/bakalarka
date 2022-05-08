@@ -1,7 +1,15 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni zakazniku
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <h1 class="text-center display-2 mb-5">Seznam zákazníků</h1>
-<a class="btn-primary btn mb-3" href="{{ route('customers.create')}}" class="p-3">Přidat zákazníka</a>
+@auth('admin')
+<a class="btn-primary btn mb-3" href="{{ route('customers.create')}}" class="p-3">Přidat zákazníka</a> 
+@endauth
+
 <div class="d-flex justify-content-center">
    {{-- Zobrazeni vsech zakazniku --}}
    <table class="table">

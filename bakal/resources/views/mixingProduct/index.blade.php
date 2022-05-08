@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni receptu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <h2 class="text-center display-2 mb-5">Recepty produktů</h2>
 {{-- Zobrazeni tabulky s recepty --}}
 <table class="table">

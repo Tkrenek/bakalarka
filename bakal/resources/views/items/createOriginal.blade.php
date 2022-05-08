@@ -1,6 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
-{{-- Pohled pro pridani polozek do objednavky, zobrazeni pouze originalnich produktu --}}
+{{-- 
+-- Nazev souboru: createOriginal.blade.php 
+-- Pohled pro pridani polozek do objednavky, zobrazeni pouze originalnich produktu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
       Musíte vybrat množství ve správném formátu.

@@ -1,7 +1,12 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: update.blade.php 
+-- Pohled pro upravu kontaktni osoby 
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @php
-use Carbon\Carbon;
+   use Carbon\Carbon;
 @endphp
 <div class="container">
    <div class="row justify-content-center" >

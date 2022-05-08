@@ -70,8 +70,8 @@ class ProductOriginalController extends Controller
     public function index()
     {
         // ziskani vsech produktu
-        $products = Product_original::get(); 
-        $productsMixed = Product_mixed::get();
+        $products = Product_original::orderBy('code', 'ASC')->get(); 
+        $productsMixed = Product_mixed::orderBy('code', 'ASC')->get();
 
         // vraceni pohledu se vsemi produkty
         return view('originalProduct.index', [
@@ -88,7 +88,7 @@ class ProductOriginalController extends Controller
     public function indexOriginal()
     {
         
-        $products = Product_original::get(); // ziskani originalnich produktu
+        $products = Product_original::orderBy('code', 'ASC')->get(); // ziskani originalnich produktu
 
         // vraceni pohledu
         return view('originalProduct.indexOriginal', [
@@ -103,7 +103,7 @@ class ProductOriginalController extends Controller
     public function indexMixed()
     {
 
-        $productsMixed = Product_mixed::get(); // ziskani michanych produktu
+        $productsMixed = Product_mixed::orderBy('code', 'ASC')->get(); // ziskani michanych produktu
 
         // vraceni pohledu
         return view('originalProduct.indexMixed', [

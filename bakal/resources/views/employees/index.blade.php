@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni zamestnancu
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <h2 class="display-2 text-center">Seznam zaměstnanců</h2>
 <a class="btn-primary btn mb-3" href="{{ route('employees.create')}}" class="p-3">Přidat zaměstnance</a>
 <div class="d-flex justify-content-center">

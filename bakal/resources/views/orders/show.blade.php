@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: show.blade.php 
+-- Pohled pro zobrazeni detailu objednavky
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 @php
    $orderSum = 0;
 @endphp

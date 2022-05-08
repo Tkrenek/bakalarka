@@ -1,5 +1,10 @@
 @extends('layouts.navigation')
 @section('content')
+{{-- 
+-- Nazev souboru: index.blade.php 
+-- Pohled pro zobrazeni nadob
+-- autor: Tomas  Krenek(xkrene15)  
+--}}
 <div class="text-center text-danger" style="font-size: larger;">
    @error('ammount')
       Musíte zadat množství.
@@ -59,7 +64,7 @@
                   @method('PUT')
                   <div class="form-group">
                      <label for="ammount" class="sr-only">Množství</label>
-                     <input type="number"  id="ammount" name="ammount" class="form-control ">
+                     <input type="number"  id="ammount" name="ammount" class="form-control" placeholder="Počet">
                   </div>
                   <button type="submit" class="btn btn-primary">Naskladnit</button>
                </form>
