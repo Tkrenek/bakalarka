@@ -68,7 +68,9 @@
                      <label for="producer">Dodavatel</label>
                      <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
                         @foreach ($producers as  $producer)
-                           <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
+                           @if($producer->name != 'default')
+                              <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
+                           @endif
                         @endforeach
                      </select>
                      <div class="invalid-feedback">

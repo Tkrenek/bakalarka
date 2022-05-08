@@ -10,7 +10,7 @@ use Carbon\Carbon;
 @endphp
 <h2 class="text-center display-2 mb-5">Odvedená práce</h2>
 {{-- Tabulka pro vypsani odvedenych praci na objednavkach --}}
-<table class="table">
+<table class="table mb-5">
    <thead>
       <tr>
          <th scope="col">ID objednávky</th>

@@ -35,7 +35,7 @@
                   </div>
                   <div class="form-group ">
                      <label for="branch">Odvětví produktu</label>
-                     <select name="branch" id="branch" class="form-control custom-select" value="{{ $product->branch }}">
+                     <select name="branch" id="branch" class="form-control custom-select">
                         <option class="form-control @error('branch') is-invalid @enderror" id="barva" name="barva">Barva</option>
                         <option class="form-control @error('branch') is-invalid @enderror" id="lak" name="lak">Lak</option>
                         <option class="form-control @error('branch') is-invalid @enderror" id="mořidlo" name="mořidlo">Mořidlo</option>
@@ -70,7 +70,9 @@
                      <select name="producer" id="producer" class="form-control custom-select @error('producer') is-invalid @enderror">
                         {{-- Pruchod pres dodavatele --}}
                         @foreach ($producers as  $producer)
+                           @if($producer->name != 'default')
                            <option id="{{ $producer->name }}" name="{{ $producer->name }}">{{ $producer->name }}</option>
+                           @endif
                         @endforeach
                      </select>
                      <div class="invalid-feedback">

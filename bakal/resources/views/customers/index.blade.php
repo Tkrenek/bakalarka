@@ -12,7 +12,7 @@
 
 <div class="d-flex justify-content-center">
    {{-- Zobrazeni vsech zakazniku --}}
-   <table class="table">
+   <table class="table mb-5">
       <thead>
          <tr>
             <th scope="col">Jméno</th>

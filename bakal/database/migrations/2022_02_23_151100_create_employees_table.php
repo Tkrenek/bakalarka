@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->dateTime('birth_date');
-            $table->foreignId('department_id');
+            $table->foreignId('department_id')->constrained()->onDelete('cascade');
             $table->string('function');
             $table->timestamps();
             $table->rememberToken();

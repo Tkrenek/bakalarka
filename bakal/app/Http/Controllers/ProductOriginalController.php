@@ -38,7 +38,7 @@ class ProductOriginalController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'branch' =>'required',
-            'code' => 'required',
+            'code' => 'required|unique:product_originals',
             'prize' => 'required|numeric|min:1',
             'on_store' => 'required|numeric|min:1',
             'producer' => 'required',

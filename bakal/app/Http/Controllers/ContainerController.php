@@ -36,7 +36,7 @@ class ContainerController extends Controller
             'bulk' =>'required|numeric|min:1',
             'on_store' => 'required|numeric|min:1',
             'prize' => 'required|numeric|min:1',
-            'code' => 'required'
+            'code' => 'required|unique:containers'
         ]);
 
         // Vytvoreni nove nadoby

@@ -59,8 +59,8 @@ class ContactPersonController extends Controller
         $this->validate($request, [ 
             'name' => 'required',
             'surname' =>'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|unique:employees',
+            'phone' => 'required|numeric|unique:contact_people',
+            'email' => 'required|email|unique:contact_people',
             'birth_date' =>'required|date',
         ]);
         
@@ -93,8 +93,8 @@ class ContactPersonController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'surname' =>'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|unique:employees',
+            'phone' => 'required|numeric|unique:contact_people',
+            'email' => 'required|email|unique:contact_people',
             'birth_date' =>'required|date',
             
         ]);

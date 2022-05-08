@@ -9,7 +9,7 @@
 <a class="btn-primary btn mb-3" href="{{ route('employees.create')}}" class="p-3">Přidat zaměstnance</a>
 <div class="d-flex justify-content-center">
    {{-- Tabulka pro zobrazeni vsech zamestnancu --}}
-   <table class="table">
+   <table class="table mb-5">
       <thead>
          <tr>
             <th scope="col">Jméno

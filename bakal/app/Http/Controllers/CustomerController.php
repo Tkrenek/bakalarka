@@ -52,7 +52,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:customers',
             'town' =>'required',
-            'address' => 'required|unique:customers',
+            'address' => 'required',
             'login' => 'required|unique:customers',
             'password' => 'required|confirmed',
         ]);

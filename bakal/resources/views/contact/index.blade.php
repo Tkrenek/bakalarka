@@ -8,7 +8,7 @@
 <h1 class="text-center mb-5 display-2">Kontatní osoby </h1>
 <div class="d-flex justify-content-center">
    {{-- Tabulka pro zobrazeni kontaktnich osob --}}
-   <table class="table">
+   <table class="table mb-5">
       <thead>
          <tr>
             <th scope="col">Jméno</th>

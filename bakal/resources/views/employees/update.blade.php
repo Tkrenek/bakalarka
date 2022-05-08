@@ -25,7 +25,7 @@
                            <input type="text" value="{{ $employee->name }}" id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('name')
-                              Musíte zadat jméno.
+                                 Musíte zadat jméno.
                               @enderror
                            </div>
                         </div>
@@ -36,7 +36,7 @@
                            <input type="text" value="{{ $employee->surname }}" id="surname" name="surname" class="form-control @error('surname') is-invalid @enderror">
                            <div class="invalid-feedback">
                               @error('surname')
-                              Musíte zadat příjmení.
+                                 Musíte zadat příjmení.
                               @enderror
                            </div>
                         </div>
@@ -47,7 +47,7 @@
                      <input type="text" id="email" placeholder="jmeno@domena.cz" value="{{ $employee->email }}" name="email" class="form-control @error('email') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('email')
-                        Musíte zadat e-mail ve správném formátu.
+                           Musíte zadat e-mail ve správném formátu.
                         @enderror
                      </div>
                   </div>
@@ -56,7 +56,7 @@
                      <input type="text" id="phone" value="{{ $employee->phone }}"  name="phone" class="form-control @error('phone') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('phone')
-                        Musíte zadat telefonní číslo.
+                           Musíte zadat telefonní číslo.
                         @enderror
                      </div>
                   </div>
@@ -65,7 +65,7 @@
                      <input type="text" id="function"  name="function" value="{{ $employee->function }}" class="form-control @error('function') is-invalid @enderror">
                      <div class="invalid-feedback">
                         @error('function')
-                        Musíte zadat funkci, kterou bude zaměstnanec vykonávat.
+                           Musíte zadat funkci, kterou bude zaměstnanec vykonávat.
                         @enderror
                      </div>
                   </div>
@@ -78,7 +78,7 @@
                      </script>
                      <div class="invalid-feedback">
                         @error('birth_date')
-                        Musíte zadat datum narození. 
+                           Musíte zadat datum narození. 
                         @enderror
                      </div>
                   </div>

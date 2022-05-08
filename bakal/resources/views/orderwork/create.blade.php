@@ -36,7 +36,7 @@
                         <option id="naskladneni" name="naskladneni">Naskladění</option>
                         <option id="míchání" name="míchání">Míchání</option>
                         <option id="balení" name="balení">Balení</option>
-                        <option id="expedice" name="expedice">Expedice</option>
+                      
                      </select>
                   </div>
                   <div class="form-group">

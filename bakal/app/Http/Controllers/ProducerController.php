@@ -63,8 +63,8 @@ class ProducerController extends Controller
             'name' => 'required',
             'address' =>'required',
             'town' => 'required',
-            'email' => 'required|email|unique:producers',
-            'phone' => 'required|numeric|unique:producers',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
         ]);
  
         $producer = Producer::find($id); // vyhledani zakaznika podle ID

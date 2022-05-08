@@ -32,9 +32,9 @@ class ProductMixedController extends Controller
     {
         // overeni dat z formulare
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:product_mixeds',
             'branch' =>'required',
-            'code' =>'required',
+            'code' =>'required|unique:product_mixeds',
             'prize' => 'required|numeric',
 
         ]);

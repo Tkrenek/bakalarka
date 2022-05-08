@@ -15,7 +15,7 @@
    <a class="btn btn-primary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
 @endauth
 {{-- Tabulka se vsemi nadobami v systemu --}}
-<table class="table">
+<table class="table mb-5">
    <thead>
       <tr>
          <th scope="col">Typ nádoby</th>
