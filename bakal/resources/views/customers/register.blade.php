@@ -101,7 +101,7 @@
             </div>
          </div>
          @guest
-         <span class="login-option">Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</span>  
+         <span class="login-option mb-5">Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</span>  
       </div>
       @endguest
    </div>

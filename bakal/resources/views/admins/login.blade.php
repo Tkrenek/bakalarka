@@ -31,7 +31,7 @@
                            <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" name="email">
                            <div class="invalid-feedback">
                               @error('email')
-                              Musíte zadat e-mail. 
+                                 Musíte zadat e-mail. 
                               @enderror
                            </div>
                         </div>
@@ -40,11 +40,11 @@
                            <input class="form-control @error('password') is-invalid @enderror"  type="password" id="password" name="password">
                            <div class="invalid-feedback">
                               @error('password')
-                              @if($message == "The password confirmation does not match.") 
-                              Hesla se neshodují.
-                              @else
-                              Musíte zadat heslo.
-                              @endif
+                                 @if($message == "The password confirmation does not match.") 
+                                    Hesla se neshodují.
+                                 @else
+                                    Musíte zadat heslo.
+                                 @endif
                               @enderror
                            </div>
                            <div class="d-flex justify-content-center p-3">

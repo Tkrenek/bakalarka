@@ -113,7 +113,7 @@
                      </select>
                      <div class="invalid-feedback">
                         @error('department')
-                        Musíte vybrat oddělení.
+                           Musíte vybrat oddělení.
                         @enderror
                      </div>
                   </div>

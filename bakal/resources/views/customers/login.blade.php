@@ -56,7 +56,7 @@
                </div>
             </div>
          </div>
-         <div class="login-option"> Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</div>
+         <div class="login-option mb-5"> Přístup pro admina: <a href="{{ route('admins.login') }}">zde</a>.</div>
       </div>
    </div>
 </div>
