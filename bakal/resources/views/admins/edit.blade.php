@@ -1,5 +1,8 @@
 @extends('layouts.navigation')
 @section('content')
+@php
+   use Carbon\Carbon;
+@endphp
 {{-- 
 -- Nazev souboru: edit.blade.php 
 -- Pohled pro upravu admina 
@@ -59,9 +62,11 @@
                   <label for="birth_date">Datum narození</label>
                   <input type="date" id="birth_date" name="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
                   {{-- javascript kod pro zobrazeni v poli data puvodni datum narozeni --}}
-                  <script>
-                     document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($admin->birth_date); ?>)
-                  </script>
+                  @php $date = Carbon::parse($admin->birth_date); @endphp
+                     <script>
+                        document.getElementById('birth_date').valueAsDate = new Date(<?php echo json_encode($date) ?>);
+                     </script>
+                  
                   <div class="invalid-feedback">
                      @error('birth_date')
                      {{  $message }}

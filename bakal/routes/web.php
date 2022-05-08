@@ -211,6 +211,7 @@ Route::group(['middleware' => 'auth:customer,admin'], function () {
     Route::get('/orders/edit/{idOrder}', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/orders/update/{orderId}', [OrderController::class, 'update'])->name('orders.update');
 
+    //zobrazeni vyhledaneho produktu
     Route::get('/items/index/filter/{orderid}', [ItemController::class, 'indexFilter'])->name('items.index.filter');
 });
 
@@ -283,7 +284,7 @@ Route::group(['middleware' => 'auth:employee,admin,customer'], function () {
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/customers/store', [CustomerController::class, 'store'])->name('customers.store');
 
-// prhlasovani uzitelu
+// prhlasovani uzivatelu
 Route::get('/customers/login', [LoginCustomerController::class, 'index'])->name('customers.login');
 Route::post('/customers/login', [LoginCustomerController::class, 'login'])->name('customers.login.post');
 
