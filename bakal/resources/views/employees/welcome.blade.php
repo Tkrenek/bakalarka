@@ -52,16 +52,8 @@
    </div>
 </div>
 <div class="row mt-2">
-   <div class="col-sm-4">
-      <div class="card">
-         <div class="card-body text-center">
-            <h5 class="card-title">Recepty</h5>
-            <p class="card-text">Zobrazte si recepty míchaných produktů.</p>
-            <a href="{{ route('mixingProduct.index') }}"  class="btn btn-primary">Přejít</a>
-         </div>
-      </div>
-   </div>
-   <div class="col-sm-4">
+   
+   <div class="col-sm-4 offset-2">
       <div class="card">
          <div class="card-body text-center">
             <h5 class="card-title">Odvedená práce</h5>

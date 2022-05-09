@@ -46,6 +46,6 @@ class Customer extends Authenticatable
      */
     public function order()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class)->orderBy('term');
     }
 }

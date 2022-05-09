@@ -44,7 +44,7 @@ class OrderController extends Controller
                 'name' => 'Číslo objednávky: '.$newOrder->id,
                 'startDate' => Carbon::now()->add(1, 'week'),
                 'endDate' => Carbon::now()->add(1, 'week'),
-                ]);
+            ]);
 
           } catch (\Google_Service_Exception $e) { // zachyceni vyjimky, pokud jiz udalost existuje
 
@@ -264,14 +264,17 @@ class OrderController extends Controller
     public function changeState($orderId, Request $request)
     {
         $order = Order::find($orderId); // vyhleda objednavku podle ID
+        $term = $order->term;
 
         // overi, zda byl zadan stav
         $this->validate($request, [
             'state' => 'required', 
         ]);
 
-        $order->state = $request->state; // zmeni stav
-        $order->save();
+        DB::update(DB::raw('UPDATE orders SET orders.state = "'.$request->state.'", orders.term = "'.$term.'"  WHERE orders.id = '.$orderId.''));
+
+       // $order->state = $request->state; // zmeni stav
+       // $order->save();
 
         return back();
     }

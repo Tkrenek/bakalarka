@@ -54,10 +54,9 @@ class OrderWorkController extends Controller
             'type' => 'required',
             'time' => 'required|numeric|min:1',
             'date' => 'required|date',
-            'order' => 'required|exists:orders,id|numeric'
             
         ]);
-        
+      
 
         // Vytvoreni prace na objednavce v databazi
         OrderWork::create([
@@ -115,7 +114,7 @@ class OrderWorkController extends Controller
             ]);
         }
         // pokud je prihlasen admin
-        $orderworks = OrderWork::get(); // zikani vsech praci na objednavkach
+        $orderworks = OrderWork::orderBy('date')->get(); // zikani vsech praci na objednavkach
 
         // vraceni pohledu se vsemi pracemi na objednavkach
         return view('orderwork.index', [

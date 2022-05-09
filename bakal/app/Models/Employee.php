@@ -56,7 +56,7 @@ class Employee extends Authenticatable
      */
     public function orderWork()
     {
-        return $this->hasMany(OrderWork::class);
+        return $this->hasMany(OrderWork::class)->orderBy('date');
     }
 
     

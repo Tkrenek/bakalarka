@@ -60,7 +60,7 @@ class ContainerController extends Controller
      */
     public function index()
     {
-        $containers = Container::get(); // ulozi vsechny nadoby do promenne
+        $containers = Container::orderBy('code')->get(); // ulozi vsechny nadoby do promenne
          
         // vraci pohle s nadobami
         return view('containers.index', [
