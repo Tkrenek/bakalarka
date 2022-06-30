@@ -178,9 +178,10 @@
                      <div class="form-group">
                         <label for="state" >Stav</label>
                         <select name="state" id="state" class="form-control custom-select">
-                           <option id="založeno" name="založeno">založeno</option class="form-control @error('state') is-invalid @enderror">
-                           <option id="namícháno" name="namícháno">namícháno</option class="form-control @error('state') is-invalid @enderror">
-                           <option id="zabaleno" name="zabaleno">zabaleno</option class="form-control @error('state') is-invalid @enderror">
+                           <option id="založeno" name="založeno">Založeno</option class="form-control @error('state') is-invalid @enderror">
+                           <option id="namícháno" name="namícháno">Namícháno</option class="form-control @error('state') is-invalid @enderror">
+                           <option id="zabaleno" name="zabaleno">Zabaleno</option class="form-control @error('state') is-invalid @enderror">
+                           <option id="vyrizeno" name="vyrizeno">Vyřízeno</option class="form-control @error('state') is-invalid @enderror">
                         </select>
                         <div class="invalid-feedback">
                            @error('state')

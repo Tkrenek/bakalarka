@@ -21,6 +21,14 @@ use DB;
 
 class OrderController extends Controller
 {
+
+    public function test()
+    {
+        $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta']];
+        dd($samples[0][1]);
+    }
+
+
     /**
      * Vytvori v databazi zaznam o nove objednavce
      * @throws Google_Service_Exception
@@ -174,6 +182,7 @@ class OrderController extends Controller
                 }
             }
         }
+        
         return $arr; // vratime pole
     }
 
@@ -210,6 +219,7 @@ class OrderController extends Controller
             $recommendedItems = $apriori->predict($itemsInOrder); // predpoved doporucenych polozek
         }
     
+        dd($recommendedItems);
         return $recommendedItems; // vraceni doporucenych polozek
     }
 
@@ -387,6 +397,30 @@ class OrderController extends Controller
      */
     public function storeAdmin($subId)
     {
+        
+
+        try {
+            // vytvoreni nove udalosti v google kalendari
+            // Manage events on a Google Calendar [Source code]. https://github.com/spatie/laravel-google-calendar.
+            Event::create([
+                'id' => 'eventid'.$newOrder->id,
+                'name' => 'Číslo objednávky: '.$newOrder->id,
+                'startDate' => Carbon::now()->add(1, 'week'),
+                'endDate' => Carbon::now()->add(1, 'week'),
+            ]);
+
+          } catch (\Google_Service_Exception $e) { // zachyceni vyjimky, pokud jiz udalost existuje
+
+            $ev = Event::find('eventid'.$newOrder->id); // vyhledame udalost podle id
+
+            // upravime parametry
+            // Manage events on a Google Calendar [Source code]. https://github.com/spatie/laravel-google-calendar.
+            $ev->startDate = Carbon::now()->add(1, 'week');
+            $ev->endDate = Carbon::now()->add(1, 'week');
+            $ev->status = "confirmed";
+            
+            $ev->save(); // ulozime
+        }
         // vytvoreni objednavky
         $newOrder = Order::create([
             'state' => 'založeno',
