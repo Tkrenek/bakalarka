@@ -22,11 +22,6 @@ use DB;
 class OrderController extends Controller
 {
 
-    public function test()
-    {
-        $samples = [['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta'], ['alpha', 'beta', 'epsilon'], ['alpha', 'beta', 'theta']];
-        dd($samples[0][1]);
-    }
 
 
     /**
@@ -219,7 +214,7 @@ class OrderController extends Controller
             $recommendedItems = $apriori->predict($itemsInOrder); // predpoved doporucenych polozek
         }
     
-        dd($recommendedItems);
+
         return $recommendedItems; // vraceni doporucenych polozek
     }
 
@@ -397,7 +392,12 @@ class OrderController extends Controller
      */
     public function storeAdmin($subId)
     {
-        
+        $newOrder = Order::create([
+            'state' => 'vytvořeno',
+            'term' => Carbon::now()->add(1, 'week'),
+            'customer_id' => auth('admin')->user()->id,
+            'invoice' => 'bude doplněno'
+        ]);
 
         try {
             // vytvoreni nove udalosti v google kalendari

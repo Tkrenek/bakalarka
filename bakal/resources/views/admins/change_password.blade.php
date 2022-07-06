@@ -2,7 +2,7 @@
 @section('content')
 {{-- 
 -- Nazev souboru: change_password.blade.php 
--- Pohled pro registraci admina 
+-- Pohled pro zmenu hesla admina 
 -- autor: Tomas  Krenek(xkrene15)  
 --}}
 <div class="container">

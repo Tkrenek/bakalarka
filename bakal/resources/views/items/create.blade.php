@@ -15,14 +15,14 @@
 <a href="{{ route('items.createOriginal', $order->id) }}" class="btn btn-primary float-right ml-2">Pouze originální</a>
 <a href="{{ route('items.createMixed', $order->id) }}" class="btn btn-primary float-right">Pouze Míchané</a>
 
-<div class="row mt-2 col-4">
+<div class="row mt-2 col-4" >
    <form action="{{ route('items.index.filter', $order->id) }}" type="get" class="float-left ml-0">
       <div class="row">
          <div class="col">
             <input type="search" class="form-control mr-sm-2" name="query" placeholder="Kód produktu">
          </div>
          <div class="col">
-            <button class="btn btn-primary" type="submit" class="float-right">Vyhledat</button>
+            <button class="btn btn-primary" type="submit" class="">Vyhledat</button>
          </div>
       </div>
       @if ($message = Session::get('errorFilter'))

@@ -56,7 +56,7 @@
 </div>
 
 @if (!$products->isEmpty())
-<h1 class="display-3 text-center mb-5">Originální produkty</h1>
+<h1 class="display-2 text-center mb-5">Originální produkty</h1>
 {{-- Tabulka se vsemi produkty --}}
 <table class="table  mb-5">
    <thead>
@@ -135,7 +135,7 @@
 </table>
 @endif
 @if (!$productsMixed->isEmpty() )
-<h1 class="display-3 text-center mb-5">Míchané produkty</h1>
+<h1 class="display-2 text-center mb-5">Míchané produkty</h1>
 {{-- Tabulka s michanymi produkty --}}
 <table class="table mb-5">
    <thead >

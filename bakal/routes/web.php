@@ -305,6 +305,10 @@ Route::get('/stats', [StatsController::class, 'index'])->name('stats.index');
 Route::get('/test', [OrderController::class, 'test'])->name('test');
 
 
+Route::get('/pridat/{orderId}/{productCode}', [ItemController::class, 'addRecommended'])->name('pridat');
+
+
+Route::put('/items/change/{itemId}', [ItemController::class, 'changeAmmount'])->name('items.change');
 
 
 ////////////////////////////////////////

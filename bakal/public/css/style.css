@@ -17,17 +17,19 @@
 
 table {
     text-align: center;
-    border-right: 1px solid black !important;
-    border-left: 1px solid black !important;
-    border-bottom: 1px solid black !important;
-    border-top: 1px solid black !important;
+    border-right: 3px solid black !important;
+    border-left: 3px solid black !important;
+    border-bottom: 3px solid black !important;
+    border-top: 3px solid black !important;
+
+    
 }
 
 .table-header {
-    border-right: 1px solid black !important;
-    border-left: 1px solid black !important;
-    border-top: 1px solid black !important;
-    border-bottom: 1px solid black !important;
+    border-right: 3px solid black !important;
+    border-left: 3px solid black !important;
+    border-top: 3px solid black !important;
+    border-bottom: 3px solid black !important;
     height: 50px !important;
     background-color: #FFFFE8 !important;
     margin: auto !important;
@@ -36,7 +38,7 @@ table {
 thead {
     background-color: #FFFFE8 !important;
 
-    border-bottom: 1px solid black !important;
+    border-bottom: 3px solid black !important;
   height: 100px;
   
   vertical-align: middle !important;
@@ -46,12 +48,12 @@ thead {
 
 td {
     vertical-align: middle !important;
-
+    background-color: 		#F0F8FF!important;
 }
 
 th {
-    border-top: 1px solid black !important;
-    border-bottom: 1px solid black !important;
+    border-top: 3px solid black !important;
+    border-bottom: 3px solid black !important;
     vertical-align: middle !important;
 
     
@@ -75,9 +77,12 @@ th {
     font-size: xx-large;
 }
 
-.card {
+.card  {
     border: black solid 1px !important;
+    margin-bottom: 15px;
+    
 }
+
 
 .card-header
  {
@@ -104,11 +109,82 @@ th {
      font-size: x-large;
  }
 
- .recommended {
+.recommended a{
      font-size: larger;
- }
+
+}
+
+.recommended a:hover{
+    font-size: larger;
+    color: black !important;
+    text-decoration: underline !important;
+}
+
 
  a:link{
      text-decoration: none !important;
  }
+.navbar li a {
+    font-size: large;
+}
+
+ .navbar-brand {
+    font-size: 150px;
+ }
+ 
+.navbar {
+    height: 10vh;
+}
+
+.navbar  ul li a:hover {
+  
+    text-decoration: underline !important;
+}
+
+.navbar-brand {
+    font-size: 30px !important;
+}
+
+.menu{
+   
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(241,185,125,1) 100%) !important;
+}
+
+
+.display-2{
+    font-weight: bold !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.display-1{
+    font-weight: bold !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    font-weight: bold !important;
+    background-color: #DCDCDC	 !important;
+}
+
+ .btn-primary  {
+    background-color: rgb(224,164,116) !important;
+    border: rgb(224,164,116) !important;
+}
+
+.mnozstvi {
+    display: inline-block;
+}
+
+.formik {
+    display: inline-block;
+}
+
+#ammountSpecial{
+    width: 50px;
+}
+
+#foot {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(241,185,125,1) 100%) !important;
+
+}
 

@@ -9,6 +9,11 @@
    $orderSum = 0;
 @endphp
 <h1 class="text-center mb-5 display-2">ID objednávky: {{ $order->id }}</h1>
+@if ($message = Session::get('error'))
+   <div class="alert text-center" style="color: red; font-weight: bold;"  >
+      <strong>{{ $message }}  </strong>   
+   </div>
+@endif
 {{-- Zobrazeni detailu objednavky --}}
 @auth('customer')
    <a href="{{ route('orders.myindex', auth('customer')->user()->id )}}" role="button" class="btn btn-primary">Zpět na moje objednávky</a>
@@ -57,7 +62,26 @@
             <td>{{ $item->productOriginal->code }}</td>
             <td>{{ $item->productOriginal->name }}</td>
          @endif
-            <td>{{ $item->amount }}</td>
+         <td>
+            <div class="change">
+
+               <div class="mnozstvi">
+                  {{ $item->amount }}
+                     
+               </div> <form action="{{ route('items.change', $item->id) }}" class="formik" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <input id="ammountSpecial" type="number" name="ammountSpecial" >
+                  
+                  <input type="submit" name="" id="" value="Změnit" class="btn btn-primary">
+               </form>
+            </div>
+         
+            
+            
+            
+     
+      </td>
          @php
             $sumProduct = 0; // suma za produkty
          @endphp
@@ -137,7 +161,7 @@
          @else 
             {{-- Vypis polozky --}}
             <span class="recommended">
-               {{ $one[0] }}  &nbsp 
+               <a href="{{ route('pridat', ['orderId'=>$order->id,'productCode'=>$one[0]]) }}"> {{ $one[0] }}</a>  &nbsp 
             </span>
          @endif
          @php
@@ -161,7 +185,7 @@
          @else 
             {{-- Vypis polozky --}}
             <span class="recommended">
-               {{ $one[0] }}  &nbsp
+               <a href="{{ route('pridat', ['orderId'=>$order->id,'productCode'=>$one[0]]) }}"> {{ $one[0] }} </a>  &nbsp
             </span>
          @endif
          @php

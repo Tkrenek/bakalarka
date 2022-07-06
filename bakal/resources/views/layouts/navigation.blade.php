@@ -22,13 +22,13 @@
    </head>
    <body class="d-flex flex-column min-vh-100">
        {{-- Navigacni menu --}}
-      <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-xl navbar-dark menu">
          <a href="/" class="navbar-brand ">Coloral</a>
          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
          <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav seznam">
                 {{-- Polozky zobrazene pouze pro zamestnance --}}
                @auth('employee')
                     <li class="nav-item">
@@ -119,7 +119,7 @@
       <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
       {{-- Nabidka pro zamestnance, zmena uctu, odhlaseni --}}
       @auth('employee')
-        <nav class=" navbar navbar-expand navbar-white navbar-light  float-left">
+        <nav class=" navbar navbar-expand navbar-white navbar-light  float-left user-settings">
 
             <ul class="navbar-nav ">
                 <li class="nav-item dropdown ">
@@ -138,7 +138,7 @@
       @endauth
       {{-- Nabidka pro zakaznika, zmena uctu, odhlaseni --}}
       @auth('customer')
-        <nav class=" navbar navbar-expand navbar-white navbar-light float-left">
+        <nav class=" navbar navbar-expand navbar-white navbar-light float-left user-settings">
             <ul class="navbar-nav ">
                 <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -156,7 +156,7 @@
       @endauth
       {{-- Nabidka pro admina, zmena uctu, odhlaseni --}}
       @auth('admin')
-        <nav class=" navbar navbar-expand navbar-white navbar-light float-left">
+        <nav class=" navbar navbar-expand navbar-white navbar-light float-left user-settings">
             <ul class="navbar-nav ">
                 <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -176,8 +176,8 @@
          @yield('content')
       </div>
       {{-- Footer dokumentu --}}
-      <footer class="mt-auto bg-light text-center text-lg-start">
-         <div class="p-3" style="background-color: #212529;">
+      <footer class="mt-auto bg-light text-center text-lg-start" >
+         <div class="p-3" id="foot">
             
             <div class="text-white text-center">© 2022 Tomáš Křenek <br>
                 

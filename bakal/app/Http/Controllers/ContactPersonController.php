@@ -187,7 +187,6 @@ class ContactPersonController extends Controller
         } else if (auth('customer')->user()) {
             return redirect()->route('contact.index.sub', auth('customer')->user()->id);
         }
-        
       
     }
 

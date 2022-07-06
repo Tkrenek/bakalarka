@@ -193,6 +193,70 @@ class ItemController extends Controller
             'order' => $order
         ]);
     }
+
+    public function addRecommended($orderId, $productCode)
+    {
+
+       
+
+        if($productCode[0] == 'O') {
+            $product = Product_original::where('code', $productCode)->first();
+
+            Item::create([
+                'amount' => 20,
+                'is_mixed' => "ne",
+                'product_original_id' => $product->id,
+                'product_mixed_id' => 1,
+                'order_id' => $orderId
+            ]);
+        } else if($productCode[0] == 'M') {
+            $product = Product_Mixed::where('code', $productCode)->first();
+
+            Item::create([
+                'amount' => 20,
+                'is_mixed' => "ano",
+                'product_original_id' => 1,
+                'product_mixed_id' => $product->id,
+                'order_id' => $orderId
+            ]);
+        } 
+
+        return \Redirect::route('orders.show', $orderId);
+        
+        
+        
+
+
+    }
+
+
+    public function changeAmmount($itemId, Request $request)
+    {
+        $item = Item::Find($itemId);
+
+        if($item->product_original_id == 1) {
+            $product = $item->productMixed;
+            if($product->on_store < $request->ammountSpecial) {
+                return back()->with('error', 'Na skladě není dost zásob.'); // chybova hlaska
+            }
+        } else {
+            $product = $item->productOriginal;
+            if($product->on_store < $request->ammountSpecial) {
+                return back()->with('error', 'Na skladě není dost zásob.'); // chybova hlaska
+            }
+        }
+
+        $this->validate($request, [
+            'ammountSpecial' => 'required|numeric|min:1',
+        ]);
+
+  
+        $item->amount = $request->ammountSpecial;
+
+        $item->save();
+
+        return back();
+    }
     
 
     

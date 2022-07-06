@@ -10,7 +10,7 @@
       Musíte zadat množství.
    @enderror
 </div>
-<h1 class="display-3 text-center mb-4">Přehled nádob</h1>
+<h1 class="display-2 text-center mb-4">Přehled nádob</h1>
 @auth('admin')
    <a class="btn btn-primary mb-3" href="{{ route('containers.create')}}" class="p-3">Přidat nádobu</a>
 @endauth
